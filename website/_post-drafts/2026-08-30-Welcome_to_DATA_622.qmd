@@ -24,7 +24,6 @@ Here are the first steps:
 * Introduce yourself on the course discussion forum on Brightspace.
 * [Join our Slack workspace:](https://join.slack.com/t/cuny-msds/shared_invite/zt-3ans1b3dz-5HhIols06wNraCMUhZ~jXw)
   - I will invite you to a DATA 622 Slack Channel within that workspace when you join
-<!-- TODO: Fall 2026 Zoom link -->
 * Attend our first meetup on Monday at 6:45 p.m. ET on [Zoom](https://us02web.zoom.us/j/81858708616?pwd=eE9ZGJFco9iicq3BsmANIfWUVLwy0x.1)
 
 I recorded a short video which introduces me and gives you more background on the course:

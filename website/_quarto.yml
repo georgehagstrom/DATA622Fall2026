@@ -38,8 +38,7 @@ website:
         text: "Github"
         target: _blank
       - icon: slack
-        # TODO: this is the Spring 2026 channel id -- swap in the Fall channel
-        href: https://cuny-msds.slack.com/archives/C0A67MBJ411
+        href: https://cuny-msds.slack.com/archives/C0BLXQGRCKC
         text: "Slack"
         target: _blank
       - icon: link-45deg

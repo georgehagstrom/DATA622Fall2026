@@ -5,7 +5,6 @@ editor: source
 
 ## Meetup Link
 
-<!-- TODO: replace with the Fall 2026 Zoom link -->
 [Click Here to Join the Meetups on Zoom](https://us02web.zoom.us/j/81858708616?pwd=eE9ZGJFco9iicq3BsmANIfWUVLwy0x.1)
 
 Meetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.

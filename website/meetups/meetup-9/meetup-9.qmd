@@ -85,12 +85,6 @@ oi_colors = list(okabe_ito.values())
 - Vignette on Production Basics
 
 
-## Meetup Wednesday!!!
-
-- Sign up here:
-[Sign up Link](https://us02web.zoom.us/meeting/register/pDyeuQ9ERrqYbBNKJPBMkw)
-
-
 ## Lab 3 Feedback
 
 - Be very wary of default or LLM chosen model parameters!!!
