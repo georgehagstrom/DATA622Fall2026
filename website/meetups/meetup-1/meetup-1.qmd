@@ -181,7 +181,7 @@ In the age of generative AI and ubiquitous digital tools, human cognition faces 
 | Date | Module | Main Deliverables |
 |------|--------|-------------------|
 | Aug 31 | [Introduction to Machine Learning](../../modules/module1.qmd) | |
-| Sep 7 | [Bias-Variance Trade-Off](../../modules/module2.qmd) | [Lab 1](../../assignments/labs/lab1.qmd) |
+| Sep 7 | [Bias-Variance Trade-Off](../../modules/module2.qmd) | [Lab 1](../../assignments/labs/tbd.qmd) |
 | Sep 14 | [The Linear Model](../../modules/module3.qmd) | Lab 2 |
 | Sep 21 | [Classification](../../modules/module4.qmd) | |
 | Sep 28 | [Generative Classification Models and Class Imbalance](../../modules/module5.qmd) | Lab 3 |

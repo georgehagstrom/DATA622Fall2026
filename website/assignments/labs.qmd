@@ -7,21 +7,35 @@ occasionally other software to acquire, explore, wrangle, and manage different d
 **Please submit a PDF (preferred) or HTML file along with your `qmd` file.** Labs should be submitted
 on Brightspace.
 
-Each lab title links to the assignment on this site; the "Template" link downloads the raw `.qmd` so
-you can fill it in.
+Each lab is released the week it is assigned; until then its link goes to a placeholder page.
+Once released, the lab title links to the assignment and the "Template" link downloads the raw
+`.qmd` for you to fill in.
 
-1. [Bias-Variance Tradeoff](labs/lab1.qmd)
-   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab1.qmd))
-2. [The Linear Model](labs/lab2.qmd)
-   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab2.qmd))
-3. [Classification](labs/lab3_alt.qmd)
-   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab3_alt.qmd))
-4. [Regularization and Generalization](labs/lab4.qmd)
-   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab4.qmd))
-5. [Trees and Ensembles](labs/lab5.qmd)
-   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab5.qmd))
-6. [Causal Inference](labs/lab6.qmd)
-   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab6.qmd))
-7. [Neural Networks and Deep Learning](labs/lab7.qmd)
-   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab7.qmd))
-8. [Unsupervised Learning and Pre-Trained Models](labs/lab8.qmd)
+<!--
+TO RELEASE A LAB, e.g. Lab 1:
+
+  1. swap this line
+         1. [Bias-Variance Tradeoff](labs/tbd.qmd)
+     for
+         1. [Bias-Variance Tradeoff](labs/lab1.qmd)
+         ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab1.qmd))
+  2. repoint the other pages that mention that lab. To find them all:
+         grep -rn 'labs/tbd.qmd' --include='*.qmd' .
+     For Lab 1 that is course/schedule.qmd, modules/module2.qmd and
+     meetups/meetup-1/meetup-1.qmd; Lab 2 also appears in modules/module3.qmd.
+  3. render it:  quarto render assignments/labs/lab1.qmd
+
+The lab source files are already in assignments/labs/ -- they are simply not
+linked or rendered until you release them. The announcement drafts in
+_post-drafts/ still link to the real lab pages, which is correct: you promote
+a draft in the same week you release its lab.
+-->
+
+1. [Bias-Variance Tradeoff](labs/tbd.qmd)
+2. [The Linear Model](labs/tbd.qmd)
+3. [Classification](labs/tbd.qmd)
+4. [Regularization and Generalization](labs/tbd.qmd)
+5. [Trees and Ensembles](labs/tbd.qmd)
+6. [Causal Inference](labs/tbd.qmd)
+7. [Neural Networks and Deep Learning](labs/tbd.qmd)
+8. [Unsupervised Learning and Pre-Trained Models](labs/tbd.qmd)

@@ -10,7 +10,7 @@ This module introduces the _bias-variance trade-off_, which is one of the most f
 problem you are solving, and the types of models which might be successful. We will introduce concepts such as in-sample and out-of-sample accuracy, generalization, overfitting,
 loss functions, and model assessment. 
 
-* 9/13: Submit [Lab 1](../assignments/labs/lab1.qmd) on the Brightspace page for the course
+* 9/13: Submit [Lab 1](../assignments/labs/tbd.qmd) on the Brightspace page for the course
 * Start brainstorming project ideas and forming groups on slack.
 
 

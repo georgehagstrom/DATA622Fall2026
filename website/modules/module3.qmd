@@ -11,7 +11,7 @@ it within machine learning as the default, baseline model that should be used fo
 and also discussing it from the distinct goals of prediction and understanding.
 One conclusion will be that variable selection is very different depending on your goal.
 
-You should begin working on [Lab 2](../assignments/labs/lab2.qmd) and continue project brainstorming and group formation.
+You should begin working on [Lab 2](../assignments/labs/tbd.qmd) and continue project brainstorming and group formation.
 
 ### Learning Objectives
 
