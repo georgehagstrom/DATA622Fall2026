@@ -1,0 +1,28 @@
+---
+title: "Meetup 1 Tonight and Slides"
+author: "George I. Hagstrom"
+date: 2026-08-31
+draft: false
+description: "Click here to download slides for Meetup 1."
+image: "../images/meetup-1.png"
+image-height: "300px"
+
+---
+
+I have posted the slides for Meetup 1 which you can view by [clicking here](../meetups/meetup-1/meetup-1.qmd)
+
+This week we are going to discuss the basic details and organization of the course, and also provide an introduction to machine
+learning.
+
+Here are some key first steps:
+
+* Read the [syllabus](../course/syllabus.qmd).
+* Go through the course overview materials, and complete the [week 1 readings](../modules/module1.qmd).
+* [Make sure your python software stack is ready.](../course/software.qmd)
+  - Stay tuned for a coding video that goes over the basics
+* [Join our Slack workspace:](https://join.slack.com/t/cuny-msds/shared_invite/zt-3ans1b3dz-5HhIols06wNraCMUhZ~jXw)
+  - I will add you to the DATA 622 Slack Channel    
+<!-- TODO: Fall 2026 events. The Spring seminar registration link and the dated
+     event flyers were removed here -- both pointed at events that have passed. -->
+* We regularly go to the [nyhackr](https://nyhackr.org) meetups once per month
+

@@ -1,0 +1,17 @@
+name: nfl622
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas=1.5.3
+  - numpy<2
+  - scikit-learn
+  - statsmodels
+  - matplotlib
+  - seaborn
+  - scipy
+  - jupyter
+  - pip
+  - pip:
+    - nfl_data_py

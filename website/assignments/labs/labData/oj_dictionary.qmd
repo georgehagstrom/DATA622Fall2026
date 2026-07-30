@@ -1,0 +1,35 @@
+---
+title: "Dominik's OJ Data Dictionary"
+format: html
+---
+
+## Data Overview
+
+The OJ dataset contains weekly sales data for different brands of orange juice at different Dominick's Finer Foods grocery store locations. 
+This dataset originated as part of a larger collaboration between the University of Chicago Booth School of Business and Dominick's, which
+led to the accumulation of data on prices and volumes across a large number of different products. The dataset has been augmented with local
+demographic data that describes people living near each store. The version of the dataset we are using today focuses on orange juice sales 
+across three different brands. You can read about the original dataset here: [Chicago Booth Dominick's Data](https://www.chicagobooth.edu/research/kilts/research-data/dominicks). The 'EconML' package hosts the orange juice specific version of this dataset here: [oj_large.csv](https://raw.githubusercontent.com/py-why/EconML/refs/heads/data/datasets/OrangeJuice/oj_large.csv). It contains over 29,000 rows and 17 
+columns, with no missing data.
+
+## Variable Descriptions
+
+* 'store': The store number of the observation
+* 'brand': The brand of orange juice corresponding to this observation. Values are 'tropicana', 'minute.maid', and 'dominicks'
+* 'week': The week of the study that the data was collected
+* 'logmove': The 'log' of the the number of units sold during that week
+* 'feat': Binary indicator variable of whether or not there was an advertisement for orange juice
+* 'price': The price per unit during that week at that store
+* 'AGE60': Fraction of the population over age 60 in the region of the store
+* 'EDUC': The percentage of the population with a college degree
+* 'ETHNIC': The percentage of the population that is Black or Hispanic
+* 'INCOME': The 'log' of the median income of the population
+* 'HHLARGE': The fraction of households with 5 or more people
+* 'WORKWOM': The percentage of women in the area with full time jobs
+* 'HVAL150': The percentage of households with more than $150,000 of net worth
+* 'SSTRDIST': The average distance in miles to the nearest warehouse store 
+* 'SSTRVOL': The ratio of sales of this store to the nearest warehouse store
+* 'CPDISTS': The average distance in miles to the nearest 5 supermarkets
+* 'CPWVOL5': The ratio of sales of this store to the average of the nearest 5 stores
+
+

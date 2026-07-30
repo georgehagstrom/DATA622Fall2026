@@ -1,0 +1,27 @@
+---
+title: "Labs"
+---
+
+The primary homework assignments in this course are lab assignments where you will use `python` and
+occasionally other software to acquire, explore, wrangle, and manage different data sets.
+**Please submit a PDF (preferred) or HTML file along with your `qmd` file.** Labs should be submitted
+on Brightspace.
+
+Each lab title links to the assignment on this site; the "Template" link downloads the raw `.qmd` so
+you can fill it in.
+
+1. [Bias-Variance Tradeoff](labs/lab1.qmd)
+   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab1.qmd))
+2. [The Linear Model](labs/lab2.qmd)
+   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab2.qmd))
+3. [Classification](labs/lab3_alt.qmd)
+   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab3_alt.qmd))
+4. [Regularization and Generalization](labs/lab4.qmd)
+   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab4.qmd))
+5. [Trees and Ensembles](labs/lab5.qmd)
+   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab5.qmd))
+6. [Causal Inference](labs/lab6.qmd)
+   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab6.qmd))
+7. [Neural Networks and Deep Learning](labs/lab7.qmd)
+   ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab7.qmd))
+8. [Unsupervised Learning and Pre-Trained Models](labs/lab8.qmd)

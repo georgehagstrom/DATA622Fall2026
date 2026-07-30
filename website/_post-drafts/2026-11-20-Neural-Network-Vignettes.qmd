@@ -1,0 +1,34 @@
+---
+title: "Neural Network Vignettes"
+author: "George I. Hagstrom"
+date: 2026-11-20
+draft: false
+description: "Click Here for four vignettes on building and training neural networks"
+image: "../images/fashion_mnist.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+Hello class,
+
+I've uploaded 4 videos with coding vignettes on how to train neural networks using Pytorch, Pytorch Lightning, and google colab notebooks. 
+I created a basic neural network and trained it to classify images of clothing items from the FashionMNIST dataset. The live notebook had some
+issues saving/crashing, so apologies I switched to the 'official' notebook halfway in.
+
+
+
+## Code:
+
+To follow along in code:
+
+* [Official, well commented google colab notebook ](https://colab.research.google.com/drive/1bBVOV3sQ3sR74QHop9l9oE1TR43OA83o?usp=sharing)
+
+
+## Videos:
+
+* [Neural Network Vignette 1: Colab and DataLoaders](https://youtu.be/NydqcdAq9ew)
+* [Neural Network Vignette 2: Writing and Training the Network](https://youtu.be/9MwEzp097Ew)
+* [Neural Network Vignette 3: Exploring the Fit](https://youtu.be/CxQ7XHFKpuU) 
+* [Neural Network Vignette 4: Under the Hood of PyTorch and PyTorch Lightning](https://youtu.be/gg4I8tM69AY)

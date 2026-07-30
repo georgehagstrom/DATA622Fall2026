@@ -1,0 +1,22 @@
+---
+title: "Week 11 Info: Interpretable ML"
+author: "George I. Hagstrom"
+date: 2026-11-08
+draft: false
+description: "Click here for info on Week 11"
+image: "week11.png"
+---
+
+Hello class, week 11 is here.
+
+During this week, we are going to learn about a set of tools that make machine learning models less opaque and allow you to better communicate them to a variety of 
+different stakeholders. The descipline of interpretable machine learning consists of a series of techniques for understanding the behavior of 'black-box' machine learning models.
+These models work by examining the sensitivity of model predictions or decisions to the values of the features. We will go through the overall framework of interpretable ML and then learn
+one very commonly used technique called __SHAP__ (Shapley Additive Explanations). We will also discuss ethical issues surrounding the use of machine learning models, which can be explored
+using interpretable methods.
+
+You can read more about the plan for the week and the reading/resources in [Module 11](../modules/module11.qmd).
+
+[Lab 6](../assignments/labs/lab6.qmd) due this Sunday, April 19th at midnight.
+
+

@@ -1,0 +1,19 @@
+---
+title: "Week 2 Info: Generalization and the Bias-Variance Trade-Off"
+author: "George I. Hagstrom"
+date: 2026-09-06
+draft: false
+description: "Click here for info on Week 2"
+image: "week2.png"
+---
+
+Welcome to Week 2! During this week we are going to learn about some of the foundational concepts of supervised learning, _generalization_ and the _Bias-Variance Trade-Off_. These
+concepts relate to one of the most primary goals of machine learning, which is to make accurate predictions on unseen data, and the challenges in picking models that will
+enable that, a concept known as generalization. The Bias-Variance Trade-Off is one of the main frameworks for understanding why some models generalize well and others do not. 
+We will try to cover these topics at an intuitive level. You can read more about them and your reading assignment for the week in [Module 2](../modules/module2.qmd).
+
+This week we will also go over the basic structure of a machine learning project, through a code example in the `scikit-learn` machine learning library. 
+
+[Lab 1](../assignments/labs/lab1.qmd) is due next Sunday at midnight. 
+
+

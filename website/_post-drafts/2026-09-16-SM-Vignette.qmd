@@ -1,0 +1,25 @@
+---
+title: "Linear Regression in `statsmodels`"
+author: "George I. Hagstrom"
+date: 2026-09-16
+draft: false
+description: "Click here to watch a video on fitting linear regression models in 'statsmodels'"
+image: "../images/statsmodels.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have recorded a video which covers the coding vignette at the end of Chapter 3 on fitting linear regression models using the 'statsmodels' package. I talk about the
+purpose of 'statsmodels' and contrast it with 'sklearn', and then go over the basic syntax, illustrating how to utilize the model summaries and plotting routines
+to interpret linear regression models. The book provides a python notebook which covers this content and which I largely followed, but I have my own notebook which
+includes my comments on the material, in case you find an alternative perspective helpful. Stay tuned for a soon to be uploaded bonus video on the material that
+was not covered at the end of Meetup 3 (I recorded it once but the recording did not capture any audio).
+
+You can find the ['statsmodels video here](https://youtu.be/DlQgKi6nESw)
+
+You can download my python notebook here: [statsmodels vignette ](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-3/sm-vignette.ipynb)
+
+
+

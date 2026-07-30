@@ -1,0 +1,30 @@
+---
+title: "Python Environments and Packages"
+author: "George I. Hagstrom"
+date: 2026-09-02
+draft: false
+description: "Click here to watch a video about python environments and packages"
+image: "../images/virtual_env.png"
+image-height: "300px"
+
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+[Click here to watch a video where I discuss the python language, its history, and how to avoid dependency problems](https://youtu.be/rTbDH_vyruI)
+
+One of the biggest benefits of the python language is the rich ecosystem of packages that have been developed for it. This benefit is also a drawback, however, as standards for publishing 
+packages are very permissive and there are many many different definitions of a standard package format and also tools for managing packages. The result is that if you always install
+packages to your global python environment, you eventually run into a problem called "dependency hell", where new package installations force changes in other packages for compatibility,
+leading to projects that currently work on your computer breaking.
+
+The professional way to handle this is with something called virtual environments. A virtual environment is an isolated python installation designed for a particular project. The idea
+is that you define an environment for your target project, and install only what you need for that project into the environment. That way conflicts with other packages that your other
+projects depend on do not arise.
+
+I will recommend two tools for creating virtual environments: `venv`, which comes with the standard python installation, and `conda`, which is a third party tool developed for scientific
+computing and data science. If you use `venv` you will need to pair it with a package manager, I recommend `uv` which is the latest and greatest one. If you use `conda`, `conda` has its
+own package management capability (which shouldn't be mixed with `uv` and `venv`). Instead, I recommend using something called `mamba` which is basically just a fast implementation of `conda`, to manage packages. Each of these ecosystems has their pros and cons, I use both and pick one for a project based on the situation (though I use `conda` more than `uv`). 
+
+

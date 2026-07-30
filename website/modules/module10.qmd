@@ -1,0 +1,43 @@
+---
+title: "Module 10 - Causal Inference"
+editor: source
+---
+
+
+### Overview
+
+Frequently, organizations want to use data not to make predictions, but to better understand the world and to understand the consequences of decisions. In many contexts,
+this can be handled by randomized experimentation, as is seen in A/B tests or randomized controlled trials. However, it is not always possible to perform experiments.
+Causal inference is a field that studies how to determine causation from observational data. Causal inference requires careful consideration of the potential confounding 
+factors that exist in a given situation, but if correct assumptions can be made about those causal inference gives design principles for statistical or machine learning
+models that can allow us to infer how a given action or intervention would impact a variable of interest.
+
+The Minimal Viable Product Demo is due this week
+
+### Learning Objectives
+
+* Difference between prediction and causal inference 
+* Causal ML Workflow
+* Causal Forests
+
+
+
+### Readings
+
+* __Think Causal Tutorials__: [Shiny App Tutorial which covers the basics](https://apsta.shinyapps.io/thinkCausal/) These are interactive tutorials that are similar in structure to the meetup example. The authors of the tutorial developed 'bartCause', which is the state-of-the-art package for CausalML in my opinion. It is unfortunately not available for python so we are using
+'EconML' which is also good, if a lot less user-friendly. 
+* __Causal Forest Tutorial__: [Explicitly Optimizing on Causal Effects](https://www.markhw.com/blog/causalforestintro)
+* [EconML Vignette](https://github.com/py-why/EconML/blob/main/notebooks/Causal%20Forest%20and%20Orthogonal%20Random%20Forest%20Examples.ipynb) Code Examples Relevant to Your Homework
+
+
+### Extra Readings
+
+
+* __CIBT__ : [Causal Inference for the Brave and True](https://matheusfacure.github.io/python-causality-handbook/landing-page.html):  Chapter 1, 17, 18, 22. This book is excellent
+at explaining Causal Inference from the perspective of a practitioner working in the business world, which differentiates it from a lot of other treatments that are more academic or medicine
+focused. Of these chapters, 17 is like a re-intro to predictive modeling, 18 is about CATE and how it can be used for personalization, and 22 (plus the appendices) are the nitty gritty details of how the CausalML models work.
+
+
+
+### Videos
+

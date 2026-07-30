@@ -1,0 +1,28 @@
+---
+title: "Regularization Vignette"
+author: "George I. Hagstrom"
+date: 2026-10-14
+draft: false
+description: "Click Here for Two Videos: A ridge regression vignette and a Lasso vignette "
+image: "../images/lasso_hitters.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have uploaded two videos, which together mirror a modified version of the chapter 6 coding notebook in 'ISLP'. I have removed the parts on forward, reverse, and subset selection, and on dimensionality reduction. I've also added more focus on RidgeCV, which automatically implements 'loo-cv' and is useful for your homework. The dataset used is the 'Hitters' dataset from 'ISLP',
+which we have previously introduced in another coding vignette. We go through first how to use general cross-validation to select the best value of the regularization parameter, then we
+show how to estimate the out of sample accuracy and the uncertainty in it, and we also look at nested cross-validation.
+
+Click below to watch the videos:
+
+* [Ridge Regression Video](https://youtu.be/IYgxh87K05E)
+* [Lasso Video](https://youtu.be/LU0YrcnlNHY)
+
+The code for the vignette can be
+
+* [regularization-hitters.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-7/regularization-hitters.ipynb) or
+* [regularization-hitters-live.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-7/regularization-hitters-live.ipynb)
+
+

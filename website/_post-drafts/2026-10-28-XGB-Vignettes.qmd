@@ -1,0 +1,34 @@
+---
+title: "XGB Vignettes"
+author: "George I. Hagstrom"
+date: 2026-10-28
+draft: false
+description: "Click Here for three vignettes on XGB cross validation and hyperparameter tuning"
+image: "../images/xgb.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have uploaded three coding vignettes which show how to fit xgboost models in python. The focus of the videos is proper hyperparameter tuning using early stopping, which 
+requires deviation from standard 'sklearn' practices (maybe there is a better way but I don't know of one). A very good article on this which is mirrored somewhat closely by
+our vignettes is [Hyperparameter Tuning XGBoost with early stopping](https://macalusojeff.github.io/post/HyperparameterTuningXGB/) by Jeff Macaluso.
+
+Click below to watch the videos:
+
+* [XGB Vignette 1: Simple CV with Early Stopping](https://youtu.be/sNAcAid53QA)
+* [XGB Vignette 2: Grid Search CV with Early Stopping](https://youtu.be/ju5mdmBWTew)
+* [XGB Vignette 3: Random Search CV with Early Stopping](https://youtu.be/DSskN0GgDsg)
+
+The code for the vignette can be
+
+* [xgboost_vignette](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-9/xgboost_vignette.ipynb) or
+* [xgboost_vignette_live.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-9/xgboost_vignette_live.ipynb)
+
+
+And if you want to really follow along, the dataset can be downloaded here:
+
+* [UCI Credit Card Default](https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/refs/heads/main/website/meetups/meetup-9/UCI_Credit_Card.csv)
+
+

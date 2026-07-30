@@ -1,0 +1,81 @@
+---
+title: "Lab 6: Causal ML for Orange Juice Price Elasticity"
+format: html
+editor: source
+jupyter: data622
+---
+
+### Overview
+
+You have been given a dataset consisting of a single file, [oj_large.csv](https://raw.githubusercontent.com/py-why/EconML/refs/heads/data/datasets/OrangeJuice/oj_large.csv). The dataset is a subset of a dataset compiled during a large study by the Chicago Booth School of 
+Business, which collaborated with a local supermarket chain called Dominick's Finer Foods, to study the impact of prices, advertisting, and
+demographics on the sales of a number of products. The dataset we are working with has over 29,000 observations of the price of orange juice
+and sales for different brands at different Dominick's stores. There is a dataset description here: [oj_dictionary.qmd]().
+
+The goal of this homework assignment is to use Causal Machine Learning to understand how different demographic factors influence
+something called the 'price elasticity' of orange juice. You can read more about price elasticity here: 
+[Wikipedia Price Elasticity of Demand](https://en.wikipedia.org/wiki/Price_elasticity_of_demand). If we define demand as sales, the price
+elasticity of demand is the relationship between a percentage change in sales and a percentage change in price:
+
+$$
+\epsilon = \frac{\partial (\mathrm{SALES})}{\partial (\mathrm{PRICE})}\frac{\mathrm{PRICE}}{\mathrm{SALES}}
+$$
+
+This relationship is most natural when expressed in terms of the 'log' transform of both sales and price, as the elasticity becomes the
+coefficient in a linear regression model relating the two:
+
+$$
+\log(\mathrm{SALES})  = \epsilon\log(\mathrm{PRICE}) 
+$$
+
+The elasticity $\epsilon$ can be dependent upon a variety of other factors. It can depend on the price itself (so that we don't get a straight line relationship between the logs), it can depend on the type of product, the demographics of the shoppers and more. The
+'EconML' package developed a vignette where they used Causal ML to show that $\epsilon$ is a function of income, which is to say that the
+sales are more sensitive to price in stores where the median income is lower. You can find that vignette here and I recommend that you read it and use some code from it as a starting point (it covers more than OJ but it is there): [EconML OJ Vignette](https://github.com/py-why/EconML/blob/main/notebooks/Causal%20Forest%20and%20Orthogonal%20Random%20Forest%20Examples.ipynb) . To read more about the package and its applications, see [pywhy EconML](https://www.pywhy.org/EconML/spec/spec.html).The [tutorial for this package](https://www.pywhy.org/dowhy/v0.8/example_notebooks/tutorial-causalinference-machinelearning-using-dowhy-econml.html) is helpful as well.
+
+
+
+
+## Problem 1: Testing on Fake Data
+
+(a) It is standard practice in Causal Inference to test models on simulated response data based on the original covariates of the dataset before
+fitting to the original dataset. Use the same selection of confounders as in the original vignette (The 'W' matrix), excluding 'week', 'store', 'price', 'INCOME', and 'logmove', and make sure to create dummies/OneHot and apply the 'StandardScaler'. Then put the modifier variable 'INCOME' variable into a matrix called "X" and standardize it. Then you will simulate a relationship between your confounders and the price, you can use code like
+this: 'T_sim = 0.8 + something random based on covariates and modifier', with the 0.8 there to get you the same scale of price variables. Look to the simulation code earlier in the 'EconML' vignette for inspiration.
+
+(b) Now, simulate the values of the 'logmove' (in a matrix called 'Y_sim') using your 'T_sim', your confounders 'W', and your modifier 'X'. Make the relationship
+between 'Y_sim', 'T_sim', and 'X' nonlinear using something like this: 'Y_sim = (-2.5 \* np.tanh(2.0\*X))\*T_sim + something random'.
+
+(c) Using the code from the vignette, fit a Causal Forest ('CausalForestDML') and a linear model ('LinearDML') to the simulated data. 
+For both models, plot the predicted elasticity as a function of the 'INCOME', showing the confidence intervals and the real relationship.
+Also plot the predicted elasticity and the true elasticity for each simulated observation. 
+Comment on the performance of both models on the simulated data. 
+
+
+
+
+## Problem 2: Checking for Overlap
+
+(a) In order for Causal ML to be successful, there needs to be overlap between the distribution of the confounder variables and the values 
+of the treatment. For a continuous treatment, it is important that there is residual variation left-over after the Causal Forest predicts the treatment using confounders. Keeping with the structure of the original vignette (same definition of 'W', 'X', 'Y', and 'T'), use 'LassoCV' to predict $T$ using $W$. Calculate and report the $R^2$. Does this value of $R^2$ support the suitability of this dataset for Causal Inference?
+
+
+## Problem 3: Fitting and Interpreting the Model
+
+(a) Perform a train-test split on the data. Repeat the fit in the vignette to the training set (you can copy their code with suitable modifications to make it work) using a 'CausalForestDML' model to learn the effect of income on price elasticity. Plot the price elasticity versus income with confidence intervals. Calculate the average treatment effect and confidence intervals.
+
+(b) Compute the R-score on the testing/validation set to determine the strength of the heterogeneity. What is your interpretation of the R-score value?
+
+(c) Compute a sensitivity check using the 'sensitivity_interval' method of your fit model. This determines how strong an _unobserved confounder_ would have to be to change the results of your analysis in a meaningful way. The method recalculates confidence intervals for 
+the _ATE_ based on two parameters 'c_t' and 'c_y', which are the fraction of residual variance explained by the hypothetical confounder for
+the treatment and the target respectively. One method for determining the range of 'c_t' and 'c_y' to explore by checking the values of 'c_t'
+and 'c_y' for existing confounders. If you were to do this check, you would find that the most important confounder is the 'feat' variable 
+(whethere the item was advertised that week), and the range should be up to 'c_t=0.1' and 'c_y=0.3'. Compute the sensitivity check for the
+most extreme scenario, with 'c_t=0.1' and 'c_y=0.3'. What are the resulting confidence intervals for the ATE? Do they contain 0?
+
+
+## Problem 4: CATE for Brands and Income
+
+(a) The three brands of orange juice have different price points and are targetted at different customer segments, with 'dominicks' as the 
+discount brand, 'minute.maid' as the mid-range brand, and 'tropicana' as the premium brand. Add these three brands (this will be two additional variables) to the modifier matrix X and refit the model. Calculate the feature importances for all the modifiers and plot the
+elasticity as a function of income for each of the three brands. How do the elasticities differ by brand?
+
+(b) Compute the R-score for the brand-modifier model. How does it compare to the R-score for the model without the brands that you calculated in 3(b)?

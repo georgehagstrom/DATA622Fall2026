@@ -1,0 +1,47 @@
+---
+title: "Bootstrapping and Cross-Validation Vignettes"
+author: "George I. Hagstrom"
+date: 2026-10-07
+draft: false
+description: "Click here for three videos: A data wrangling/Poisson regression video using NFL data, a video on using cross validation on the resulting models, and a video using the bootstrap on the resulting models"
+image: "../images/nflreadpy.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have recorded three coding videos. 
+
+In the first of these videos I use the ['nflreadpy'](https://nflreadpy.nflverse.com/) package to download play-by-play data from NFL seasons spanning 2006 to
+2023. I show how to engineer this data to create a data frame which contains rows corresponding to quarterback appearances in NFL games, containg as the target variable the number
+of touchdown passes thrown in those games by that quarterback, and with features that correspond to the quarterback's statistics earlier in the year and the prior season, as well as
+some additional features of the game (such as whether the quarterback was playing at home or on the road and what the betting lines were). I use these features to fit different
+types of _Poisson Regression_ models, a model class discussed at the end of chapter 4 in your book. In the early part of the video I explain how this model class works.
+
+In the second video, I show how to use 'sklearn' to do cross-validation to compare different model formulations. I show standard 'k-fold' cross validation and also time-series cross validation, a cross-validation formulation in which you split the data into expanding temporally ordered records. I show how to apply the one-standard error rule to select a model after 
+cross-validation, and I walk through code to calculate the bias correction. This second video can be watched without watching the first one.
+
+In the third video, I use the bootstrap to calculate confidence intervals on model coefficients, and on the models predicted probabilities for Sam Darnold throwing 2 or more touchdowns
+in the last superbowl. The last video can also be watched without the prior two.
+
+Find links to the videos and the code below:
+
+* [NFL Poisson Regression Data Wrangling](https://youtu.be/fGQAdxt6Q4k) 
+* [NFL Cross Validation](https://youtu.be/vFzMl2VTYaA)
+* [NFL Bootstrap](https://youtu.be/JtOlb_6ngjw) 
+
+
+The code for these can be found in the following jupyter notebook:
+[cross-validation-bootstrap-vignette.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-6/cross-validation-bootstrap-vignette.ipynb) or
+[cv-nfl-live.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-6/cv-nfl-live.ipynb)
+
+
+
+
+
+
+
+
+
+

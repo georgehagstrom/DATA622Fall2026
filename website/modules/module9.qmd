@@ -1,0 +1,36 @@
+---
+title: "Module 9 - Ensemble Models"
+editor: source
+---
+
+
+
+### Overview
+
+We continue with our study of tree-based methods by learning about a group of tools that allow for multiple trees to be combined into an ensemble to increase model performance.
+This week, our primary aim is to understand boosted trees, which are one of the most commonly used predictive models for both regression and classification tasks. These include
+algorithms such as 'XGBoost', 'CATBoost', and 'LightGBM'. Boosted trees are extremely powerful, but unlike random forests that are prone to overfitting and are sensitive to 
+hyperparameters used to fit them. We will show how boosted trees work and discuss how to use hyperparameter tuning to fit them best. Finally, we will introduce Bayesian Additive
+Regression Trees, another tree-based algorithm which offers superior uncertainty quantification and which will have applications when we discuss causal inference.
+
+Lab 5 is due at the end of the week.
+
+
+### Learning Objectives
+
+* Methods for fitting boosted trees: 'XGBoost' and friends
+* Understanding hyperparameter choices for fitting these models
+* Bayesian Additive Regression Trees aka BART
+
+
+
+### Readings
+
+* __ISLP__ (Introduction to Statistical Learning): [8.2](https://www.statlearning.com)
+* __HOML__ Chapter 7 (Focus on the Boosting Section)
+
+### Videos
+
+* [ISLP Boosting 8.5](https://www.youtube.com/watch?v=cdl4C2eCOHk&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=63)
+* [ISLP BART 8.6](https://www.youtube.com/watch?v=xWhPwHZF4c0&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=64)
+* [ISLP Trees Coding 8.py](https://www.youtube.com/watch?v=xWhPwHZF4c0&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=65)

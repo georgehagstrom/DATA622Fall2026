@@ -1,0 +1,18 @@
+---
+title: "Week 14 Info: Deep Learning and Convolutional Neural Networks"
+author: "George I. Hagstrom"
+date: 2026-12-06
+draft: false
+description: "Click here for info on Week 14"
+image: "week14.png"
+---
+
+Week 14 is here! During this week, we are going to learn about Recurrent Neural Networks, which were developed to model sequential data, from time-series
+to human language. Our primary application will be language, and RNNs and their NLP applications will be a stepping-stone to pre-trained models. In addition
+to RNNs, we will learn about an important variant called LSTM that is more commonly used, and about word embeddings which enable more efficient training.
+
+
+You can read more about the plan for the week and the reading/resources in [Module 14](../modules/module14.qmd).
+
+Lab 8 is not yet available (it is being adjusted to accomodate the extension on Lab 7).
+

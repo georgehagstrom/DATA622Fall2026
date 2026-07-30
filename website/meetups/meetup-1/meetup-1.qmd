@@ -1,0 +1,692 @@
+---
+title: "DATA 622 Meetup 1: What is Machine Learning?"
+format: revealjs
+logo: ../../images/CUNY_SPS_Logo_Wide.png 
+footer: "DATA 622"
+author: "George I. Hagstrom"
+date: "08/31/2026"
+jupyter: data622
+---
+
+```{python}
+import ISLP as islp
+import numpy as np
+import pandas as pd
+import sklearn as sklearn
+from matplotlib.pyplot import subplots
+import seaborn as sns
+
+
+```
+
+## Welcome to DATA 622!
+
+![](../../images/course_logo.png)
+
+
+## What to Expect
+
+1. Meetups Monday 6:45-7:45PM
+  - There is a poll on the course `slack` channel '#data-622-fall-2026'
+
+
+## What to Expect
+
+2. We have a course `slack` slack channel
+  - [Click Here to Join](https://join.slack.com/t/cuny-msds/shared_invite/zt-3ans1b3dz-5HhIols06wNraCMUhZ~jXw)
+  - This is _also_ for the entire department!
+
+
+## What to Expect
+
+3. There is a course website
+  - [https://georgehagstrom.github.io/DATA622Fall2026/](https://georgehagstrom.github.io/DATA622Fall2026/)
+
+![](../../images/coursewebsite.png)
+
+
+## 8 Homework Assignments
+
+- Lab assignments to be done using `python` and `quarto`
+- Submit both code and `pdf`
+- Expectations for figures/code/descriptions elevated from other classes
+
+## Group Project
+
+- Teams of 3-4
+- Build a ML app to solve a problem, put in 'production'
+- Start forming teams now, Proposal due October 4th
+- If you are in a group, don't be the problem. I'll mediate disputes
+
+## Group Project
+
+- Reach Goal: [CUNY Pitchfest](https://pitchfest.github.io/)
+- Annual CUNY wide event to put your programming or data science project in front of industry professionals
+
+
+## Course Software
+
+- `python` is primary language of the course
+- Tell me asap if you don't know `python`/haven't taken DATA 602 or 608
+  - You can still take the class if you want but will be tougher
+
+## What to do if your computer is slow?
+
+- Talk to me!
+- [posit.cloud](https://posit.cloud)
+- [google colab](https://colab.google.com)
+
+
+## LLM Use? Conflicting Goals
+
+1. I want you to become experts on the material
+2. I also want you to be experts on using LLMs
+
+## Research on LLMs in Education
+
+-   Early days, but mixed results
+-   Opinions range from 'LLMs stop you from being able to think for yourself' to 'Concern over LLMs is just another moral panic'
+-   [Your Brain on ChatGPT](https://www.media.mit.edu/publications/your-brain-on-chatgpt/) (I'm skeptical)
+-   [Why knowledge is important in the age of AI](https://arxiv.org/abs/2506.11015) (makes excellent points)
+
+## Research on LLMs in Education {.smaller}
+
+![](memory.png)
+
+::: {.callout-note icon=false}
+
+## Abstract
+
+
+In the age of generative AI and ubiquitous digital tools, human cognition faces a structural paradox: as external aids become more capable, internal memory systems risk atrophy. Drawing on neuroscience and cognitive psychology, this paper examines how heavy reliance on AI systems and discovery-based pedagogies may impair the consolidation of declarative and procedural memory -- systems essential for expertise, critical thinking, and long-term retention. We review how tools like ChatGPT and calculators can short-circuit the retrieval, error correction, and schema-building processes necessary for robust neural encoding. Notably, we highlight striking parallels between deep learning phenomena such as "grokking" and the neuroscience of overlearning and intuition. Empirical studies are discussed showing how premature reliance on AI during learning inhibits proceduralization and intuitive mastery. We argue that effective human-AI interaction depends on strong internal models -- biological "schemata" and neural manifolds -- that enable users to evaluate, refine, and guide AI output.... 
+
+:::
+
+## What I have Seen
+
+![](vibecodingmeme.png)
+
+- Do not let yourself become reliant on LLMs
+
+## My Recommendations
+
+- Ask LLMs how something works
+- Use LLMs for things you can easily check that are low stakes
+- Use LLMs to check for grammar issues, to reword a sentence you struggle with
+- Understand model differences and use professional tools (You can get 1 year free of google AI Pro...)
+- Experiment!
+
+## My recommendations
+
+- Don't copy and paste
+    - Type by hand LLM generated code, understand how it works, maybe even delete it and try to recreate it
+- Don't use it to write or analyze for you
+    - Writing is thinking
+- Don't turn in something you don't understand
+
+
+
+## Textbooks
+
+:::: {.columns}
+
+::: {.column width="50%"}
+1. [Introduction to Statistical Learning](https://statlearning.com)
+
+ - Standard text for people coming into machine learning from a variety of areas
+:::
+
+::: {.column width="50%"}
+![](statlearning_cover.png)
+:::
+
+::::
+
+
+## Textbooks
+
+:::: {.columns}
+
+::: {.column width="50%"}
+2. [Hands on Machine Learning](https://ageron.github.io/) Very practical more CS style book that focuses on python implementations
+:::
+
+::: {.column width="50%"}
+![](homl_cover.jpg)
+:::
+
+::::
+
+
+
+## Textbooks
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+3. [DevOps for Data Science](https://do4ds.com/) Accessible book to start learning some things needed to get models in production
+:::
+
+::: {.column width="50%"}
+![](DevOpsCover.jpg)
+:::
+
+::::
+
+
+## Course Outline {.scrollable .smaller}
+
+
+| Date | Module | Main Deliverables |
+|------|--------|-------------------|
+| Aug 31 | [Introduction to Machine Learning](../../modules/module1.qmd) | |
+| Sep 7 | [Bias-Variance Trade-Off](../../modules/module2.qmd) | [Lab 1](../../assignments/labs/lab1.qmd) |
+| Sep 14 | [The Linear Model](../../modules/module3.qmd) | Lab 2 |
+| Sep 21 | [Classification](../../modules/module4.qmd) | |
+| Sep 28 | [Generative Classification Models and Class Imbalance](../../modules/module5.qmd) | Lab 3 |
+| Oct 5 | [Resampling and Cross-Validation](../../modules/module6.qmd) | [Project Proposal](../../assignments/project.qmd) |
+| Oct 12 | [Regularization and Model Selection](../../modules/module7.qmd) | Lab 4 |
+| Oct 19 | [Tree Models](../../modules/module8.qmd) | |
+| Oct 26 | [Ensemble Models](../../modules/module9.qmd) | Lab 5 |
+| Nov 2 | [Causal Inference](../../modules/module10.qmd) | [Minimum Viable Product Demo](../../assignments/project.qmd) |
+| Nov 9 | [Model Interpretation, Communication, and Ethics](../../modules/module11.qmd) | Lab 6 |
+| Nov 16 | [Neural Networks](../../modules/module12.qmd) | |
+| Nov 23 | No Meetup (Thanksgiving) | |
+| Nov 30 | [Deep Learning](../../modules/module13.qmd) | Lab 7 |
+| Dec 7 | [RNNs and NLP](../../modules/module14.qmd) | |
+| Dec 14 | [Pretrained Models](../../modules/module15.qmd) | Lab 8, [Final Project Writeup and Demo](../../assignments/project.qmd) |
+
+
+## This Week:
+
+- Read: Chapter 1 and Section 2.1 of `ISLP`
+- Watch/Code: Chapter 2 Lab `ISLP` and vignette video
+- Interact: Post in course slack about project
+- HW: Start Lab 1
+
+<!-- TODO: Fall 2026 events -- the Spring seminar/meetup announcement slides were
+     removed here because they advertise events that have already happened. -->
+
+
+
+## Learning from Data
+
+-   Goals Today:
+    1.  Examples of Machine Learning
+    2.  The Machine Learning Problem
+    3.  Types of ML
+
+
+## Example: Transaction Fraud Detection
+
+Problem: Fraudulent transactions are costly
+
+Can be several % of total revenue, billions of dollars
+
+![](../../images/paypal.jpg){width=1in}
+
+
+## Transaction Fraud Detection
+
+Problem: Fraudulent transactions are costly
+
+Solution: Fradulent transactions are different
+
+## Transaction Fraud Detection
+
+::: {style="text-align: left;"}
+![](ML-diagram1.png){width=90%}
+:::
+
+
+## Transaction Fraud Detection
+
+::: {style="text-align: left;"}
+![](ML-diagram1.png){width=90%}
+:::
+
+Can create a formula:
+$$
+y = f(\mathbf{x}) 
+$$
+
+
+## Transaction Fraud Detection
+
+::: {style="text-align: left;"}
+![](ML-diagram1.png){width=90%}
+:::
+
+Can create a formula:
+$$
+y = f(\mathbf{x}) = \mathrm{sign}\left(w_1x_1 + w_2x_2 + w_3x_3 + \cdots + w_n x_n \right)
+$$
+
+
+## Transaction Fraud Detection
+
+::: {style="text-align: left;"}
+![](ML-diagram1.png){width=90%}
+:::
+
+Can create a formula:
+$$
+y = f(\mathbf{x}) = \mathrm{sign}\sum_{i=1}^n w_ix_i
+$$
+
+
+## Transaction Fraud Detection
+
+- Where do the weights $w_i$ come from?
+- Could have an expert come up with them 
+- Machine Learning Idea: Find weights that minimize error
+
+
+## When to use Machine Learning?
+
+:::: {.columns}
+
+::: {.column}
+1. __There is a pattern to learn__
+2. There aren't mathematical formulas that give you the answer already
+3. You have data
+
+:::
+
+::: {.column}
+```{python}
+sns.set_context("talk",font_scale=1.3)
+rng = np.random.default_rng(1303)
+x = rng.standard_normal((100,4))
+random_data = pd.DataFrame(x,columns = ['x1','x2','x3','y'])
+plot = sns.pairplot(random_data)
+plot.fig.suptitle("Random Data",fontsize=40,y=1.1,ha="left")
+plot.fig.text(0.0,0.98,"No pattern, poor for ML",ha="left",fontsize=30);
+
+```
+:::
+
+::::
+
+
+## When to use Machine Learning?
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+1. __There is a pattern to learn__
+2. There aren't mathematical formulas that give you the answer already
+3. You have data
+:::
+
+::: {.column width="50%"}
+
+```{python}
+
+sns.set_context("talk",font_scale=1.5)
+credit = islp.load_data('Credit')
+credit_plot = sns.pairplot(credit)
+credit_plot.fig.suptitle("ISLP Credit Data",fontsize=80,x=0.05,y=1.1,ha="left")
+credit_plot.fig.text(0.05,1.01,"Complex Pattern is ideal for ML",ha="left",fontsize=60);
+
+```
+:::
+::::
+
+
+
+
+## When to use Machine Learning?
+
+
+1. There is a pattern to learn
+2. __There aren't mathematical formulas that give you the answer already__
+3. You have data
+
+![Statistical Rethinking](epicycle.png)
+
+
+
+## When to use Machine Learning?
+
+1. There is a pattern to learn
+2. __There aren't mathematical formulas that give you the answer already__
+3. You have data
+
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](helicentric.png){width="60%"}
+:::
+
+
+::: {.column width="50%}
+$$
+\mathbf{F} = -\frac{Gm_1m_2\hat{\mathbf{r}}}{\|\mathbf{r}\|^2}
+$$
+:::
+
+::::
+
+
+
+## When to use Machine Learning?
+
+1. There is a pattern to learn
+2. There aren't mathematical formulas that give you the answer already
+3. __You have data__
+
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+__This is the one dealbreaker here. Without data there is no possibility for machine learning.__
+:::
+
+
+## Components of Supervised Learning
+
+::: {.incremental}
+
+ - Input $\mathbf{x}$  [[(amount, location, time of day, transaction type)]{style="color: blue;"}]{.fragment .fade-in-then-semi-out}
+    - [[Also called features, predictors, variables]{style="color: blue;"}]{.fragment .fade-in-then-semi-out}
+- Output $y$ [[(real or fraudulent transaction)]{style="color: blue;"}]{.fragment .fade-in-then-semi-out}
+- Target function $f: \mathcal{X}\mapsto \mathcal{Y}$ [[(ideal formula for detecting fraud)]{style="color: blue;"}]{.fragment .fade-in-then-semi-out}
+  - [**Unknown and unknowable**]{.fragment .fade-in-then-semi-out}
+- Data: $(\mathbf{x}_1,y_1),\, (\mathbf{x}_2,y_2),\, \cdots,(\mathbf{x}_n,y_n)$
+- Model $g: \mathcal{X}\mapsto \mathcal{Y}$ [[(also called hypothesis, find this to make predictions)]{style="color: blue;"}]{.fragment .fade-in-then-semi-out}
+:::
+
+
+## How the components fit together
+
+::: {style="text-align: left;"}
+![](supevised-diagram1.png){width=60%}
+:::
+
+
+## How the components fit together
+
+::: {style="text-align: left;"}
+![](supevised-diagram2.png){width=60%}
+:::
+
+
+## How the components fit together
+
+::: {style="text-align: left;"}
+![](supevised-diagram3.png){width=60%}
+:::
+
+## Models
+
+- The set $\mathcal{G}$ can vary in complexity a lot
+- Linear Models $y=\mathbf{w}\cdot\mathbf{x}+x_0$
+
+```{python}
+
+
+x = np.linspace(0, 1, 2)
+w = np.random.randn(30)
+x0 = np.random.randn(30)
+
+fig, ax = subplots(figsize=(16, 10))
+
+for i in range(30):
+    alpha = .2 
+    if i == 29:
+        alpha = 1.0
+    ax.plot(x, w[i] * x + x0[i], 'r-', alpha=alpha, linewidth=4);
+
+ax.set_xlabel('Input: x',fontsize=36)
+ax.set_ylabel('Target: y',fontsize=36)
+ax.set_title('Linear Models',fontsize=48);
+
+```
+
+
+## Models
+
+- The set $\mathcal{G}$ can vary in complexity a lot
+- Decision Trees
+
+```{python}
+
+
+# This function randomly creates a tree-like function
+# Evaluated on a linspace vector
+
+def random_tree(x,num_splits):
+
+    # Define points at which decision tree splits
+    splits = np.sort(np.random.uniform(x.min(), x.max(),num_splits ))
+    # The value of each tree on each split is random
+    values = np.random.randn(num_splits + 1)
+    
+    # Create piecewise constant function
+    y = np.zeros_like(x)
+    y[x < splits[0]] = values[0] 
+    # We loop over each "split" and assign the value to value
+    for i in range(num_splits - 1):
+        mask = (x >= splits[i]) & (x < splits[i+1])
+        y[mask] = values[i + 1]
+    y[x >= splits[-1]] = values[-1]
+    
+    return y
+
+# Plot
+x = np.linspace(0, 1, 500)
+fig, ax = subplots(figsize=(16,10))
+
+# Create 30 random tree ensembles, average trees together like XGBoost
+for i in range(30):
+    
+    y = sum(random_tree(x, num_splits=4) for _ in range(10))
+    
+    alpha = 0.2
+    if i==29:
+        alpha = 1.0
+    ax.plot(x, y, 'r-', alpha=alpha, linewidth=4)
+
+ax.set_xlabel('Input: x',fontsize=36)
+ax.set_ylabel('Target: y',fontsize=36)
+ax.set_title('Decision Tree Ensemble Model',fontsize=48);
+
+
+```
+
+
+
+## Learning Algorithms
+
+- Learning algorithm selects final model $g$ from $\mathcal{G}$
+- Almost always minimization of a loss function:
+$$
+\mathrm{min}_{g\in\mathcal{G}} \sum_{i=1}^N \mathrm{loss}(y_i,g(\mathbf{x}_i))
+$$
+- Find the function that "best" fits the data
+
+## Learning Algorithms
+
+
+- [For some models (linear models, support vector machines, etc), 
+exact formula or guaranteed algorithms exist]{style="color: blue;"}
+
+![](convex_opt.png)
+
+## Learning Algorithms
+
+
+- [For fancy models, decision trees, neural networks, Gaussian Processes, no guarantee exists and the algorithm is a dark art]{style="color: red;"}
+
+![](non_convex_opt.png)
+
+## Learning Algorithms
+
+- Optimization is _not_ the focus here
+- We will talk about it, especially at the end
+- Take 609 for the nitty gritty details
+
+
+## Examples of Supervised Learning
+
+- Predicting Credit Risk
+  - $\mathbf{x}$: Income, Age, Education, Debt
+  - $y$: Will they default on loan?
+  - $f(\mathbf{x})$ Credit approval formula
+  - $(\mathbf{x_i},y_i)$ past data on loan repayments
+
+
+## Examples of Supervised Learning
+
+- Predicting Movie Ratings
+  - $\mathbf{x}$: ratings of watched movies
+  - $y$: rating they would give a movie if they watched
+  - $f(\mathbf{x})$ ideal movie rating function
+  - $(\mathbf{x_i},y_i)$ data on user ratings
+
+
+
+## Examples of Supervised Learning
+
+- Predicting cancer diagnosis
+  - $\mathbf{x}$: gender, tumor location, size, and properties
+  - $y$: Type of tumor
+  - $f(\mathbf{x})$ Ideal diagnosis function
+  - $(\mathbf{x_i},y_i)$ data collected from patient brain scans and tumor biopsies
+
+
+
+## Goals of Modeling
+
+1. Prediction: What will $y$ be for a given set of $\mathbf{x}$?
+
+Your entire goal is maximizing the accuracy of your prediction of $y$. Understanding/insight about how $y$
+is determined by each variable in $x$ is not important
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+Example: Image recognition, text translation, fraud detection
+:::
+
+::: {.fragment style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+Predictive models are not necessarily pure black boxes. People will care to know how something works when $ on the line
+:::
+
+## Goals of Modeling
+
+2. Inference/Understanding: Which of the predictors $\mathbf{x}$ influence or are associated with $y$, and how?
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+Example: What is the relationship between having a doorman and rent?
+:::
+
+2b. Causal Inference: What will happen to $y$ if I take a certain action?
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+Example: A/B testing, randomized controlled trials, if I hire a doorman for my building how much can I increase rent?
+:::
+
+## Goals of Modeling
+
+3. Decision Making or Management: If I observe $\mathbf{x}$ what should I do?
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+Example: Based on the observed fish stocks, water temperature, and ocean productivity, what should be the allowable fish catch?
+:::
+
+
+## Goals of Modeling
+
+- Different models are good for different goals
+
+![ISLP](model-complexity.png)
+
+
+## Regression and Classification
+
+1. Regression problems have continuous $y$
+    - Predicting income, temperature, cost
+    - Typical loss function 
+    $$
+    \mathrm{loss(y_1,g(x_1))} = (y_1-g(x_1))^2
+    $$
+
+## Regression and Classification
+
+2. Classification problems have discrete $y$
+    - Tumor type, fraud or real transaction, Default or not on loan
+    - Typical loss function is misclassification:
+
+     $$
+     \mathrm{loss}(y_1,g(x_1)) = 1-\delta(y_1,g(x_1))
+     $$
+
+
+
+## Unsupervised Learning
+
+- In some problems, the label $y$ is not known to us
+
+```{python}
+
+centers = np.array([[0.3, 0.2], [0.7, 0.9], [0.1, 0.6]])
+num_points = 100
+
+phyto_class = np.random.choice(3, size=num_points)
+x = np.zeros((num_points, 2))
+
+for i in range(num_points):
+    log_center = np.log(centers[phyto_class[i]])
+    cov = [[0.075, 0], [0, 0.075]]  
+    log_point = np.random.multivariate_normal(log_center, cov)
+    
+    
+    x[i] = np.exp(log_point)
+
+
+fig, ax = subplots(figsize=(8, 6))
+
+ax.scatter(x[:,0],x[:,1],s=50,alpha=0.5)
+ax.set_ylabel("Chlorophyll")
+ax.set_xlabel("Radius")
+ax.set_title("Phytoplankton Flow Cytometry");
+
+
+```
+
+
+## Unsupervised Learning
+
+- Algorithms exist to group points together or reduce dimension
+
+
+```{python}
+
+
+fig, ax = subplots(figsize=(8, 6))
+
+ax.scatter(x[:,0],x[:,1],s=50,alpha=0.5,c = phyto_class)
+ax.set_ylabel("Chlorophyll")
+ax.set_xlabel("Radius")
+ax.set_title("Phytoplankton Flow Cytometry");
+
+
+```
+
+
+## Reinforcement Learning
+
+- Training labels $y$ not known
+- But can get an evaluation of $g(\mathbf{x})$
+- How humans learn, "touching hot stove"
+- `alphago`, `alpha zero`, fine tuning of LLMs
+
+
+
+
+
+## Thanks!

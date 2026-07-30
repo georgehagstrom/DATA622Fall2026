@@ -1,0 +1,22 @@
+---
+title: "Week 13 Info: Deep Learning and Convolutional Neural Networks"
+author: "George I. Hagstrom"
+date: 2026-11-29
+draft: false
+description: "Click here for info on Week 13"
+image: "week13.png"
+---
+
+Week 13 has arrived. During this week we will continue our study of neural networks by exploring more complex architectures. We will begin by learning
+about convolutional neural networks, which are the models that are most successful at recognizing images. Convolutional neural networks have an inductive bias
+that allows them to exploit the symmetries of image classification problems, i.e. that translations of images are still the same object. This makes
+CNNs extremely efficient per parameter at solving image classification problems. We will learn about other ways to take advantage of the structure of image
+recognition problems to improve model accuracy. The study of CNNs will lead us to Recurrent Neural Networks, which exploit a sequential symmetry of text and other
+sequences and  have led to the development of LLMs.
+
+
+You can read more about the plan for the week and the reading/resources in [Module 13](../modules/module13.qmd).
+
+[Lab 7](../assignments/labs/lab7.qmd) due this Sunday, May 3rd, at midnight.
+
+

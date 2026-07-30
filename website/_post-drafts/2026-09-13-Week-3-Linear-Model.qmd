@@ -1,0 +1,21 @@
+---
+title: "Week 3 Info: The Linear Model"
+author: "George I. Hagstrom"
+date: 2026-09-13
+draft: false
+description: "Click here for info on Week 3"
+image: "week3.png"
+---
+
+Week 3 has arrived! During this week we are going to take a fresh look at a familiar model, the linear model (aka linear regression). You may be surprised
+to learn that despite its simplicity, linear regression is far and away the most commonly deployed type of machine learning model. Because you have studied
+this model before in a variety of different classes, this week we will cover linear regression with an eye towards two distinct perspectives: how to use it
+for causal inference versus how to use it to make accurate predictions. We will revisit the causal inference topic later in the course. 
+
+You can read more about the plan for the week and the reading/resources in [Module 3](../modules/module3.qmd).
+
+There will be one coding video tutorial published on the `statsmodels` package.
+
+[Lab 2](../assignments/labs/lab2.qmd) is due next Sunday at midnight. 
+
+

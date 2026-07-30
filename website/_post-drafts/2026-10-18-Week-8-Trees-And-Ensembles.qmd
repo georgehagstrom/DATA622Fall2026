@@ -1,0 +1,19 @@
+---
+title: "Week 8 Info: Trees and Ensembles"
+author: "George I. Hagstrom"
+date: 2026-10-18
+draft: false
+description: "Click here for info on Week 8"
+image: "../images/week8.png"
+---
+
+In week 8 we are going to begin our study of classification and regression trees, which are amongst the most common "complex" machine learning models. We will begin by learning how
+tree methods work, and about how to regularize them. This will lead to the study of ensemble methods, which are methods that average together large number of fit models to make
+a consensus or mean prediction, thereby reducing variance. This week, we will learn about Bagging, or Bootstrap Aggregation, and Random Forests, saving boosting and BART to future weeks.
+
+You can read more about the plan for the week and the reading/resources in [Module 8](../modules/module8.qmd).
+
+
+[Lab 5](../assignments/labs/lab5.qmd) is available and due in two weeks.
+
+

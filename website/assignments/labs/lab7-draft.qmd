@@ -1,0 +1,96 @@
+---
+title: "Homework 7: Neural Networks"
+format: html 
+editor: source
+---
+
+
+## Instructions
+
+For this problem you may elect to create a quarto markdown notebook or google colab. I recommend google colab with the free pro account for stundents and creating a GPU/TPU runtime. [Lab 10 from ISLP](https://github.com/intro-stat-learning/ISLP_labs/blob/stable/Ch10-deeplearning-lab.ipynb) provides an excellent
+starting point for this lab. Look for the part of the code where the ['CIFAR100'](https://www.cs.toronto.edu/~kriz/cifar.html) is loaded and used to train a basic CNN. There will be some updates to the code that you need to make to make it work on 'colab'. I will release a vignette during the week which adapts
+the ISLP code to 'colab' and shows some of the techniques required to train using GPUs on that site.
+
+If you are working in google colab, I recommend having a separate "work" notebook where you code and work out the problems, and at the end organize all code carefully for the final submitted notebook. It is easy for notebooks to have problems because of the potential for non-ordered execution of code chunks. Submit a pdf version of your colab notebook and a link ()
+
+
+## Overview:
+
+
+The [ISLP lab example from chapter 10](https://github.com/intro-stat-learning/ISLP_labs/blob/stable/Ch10-deeplearning-lab.ipynb) used a shallow CNN consisting of 4 blocks of a paired of convolutional and
+max-pooling layer. Each block halves the spatial resolution but increases the number of channels,
+from the 3 input color channels to 32, 64, 128, and then 256. After the 4 blocks, there is a small 
+multilayer perceptron that performs the final classification. This network flattens the output, performs
+dropout for regularization, and then has
+one layer of ReLU that reduces from 1024 to 512, and then a final layer which reduces those 512 inputs
+to 100 logit weights, each corresponding to a CIFAR100 image class, for the final classification. This
+architecture achieved an accuracy of 44\% on the test-set, which is impressive given the large number
+of categories but well below the accuracy achiveable given the best methods. In the following problems
+you will modify the architecture, hyperparameters, and the training data in order to see how much you
+can improve the classification accuracy.
+
+
+
+## Problem 1: Assessing the Original Fit
+
+(a) Copy the relevant code from the ISLP notebook and adapt it to colab if you are using colab. Load CIFAR100. Train 
+the nework for 50 epochs, holding out 20\% for at each epoch. Report the validation set accuracy for the the training step where the validation accuracy is highest. Calculate the test-set accuracy of the best
+model, but do not look at it (save it to a variable for comparison at the end). Plot the training 
+and validation accuracy at each epoch, do you see evidence of overfitting?
+
+(b) For each class within CIFAR100, find the accuracy of the model on the validation set for members of
+that class. Report the 10 classes with the highest accuracy and the 10 classes with the lowest accuracy, alongside the accuracy for each of the indentified classes. 
+
+(c) Identify 5 samples from the validation set that are misclassified. Plot those images along with the 
+correct class label and the incorrect prediction. Comment on the misclassified images- in which cases 
+does the incorrect prediction make sense to you?
+
+
+
+## Problem 2: Augmenting the Data
+
+(a) Data augmentation is a technique that takes advantage of the fact that the identifiability of
+an image to the human visual cortex is preserved after certain types of perturbations, for instance 
+slight changes in color, brightness, rotations, or being partially obscured. 'pytorch' has tools which
+allows you to apply random transformations of this type when training data is loaded, allowing you to 
+artificially increase the size of your data. You can specify a transformation in the 'DataLoader' using
+the 'transform' keyword. Create a transformation using 'transforms.compose' and combining your selection
+of 'RandomHorizontalFlip', 'RandomCrop', 'ColorJitter', 'RandomRotation', and 'RandomErasing'. Put 'RandomErasing' last and add 'transforms.Normalize((0.5071, 0.4865, 0.4409),
+                     (0.2673, 0.2564, 0.2762))' just before any use of 'RandomErasing'. Only apply
+                     these transformations to the training dataloader. Retrain the model from Problem
+                     1 using the augmented data, increasing the number of epochs up to 300 to account 
+                     for the increased dataset. Plot the training and validation error, and record the test error. How do overfitting and validation error compare to problem 1?
+
+
+## Problem 3: Widening the Network
+
+(a) Maintaining the augmented dataset that you used in Problem 2, create a new neural network with 
+more channels in each convolutional layer. Make sure that the number of channels in the output of each
+layer matches the number of input channels in the next layer, including in the classification part of
+the network. This is specified in the 'sizes' argument in the ISLP example (and in the 'self.output' for
+the classification part). Train this network and report its performance as in Problem 2.
+You may want to experiment with the learning rate, solver (for example Adam), weight
+decay, or other hyperparameters.
+
+
+
+## Problem 4: Deep Learning
+
+(a) CNNs can be made deeper by stacking multiple convolutional layers directly together
+before each max-pooling layer. 
+Attempt to increase the accuracy even further by increasing the number of convolutional layers in
+each building block, putting 2, 3, or 4 convolutional layers before each max-pooling layer (in theory
+you could put more but you will become limited by the lack of training data, lack of available compute budget). Train this network. What do you observe about the 
+training and testing accuracy? You will likely need to go to a smaller batch size 
+to make this model fit in the GPU memory. For an A100 I recommend 512 batch size, but
+you can experiment to make it work for your GPU and code setup. Note that batch size
+and learning rate should have an inverse relationship.
+
+(b) It is likely that the model you ran in part (a) failed to learn. This is due to
+the dead-neuron/vanishing gradient problem, where paths through multiple layers in
+the network saturate to 0. This problem arises with many activation functions, and while it is somewhat mitigated by the 'ReLU' 
+design, it can occur that for some neurons the typical "input" from prior layers is negative enough
+to make that 'ReLU' always evaluate to 0. The dead neuron problem is exacerbated the deeper the network is. One solution to it is to to normalize the activations being fed to each ‘ReLU’ layer during training. The way this works is for each batch, a ‘nn.BatchNorm1d’ or ‘nn.BatchNorm2d’ layer will normalize the inputs coming into it so they have 0 mean and unit variance for the given training batch. Add ‘nn.BatchNorm1d’ and ‘nn.BatchNorm2d’ to your neural network as appropriate before each ‘ReLU’ layer. Train the network. You may need to experiment with learning rate and weight decay. Increase weight decay (or add additional dropout) if there is a big discrepancy between test and train accuracy.
+See if you can improve upon your best model result on the validation set. You are constrained in this exercise by how much compute you have and time, so do not be concerned if you are not able to make the deeper network work better than the earlier networks, but it is possible for the deeper network to do quite well. 
+
+(c) Report the test set results for each network in a table.

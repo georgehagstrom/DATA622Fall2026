@@ -1,0 +1,44 @@
+---
+title: "CausalML Vignettes"
+author: "George I. Hagstrom"
+date: 2026-11-10
+draft: false
+description: "Click Here for three vignettes on using Causal Forests for Causal Inference"
+image: "../images/oj.jpg"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+Hello class,
+
+I've uploaded 3 videos with coding vignettes on how to use the Causal Forest model in the EconML python package. I used Causal Forests to learn 
+the conditional average treatment effect of advertisting a brand of orange juice on orange juice sales, conditional on the median income of
+people living near the grocery store that advertised the sale.
+
+
+## Note
+
+During the last video, I get quite confused about the results I am seeing. That is because I had a bug in the original version of the official vignette. I corrected while going 
+through the live vignette, but forgot to re-run the official vignette so didn't realize I needed to expect different results. The bug was that I had left the 'price' variable
+out of the confounder matrix. This was because I had been using price in another analysis where it was the treatment variable (like in your homework). Because it is such an important
+variable, leaving it out of the analysis made it look like store median income had a large impact on the effect of the 'feat' variable! The effect disappeared when I introduced price
+back into the confounders. In hindsight, it would have been most interesting to look at price as the modifier variable to 'feat'. 
+
+
+
+## Code:
+
+To follow along in code:
+
+* [Official, well commented notebook](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-10/causalMLVignette.ipynb)
+* [Live Notebook](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-10/causalMLVignetteLive.ipynb)
+
+
+## Videos:
+
+* [Causal ML Vignette 1: Simulating Data](https://youtu.be/UVcJWcCVq9g)
+* [Causal ML Vignette 2: Recovering True Effect in Simulated Data](https://youtu.be/GV2q_saIbsk)
+* [Causal ML Vignette 3: Quality Checks and Fit to Data](https://youtu.be/ZxszowvvEoY) 
+

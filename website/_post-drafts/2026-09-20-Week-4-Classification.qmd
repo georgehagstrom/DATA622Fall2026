@@ -1,0 +1,21 @@
+---
+title: "Week 4 Info: Classification"
+author: "George I. Hagstrom"
+date: 2026-09-20
+draft: false
+description: "Click here for info on Week 4"
+image: "week4.png"
+---
+
+Welcome to week 4! This week we are going to shift gears from regression to talk about classification. We will talk about different ways to 
+assess classification accuracy from the disciplines of computer science and statistics. We will introduce the most common and also most simple
+classifcation model, logistic regression, and discuss how to interpret its coefficients and classifications.
+
+
+You can read more about the plan for the week and the reading/resources in [Module 4](../modules/module4.qmd).
+
+There will be a coding video covering the implementation of logistic regression models and the marginal effects package.
+
+[Lab 3](../assignments/labs/lab3_alt.qmd) is due in two weeks, Sunday at midnight.
+
+

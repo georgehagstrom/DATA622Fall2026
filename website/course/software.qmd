@@ -1,0 +1,58 @@
+---
+title: "Software"
+---
+
+This class will involve a number of computational homework assignments. These must be completed in `quarto` markdown files using the `python` language and be accompanied
+by a rendered `pdf` file. Teaching fluency in both `R` and `python` is an important goal of the program, and this course is devoted partially to building your python
+competency as it is a very standard language for machine learning applications. 
+
+## How to get setup with `python`
+
+The official course prerequisites include DATA 602, 606, 607, and 608. DATA 602 is our course on python and my assumption is that you are familiar with the material in that course.
+If you are not, it will still be possible to do well in this course, but you will need to be proactive at building your python knowledge. Here are some resources that can help:
+
+0. Basic Software Installation and Computing Environment
+
+  - [Python 3 Installation](https://www.anaconda.com/) There are many places to install python from, I recommend using `anaconda`. I also suggest that you follow the directions in the `ISLP` 
+book at the end of Chapter 2 to complete your setup. There are several package managers for `python`, including `pip` and `conda`. I use a combination of both, with the caveat that I use
+the fast version of `conda` called `mamba`. 
+  - [quarto](https://quarto.org/docs/get-started/) If you have not already you should install `quarto` which is what you will use to complete your assignments (and potentially project)
+  - [python with quarto](https://quarto.org/docs/get-started/hello/positron.html) This provides a good basic guide of how to use `python` together with quarto using the `positron` IDE
+  - [positron](https://positron.posit.co/) is a full featured IDE for both `python` and `R that is tuned for data science. It is based on VS Code and is the environment that I recommend you use for this course.
+  - [posit.cloud](https://posit.cloud) If you have insufficient computing resources, contact me about setting up an account with my course posit.cloud instance
+  - [google colab](https://colab.research.google.com) This is another option if you need more computing resources.
+
+
+1. [learn python tutorials](https://learnpython.org/) This is a series of very basic interactive python tutorials
+2. [python.org beginners guide](https://www.python.org/about/gettingstarted/)
+
+Once you complete those, you will want to have a basic understanding of the fundamental python libraries for working with data, graphics, and scientific computing.
+
+3. [Hands on Machine Learning Tutorials](https://colab.research.google.com/github/ageron/handson-ml3/blob/main/index.ipynb) Aurelien Geron, the author of the excellent _Hands on Machine Learning_ books, has basic tutorials on `pandas`, `numpy`, and `matplotlib` on his website. He has a them implemented in google colab notebooks.
+
+
+
+Guide to Key Packages:
+
+- [sklearn](https://scikit-learn.org/stable/) is the most commonly used machine learning library in python
+- [statsmodels](https://www.statsmodels.org/stable/index.html) is a useful package for statistics in python
+- [quarto](https://quarto.org/docs/computations/python.html) Document and website authoring app. Used for your homework and maybe project
+- [pytorch](https://pytorch.org/) is a package for neural networks in python
+- [numpy](https://numpy.org/) Basic numerical python package
+- [pymc](https://www.pymc.io/welcome.html) is a basic package for Bayesian stats in python
+- [marginaleffects](https://marginaleffects.com/bonus/get_started.html) is a very useful package for interpreting and communicating machine learning models in python
+- [matplotlib](https://matplotlib.org/) is a powerful plotting library in python
+- [seaborn](https://seaborn.pydata.org/) is another powerful plotting library, though technically powered by `matplotlib`.
+- [islp](https://intro-stat-learning.github.io/ISLP/installation.html) Python package with the datasets of our textbook
+- [conda](https://anaconda.org/) A good python package and environment manager
+- [mamba](https://mamba.readthedocs.io/en/latest/index.html) A fast drop in replacement for conda's package installer
+- [pandas](https://pandas.pydata.org/) Standard python package for wrangling data
+- [polars](https://pola.rs/) Blazingly fast data wrangling library intended for larger datasets
+- [shiny](https://shiny.posit.co/py/) Made initially for `R` but it works with python now. Deploy ML apps
+- [streamlit](https://streamlit.io/) Package for making lightweight apps
+- [FastAPI](https://fastapi.tiangolo.com/) Another lightweight production library
+
+
+
+
+

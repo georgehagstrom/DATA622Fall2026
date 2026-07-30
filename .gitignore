@@ -1,0 +1,36 @@
+# Quarto build artifacts
+/website/.quarto/
+/website/_site/
+/website/_freeze/
+/docs/
+
+# Rendered previews sitting next to sources
+**/*_files/
+
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+venv/
+*.pyc
+
+# OS cruft
+.DS_Store
+__MACOSX/
+.Rhistory
+
+# Large regenerable data — download or generate these locally, don't commit.
+# Torchvision downloads FashionMNIST/CIFAR on first run.
+**/data/FashionMNIST/
+**/data/CIFAR10/
+*.zip
+*.tar
+*.tgz
+
+# 71MB SHAP cache -- past GitHub's 50MB warning threshold, and meetup-11.qmd
+# carries the (commented-out) code that regenerates it. Keep it locally so the
+# deck renders fast; just don't push it. Small pickles are fine to commit.
+website/meetups/meetup-11/shap_explainer.pkl
+
+# Student submissions stay out of the public course repo
+/StudentWork/

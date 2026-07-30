@@ -1,0 +1,29 @@
+---
+title: "Week 10 Info: Causal Inference"
+author: "George I. Hagstrom"
+date: 2026-11-01
+draft: false
+description: "Click here for info on Week 10"
+image: "week10.png"
+---
+
+So far in this course, we have mostly been focused on predictive modeling, though when we discussed linear models we talked about how in certain circumstances the 
+coefficients of a linear regression model could be interpreted as causal effects. This week, we are going to talk about a rapidly growing field called _Causal ML_, which will be
+a window for us to apply machine learning to Causal Inference problems. Causal Inference is important when you are trying to use models to determine what will happen if you 
+impact the data generating process in some way, such as offering a sale or other incentives to customers or giving a treatment to a patient suffering from a condition. These
+questions are of great practical importance, but are challenging to answer outside the context of controlled-randomized experiments. Indeed A/B testing is an extremely important
+domain for a large number of companies, but it is not always possible or ethical to run experiments. For these situations, a host of methods have been developed in recent years to
+apply machine learning tools to learn causal effects. This week we will learn about causal inference, the basic causal estimands that you learn when fitting a causal model,
+and how machine learning has led to the newest causal inference techniques. The methods used for CausalML are generally tree-based, including BART (which it turns out we are not covering)
+and Causal Forests, which we will learn about this week. 
+
+<!-- NOTE: the Spring version announced spring break here. In Fall the break is
+     Thanksgiving week (Nov 23), i.e. after Week 12 -- move this language there. -->
+
+
+You can read more about the plan for the week and the reading/resources in [Module 10](../modules/module10.qmd).
+
+
+[Lab 6](../assignments/labs/lab6.qmd) due Sunday, April 19th at midnight.
+
+

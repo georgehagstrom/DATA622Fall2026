@@ -1,0 +1,86 @@
+---
+title: "DATA 622: kNN Example "
+format: html
+jupyter: data622
+---
+
+
+```{python}
+
+import numpy as np
+import pandas as pd
+from sklearn.impute import KNNImputer
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import FeatureUnion, make_pipeline
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import make_column_transformer
+from sklearn.compose import ColumnTransformer
+
+
+
+from sklearn.neighbors import KNeighborsClassifier
+
+
+
+
+
+
+
+url = 'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv'
+penguins = pd.read_csv(url)
+
+penguins.head()
+
+```
+
+
+```{python}
+
+penguins_clean = penguins.dropna()
+
+species_y = penguins_clean.loc[:,"species"]
+features_X = penguins_clean.loc[:,"island":"year"]
+
+
+species_y.describe()
+
+features_X.describe()
+
+X_train, X_test, y_train, y_test = train_test_split(features_X, species_y, test_size=0.3,
+                                            random_state = 111)
+
+
+numerical_features = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
+categorical_features = ['island', 'sex']
+
+
+
+preprocessor = make_column_transformer(
+    (StandardScaler(), numerical_features),
+    (OneHotEncoder(drop='first'), categorical_features)
+)
+
+knn_pipeline = make_pipeline(
+      preprocessor,
+      KNeighborsClassifier(n_neighbors=40)
+)
+
+
+knn_pipeline.fit(X_train,y_train)
+
+
+
+penguin_pred_train = knn_pipeline.predict(X_train)
+accuracy = accuracy_score(y_train, penguin_pred_train)
+print(f'Accuracy: {accuracy:.4f}')
+
+penguin_pred_test = knn_pipeline.predict(X_test)
+accuracy = accuracy_score(y_test, penguin_pred_test)
+print(f'Accuracy: {accuracy:.4f}')
+
+
+```

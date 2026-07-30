@@ -1,0 +1,24 @@
+---
+title: "Week 6  Info: Resampling Methods"
+author: "George I. Hagstrom"
+date: 2026-10-04
+draft: false
+description: "Click here for info on Week 6"
+image: "week6.png"
+---
+
+Welcome to Week 6! During this week, we will learn about resampling methods, tools which have been instrumental in the modernization of statistics and in its interface with 
+machine learning in the 21st century. These tools are used for several distinct purposes, predicting out of sample performance in the context of model selection, hyperparameter optimization (will be a bigger subject next week, but it is very similar to model selection), and uncertainty quantification. The basics of resampling are simple, but there are lots of subtleties,
+pitfalls (there is a lot of potential for introducing bias and unexpected data leakage), and advanced techniques to mitigate these pitfalls. We will start from the basics and build up from there. There will be a coding vignette (and possibly some bonus slides on the advanced cross-validation
+methods if we don't get there
+
+You can read more about the plan for the week and the reading/resources in [Module 6](../modules/module6.qmd).
+
+Also, project proposals and pitches are occurring soon. All teams, have someone send me an email of who is on your team, a one or two sentence description of the projects you are considering, and whether you could use another member.
+
+All people who have yet to join a group, email me asap and also tell me more about your interests.
+
+
+[Lab 4](../assignments/labs/lab4.qmd) is due in two weeks, Sunday at midnight.
+
+

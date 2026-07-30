@@ -1,0 +1,36 @@
+---
+title: "Module 13 - Deep Learning"
+editor: source
+---
+
+
+### Overview
+
+During this week, we continue to learn about neural networks, moving from the basics of individual neurons to challenges that arise in deep architectures.
+We introduce convolutional and recurrent neural networks, discuss the advantages of inductive bias for certain problems, 
+and how to enhace the amount of data using random transformations. Image identification will be the primary problem archetype this week.
+
+
+
+Lab 7 is due at the end of the week.
+
+
+### Learning Objectives
+
+* CNN and RNN Architectures
+* Inductive Bias
+* Data Enhancement
+* Hyperparameter Choices for Stochastic Gradient Descent
+
+
+### Readings
+
+
+
+* __ISLP__ (Introduction to Statistical Learning): [10.3-10.8](https://www.statlearning.com/)
+
+### Videos
+
+
+
+

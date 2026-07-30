@@ -1,0 +1,23 @@
+---
+title: "Week 5  Info: Generative Classifiers"
+author: "George I. Hagstrom"
+date: 2026-09-27
+draft: false
+description: "Click here for info on Week 5"
+image: "week5.png"
+---
+
+It is now week 5. During this week, we will learn about how most machine learning models can be divided into two distinct classes, discriminative and generative models. 
+Generative models aim to capture the entire data generating process, including that of the covariates, and thus focuses on the probability of the covariates given
+the class label. Generative models are usually harder to fit than discriminative models and have some other disadvantages, but make up for it through their flexibility,
+interpretability, and capacity to generate random examples that are like the data (which is often the main application as we have seen for LLMs). We will explore generative models
+primarily through the example of the Naive Bayes classifier.
+
+
+You can read more about the plan for the week and the reading/resources in [Module 5](../modules/module5.qmd).
+
+There will be a coding video covering the implementation and interpretation of Naive Bayes.
+
+[Lab 3](../assignments/labs/lab3_alt.qmd) is due in two weeks, Sunday at midnight.
+
+

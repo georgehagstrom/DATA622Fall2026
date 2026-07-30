@@ -1,0 +1,63 @@
+---
+title: "Module 1 - What is Machine Learning"
+editor: source
+---
+
+
+# Overview and Deliverables
+
+* 8/31: Attend the initial course meetup at 6:45PM Eastern
+* Due 9/06: Introduction Post in Brightspace Discussions
+* Join Course [Slack channel](https://join.slack.com/t/cuny-msds/shared_invite/zt-3ans1b3dz-5HhIols06wNraCMUhZ~jXw)
+* Install a suitable python IDE if you do not have one (for instance `positron`), and a basic python installation (see the [software page](../course/software.qmd))
+
+### Learning Objectives
+
+* Examples of Machine Learning Problems
+* Defining Supervised Learning, Unsupervised Learning, Reinforcement Learning
+* Goals of Machine Learning: Prediction, Understanding (inference/causal inference), Decision Making
+* The components of the machine learning problem
+* Review course toolkit (or learn if unfamiliar): `numpy`, `pandas`, `scikit-learn`, `matplotlib`
+
+
+### Readings
+
+* __ISLP__ (Introduction to Statistical Learning): [Chapter 1, Section 2.1](https://hastie.su.domains/ISLP/ISLP_website.pdf.download.html)
+
+
+### Interactive Lab
+
+* __ISLP__ (Introduction to Statistical Learning): [Section 2.3: Introduction to Python]
+
+
+### Videos
+
+The book authors have a video playlist where they go through the book section by section. You may or may not like they style and presentation- my weekly videos will be different than theirs. I will also make videos of coding demonstrations. For this week the relevant links are:
+
+
+[Link to All Python Labs](https://www.youtube.com/playlist?list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda)
+
+
+[Link to All Course Videos](https://www.youtube.com/watch?v=LvySJGj-88U&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e)
+
+
+
+Videos Covering Material Relevant to this week:
+
+[Opening Remarks](https://www.youtube.com/watch?v=LvySJGj-88U&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=1)
+[Updated Opening Remarks](https://www.youtube.com/watch?v=LvySJGj-88U&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=2)
+[Statistical Learning Examples and Framework 1.2](https://www.youtube.com/watch?v=LvySJGj-88U&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=3)
+[Statistical Learning Intro to Regression Models 2.1](https://www.youtube.com/watch?v=LvySJGj-88U&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=4)
+
+
+Coding Videos Relevant to this week:
+
+- [Intro to the ISLP Presenters](https://www.youtube.com/watch?v=Cv1sx_HNRHM&list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda&index=1)
+- [Setting Up Python](https://www.youtube.com/watch?v=RelOJOIKaTk&list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda&index=2)
+- [Data Types, Arrays, and Basics](https://www.youtube.com/watch?v=Cv1sx_HNRHM&list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda&index=3)
+- [Graphics](https://www.youtube.com/watch?v=Cv1sx_HNRHM&list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda&index=4)
+- [Indexing and Data Frames](https://www.youtube.com/watch?v=Cv1sx_HNRHM&list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda&index=5)
+
+
+
+

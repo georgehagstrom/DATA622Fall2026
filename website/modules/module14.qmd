@@ -1,0 +1,37 @@
+---
+title: "Module 14 - RNNs and NLP"
+editor: source
+---
+
+
+### Overview
+
+Recurrent Neural Networks are a class of architectures that are used to perform machine learning on sequential data, such as time-series,
+biological sequences including DNA and Proteins, state transitions of machines, customer behavior, audio signals, and written language.
+RNNs efficiently share weights by applying the same network architecture each element of the sequence and the activations of the network on 
+the previous sequence, enabling them to take advantage of the inductive bias in the data. We will focus on applications to language, which
+have become pivotal in technological advancement in the past decade plus. This week we will learn about basic RNN architecture, including
+Long Short Term Memory networks (LSTMs). In order to use these networks for NLP tasks, we will need to use word embeddings, which can
+either be learned as the network is trained or imported from external libraries and potentially fine-tuned in the training process. The
+material covered this week will build up to next week where we will study transformers and pre-trained models.
+
+
+
+### Learning Objectives
+
+* RNNs and Sequential Data
+* Word Embeddings and Dimensionality Reduction
+* LSTMs
+
+
+### Readings
+
+* __ISLP__ (Introduction to Statistical Learning): [10.5](https://www.statlearning.com/)
+* __Word Embeddings Blog__ [Word2Vec Illustrated](https://jalammar.github.io/illustrated-word2vec/)
+
+
+### Videos
+
+
+
+

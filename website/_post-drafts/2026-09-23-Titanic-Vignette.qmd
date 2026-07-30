@@ -1,0 +1,23 @@
+---
+title: "Classification on the Titanic using `sklearn`"
+author: "George I. Hagstrom"
+date: 2026-09-23
+draft: false
+description: "Click here to watch a video on fitting and evaluating logistic regression models on the Titanic dataset using 'sklearn'"
+image: "../images/titanic.jpg"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have recorded a video covering how to implement and evaluate logistic regression models in 'sklearn'. I used the 'titanic' dataset, which contains 
+information on titanic passengers and whether or not they survived. I show how to build a pipeline that preprocesses data, engineers features, and
+fits a logistic regression model, and I showed how to extract coefficients from that model, plot calibration curves and ROC curves, calculate the log loss
+and the accuracy score, and calculate a variety of other standard metrics (F1 score, precision, recall, etc). The video recording process was a bit clunky and the live coding was a bit buggy, so the video runs pretty long, apologies for that.
+
+You can find the [titanic video vignette here](https://youtu.be/dsTnJKEGdOA)
+
+You can download my python notebook here: [logistic regression vignette](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-4/LR_Vignette.ipynb)
+
+

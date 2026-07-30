@@ -1,0 +1,37 @@
+---
+title: "Module 12 - Neural Networks"
+editor: source
+---
+
+
+### Overview
+
+Neural Networks are a very old class of models that were developed in the 1950s to understand cognition. Recent developments in computational
+science and neural network architecture have unlocked them as one of the most useful neural network models that exists today. Neural Networks
+are exceptional at challenging classification problems such as image or speech recognition, and underlie the large language models that have
+been developed in the past few years. At the same time, they are some of the most challenging models to work with, due to the large freedom
+to select network architecture, the sensitivity of model fits to hyperparameters, and the sometimes extreme computational costs and data requirements.
+We dive into the theory of neural networks this week, introducing single and multi-layer perceptrons, convolutionary neural network architectures, 
+and stochastic gradient descent, the main algorithm that fits them. 
+
+
+
+### Learning Objectives
+
+* Defining neural networks
+* Single and multi-layer perceptrons
+* Why neural networks?
+* Activation functions
+* Basics of Stochastic Gradient Descent
+* Convolutional Neural Networks
+
+
+### Readings 
+
+
+* __ISLP__ (Introduction to Statistical Learning): [10.1-10.3, 10.7](https://www.statlearning.com/)
+* __HOML__ (Hands on Machine Learning with PyTorch): [10]
+
+
+
+

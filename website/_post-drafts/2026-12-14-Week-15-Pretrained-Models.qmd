@@ -1,0 +1,22 @@
+---
+title: "Week 15 Info: Pretrained Models"
+author: "George I. Hagstrom"
+date: 2026-12-14
+draft: false
+description: "Click here for info on Week 15"
+image: "week15.png"
+---
+
+Congratulations, you have made it to the last week of the class! During this week will discuss how to work with the latest and most advanced models that are
+based on the transformer architecture. These models are extraordinarily expensive to train, requiring huge compute resources and copious quantities of data.
+However, once you have the model, it is possible to adjust it to your specific tasks through a procedure called fine-tuning. We will learn about the transformer
+architecture, which is what made these models possible, introduce several model classes which use transformers, and introduce methods for fine-tuning these models.
+
+You can read more about the plan for the week and the reading/resources in [Module 15](../modules/module15.qmd).
+
+Lab 8 is now optional. If you elect to complete it, it will replace the lowest grade on labs 1-7. It is available here:
+
+<li value='8'> <a href='https://colab.research.google.com/drive/1Gdc54zYNAhHn3ek9QFhD9hdshPx29CmT?usp=sharing'>Unsupervised Learning and Pre-Trained Models</a></li>
+
+
+

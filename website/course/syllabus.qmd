@@ -1,0 +1,118 @@
+---
+title: "Syllabus"
+---
+
+**Instructor:** George Hagstrom, Ph.D.
+**Class Meetup:** Monday 6:45-7:45PM Eastern
+**Office Hours:** By appointment
+**Email:** <a href="mailto:george.hagstrom@cuny.edu">george.hagstrom@cuny.edu</a>
+
+
+### Description
+
+This course provides a foundational understanding of machine learning techniques, covering both supervised and unsupervised methods, including regression, classification, clustering, and dimensionality reduction. Students will gain hands-on experience with algorithms such as Generalized Linear Models, decision trees, and neural networks, as well as deep learning and pre-trained models. The course also explores model evaluation, regularization, and the bias-variance tradeoff, with a focus on ethics, bias, fairness, and considerations involving production deployment. By the end, students will be prepared to apply machine learning to real-world problems and assess their societal implications. 
+
+Students will complete a project to create a production Machine Learning application. 
+
+### Program Learning Outcomes
+
+By the end of the course, students should be able to: 
+
+- __Understand Data Science Foundations__: Demonstrate foundational knowledge of machine learning principles. 
+- __Apply Machine Learning Methods__: Apply statistical learning and machine learning to analyze and interpret real world datasets. Evaluate and enhance machine learning models for accuracy and generalization. 
+- __Develop Computational Solutions__: Implement machine learning algorithms and workflows using python. Develop and deploy end-to-end machine learning applications. 
+- __Solve Real-World Problems__: Address real-world challenges using supervised, unsupervised, and advanced learning approaches. 
+- __Communicate Insights__: Communicate the results and insights of machine learning based analyses to both technical and non-technical stakeholders 
+- __Adopt Ethical AI Practices__: Integrate ethical principles, fairness, and transparency into AI systems. Understand the ethical challenges of AI, including bias, fairness, transparency, and the responsible deployment of machine learning models. 
+
+ 
+### Course Learning Outcomes
+
+- __Understand Machine Learning Foundations__: Explain foundational concepts, types of learning, and machine learning pipelines. 
+- __Implement Linear and Logistic Models__: Apply and evaluate linear and logistic regression models in `python`. 
+- __Use Classification Techniques__: Employ classification methods such as discriminant analysis, kNN, and decision trees. 
+- __Analyze and Optimize Models__: Explore bias-variance tradeoff and use regularization techniques to improve models. 
+- __Apply Ensemble Methods__: Use boosting, bagging, random-forests, and BART to solve enhance the use of decision trees and other methods.  
+- __Causal Inference__: Learn the difference between prediction and causal inference and how to design basic causal models. 
+- __Model Interpretation__: Understand how to interpret and present the results machine learning analyses. 
+- __Perform Unsupervised Learning__: Conduct clustering and dimensionality reduction using methods like PCA. 
+- __Understand Neural Network Basics__: Explore perceptrons, activation functions, and backpropagation in neural networks. 
+- __Learn Advanced Deep Learning Techniques__: Apply CNNs, RNNs, and transfer learning in practical tasks. Understand hyperparameter selection in stochastic gradient descent for deep networks- __Apply Pretrained Models__: Understand how to access, use, and modify pre-trained models based on transformers. 
+- __Evaluate AI Ethics and Fairness__: Critically assess ethical considerations, bias, and responsible AI deployment. 
+
+### Grading
+
+* [Labs](../assignments/labs.qmd) (65%)
+* [Project](../assignments/project.qmd) (35%)
+
+
+
+#### Grade Distribution
+
+Quality of Performance                     | Letter Grade | Range %   | GPA  |
+-------------------------------------------|:------------:|:---------:|:----:|
+Excellent - work is of exceptional quality |      A       | 93 - 100  |  4   |
+Excellent                                  |      A-      | 90 - 92.9 | 3.7  |
+Good - work is above average               |      B+      | 87 - 89.9 | 3.3  |
+Satisfactory                               |      B       | 83 - 86.9 |  3   |
+Below Average                              |      B-      | 80 - 82.9 | 2.7  |
+Poor                                       |      C+      | 77 - 79.9 | 2.3  |
+Poor                                       |      C       | 70 - 76.9 |  2   |
+Failure                                    |      F       |   < 70    |  0   |
+
+### How This Course Works
+
+This course is conducted entirely online. Each week, you will have various resources made available, including weekly readings from the textbooks and occasionally additional readings provided by the instructor. A homework assignment will be due every other week; see the [schedule](schedule.qmd) for details. 
+There will also be a final project required. You are expected to complete all assignments by their due dates.
+
+**You are expected to attend or watch every Meetup.** I highly recommend attending the Meetups live if possible but understand that may not be possible for everyone. Recordings will be made available by the next morning on the [Schedule page](schedule.qmd). In addition to highlighting key concepts from each learning module, some topics will be discussed that are not in the textbook. Moreover, we regularly make announcements in the Meetups that will be important to being successful in this course. 
+
+### Textbooks and Course Materials
+
+
+This course makes use of several textbooks. I have attempted when possible to choose resources which are freely available.
+
+
+
+1. Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani and Jonathan Taylor. [Introduction to Statistical Learning with Applications in Python](https://www.statlearning.com/)
+
+2. Alex Gold [DevOps for Data Science](https://do4ds.com/)
+
+3. Matheus Facure Alves. [Causal Inference for The Brave and True](https://matheusfacure.github.io/python-causality-handbook/landing-page.html).
+
+4. Vincent Arel-Bundock. [Model to Meaning](https://marginaleffects.com/)
+
+5. Solon Barocas, Moritz Haidt, and Arvind Narayanan. [Fairness and Machine Learning: Limitations and Opportunities.](https://fairml.org)
+
+
+#### Optional
+
+
+1. Trevor Hastie, Robert Tibshirani, and Jerome Friedman. [Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)
+
+2. Yasser Abu-Mostafa, Malik Magdon-Ismail and Hsuan-Tien Lin. [Learning from Data](https://amlbook.com/)
+
+3. Aurelien Geron. [Hands on Machine Learning with Sci-Kit Learn and PyTorch](https://ageron.github.io/). 
+
+4. Kevin Murphy. [Probabilistic Machine Learning](https://probml.github.io/pml-book/book1.html). 
+
+5. Andriy Burkov. [The 100 Page Machine Learning Book](https://themlbook.com/)
+
+
+### Accessibility and Accommodations
+
+The CUNY School of Professional Studies is firmly committed to making higher education accessible to students with disabilities by removing architectural barriers and providing programs and support services necessary for them to benefit from the instruction and resources of the University. Early planning is essential for many of the resources and accommodations provided. Please see: [http://sps.cuny.edu/student_services/disabilityservices.html](http://sps.cuny.edu/student_services/disabilityservices.html)
+
+### Online Etiquette and Anti-Harassment Policy
+
+The University strictly prohibits the use of University online resources or facilities, including Brightspace, for the purpose of harassment of any individual or for the posting of any material that is scandalous, libelous, offensive or otherwise against the University’s policies.  Please see: [http://media.sps.cuny.edu/filestore/8/4/9_d018dae29d76f89/849_3c7d075b32c268e.pdf](http://media.sps.cuny.edu/filestore/8/4/9_d018dae29d76f89/849_3c7d075b32c268e.pdf)
+
+### Academic Integrity
+
+Academic dishonesty is unacceptable and will not be tolerated. Cheating, forgery, plagiarism and collusion in dishonest acts undermine the educational mission of the City University of New York and the students' personal and intellectual growth. Please see: [http://media.sps.cuny.edu/filestore/8/3/9_dea303d5822ab91/839_1753cee9c9d90e9.pdf](http://media.sps.cuny.edu/filestore/8/3/9_dea303d5822ab91/839_1753cee9c9d90e9.pdf)
+
+
+### Student Support Services
+
+If you need any additional help, please visit Student Support Services: 
+[http://sps.cuny.edu/student_resources/](http://sps.cuny.edu/student_resources/)

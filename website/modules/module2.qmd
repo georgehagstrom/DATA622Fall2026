@@ -1,0 +1,46 @@
+---
+title: "Module 2 - The Bias-Variance Tradeoff"
+editor: source
+---
+
+
+### Overview and Deliverables
+
+This module introduces the _bias-variance trade-off_, which is one of the most fundamental ideas in machine learning and one which connects your data, the complexity of the
+problem you are solving, and the types of models which might be successful. We will introduce concepts such as in-sample and out-of-sample accuracy, generalization, overfitting,
+loss functions, and model assessment. 
+
+* 9/13: Submit [Lab 1](../assignments/labs/lab1.qmd) on the Brightspace page for the course
+* Start brainstorming project ideas and forming groups on slack.
+
+
+### Learning Objectives
+
+* Loss functions and model assessment
+* Overfitting and generalization error
+* Bias-Variance Tradeoff
+* Model Flexibility and Interpretability
+* Basic Regression and Classification Models
+* Introduction to scikit-learn package
+
+
+### Readings
+
+
+
+* __ISLP__ (Introduction to Statistical Learning): [Sections 2.2-2.4](https://www.statlearning.com/)
+
+
+Optional:
+
+* Chapter 2 of __Hands on Machine Learning__ . I will go through an example of this in a coding vignette to introduce you to scikit-learn.
+
+
+### Videos
+
+* [Section 2.2: Dimensionality and Structured Models](https://www.youtube.com/watch?v=uFwbrdvrAJs&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=5)
+* [Section 2.3: Bias Variance Trade-Off](https://www.youtube.com/watch?v=uFwbrdvrAJs&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=6)
+* [Section 2.4: Classification Models](https://www.youtube.com/watch?v=uFwbrdvrAJs&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=7)
+
+
+

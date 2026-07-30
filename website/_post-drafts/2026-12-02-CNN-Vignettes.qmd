@@ -1,0 +1,33 @@
+---
+title: "CNN Vignettes"
+author: "George I. Hagstrom"
+date: 2026-12-02
+draft: false
+description: "Click Here for three vignettes on using CNNs for image recognition"
+image: "../images/vgg.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+Hello class,
+
+I've uploaded 3 videos with coding vignettes on how to build and train convolutional neural networks for image recognition. These videos cover
+how to implement data augmentation, how to code a convolutional neural network, and how different architecture choices like learning rate, data
+augmentation, dropout, and batch normalization impact training.
+
+
+## Code:
+
+To follow along in code:
+
+* [Official gogle colab notebook ]( https://colab.research.google.com/drive/15619RXEgOxSJWsoV-iKnl97zqhKyn5ZD?usp=sharing)
+
+
+## Videos:
+
+* [CNN Vignette 1: Data Augmentation](https://youtu.be/-4yauFsOqBA)
+* [CNN Vignette 2: Building the Network](https://youtu.be/GYKvw6etQLI)
+* [CNN Vignette 3: Training and Optimizing](https://youtu.be/SVn6OEr6yhc)
+

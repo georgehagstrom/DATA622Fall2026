@@ -1,0 +1,36 @@
+---
+title: "Module 11 - Interpreting and Presenting Machine Learning Models"
+editor: source
+---
+
+
+### Overview
+
+Machine Learning models and the analyses that derive from them are often derided for being impenetrable black boxes. The standard metrics which arise from such fits usually
+only describe the accuracy of the model in a predictive context. While this may be all that is required in some situations, more insight about how a given fit model makes
+predictions can be generated, which can lead to greater insight from the model and the potential for easier communication and stakeholder confidence as well as improved
+model iteration and development. The field of interpretable ML was developed to find ways of explaining the decisions and predictions of models to different types of stakeholders.
+These methods range from selecting simple models (like linear or logistic regression), to using model based tools (neuron response in neural networks or tree based feature importances),
+to model agnostic methods. Model agnostic methods involve exploring the sensitivity of model outputs to the values of the features. We will go through the basics of model agnostic 
+interpretable ML, with a focus on a specific model called SHAP (Shapley Additive Explanations) to understand what is happening under the hood of Machine Learning models.
+
+Lab 6 is Due at the end of the week
+
+### Learning Objectives
+
+* Goals of Interpretable ML
+* Types of Interpretations: By-Design, Post-Hoc, Model Agnostic, Model Specific
+* Local and Global Sensitivity Analysis
+* Marginal Effects/Ceteris Parabis Plots, Partial Dependence Plots
+* Understanding and Applying Shapley Additive Explanations
+
+
+### Readings
+
+
+* [Interpretable Machine Learning 2-4, 17-18](https://christophm.github.io/interpretable-ml-book/interpretability.html)
+* [Fairness and Machine Learning- 1](https://fairmlbook.org/index.html)
+
+
+
+

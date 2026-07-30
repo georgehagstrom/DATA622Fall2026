@@ -1,0 +1,37 @@
+---
+title: "Module 15 - Pre-Trained Models"
+editor: source
+---
+
+
+### Overview
+
+A recent development in deep learning has been the advent of pre-trained models based on something called the transformer architecture. Pre-trained models
+are extremely large neural network models that have been trained on enormous datasets, usually of images or text (in the text context, this is often a scrape of the entire internet). 
+The initial training of these models is laborious and state-of-the-art models can only be trained by very large and well funded organizations. However, it is possible to make use
+of pre-trained models for a variety of purposes, including the modification of them via transfer or reinforcement learning (i.e. fine tuning). This week we will discuss these models, the
+transformer architecture, and how to make use of them to solve problems.
+
+
+
+### Learning Objectives
+
+* Transformer architecture and pretrained models
+* Reinforcement learning and fine tuning
+* Applications and practical implementations
+
+
+### Readings
+
+* For all the technical details: [Chapters 7, 8, and 10 of Jurafsky and Martin](https://web.stanford.edu/~jurafsky/slp3)
+* Hugging Face official guide to [text classification with BERT](https://huggingface.co/docs/transformers/tasks/sequence_classification) Helps with Option 2
+* Hugging Face blog on [fine-tuning ModernBERT](https://huggingface.co/blog/davidberenstein1957/fine-tune-modernbert-on-synthetic-data) Helps with Option 2
+* Phil Schmid's [How to Fine-Tune LLMs in 2024 with Hugging Face](https://www.philschmid.de/fine-tune-llms-in-2024-with-trl) Very similar to my vignette, also for Option 3
+* Databricks guide on [choosing LoRA hyperparameters](https://www.databricks.com/blog/efficient-fine-tuning-lora-guide-llms) If you want to do option 3 in the homework
+
+
+
+### Videos
+
+
+

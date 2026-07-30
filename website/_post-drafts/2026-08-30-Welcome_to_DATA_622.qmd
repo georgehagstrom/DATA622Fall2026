@@ -1,0 +1,35 @@
+---
+title: "Welcome to DATA 622"
+author: "George I. Hagstrom"
+date: 2026-08-30
+draft: false
+description: "Important information on how to get started with this course. Click this post now for instructions on getting started."
+image: "../images/course_logo.png"
+image-height: "300px"
+
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+Welcome to DATA 622, Machine Learning and Big Data.
+
+Click this post now to get started!
+
+Here are the first steps:
+
+* Read the [syllabus](../course/syllabus.qmd).
+* Go through the course overview materials, and complete the [week 1 readings](../modules/module1.qmd).
+* [Make sure you have a good python environment and IDE setup](../course/software.qmd)
+* Introduce yourself on the course discussion forum on Brightspace.
+* [Join our Slack workspace:](https://join.slack.com/t/cuny-msds/shared_invite/zt-3ans1b3dz-5HhIols06wNraCMUhZ~jXw)
+  - I will invite you to a DATA 622 Slack Channel within that workspace when you join
+<!-- TODO: Fall 2026 Zoom link -->
+* Attend our first meetup on Monday at 6:45 p.m. ET on [Zoom](https://us02web.zoom.us/j/81858708616?pwd=eE9ZGJFco9iicq3BsmANIfWUVLwy0x.1)
+
+I recorded a short video which introduces me and gives you more background on the course:
+
+{{< video    https://youtu.be/FJl8Dd4BK4Y
+    title='Intro to DATA 622' 
+>}}
+

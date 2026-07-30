@@ -1,0 +1,56 @@
+---
+title: "Module 7 - Regularization and Model Selection"
+editor: source
+---
+
+
+
+### Overview
+
+Machine Learning models are often over-parameterized, meaning that they can have many more model parameters than there are data points. By default, over-parameterized models
+will generalize poorly due to overfitting. A family of methods called regularization are used to modify the loss functions employed in machine learning models, penalizing models
+for having values of the parameters far from 0. Remarkably, using these penalties can allow for over-parameterized models to generalize out of sample. We will study regularization
+in the context of the linear model, where the types of penalties used are called ridge regression, the lasso, elastic-net regression, or even Huber regression. These regression
+methods apply broadly throughout machine learning. We will also learn about principal component analysis, our first unsupervised learning method, and other tools used when
+working with large numbers of parameters and high-dimensions.
+
+Lab 4 Will be due at the end of the week
+
+### Learning Objectives
+
+* Regularization and Over-fitting
+* Ridge Regression, The Lasso, and Elastic Net
+* Principal Component Analsysis (PCA)
+* Challenges of working in high-dimensional spaces
+
+
+
+### Readings
+
+* __ISLP__ (Introduction to Statistical Learning with Python): [Chapters 6](https://www.statlearning.com) Section 6.2 is by far the most important section of the reading material this week. 6.3 and 6.4 are things you will need to know at some point, and I will return to the material in 6.3 when we do unsupervised learning. 6.1 are techniques that are common in statistics and motivate the regularization approaches.
+
+
+
+###  ISLP Videos
+
+I am just going to post the videos from the key sections. You are welcome to watch the other Chapter 6 videos if you have time. 
+
+* [ISLP 6.4: Estimating Test Error](https://www.youtube.com/watch?v=48P-oV6cH44&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=43) I have already covered this material when I talked about AIC
+* [ISLP 6.5: Validation and Cross Validation](https://www.youtube.com/watch?v=mzb5Xs58bb0&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=44)
+* [ISLP 6.6: Shrinkage and Ridge Regression](https://www.youtube.com/watch?v=lLlG5xkyqIA&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=45) __Core subject for this week__
+* [ISLP 6.7: The Lasso](https://www.youtube.com/watch?v=lLlG5xkyqIA&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=46) __Core Subject for this week__
+* [ISLP 6.8: Tuning Parameter Selection](https://www.youtube.com/watch?v=KV1Kt6I8rYs&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=47) __Core Subject for this week__
+* [ISLP 6.9: Dimension Reduction](https://www.youtube.com/watch?v=bpto4g5l_go&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=48) Important but we will return to this
+* [ISLP 6.10: PCA](https://www.youtube.com/watch?v=Uo19ST0IEZI&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=49) Important but we will return to this
+
+### ISLP Coding Videos
+
+* [ISLP 6.py Ridge Regression and the Lasso](https://www.youtube.com/watch?v=dI7xi5kRwwM&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=51) __Core subject for this week__
+
+
+### Videos
+
+* [Ridge Regression with Hitters](https://youtu.be/IYgxh87K05E) 
+* [Lasso Regression with Hitters](https://youtu.be/LU0YrcnlNHY) 
+
+

@@ -1,0 +1,30 @@
+---
+title: "Generative Model Vignettes"
+author: "George I. Hagstrom"
+date: 2026-09-29
+draft: false
+description: "Click here for two videos: Bank Marketing with Naive Bayes and Naive Bayes Meetup Slides plus Vignette"
+image: "../images/bank.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have recorded two videos, one covering the Naive Bayes method (and showing some code examples), and the other using Naive Bayes on the bank marketing dataset, in a similar way to how you might answer some of the questions. I also show how to write a custom model in 'sklearn' using some of their built-in classes, which is an important skill to learn if you plan to use python
+in your career. 
+
+The introduction to Naive Bayes video covers the slides I missed on Monday and is a bit shorter.
+
+You can find the [Naive Bayes Video Vignette here](https://youtu.be/Ld0bBbWv3rc) and download the code example, which is applying Naive Bayes to a gene expression dataset here:
+[Naive Bayes for Leukemia Class Prediction](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-5/GeneNB.ipynb)
+
+The second video is much longer. I go through a very basic EDA of the Bank Marketing dataset and talk about some of the time heterogeneity. I show how to calculate the inflation rate from
+the CPI, and show some other useful functions for exploring the relationship of variables to a categorical outcome. Then I show how to combine Guassian and Categorical Naive-Bayes into
+a single 'sklearn' class. This might be helpful to you if you have not encountered that subject before (though it also might appear very confusing). I make some example plots with the lift, which is something you are asked to do in your homework (you will have to write your own lift function though). 
+
+You can find the [Bank Marketing Video Vignette Here](https://youtu.be/qQNhJrY8wBc)
+
+You can download my python notebook here: [Bank Marketing Notebook](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-5/BankMarketingNaiveBayesVignette.ipynb)
+
+

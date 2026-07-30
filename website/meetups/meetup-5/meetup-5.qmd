@@ -1,0 +1,745 @@
+---
+title: "DATA 622 Meetup 5: Naive Bayes and Classification Metrics"
+format: revealjs
+logo: ../../images/CUNY_SPS_Logo_Wide.png 
+footer: "DATA 622"
+author: "George I. Hagstrom"
+date: "09/28/2026"
+jupyter: data622
+---
+
+```{python}
+import ISLP as islp
+import numpy as np
+from IPython.core.pylabtools import figsize
+import pandas as pd
+import sklearn as sklearn
+from matplotlib.pyplot import subplots
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sklearn.set_config(transform_output="pandas")
+from sklearn.model_selection import train_test_split
+
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.compose import ColumnTransformer, make_column_selector
+
+from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler, LabelEncoder
+from sklearn.calibration import calibration_curve
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, roc_auc_score, roc_curve, RocCurveDisplay, ConfusionMatrixDisplay
+from sklearn.pipeline import Pipeline
+
+from marginaleffects import avg_slopes, slopes, plot_predictions, fit_sklearn, avg_comparisons, predictions, datagrid
+from sklearn.naive_bayes import GaussianNB
+
+
+```
+
+
+
+## Week Summary
+
+- I you are not in a group and working on your proposal, message me asap!
+    - Proposal Due in two weeks.
+  - Each team reach out to schedule 5-10 minute meeting during October 12 week
+- HW 3 on Classification due next week
+- Coding vignette on Naive Bayes
+
+
+## HW 2 Summary
+
+- There were lots of choices:
+  - To impute parental education or not
+  - To log transform earnings or not
+  - What to do when earnings=0?
+  - How to go about selecting variables
+
+## To Impute or Not to Impute....
+
+- Depends on why variables are missing
+  - Missing Completely At Random- dropping is ok
+  - Some characteristic is different about missing- imputation might be needed
+  - Missingness related to value of variable (hard)
+
+## 'log' transform earnings?
+
+- Most said yes
+  - Generally wise choice
+  - Otherwise need weighted least squares
+  - It _is_ interpretable!
+
+
+## Earnings = 0?
+
+- Biggest Challenge of 'log' transform
+  - Option 1: Drop the 0 values
+  - Option 2: Add nominal value to earnings
+
+## Drop the 0 Values?
+
+- Censored/truncated outcome bias
+- Must interpret model differently
+- Major problem in social sciences data
+
+## Add a constant?
+
+- Adding a constant will add a "point mass" in left tail
+- Biases your parameter estimates
+
+![https://aosmith.rbind.io/2018/09/19/the-log-0-problem/](log0.png)
+
+
+## Add a constant?
+
+- Adding a constant will add a "point mass" in left tail
+- Biases your parameter estimates
+
+![https://aosmith.rbind.io/2018/09/19/the-log-0-problem/](logtable.png)
+
+
+## Gold Standard
+
+- Given covariates $\mathbf{x}$, model two things: 
+  - $p(y=0|\mathbf{x}$, i.e. probability of 0 
+  - $p(y|\mathbf{x},\, y>0)$, i.e. combine with the drop model
+
+
+## Two Stage Model
+  - logistic regression for $y=0$: 
+$$
+p(y=0|\mathbf{x}) = \frac{1}{1 + \exp(\sum_{j=0}^p \beta_j x_j)}
+$$
+  - log-linear regression for $y>0$
+$$
+p(\log(y)|\mathbf{x},y>0) \sim \mathrm{normal}\left(\sum_{j=0}^p w_jx_j,\sigma^2\right)
+$$
+
+
+## What if the zeros are caused by an important unobserved variable
+
+- eg a health condition that effects low wage workers more than high wage workers
+- 2000 Nobel Prize in Econ for Heckman Correction
+- Very generic and powerful technique, applies more broadly
+
+
+## Forward/Backward Selection?
+
+- Can get stuck in a local minimum
+- Best: Use expert knowledge a design few models
+- Never use it for inference
+
+
+![](var_selection.png)
+
+
+
+
+
+## Types of errors
+
+- Credit dataset:
+    - Defaults rare, Bayes decision rule predicts no defaults!
+    - False Negative: predicted no default, default happened
+    - False Positive: predicted default, no default happened
+
+## Decision Thresholds
+
+- Consequences of mistakes can vary:
+  - Predict rain wrong you accidentally carried umbrella
+  - Predict sun wrong, you arrived to work soaked
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+__Solution:__ Bias your prediction away from the mistake that has worse consequences
+:::
+
+
+## ROC Curve
+
+:::: {.columns}
+
+::: {.column width=50%}
+```{python}
+
+
+
+default = islp.load_data('Default')
+train_set, test_set = train_test_split(default, test_size=0.2, random_state=123155,stratify=default["default"])
+
+
+
+train_set_target = train_set["default"].copy()
+test_set_target = test_set["default"].copy()
+
+le = LabelEncoder()
+y_train = le.fit_transform(train_set_target)
+y_test = le.transform(test_set_target)
+
+train_set_drop = train_set.copy().drop(["default"],axis=1)
+test_set_drop = test_set.copy().drop(["default"],axis=1)
+
+numerical_features = ["balance","income"]
+
+categorical_features = ["student"]
+
+preprocessor = ColumnTransformer([
+    ('num', StandardScaler(), numerical_features),
+    ('cat', OneHotEncoder(drop='first', handle_unknown='ignore', sparse_output=False), categorical_features)
+])  
+
+pipe_lr = Pipeline([
+    ('prep', preprocessor),
+    ('model', LogisticRegression(max_iter=1000))
+])
+
+pipe_lr.fit(train_set_drop,y_train)
+
+model_lr_f = pipe_lr.named_steps['model']
+
+def logistic_features(pipe):
+    
+    model = pipe.named_steps['model']
+    preprocessor = pipe.named_steps['prep']
+    
+    feature_names = preprocessor.get_feature_names_out()
+
+    coef_df = pd.DataFrame({
+        'feature': list(feature_names),
+        'coefficient': list(model.coef_[0])
+    })
+
+    coef_df['odds_ratio'] = np.exp(coef_df['coefficient'])
+    coef_df['abs_coefficient'] = coef_df['coefficient'].abs()
+    coef_df = coef_df.sort_values('abs_coefficient', ascending=False)
+    return coef_df
+
+
+
+y_prob = pipe_lr.predict_proba(test_set_drop)[:, 1]
+
+fig, ax = subplots(figsize=(8, 6))
+
+RocCurveDisplay.from_predictions(y_test, y_prob, ax=ax);
+ax.plot([0, 1], [0, 1], linestyle="--", color="gray")
+ax.set_title("ROC Curve", fontsize=20)
+ax.set_xlabel("False Positive Rate", fontsize=16)
+ax.set_ylabel("True Positive Rate", fontsize=16);
+
+plt.tight_layout();
+plt.show();
+```
+
+:::
+
+::: {.column width=50\%}
+
+- Vary decision threshold
+- TPR: % positives identified
+- FPR: % negatives misidentified
+
+:::
+
+::::
+
+
+## AUC Caution
+
+- Don't just use AUC to pick models
+- Look at ROC curves
+
+![mlstory.org](auc_example.png)
+
+
+## Confusion Matrix
+
+- Tabular counterpart to ROC curve
+- Displays amount of different types of errors and successes
+
+```{python}
+
+
+threshold = 0.5
+y_pred = (y_prob >= threshold).astype(int)
+
+print("Bayes Decision Rule\n")
+print(classification_report(y_test, y_pred, target_names=["No Default", "Default"]))
+
+```
+
+
+## Confusion Matrix
+
+- Precision: If model said it, was it really true? 
+
+$$
+p(y=1|g(\mathbf{x})=1)
+$$
+
+- Recall: If it was true, did the model say it? (TPR)
+  - _Power_, _Sensitivity_, _Detection Probability_
+$$
+p(g(\mathbf{x})=1|y=1)
+$$
+
+## Confusion Matrix
+
+- Tabular counterpart to ROC curve
+- Displays amount of different types of errors and successes
+
+```{python}
+
+
+threshold = 0.1
+y_pred = (y_prob >= threshold).astype(int)
+
+print("10% threshold\n")
+print(classification_report(y_test, y_pred, target_names=["No Default", "Default"]))
+
+```
+
+- Precision: If model said it, was it true?
+- Recall: If it was true, did the model say it?
+
+
+
+## Generative versus Discriminative Models
+
+- Discriminative Model: Tell me $\mathbf{x}$, and I will tell you $p(y|\mathbf{x})$
+  - Logistic Regression
+- Generative Model: I want the joint probability $p(\mathbf{x},y)$
+  - Data Generating Process
+
+
+## Generative versus Discriminative
+
+- Classify coints at vending machine
+- Discriminative model learns decision boundary with $p(y|\mathbf{x})$
+
+![](coin_discriminative.png)
+
+
+## Generative versus Discriminative
+
+- Classify coints at vending machine
+- Generative starts with distribution of each class $p(\mathbf{x}|y)$
+
+![](coin_generative.png)
+
+## Generative versus Discriminative
+
+- Classify coints at vending machine
+- Generative also considers abundance of classes $p(y)$
+
+![](coin_prior.png)
+
+
+## Bayes Theorem 
+
+- Chain rule of probability:
+$$
+p(\mathbf{x},y) = p(\mathbf{x}|y)p(y) = p(y|\mathbf{x})p(\mathbf{x})
+$$
+- Leads to Bayes Theorem
+$$
+p(y|\mathbf{x}) = \frac{p(\mathbf{x}|y)p(y)}{p(\mathbf{x})}
+$$
+
+
+## Classification with Generative Model
+
+- We don't need to know $p(\mathbf{x})$ to determine best class
+$$
+g(\mathbf{x}) = \mathrm{argmax}_y p(\mathbf{x}|y)p(y)
+$$
+
+- Or whatever threshold you would like to use for the classes
+
+
+## Examples of Generative Models
+
+- Linear and Quadratic Discriminant Analysis
+- Naive Bayes
+- Many types of neural network models:
+  - GANs, VAEs, LLMs, Diffusion Models
+- Many other powerful ML models, Kernel Density Estimation, LDA, some GPs, etc
+
+
+## Advantages of Generative Models
+
+- They work better with lower data 
+
+![Ng and Jordan 2002](nb_lr.png)
+
+
+
+## Advantages of Generative Models
+
+- Interpretability: You have a model of each class
+- Can generate new examples- it is the main application of LLMs
+
+![](chatgpt.png)
+
+- Can incorporate prior knowledge
+
+## Advantages of Generative Models
+
+- More naturally handle missing data through marginalization
+- If $x_1$ is missing during prediction, just integrate it out:
+$$
+p(x_2,x_3,\cdots,x_p|y) = \int dx_1 p(x_1,x_2,\cdots,x_p|y)
+$$
+- Or if discrete:
+$$
+p(x_2,x_3,\cdots,x_p|y) = \sum_{x_1\in\mathcal{X}} p(x_1,x_2,\cdots,x_p|y)
+$$
+- How easy this is depends on your model
+
+
+## Disadvantages
+
+- Learning $p(\mathbf{x}|y)$ is hard
+- Usually need simplifying assumptions, can go wrong
+
+
+
+## Disadvantages
+
+- Asymptotically, discriminative classifiers often win:
+
+![Ng and Jordan 2022](nb_lr.png)
+
+
+
+## Naive Bayes
+
+- Stupid looking but very successful method
+- Features are conditionally independent give the class:
+
+![wikipedia](naivebayes.png)
+
+
+## Naive Bayes
+
+- Stupid looking but very successful method
+- Features are conditionally independent give the class:
+$$
+p(\mathbf{x}|y) = p(x_1|y)p(x_2|y)\cdots p(x_p|y) 
+$$
+- prior $p(y)$ comes from observed classes or could be chosen by you
+$$
+p(y) = \frac{1}{n}\sum_{i=1}^n I(y=y_i) 
+$$
+
+
+## Conditional Independence
+
+- $x_1$ and $x_2$ are _conditionally independent_ given $y$ if:
+$$
+p(x_1|x_2,y) = p(x_1|y)
+$$
+
+
+## Conditional Independence
+
+- Consider _rain_,_thunder_, and _lightning_
+- _rain_ and _thunder_ are not independent
+$$
+p(R|T) \neq P(R)
+$$
+
+
+## Conditional Independence
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+If I see lighting, then hearing thunder doesn't give me additional information about rain
+:::
+
+$$
+P(R|T,L) = P(R|L)
+$$
+
+- Rain is conditionally independent of thunder given lighting
+
+
+## Power of Conditional Independence
+
+- Suppose $y$ and all the $x_i$ have two classes each
+- Let there be $100$ features
+- Need a parameter for each combination of the 100 fetures!
+- $2(2^p-1) = 10^{30}$ parameters
+- Number of water molecules in one million water bottles
+
+
+## Power of Conditional Independence
+
+- Suppose $y$ and all the $x_i$ have two classes each
+- Let there be $100$ features
+- Naive Bayes: 2 parameters per feature
+- 200 total!
+
+
+## Features and Distributions
+
+- $x_i$ is discrete:
+  - Each class has a probability
+- $x_i$ is continuous:
+  - Need to pick a family of distributions!
+  - Gaussian Naive Bayes: $ x_i \sim \mathrm{normal}\left(\mu_i,\sigma_i\right)$
+  - You may choose other distributions
+
+
+## Training
+
+- Because of conditional independence, each distribution is fit independently
+- Usually with maximum likelihood
+- Training observations of class $y$: $\mathcal{D}_y = \{j : y_j = y\}$ 
+- $n_y = |\mathcal{D}_y|$ number of data for that class
+
+**Binary Features:**
+$$
+\hat{p}(x_i = 1 \mid y) = \frac{1}{n_y}\sum_{j \in \mathcal{D}_y} \mathbf{1}(x_{ji} = 1)
+$$
+
+
+## Training
+
+- Because of conditional independence, each distribution is fit independently
+- Usually with maximum likelihood
+- Training observations of class $y$: $\mathcal{D}_y = \{j : y_j = y\}$ 
+- $n_y = |\mathcal{D}_y|$ number of data for that class
+
+**Gaussian likelihood (continuous features):**
+$$
+\hat{\mu}_{iy} = \frac{1}{n_y}\sum_{j \in \mathcal{D}_y} x_{ji}
+\qquad
+\hat{\sigma}^2_{iy} = \frac{1}{n_y - 1}\sum_{j \in \mathcal{D}_y} (x_{ji} - \hat{\mu}_{iy})^2
+$$
+
+
+## Laplace Smoothing
+
+- If there are no examples of a potential value of a feature vector corresponding to a class, the predicted probability will be zero
+- Laplace smoothing: Add a dummy observation of each value for each class
+- 'sklearn' does this by default
+
+
+## Advantages
+
+- Very fast to train (can constantly update model)
+- Can handle huge numbers of features
+- Low variance (though high bias)
+- Direct interpretability
+- Low data requirements
+
+## Disadvantages
+
+- Conditional Independence never true
+- Bad calibration
+- More complex models outperform it when data is rich
+
+
+## Misconception
+
+::: {style="border: 2px solid black; padding: 20px; border-radius: 5px;"}
+__There is nothing Bayesian about Naive Bayes!__
+:::
+
+- Bayesian methods are all about using probabilities to express uncertainty about model parameters
+- Naive Bayes just picks them
+
+## Applications
+
+- Spam Filtering!
+- Common in medical diagnostics
+- Common in insurance/credit due to interpretability
+- Bioinformatics (very high dimensional feature space)
+- Recommender Systems when time is critical (can handle missing features, train and predict quickly)
+
+
+## Example: Leukemia Types
+
+:::: {.columns}
+
+::: {.column width=50%}
+- Golub 1999 et al
+- Two Leukemia Types (AML and ALL)
+- Data on expression of 7129 genes
+- 72 patients
+:::
+
+::: {.column width=50%}
+![](golub.png)
+:::
+::::
+
+## Leukemia Types
+
+```{python}
+
+test = pd.read_csv("data_set_ALL_AML_independent.csv")
+train = pd.read_csv("data_set_ALL_AML_train.csv")
+actual = pd.read_csv("actual.csv")
+
+actual
+
+y_train = actual.loc[0:37,"cancer"].reset_index(drop=True)
+y_test = actual.loc[38:,"cancer"].reset_index(drop=True)
+
+
+
+X_test = (
+    test
+    .drop(columns=[c for c in test.columns if "call" in c])
+    .drop(columns=["Gene Description", "Gene Accession Number"])
+    .pipe(lambda df: df.reindex(columns=sorted(df.columns, key=int)))
+    .T
+    .reset_index(drop=True)
+)
+X_train = (
+    train
+    .drop(columns=[c for c in train.columns if "call" in c])
+    .drop(columns = ["Gene Description","Gene Accession Number"])
+    .pipe(lambda df: df.reindex(columns=sorted(df.columns, key=int)))
+    .T
+    .apply(pd.to_numeric)
+    .reset_index(drop=True)
+)
+
+
+pd.concat([y_train,X_train], axis=1).head(7).style
+
+
+
+
+```
+
+
+## Leukemia Type
+
+```{python}
+
+model_NB = GaussianNB()
+model_NB.fit(X_train, y_train)
+print(classification_report(y_test, model_NB.predict(X_test)))
+
+
+
+
+```
+
+
+
+## Interpretation
+
+- In binary features case, compute odds ratios
+$$
+\underbrace{\frac{p(x=1|y=1)}{p(x=1|y=0)}}_{\text{lr for x=1}} \cdot \underbrace{\frac{p(x=0|y=0)}{p(x=0|y=1)}}_{\text{lr for x=0}}
+$$
+
+
+## Interpretation
+
+- In continuous case, depends on distributions and your choices
+- For each feature get a Gaussian for each class
+![mlstory.org](haystack.png)
+
+
+## Signal to Noise Ratio
+
+- For two Gaussians, Signal to Noise Ratio is:
+$$
+SNR = \frac{|\mu_0-\mu_1|}{\sqrt{\sigma_1^0+\sigma_1^2}}
+$$
+
+
+
+## SNR and Performance
+
+- SNR Determines Shape of ROC Curve
+
+![mlstory.org](snr.png)
+
+
+
+
+## Signal To Noise Ratio
+
+- Can rank genes by SNR
+
+```{python}
+
+mu_0, mu_1 = model_NB.theta_[0], model_NB.theta_[1]
+var_0, var_1 = model_NB.var_[0], model_NB.var_[1]
+snr = np.abs(mu_1 - mu_0) / np.sqrt(var_1 + var_0)
+
+gene_snr_df = (
+  pd.DataFrame({
+    'Gene_Accession': train['Gene Accession Number'],
+    'Gene_Description': train['Gene Description'],
+    'SNR': snr,
+    'mu_0': mu_0,
+    'mu_1': mu_1,
+    'sigma_0': np.sqrt(var_0),
+    'sigma_1': np.sqrt(var_1)
+  })
+  .sort_values(by='SNR', ascending=False)
+  .head(10)
+  .reset_index(drop=True)
+)
+
+
+df_plot = gene_snr_df.reset_index(drop=True)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+y_positions = np.arange(len(df_plot))
+
+
+
+
+ax.errorbar(df_plot['mu_0'], y_positions, xerr=df_plot['sigma_0'], 
+            fmt='o',  label='ALL', markersize=12,elinewidth=4)
+
+
+ax.errorbar(df_plot['mu_1'], y_positions, xerr=df_plot['sigma_1'], 
+            fmt='o',  label='AML', 
+            elinewidth=4, markersize=12)
+
+ylabels = [f"{gene} (SNR: {SNR:.2f})" for gene, SNR in zip(df_plot['Gene_Accession'], df_plot['SNR'])]
+
+ax.set_yticks(y_positions)
+ax.set_yticklabels(ylabels)
+ax.invert_yaxis() 
+
+
+ax.set_xlabel('Expression Level ($\mu \pm \sigma$)', fontsize=12)
+ax.set_title('Class Expression of High SNR Genes', fontsize=24, )
+ax.legend(loc='upper right', title="Cancer Type")
+
+
+plt.tight_layout()
+plt.show()
+
+
+
+```
+
+
+
+
+## Bad Calibration
+
+- Notice how the model is completely confident
+
+```{python}
+
+prob = model_NB.predict_proba(X_test)
+
+plt.hist(prob[:, 1], bins=15)
+plt.xlabel('P(y_test=AML|X_test)')
+plt.ylabel('Count')
+plt.title('Overconfident probability prediction');
+
+```
+
+## Thanks

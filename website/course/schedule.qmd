@@ -1,0 +1,45 @@
+---
+title: "Schedule"
+editor: source
+---
+
+## Meetup Link
+
+<!-- TODO: replace with the Fall 2026 Zoom link -->
+[Click Here to Join the Meetups on Zoom](https://us02web.zoom.us/j/81858708616?pwd=eE9ZGJFco9iicq3BsmANIfWUVLwy0x.1)
+
+Meetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.
+
+| Date | Module | Slides | Video | Main Deliverables |
+|------|--------|--------|-------|-------------------|
+| Aug 31 | [Introduction to Machine Learning](../modules/module1.qmd) | | | |
+| Sep 7 | [Bias-Variance Trade-Off](../modules/module2.qmd) | | | [Lab 1](../assignments/labs/lab1.qmd) |
+| Sep 14 | [The Linear Model](../modules/module3.qmd) | | | [Lab 2](../assignments/labs/lab2.qmd) |
+| Sep 21 | [Classification](../modules/module4.qmd) | | | |
+| Sep 28 | [Generative Classification Models and Class Imbalance](../modules/module5.qmd) | | | [Lab 3](../assignments/labs/lab3_alt.qmd) |
+| Oct 5 | [Resampling and Cross-Validation](../modules/module6.qmd) | | | [Project Proposal](../assignments/project.qmd) |
+| Oct 12 | [Regularization and Model Selection](../modules/module7.qmd) | | | [Lab 4](../assignments/labs/lab4.qmd) |
+| Oct 19 | [Tree Models](../modules/module8.qmd) | | | |
+| Oct 26 | [Ensemble Models](../modules/module9.qmd) | | | [Lab 5](../assignments/labs/lab5.qmd) |
+| Nov 2 | [Causal Inference](../modules/module10.qmd) | | | [Minimum Viable Product Demo](../assignments/project.qmd) |
+| Nov 9 | [Model Interpretation, Communication, and Ethics](../modules/module11.qmd) | | | [Lab 6](../assignments/labs/lab6.qmd) |
+| Nov 16 | [Neural Networks](../modules/module12.qmd) | | | |
+| Nov 23 | *No Meetup — Thanksgiving* | | | |
+| Nov 30 | [Deep Learning](../modules/module13.qmd) | | | [Lab 7](../assignments/labs/lab7.qmd) |
+| Dec 7 | [RNNs and NLP](../modules/module14.qmd) | | | |
+| Dec 14 | [Pretrained Models](../modules/module15.qmd) | | | [Lab 8](../assignments/labs/lab8.qmd), [Final Project Demo](../assignments/project.qmd) |
+
+: Course Schedule {.striped .hover}
+
+Slides and recordings are posted here after each meetup.
+
+## Links to Vignettes and Additional Videos
+
+Vignette videos are posted here as they are released, alongside the announcement post that
+introduces them.
+
+| Week | Video Link | Announcement Link |
+|------|------------|-------------------|
+| | | |
+
+: Vignettes {.striped .hover}

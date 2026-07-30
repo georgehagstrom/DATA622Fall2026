@@ -1,0 +1,21 @@
+---
+title: "Week 9 Info: Boosted Trees and BART"
+author: "George I. Hagstrom"
+date: 2026-10-26
+draft: false
+description: "Click here for info on Week 9"
+image: "week9.png"
+---
+
+Welcome to Week 9. This week we are going to learn about some of the most powerful and widely adopted models within machine learning, boosted trees. We will explore the concept
+of boosting, and then discuss how boosting is implemented in state-of-the-art models such as 'XGBoost'. Boosted trees can overfit and are sensitive to the choice of hyperparameters,
+so we will discuss the relationships between parameters like the number of boosting rounds, tree depth, learning rate, and more. There will be a greater discussion of how gradient
+boosting in classification differs from random forests. Finally, we will discuss Bayesian Additive Regression Trees, which are a tree-based model that gives better uncertainty estimates
+and has applications to causal inference.
+
+You can read more about the plan for the week and the reading/resources in [Module 9](../modules/module9.qmd).
+
+
+[Lab 5](../assignments/labs/lab5.qmd) due Sunday at midnight.
+
+

@@ -1,0 +1,30 @@
+---
+title: "ML Pipelines in `sklearn`"
+author: "George I. Hagstrom"
+date: 2026-09-09
+draft: false
+description: "Click here to watch three videos on building a full machine learning pipeline in `sklearn`"
+image: "../images/sklearn.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have recorded a series of 3 videos where I go through an example of building a full machine learning pipeline on a dataset of
+housing prices in California at the census block level. I cover the material in Chapter 2 of `HOML` and in particular the
+python notebook for chapter 2 of that book, which you can find here: [End-to-End Machine Learning Project](https://colab.research.google.com/github/ageron/handson-mlp/blob/main/02_end_to_end_machine_learning_project.ipynb). This chapter (and the corresponding notebook) are very long and also comprehensive in terms of the topics covered. They demonstrate many of the features
+used in deploying a project in `sklearn` from start to finish (minus some production aspects). Since much of the material is advanced both with respect to the machine learning
+methodology and the programming concepts used, I made a shorter and less comprehensive version of the same notebook to introduce you to the basics of machine learning
+pipelines in `sklearn`. If you are reading Chapter 2, my notebook will follow the development there up until the point where the book talks about hyperparameter optimization, 
+leaving out along the way some concepts. We will return to these more advanced concepts as we proceed through the semester.
+
+I divided the content into three videos, which you can watch below:
+
+1. [Train-Test Splits](https://youtu.be/JFF_YUn1ww0)
+2. [Data Preparation: Exploration, Cleaning, and Transformation](https://youtu.be/oD8z7lCleMU)
+3. [Fitting Models and Building ML Pipelines](https://youtu.be/qn-S_i3eQjc)
+
+You can download the python notebook from the vignette here: [MLPipelineVignette.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-2/MLPipelineVignette.ipynb)
+
+

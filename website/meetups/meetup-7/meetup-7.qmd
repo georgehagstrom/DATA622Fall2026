@@ -1,0 +1,1196 @@
+---
+title: "DATA 622 Meetup 7: Regularization"
+format: revealjs
+logo: ../../images/CUNY_SPS_Logo_Wide.png 
+footer: "DATA 622"
+author: "George I. Hagstrom"
+date: "10/12/2026"
+jupyter: data622
+---
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import Ridge, LinearRegression
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler
+from sklearn.linear_model import RidgeClassifier, LogisticRegression
+from sklearn.metrics import log_loss, accuracy_score
+
+```
+
+
+
+## Week Summary
+
+- Presentations this week
+  - Work on projects with aim to get something  working this month
+  - Perfect it in the final month
+- Homework 4 Due Sunday
+- Coding vignette on RidgeCV and Lasso
+
+
+## Regularization
+
+- Method for optimizing the bias variance tradeoff
+- Modify learning algorithm by adding a "penalty" to coefficients
+
+$$
+\mathrm{argmin}_{\mathbf{w}} \sum_{i=1}^n \log(p(y_i|\mathbf{x}_i,\mathbf{w}_i)) + \alpha f(\mathbf{w})
+$$
+
+- Use "hyperparameter optimization" in a cross-validation loop to find best penalty
+
+
+## Motivation: What is Underneath the Surface?
+
+- Goal: Find out what is underneat the Earth's Surface
+  - Water, Oil, Gas, Minerals, etc
+- Digging is expensive
+- Measure subtle differences in gravity instead
+
+![](gravitationa_survey.png)
+
+
+## What is Underneath the Surface
+
+- Each material has different density, so exerts different gravitational force
+- Can create linear regression problem to determine local density:
+
+$$
+\mathbf{g} \sim A\mathbf{\rho} + \epsilon
+$$
+
+
+## What is Underneath the Surface
+
+- Real Problem: Find ore in a 4$\mathrm{km}^2$ by $300$m deep zone
+- 443 surface gravity measurements $\mathrm{g}$
+- 60,000 subsurface "blocks" $\mathbf{\rho}$
+
+$$
+\mathbf{g} \sim A\mathbf{\rho} + \epsilon
+$$
+
+What is the problem?
+
+
+## What is Underneath the Surface
+
+- Problem: Measurements are 2D, but target density is 3D
+- Many more coefficients in $\mathbf{\rho}$ than data $\mathbf{g}$
+- Means there are many possible solutions with 0 error!
+
+
+## What is Underneath the Surface
+
+![](gravity_sol_1.png)
+
+
+
+
+## What is Underneath the Surface
+
+![](gravity_sol_2.png)
+
+
+
+## Solution: Force the coefficients to be smooth
+
+![](gravity_sol_reg.png)
+
+
+
+## Ridge Regression
+
+- Ridge regression adds a penalty proportional to squared sum of coefficients
+
+
+$$
+\mathrm{argmin}_{\mathbf{w}} \sum_{i=1}^n (y_i -\mathbf{w}\cdot\mathbf{x}_i )^2 + \alpha \sum_{j=1}^p w_j^2
+$$
+
+- Effect is to "shrink" coefficients towards $0$
+- Don't do this with intercept
+
+
+## Ridge Regression Picture
+
+- Consider two variable linear regression
+- Error function contours are ellipses:
+
+```{python}
+
+x1 = np.linspace(-3, 5, 300)
+x2 = np.linspace(-1, 5, 300)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > 2, np.nan, RMSE)
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, 2, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+
+
+ax.set_aspect('equal')
+
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+
+
+
+```
+
+
+
+
+## Ridge Regression Picture
+
+- Consider two variable linear regression
+- Lowest error at center of ellipse
+
+
+```{python}
+
+
+x1 = np.linspace(-3, 5, 300)
+x2 = np.linspace(-1, 5, 300)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > 2, np.nan, RMSE)
+fig, ax = plt.subplots(figsize=(12,8))
+
+
+levels = np.linspace(0, 2, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+
+ax.plot(*opt, 'k*', markersize=15, zorder=5)
+
+ax.annotate('OLS solution', opt,
+            textcoords="offset points", xytext=(12, -20), fontsize=10)
+
+ax.set_aspect('equal')
+
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+```
+
+
+## Ridge Regression Penalty
+
+- Consider two variable linear regression
+- Penalty increases in circles away from origin
+
+```{python}
+
+
+
+
+xx1 = np.linspace(-1, 1, 300)
+xx2 = np.linspace(-1, 1, 300)
+XX1, XX2 = np.meshgrid(xx1, xx2)
+
+ridge_penalty = XX1**2+XX2**2
+
+ridge_penalty = np.where(ridge_penalty > 1, np.nan, ridge_penalty)
+
+
+
+
+x1 = np.linspace(-3, 5, 300)
+x2 = np.linspace(-1, 5, 300)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > 2, np.nan, RMSE)
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, 2, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+levels_ridge = np.linspace(0, 1, 8)
+cridge = ax.contourf(XX1, XX2, ridge_penalty, levels=levels_ridge, cmap='magma', alpha=0.8)
+
+
+ax.annotate('Ridge\ncontours', xy=(1, 0), xytext=(60, -30),
+            textcoords="offset points", fontsize=10,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+ax.plot(*opt, 'k*', markersize=15, zorder=5)
+
+ax.annotate('OLS solution', opt,
+            textcoords="offset points", xytext=(12, -20), fontsize=10)
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+```
+
+
+
+## Ridge Regression Penalty
+
+- Consider two variable linear regression
+- Ridge Solution balances penalty and RMSE
+
+```{python}
+
+
+a = 3.0  
+b = 1.0  
+
+def ridge_solution(alpha):
+
+    h1 = 1.0 / a**2  
+    h2 = 1.0 / b**2  
+    
+    beta_ridge = np.array([
+        opt[0] * h1 / (h1 + alpha),
+        opt[1] * h2 / (h2 + alpha),
+    ])
+    return beta_ridge
+
+def rmse_ridge(x):
+    return ((x[0] - opt[0]) / a)**2 + ((x[1] - opt[1]) / b)**2
+
+
+```
+
+```{python}
+
+alpha = 1.0
+
+ridge_sol = ridge_solution(alpha)
+rmse_cutoff = rmse_ridge(ridge_sol)          
+penalty_level = ridge_sol[0]**2+ridge_sol[1]**2  
+
+
+
+
+
+xx1 = np.linspace(-3, 3, 1000)
+xx2 = np.linspace(-3, 3, 1000)
+XX1, XX2 = np.meshgrid(xx1, xx2)
+
+ridge_penalty = XX1**2+XX2**2
+
+ridge_penalty = np.where(ridge_penalty > penalty_level, np.nan, ridge_penalty)
+
+
+
+
+x1 = np.linspace(-3, 5, 1000)
+x2 = np.linspace(-3, 5, 1000)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > rmse_cutoff, np.nan, RMSE)
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, 2, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+levels_ridge = np.linspace(0, 1, 8)
+cridge = ax.contourf(XX1, XX2, ridge_penalty, levels=levels_ridge, cmap='magma', alpha=0.8)
+
+
+ax.annotate('Ridge\nsolution $ \lambda =1$', xy=(ridge_sol[0],ridge_sol[1]), xytext=(60, -30),
+            textcoords="offset points", fontsize=14,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+ax.plot(*ridge_sol, 'k*', markersize=15, zorder=5)
+
+ax.annotate('OLS solution', opt,
+            textcoords="offset points", xytext=(12, -20), fontsize=10)
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+
+
+
+```
+
+
+## Ridge Regression hyperparameters
+
+- Varying $\lambda$ changes balance
+- Small $\lambda$ mimics OLS
+
+```{python}
+
+alpha = 0.1
+
+ridge_sol = ridge_solution(alpha)
+rmse_cutoff = rmse_ridge(ridge_sol)          
+penalty_level = ridge_sol[0]**2+ridge_sol[1]**2  
+
+
+
+
+
+xx1 = np.linspace(-3, 3, 1000)
+xx2 = np.linspace(-3, 3, 1000)
+XX1, XX2 = np.meshgrid(xx1, xx2)
+
+ridge_penalty = XX1**2+XX2**2
+
+ridge_penalty = np.where(ridge_penalty > penalty_level, np.nan, ridge_penalty)
+
+
+
+
+x1 = np.linspace(-3, 5, 1000)
+x2 = np.linspace(-3, 5, 1000)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > rmse_cutoff, np.nan, RMSE)
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, 2, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+levels_ridge = np.linspace(0, 4, 15)
+cridge = ax.contourf(XX1, XX2, ridge_penalty, levels=levels_ridge, cmap='magma', alpha=0.8)
+
+
+ax.annotate('Ridge\nsolution $ \lambda =0.1$', xy=(ridge_sol[0],ridge_sol[1]), xytext=(60, -30),
+            textcoords="offset points", fontsize=14,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+ax.plot(*ridge_sol, 'k*', markersize=15, zorder=5)
+
+ax.annotate('OLS solution', opt,
+            textcoords="offset points", xytext=(12, -20), fontsize=10)
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+
+
+
+```
+
+
+
+
+
+## Ridge Regression hyperparameters
+
+- Varying $\lambda$ changes balance
+- Large $\lambda$ shrinks coefficients
+
+```{python}
+
+alpha = 3
+
+ridge_sol = ridge_solution(alpha)
+rmse_cutoff = rmse_ridge(ridge_sol)          
+penalty_level = ridge_sol[0]**2+ridge_sol[1]**2  
+
+
+
+
+
+xx1 = np.linspace(-3, 3, 1000)
+xx2 = np.linspace(-3, 3, 1000)
+XX1, XX2 = np.meshgrid(xx1, xx2)
+
+ridge_penalty = XX1**2+XX2**2
+
+ridge_penalty = np.where(ridge_penalty > penalty_level, np.nan, ridge_penalty)
+
+
+
+
+x1 = np.linspace(-3, 5, 1000)
+x2 = np.linspace(-3, 5, 1000)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > rmse_cutoff, np.nan, RMSE)
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, 3, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+levels_ridge = np.linspace(0, 1, 8)
+cridge = ax.contourf(XX1, XX2, ridge_penalty, levels=levels_ridge, cmap='magma', alpha=0.8)
+
+
+ax.annotate('Ridge\nsolution $ \lambda =3$', xy=(ridge_sol[0],ridge_sol[1]), xytext=(60, -30),
+            textcoords="offset points", fontsize=14,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+ax.plot(*ridge_sol, 'k*', markersize=15, zorder=5)
+
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+
+
+
+```
+
+
+## Regularization Path
+
+- Increase $\lambda$ from $0$ to $\infty$
+- Solution moves from OLS to 0
+
+```{python}
+
+
+alpha_vec = np.logspace(-4,4,1000)
+
+
+sol_vec = np.array([ridge_solution(alpha) for alpha in alpha_vec])
+
+
+ridge_sol = ridge_solution(alpha)
+rmse_cutoff = rmse_ridge(ridge_sol)          
+penalty_level = ridge_sol[0]**2+ridge_sol[1]**2  
+
+
+
+x1 = np.linspace(-3, 5, 1000)
+x2 = np.linspace(-3, 5, 1000)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE >5, np.nan, RMSE)
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, 2, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+ax.plot(sol_vec[:, 0], sol_vec[:, 1], 'r', lw=2)
+
+
+ax.annotate('Regularization Path', xy=(0.5,1.7), xytext=(60, -30),
+            textcoords="offset points", fontsize=14,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('Regularization Path', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+
+
+
+```
+
+
+
+## Ridge Regression
+
+
+- Consider objective function with a "ridge"
+- Flat direction represents irrelevant feature
+
+```{python}
+
+def f(x,y):
+  return np.exp(-(0.01*x**2 + 1.0*y**2))
+
+xx = np.linspace(-2,2,100)
+yy = np.linspace(-2,2,100)
+x1, y1 = np.meshgrid(xx, yy)
+fvals = np.zeros_like(x1)
+
+fvals = f(x1,y1)
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111)
+
+ax.contourf(x1,y1,fvals,cmap = "viridis",levels=20)
+```
+
+
+
+## Ridge Regression
+
+- Name comes from geometry
+- Regularizer turns ridge to peak
+```{python}
+
+def f(x,y):
+  return np.exp(-(0.51*x**2 + 1.5*y**2))
+
+xx = np.linspace(-2,2,100)
+yy = np.linspace(-2,2,100)
+x1, y1 = np.meshgrid(xx, yy)
+fvals = np.zeros_like(x1)
+
+fvals = f(x1,y1)
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111)
+
+ax.contourf(x1,y1,fvals,cmap = "viridis",levels=20)
+```
+
+
+
+
+## Bayesian Linear Regression
+
+$$
+\mathbf{y} \sim \mathrm{Normal}\left(X\theta,\sigma^2 I\right) \\
+\mathbf{\theta} \sim \mathrm{Normal}\left(0, \frac{1}{\lambda} I\right)
+$$
+
+- $\frac{1}{\lambda}$ is variance of prior distribution on $\theta$
+- $p(\theta|X)$ is normal
+- $E(\theta|X)$ is least squares ridge regression solution
+
+
+
+## Ridge Regression for AML/ALL
+
+- Consider the Leukemia Data from Meetup 5
+- 7000+ features, 72 patients
+
+```{python}
+
+
+test = pd.read_csv("../meetup-5/data_set_ALL_AML_independent.csv")
+train = pd.read_csv("../meetup-5/data_set_ALL_AML_train.csv")
+actual = pd.read_csv("../meetup-5/actual.csv")
+
+y_train = actual.loc[0:37, "cancer"].reset_index(drop=True)
+y_test = actual.loc[38:, "cancer"].reset_index(drop=True)
+
+X_test = (
+    test
+    .drop(columns=[c for c in test.columns if "call" in c])
+    .drop(columns=["Gene Description", "Gene Accession Number"])
+    .pipe(lambda df: df.reindex(columns=sorted(df.columns, key=int)))
+    .T
+    .reset_index(drop=True)
+)
+X_train = (
+    train
+    .drop(columns=[c for c in train.columns if "call" in c])
+    .drop(columns=["Gene Description", "Gene Accession Number"])
+    .pipe(lambda df: df.reindex(columns=sorted(df.columns, key=int)))
+    .T
+    .apply(pd.to_numeric)
+    .reset_index(drop=True)
+)
+
+scaler = StandardScaler()
+X_train_s = scaler.fit_transform(X_train)
+X_test_s = scaler.transform(X_test)
+
+C_vec = np.logspace(-4, 10, 200)
+l2_train_acc = np.zeros(len(C_vec))
+l2_test_acc = np.zeros(len(C_vec))
+l2_train_ll = np.zeros(len(C_vec))
+l2_test_ll = np.zeros(len(C_vec))
+
+for i, C in enumerate(C_vec):
+    model = LogisticRegression(penalty='l2', C=C, solver='lbfgs',
+                               max_iter=10000, tol=1e-10,fit_intercept=True)
+    model.fit(X_train_s, y_train)
+    l2_train_acc[i] = accuracy_score(y_train, model.predict(X_train_s))
+    l2_test_acc[i] = accuracy_score(y_test, model.predict(X_test_s))
+    l2_train_ll[i] = log_loss(y_train, model.predict_proba(X_train_s))
+    l2_test_ll[i] = log_loss(y_test, model.predict_proba(X_test_s))
+
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+ax.semilogx(1/C_vec, 1 - l2_train_acc, 'b-', lw=2, label='Train error')
+ax.semilogx(1/C_vec, 1 - l2_test_acc, 'r-', lw=2, label='Test error')
+ax.set_xlabel('Regularization Strength $\lambda$', fontsize=18)
+ax.set_ylabel('Misclassification error', fontsize=18)
+ax.set_title('Regularized Logistic Regression Accuracy', fontsize=20)
+ax.legend(fontsize=16)
+
+
+
+
+plt.tight_layout()
+plt.show()
+
+
+
+```
+
+
+
+## Ridge Regression for AML/ALL
+
+- Consider the Leukemia Data from Meetup 5
+- 7000+ features, 72 patients
+
+
+```{python}
+fig, ax = plt.subplots(figsize=(12, 8))
+
+ax.semilogx(1/C_vec, l2_train_ll, 'b-', lw=2, label='Train log loss')
+ax.semilogx(1/C_vec, l2_test_ll, 'r-', lw=2, label='Test log loss')
+ax.set_xlabel('Regularization Strength $\lambda$', fontsize=18)
+ax.set_ylabel('Log loss', fontsize=18)
+ax.set_title('Regularized Logistic Regression Log Loss', fontsize=20)
+ax.legend(fontsize=16)
+
+plt.tight_layout()
+plt.show()
+
+
+```
+
+
+
+## Hyperparameter Optimization
+
+- The process of varying the strength of the regularization and comparing the test error is called __hyperparameter optimization__
+- $\lambda$ is a _hyperparameter_
+  - Not fit like a traditional model coefficient
+  - Impacts performance of model
+- Pick hyperparameters like you select models
+- We will meet many hyperparameters in the rest of this course
+
+
+## Can do Better With Cross-Validation 
+
+- Typical to find best $\lambda$ using cross-validation
+- Also more efficient with data
+
+
+![](ridge-LR-loo-error.png)
+
+
+
+## Can do Better With Cross-Validation 
+
+- Typical to find best $\lambda$ using cross-validation
+- Also more efficient with data
+
+
+![](ridge-LR-loo-logloss.png)
+
+
+
+
+
+
+## Ridge Regression Considerations
+
+- _Must_ scale predictors first
+  - Otherwise you are effectively putting arbitrarily different priors on each coefficient
+- For example, if you have population and age as predictors:
+  - Population ranges to millions
+  - age is under 100
+  - Penalty will constrain shrink age coefficient more than population
+
+
+## Ridge Regression Considerations
+
+- There are many solver options:
+
+!['sklearn' website](solvers.png)
+
+- It helps to know some linear algebra
+  - Take DATA 605!!!!!
+
+
+
+
+## Ridge Regression Considerations
+
+- There are many solver options:
+
+!['sklearn' website](solvers_2.png)
+
+
+
+## Ridge Regression Considerations
+
+- There are many solver options:
+  - Each solver has a case where it is best
+  - 'svd', 'cholesky' most likely to get right answer, but slower than competitors
+  - 'sparse-cg' good for large, sparse problems
+  - 'lsqr' and 'lbfgs' fast iterative solvers, can tune accuracy
+  - 'sag' poor accuracy but for very large problems
+
+
+
+
+
+## The Lasso
+
+- A regularization that uses a different penalty
+
+$$
+\mathrm{argmin}_{\mathbf{w}} \sum_{i=1}^n (y_i -\mathbf{w}\cdot\mathbf{x}_i )^2 + \alpha \sum_{j=1}^p |w_j|
+$$
+
+
+## The Lasso
+
+- A regularization that uses a different penalty
+
+$$
+\mathrm{argmin}_{\mathbf{w}} \sum_{i=1}^n (y_i -\mathbf{w}\cdot\mathbf{x}_i )^2 + \alpha \|\mathbf{w}\|_1
+$$
+
+- Also called $L_1$ penalty
+
+
+
+## Lasso Geometry
+
+- Unit "Circle" in Lasso is actually a square
+- Coefficient values trade off directly
+
+
+```{python}
+
+
+xx1 = np.linspace(-3, 3, 300)
+xx2 = np.linspace(-3, 3, 300)
+XX1, XX2 = np.meshgrid(xx1, xx2)
+
+lasso_penalty = np.abs(XX1)+np.abs(XX2)
+
+lasso_penalty = np.where(lasso_penalty > 1, np.nan, lasso_penalty)
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels_lasso = np.linspace(0, 1, 8)
+classo = ax.contourf(XX1, XX2, lasso_penalty, levels=levels_lasso, cmap='magma', alpha=0.8)
+
+
+
+ax.annotate('Lasso\ncontours', xy=(1, 0), xytext=(60, -30),
+            textcoords="offset points", fontsize=10,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-2,2)
+ax.set_ylim(-2,2)
+ax.set_title('LASSO Penalty', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+
+```
+
+
+
+
+
+## Lasso Causes Sparsity
+
+- Sparse means that most values (here coefficients) are 0
+
+
+```{python}
+
+x1 = np.linspace(-3, 5, 300)
+x2 = np.linspace(-1, 5, 300)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > 2, np.nan, RMSE)
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, 2, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+levels_lasso = np.linspace(0, 1, 8)
+classo = ax.contourf(XX1, XX2, lasso_penalty, levels=levels_lasso, cmap='magma', alpha=0.8)
+
+
+
+ax.annotate('Lasso\ncontours', xy=(1, 0), xytext=(60, -30),
+            textcoords="offset points", fontsize=10,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+ax.plot(*opt, 'k*', markersize=15, zorder=5)
+
+ax.annotate('OLS solution', opt,
+            textcoords="offset points", xytext=(12, -20), fontsize=10)
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+```
+
+
+
+
+
+
+## Lasso Causes Sparsity
+
+- Sparse means that most values (here coefficients) are 0
+
+
+```{python}
+
+x1 = np.linspace(-3, 5, 300)
+x2 = np.linspace(-1, 5, 300)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+
+alpha = 0.1
+
+
+def lasso_solution(alpha):
+
+    x2_cutoff = 4.0
+    x1_cutoff = 2.0/9.0
+
+    x1_sol = 0
+    x2_sol = 0
+
+    if alpha < x2_cutoff:
+        x2_sol = 2.0 - alpha/4.0
+    
+    if alpha < x1_cutoff:
+        x1_sol = 1.0 - 9* alpha/2.0
+
+    
+ 
+    return np.array([x1_sol,x2_sol])
+
+
+
+x_sol = lasso_solution(alpha)
+
+sol_loss = ((x_sol[0] - opt[0])/3.0)**2 + (x_sol[1] - opt[1])**2
+
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > sol_loss, np.nan, RMSE)
+
+
+
+lasso_penalty = np.abs(XX1)+np.abs(XX2)
+lasso_max = np.abs(x_sol[0]) + np.abs(x_sol[1])
+lasso_penalty = np.where(lasso_penalty > lasso_max, np.nan, lasso_penalty)
+
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, sol_loss, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+levels_lasso = np.linspace(0, lasso_max, 8)
+classo = ax.contourf(XX1, XX2, lasso_penalty, levels=levels_lasso, cmap='magma', alpha=0.8)
+
+
+
+ax.annotate('Lasso\ncontours', xy=(1, 0), xytext=(60, -30),
+            textcoords="offset points", fontsize=10,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+ax.plot(x_sol[0],x_sol[1], 'k*', markersize=15, zorder=5)
+
+ax.annotate('Lasso solution for $\lambda=0.1$', x_sol,
+            textcoords="offset points", xytext=(12, -20), fontsize=14)
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+```
+
+
+
+## Lasso Causes Sparsity
+
+- Sparse means that most values (here coefficients) are 0
+
+
+```{python}
+
+x1 = np.linspace(-3, 5, 300)
+x2 = np.linspace(-1, 5, 300)
+X1, X2 = np.meshgrid(x1, x2)
+
+opt = (1.0, 2.0)
+
+alpha = 0.4
+
+
+x_sol = lasso_solution(alpha)
+
+sol_loss = ((x_sol[0] - opt[0])/3.0)**2 + (x_sol[1] - opt[1])**2
+
+RMSE = ((X1 - opt[0]) / 3.0)**2 + ((X2 - opt[1]) / 1.0)**2
+RMSE = np.where(RMSE > sol_loss, np.nan, RMSE)
+
+
+
+
+lasso_penalty = np.abs(XX1)+np.abs(XX2)
+lasso_max = np.abs(x_sol[0]) + np.abs(x_sol[1])
+lasso_penalty = np.where(lasso_penalty > lasso_max, np.nan, lasso_penalty)
+
+
+
+
+
+fig, ax = plt.subplots(figsize=(12, 8))
+
+
+levels = np.linspace(0, sol_loss, 10)
+cf = ax.contourf(X1, X2, RMSE, levels=levels, cmap='cividis', alpha=0.8)
+
+
+levels_lasso = np.linspace(0, lasso_max, 8)
+classo = ax.contourf(XX1, XX2, lasso_penalty, levels=levels_lasso, cmap='magma', alpha=0.8)
+
+
+
+ax.annotate('Lasso\ncontours', xy=(1, 0), xytext=(60, -30),
+            textcoords="offset points", fontsize=10,
+            arrowprops=dict(arrowstyle='->', color='k', lw=1.5))
+
+ax.plot(x_sol[0],x_sol[1], 'k*', markersize=15, zorder=5)
+
+ax.annotate('Lasso solution $\lambda=0.4$', x_sol,
+            textcoords="offset points", xytext=(12, -20), fontsize=14)
+
+ax.set_aspect('equal')
+ax.set_xlabel('$x_1$', fontsize=14)
+ax.set_ylabel('$x_2$', fontsize=14)
+ax.set_xlim(-3,5)
+ax.set_ylim(-1,5)
+ax.set_title('RMSE Loss', fontsize=18)
+ax.axhline(0, color='k', linewidth=0.8)
+ax.axvline(0, color='k', linewidth=0.8)
+
+plt.tight_layout()
+
+```
+
+
+
+
+
+## Lasso Pros
+
+- Lasso Can be Viewed as a means of variable selection
+- See here Lasso applied to AML/ALL problem
+
+![](lasso-shrinkage.png) 
+
+
+## Lasso Pros
+
+- Lasso Can be Viewed as a means of variable selection
+- See here Lasso applied to AML/ALL problem
+
+![](lasso-nonzero.png) 
+
+
+## Lasso Pros
+
+- Sparsity doesn't trade off much if at all on performance
+
+![](Lasso-LR-loo-error.png)
+
+
+## Lasso Pros
+
+- Sparsity doesn't trade off much if at all on performance
+
+![](Lasso-LR-loo-logloss.png)
+
+
+
+## Lasso vs Ridge
+
+- Ridge Regression smoothly shrinks all coefficients
+
+![](ridge-shrinkage.png)
+
+
+
+## Lasso vs Ridge Trade-Offs
+
+- Lasso is more unstable (different coefficients for different cv folds/regularization parameters)
+- Correlated features: Lasso might pick randomly whereas Ridge will keep all
+- Ridge is usually faster and sometimes _much_ faster
+- Lasso also has a Bayesian Prior interpretation (Laplace/Double Exponential Priors)
+
+
+## Elastic Net
+
+- Elastic Net Combines Both Penalties
+
+
+$$
+\mathrm{argmin}_{\mathbf{w}} \sum_{i=1}^n (y_i -\mathbf{w}\cdot\mathbf{x}_i )^2 + \lambda_1 \|\mathbf{w}\|_2^2 + \lambda_2 \|\mathbf{w}\|_1
+$$
+
+
+## Nested CV and Hyperparameters
+
+- The more hyperparameters the more careful you need to be with cross-validation
+- Typical approach: Use CV to pick best hyperparameters _and_ estimate out of sample accuracy
+- Leads to overfitting because uses testing data to pick hyperparameter
+
+
+## Nested CV and Hyperparameters
+
+- Nested Cross-Validation: Outer CV loop for testing
+    - For each fold, inner CV for hyperparameters
+    - Test that model on the outer fold
+
+
+
+
+!['sklearn' website](nested-cv.png)
+
+
+## When to consider nested?
+
+1. When data is low
+2. When you have many hyperparameters
+3. When you are selecting between different models each with hyperparameters
+
+
+
+
+## Thanks!
+
+
+
+
+

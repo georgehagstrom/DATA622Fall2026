@@ -1,0 +1,90 @@
+---
+title: "DATA 622 Lab 5: Ames Housing Data with Trees"
+format: html
+editor: source
+jupyter: data622
+---
+
+
+```{python}
+#| echo: false
+import pandas as pd
+
+```
+
+### Overview
+
+You have been given a dataset consisting of a single file, `AmesHousing.csv`, and a data dictionary `data-description.txt`. 
+This dataset contains the sales price of each home as well as other attributes of the home and the
+sales transaction, such as the lot size, the square footage of each floor, when the home was built and remodeled, whether the kitchen is upgraded, etc. A data dictionary has been included with the data. During this lab, you will practice using different types of regression tree methods to predict housing prices in the data.
+
+This dataset is a model dataset for demonstrating machine learning techniques and for prediction. This dataset was downloaded from [kaggle](https://www.kaggle.com/competitions/home-data-for-ml-course/data), which holds periodic introductory competitions using this data, if you ever wanted to try your hand at kaggle competitions
+you could use this assignment to create your first entry. The dataset was 
+originally compiled by De Cook for educational purposes. Skim this article for some tips on using this dataset: [De Cock 2011](https://jse.amstat.org/v19n3/decock.pdf). De Cook makes some suggestions for simplifying the data that you can take if you need to. 
+
+
+The dataset and data dictionary are available here:
+
+- [AmesHousing.csv](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/AmesHousing.csv)
+- [data-description.txt](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/data-description.txt)
+
+
+
+Note: There is a lot of freedom in this exercise in terms of which variables you pick, some of the model choices, and also some hyperparameters. I have an expectation for what the answers will be in general, but you might get different answers depending on what you select and random chance. Report what you find, not what you expect to see (though if you see something unexpected it is a good hint to look for a mistake).
+
+### Problem 1: Building up to a Baseline Model
+
+(a) **Basic EDA and Feature Selection:** Divide the data into an initial training and testing split. Perform a log-transform on the sales price, this will be the target variable. Perform a basic EDA to select features for your model. Report a summary of the EDA and the selection of variables for your model. (Hint: the quality variables are important, and your intuition about what is important in housing is useful for picking). Pick more than 10 variables but less than all 80 (before one-hot encoding).
+Several variables encode the absence of a feature (such as no pool, no garage, etc) as 'NA'. This dataset has almost no real missing data- make sure to encode and interpret 'NA' values appropriately for the variables you select. Make sure ordered categorical features
+have an integer or ordinal encoding, and use one-hot encoding on remaining categorical features.
+
+(b) **Baseline Model:** Use ridge regression with cross-validation to fit a baseline model. Evaluate it on the test set. What is the mean squared error and what are the most important
+features in your linear model?
+
+
+
+
+
+### Problem 2: Decision Trees and Random Forests
+
+(a) **Simple Decision Tree:** Fit a regression tree to the training set. Plot the tree, and inter-
+pret the results. What test MSE do you obtain?
+
+(b) **Tree Pruning:** Use cross-validation in order to determine the optimal level of
+tree complexity. Does pruning the tree improve the test MSE?
+
+(c) **Random Forests:** Use random forest to model this data. Use 'GridSearchCV' and at least 5-fold cross-validation to find the optimal value of 'max_features'. Plot the
+predicted test error using the 'cv_results_[\'mean_test_score\']' of your cross-validated model, and describe the effect of 'max_features' on the error rate. Where does the optimal value fall in
+comparison to $\sqrt{p}$ and $p/3$? What test MSE do
+you obtain? Use the 'feature_importance_' values to determine
+which variables are most important. 
+
+(d) **Comparing Ridge Regression and Random Forests:** Compare the two models in the following two ways. First, did ridge regression have a lower or higher test error than your Random Forest model (I expect Random Forest to outperform, but with good feature engineering the two should be comparable on this dataset)? 
+Next, make a 'partial dependence' plot of how the ridge regression model and the random forest model predict the relationship between housing size and sales price (I hope that you have included some of the living area features
+in your models...). I recommend 'GrLivArea'. Create a grid of 'GrLivArea' values between 0 and 15000. Next, loop through each value of 'GrLivArea' in the grid, 
+and clone the training set at each step of the loop. In the cloned training set, replace the real value of 'GrLivArea' with the grid value, and predict the log sales price on all the cloned data. Then compute the average of the 
+predicted log sales price for each value of the 'GrLivArea'. Make a plot of the mean predicted log sales price versus 'GrLivArea' for both Random Forest and Ridge Regression. Explain what you observe. Note: Being aware of this phenomenon is crucial for properly using tree based methods.
+
+
+
+### Problem 3: Boosting: Learning Rate and Tree Number
+
+(a) I strongly recommend using 'xgb' for this exercise. If you have a strong preference to stay within 'sklearn', you may use 'HistGradientBoostingRegressor', but it will be more effort to do part (b) properly. 
+Fit a boosted model with the default hyperparameters. What is your average mean squared error
+and how does it compare to your other models?
+
+(b) One of the differences between gradient boosted trees and bagging methods like random forest, is that boosted trees can sometimes be more powerful, but are also more sensitive to hyperparameters and 
+prone to overfitting. A fundamental trade-off in hyperparameters is between learning rate ('learning_rate') and the number of trees ('n_estimators'). For three values of the learning rate (pick the default of 0.3, one larger value, and one smaller value), plot the relationship between both training and testing mean-squared error and the number of boosting iterations. Make sure to pass the training and testing dataset
+as 'eval_set' when you are fitting your 'xgb' model, i.e. 'eval_set=[(X_train, y_train), (X_test, y_test)]'. The evolution of the error is tracked in 'results['validation_n']' where $n$ corresponds to each validation set. For each learning rate, what is the best value of 'n_estimators' and the corresponding test mean squared error? _Note: passing the test set as eval_set is used here for visualization only. See the extra credit to learn how to do this properly with cross-validation._
+
+
+### Extra Credit (5 pts):  Early Stopping
+
+(a) The relationship you found in 3(b) suggests a technique called _early stopping_, where you stop training the 'xgboost' model if there hasn't been an improvement in the performance on the validation set for
+some number of iterations. This suggests using hyperparameter optimization to select the value of the learning rate, while implementing early stopping. Implementing this properly within a cross-validation 
+loop can be slightly tricky, because you need to pass the held out data in the cross-validation loop to the fitting routine as the 'eval_set', which is not automatically handled by the standard 'sklearn' 
+methods for hyperparameter optimization. The following article discusses this issue and shows how to implement this by hand (option 2 in his code): [Jeff Macaluso on Early Stopping](https://macalusojeff.github.io/post/HyperparameterTuningXGB/). Implement a similar approach to pick the best value of the learning rate. I recommend tuning just the learning rate using a grid search approach, 
+but if you want to try more hyperparameters and a randomized search, you are welcome to do so but it will be computationally more intensive (this is what Macaluso does). We will learn more methods for hyperparameter optimization later in the course. Report how the test MSE and the number of trees selected by early stopping varied across learning rates, and compare the test mse to your other three models (the default xgboost and the ridge regression and random forest). Make sure
+to follow Macaluso's prescription for training your final model, by holding out 15\% of the training set to recalculate the number of trees, and then evaluating that final model on the test set. 
+
+

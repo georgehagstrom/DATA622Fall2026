@@ -1,0 +1,67 @@
+---
+title: "Module 4 - Classification"
+editor: source
+---
+
+
+
+### Overview
+
+During this week, we will focus on methods that can be used to solve classification problems. We will start by talking about the basis for decision rules in classification, 
+which connects machine learning to statistics via likelihood ratio tests and loss functions. Here emerges also some differences and even tension between the two originator fields of machine
+learning, namely computer science and statistics, with the former focusing on maximizing classification accuracy and the latter focusing on predicting class probabilities..
+ We will introduce the most basic classification model, which is called logistic
+regression, and which is in many ways the analog of linear regression for classification problems. We will go over a number of important instances of logistic regression and
+then discuss the intricacies of evaluating classification models and how to interpret them and report their results.
+
+
+### Learning Objectives
+
+* Classification with Full Data: Likelihood Ratio Tests, Neymon-Pearson Lemma, and Loss-Functions
+* Logistic Regression: Multiple and Multinomial
+* Classification Metrics
+  
+
+### Readings
+
+* __ISLP__ (Introduction to Statistical Learning): [Sections 4.1-4.3](https://www.statlearning.com/) 
+
+
+### Additional Reading:
+
+If you want to go deeper into this topic:
+
+* __Hands on Machine Learning__ Chapter 3. This is a very practical take on classification
+* __Patterns, Predictions, and Actions__ [Chapter 2](https://mlstory.org/prediction.html) Very good exposition of the theory
+
+If you want to gain a better understanding of some of the tension and conflict between computer science and statistics perspectives, these articles are very 
+thought provoking:
+
+* [__Statistical Modeling: The Two Cultures__](https://www2.math.uu.se/~thulin/mm/breiman.pdf). Leo Breiman. This is a classic work that will help you understand why things are the way they are in data science
+* [__Damage Caused by Classification Accuracy and Other Discontinuous Improper Accuracy Scoring Rules__](https://www.fharrell.com/post/class-damage/). Frank Harrell. This blog post and the next one are very insightful, though also specific to the medical research domain where a probabilistic perspective is highly justified.
+* [__Classification versus Prediction__](https://www.fharrell.com/post/classification/). Frank Harrell. Clear but opinionated blog post on the differences between prediction and classification.
+* [Loss Functions for Binary Class Probability Estimation
+and Classification: Structure and Applications](http://www-stat.wharton.upenn.edu/~buja/PAPERS/paper-proper-scoring.pdf). Andreas Buja, Werner Steutzle, and Yi Shen. This paper reconciles
+the classification and prediction (in the cases where it is possible).
+
+
+
+
+
+### Videos
+
+
+https://www.youtube.com/watch?v=ju3J7iRy6xI&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=15
+
+* [Section 4.1: Introduction to Classification](https://www.youtube.com/watch?v=uFwbrdvrAJs&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=15)
+* [Section 4.2: Logistic Regression](https://www.youtube.com/watch?v=uFwbrdvrAJs&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=16)
+* [Section 4.3: Multivariate Logistic Regression](https://www.youtube.com/watch?v=uFwbrdvrAJs&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=17)
+* [Section 4.4: Logistic Regression Case Control Sampling and Multi-Class](https://www.youtube.com/watch?v=uFwbrdvrAJs&list=PLoROMvodv4rOzrYsAxzQyHb8n_RWNuS1e&index=17)
+
+### Coding Videos
+
+
+* [Section 4.1: Simple Linear Regression](https://www.youtube.com/watch?v=wOGBlLLuc4I&list=PLoROMvodv4rNHU1-iPeDRH-J0cL-CrIda&index=9)
+
+
+

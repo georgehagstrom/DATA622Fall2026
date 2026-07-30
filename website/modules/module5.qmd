@@ -1,0 +1,60 @@
+---
+title: "Module 5 - Generative Classification Models"
+editor: source
+---
+
+
+### Overview
+
+During this week, we continue our exploration of classification models by introducing generative models. Generative models are a very broad and powerful class of models
+which range from Naive Bayes, linear and quadratic discriminant analysis, to Large Language Models, variational autoencoders, generalized adversarial networks, and more.
+We will introduce the concept of generative models and discuss their advantages and disadvantages, before moving on to Naive Bayes, a particularly simple and surprisingly 
+effective example that is widely used.
+
+Lab 3 is due at the end of the week, and your group project proposal is due in two weeks from now.
+
+### Learning Objectives
+
+* Generative Models
+* Naive Bayes
+* Linear and Quadratic Discriminant Analysis
+* Genearlized Linear Models and Poisson Regression
+ 
+
+
+### Readings
+
+
+ISLP is ok for this week, section 4.4 is by far the most relevant, and 4.6 is very useful if you have never covered it in another class
+
+* __ISLP__ (Introduction to Statistical Learning): [Section 4.4-4.6](https://statlearning.com)
+
+For more in depth on Naive Bayes, which is the main example of the week and our tool to understand generative classification, here are some good sources:
+
+* [Tom Mitchell Lecture Notes/Chapter](http://www.cs.cmu.edu/~tom/mlbook/NBayesLogReg.pdf) Good comparison to logistic regression, a bit mathy
+* [Naive Bayes for Text Classification Appendix in Jufarsky and Martin](https://web.stanford.edu/~jurafsky/slp3/B.pdf) Naive Bayes in its most natural setting, text classification
+* [Ng and Jordan: Generative versus Discriminative Classifiers](https://ai.stanford.edu/~ang/papers/nips01-discriminativegenerative.pdf) Most classic paper, good results but hard to read
+ 
+
+
+
+### Videos
+
+
+
+* [Section 4.5: Discriminant Analysis](https://www.youtube.com/watch?v=oJc2r246VoQ&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=25)
+
+There are several other videos in this series. However, I am focusing a bit more on Naive Bayes than discriminant analysis, as it is a more widely used model.
+
+### Coding Videos
+
+If you want to see some more coding videos, they have one on KNN classification
+
+* [KNN Regression Simple Linear Regression](https://www.youtube.com/watch?v=yLEx1FnYyOo&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=32)
+
+
+
+
+
+
+

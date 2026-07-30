@@ -1,0 +1,24 @@
+---
+title: "Week 12 Info: Neural Networks"
+author: "George I. Hagstrom"
+date: 2026-11-16
+draft: false
+description: "Click here for info on Week 12"
+image: "week12.png"
+---
+
+Week 12 has arrived!
+
+We are going to begin three weeks of study of neural networks. We will begin by learning the simplest neural network architecture, the multi-layer perceptron, and about common
+techniques for fitting neural networks and the key hyperparameters, such as optimization algorithms, learning rate, dropout, activation functions, and more. 
+We will talk about the data requirements for
+neural networks and the types of problems which they are best suited for. We will begin discussing alternative architectures, starting with convolutional neural nets.
+
+If you have not contacted me with your group to schedule your MVP demo please do so immediately.
+
+
+You can read more about the plan for the week and the reading/resources in [Module 12](../modules/module12.qmd).
+
+[Lab 7](../assignments/labs/lab7.qmd) is available, due Sunday May 3rd at midnight.
+
+

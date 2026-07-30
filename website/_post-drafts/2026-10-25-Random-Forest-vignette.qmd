@@ -1,0 +1,26 @@
+---
+title: "Random Forest Vignette"
+author: "George I. Hagstrom"
+date: 2026-10-25
+draft: false
+description: "Click Here for a video going through how to code up decision tree and random forest models "
+image: "../images/rf_extrapolate.png"
+image-height: "300px"
+---
+
+<!-- TODO: the video links below point at the Spring 2026 recordings.
+     Keep them if you want to reuse the recordings, or swap in new ones. -->
+
+I have uploaded a coding video where I go through an example of using decision trees, pruning, bagging, and random forests to predict the log salary of the MLB
+hitters dataset. This example partially follows the coding lab at the end of ISLP, and also follows the examples that I showed in the meetup. 
+
+Click below to watch the video:
+
+* [Random Forest Vignette](https://youtu.be/mqmn8JqOgdA)
+
+The code for the vignette can be
+
+* [trees_bagging_rf_vignette_.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-8/trees_bagging_rf_vignette.ipynb) or
+* [trees_bagging_vignette_live.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-8/trees_bagging_vignette_live.ipynb)
+
+

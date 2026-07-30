@@ -1,0 +1,62 @@
+---
+title: "Textbooks"
+---
+
+### Required
+
+This course makes use of several textbooks. I have attempted when possible to choose resources which are freely available.
+
+1. Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani and Jonathan Taylor. [Introduction to Statistical Learning with Applications in Python](https://www.statlearning.com/)
+
+This book provides a strong practical introduction to machine learning. It's authors led the development of machine learning and the modernization of statistical theory to accomodate it.
+The book is excellent at teaching the intuition behind advanced methods without requiring you to already be an expert in advanced mathematics. The end of each chapter has a programming
+lab which shows you how to implement the concepts in the chapter.
+
+1b. Aurelien Geron. [Hands on Machine Learning with Scikit-Learn and Pytorch](https://ageron.github.io/). 
+
+This is a much more practical book that `ISLP` (even though that book bills itself as being practical). `HOML` contains a lot of tricks of the trade and other practical advice for how
+modern machine learning is practiced within organizations. If you dislike the academic approach of `ISLP` this book could be very beneficial for you. It also contains a variety of excellent
+online resources, which are available through the website. It does have one major downside though, it is not free, and thus it is not the required text for the course. I will occassionally
+point you to resources from that book.
+
+
+2. Alex Gold [DevOps for Data Science](https://do4ds.com/)
+
+This book is about the design considerations and software infrastructure which are required for deploying machine learning based products in production. It covers topics which are difficult
+to learn outside an organization. We will cover some of the tools in this book throughout the semester and this will be important for your final project.
+
+
+3. One book on causal inference in a machine learning context. We are going to have one module on causal inference, which is not covered in Introduction to Statistical Learning. Several
+other resources will be available, each of which approaches this from a machine learning context:
+
+ - Matheus Facure Alves. [Causal Inference for The Brave and True](https://matheusfacure.github.io/python-causality-handbook/landing-page.html). This is a good introduction to causal inference which focuses on situations where machine learning is insufficient to solve business problems.
+
+ - Moritz Hardt and Benjamin Recht. [Patterns, Predictions, and Actions: A story about machine learning](https://mlstory.org/). This is an excellent book which provides an alternative
+perspective on machine learning. It has two excellent chapters on causal inference. It is mostly a conceptual book, so it doesn't discuss a wide variety of models like Introduction to Statistical Learning, and it requires a lot more mathematical background. However it could be quite useful to you.
+
+- Mutlu Yuksel and Yigit Aydede. [Causal Inference and Machine Learning: In Economics, Social, and Health Sciences](https://www.causalmlbook.com/). This is a complete book on machine learning
+from a causal inference perspective. 
+
+
+### Optional
+
+1. Trevor Hastie, Robert Tibshirani, and Jerome Friedman. [Elements of Statistical Learning](https://hastie.su.domains/ElemStatLearn/)
+
+This is the PhD level textbook version of the course textbook. It goes into all of the details. Look here if you want to go deeper than the course. 
+
+2. Yasser Abu-Mostafa, Malik Magdon-Ismail and Hsuan-Tien Lin. [Learning from Data](https://amlbook.com/)
+
+This book is for you if you want a very clear introduction to the theory of machine learning that is not too mathematically demanding. It will teach you challenging theoretical concepts like
+the VC dimension in the context of very simplistic models. Therefore, this book is very conceptual, only at the very end does it teach you any practical algorithm you would use to solve a real world problem, but it is great at teaching you
+what is really happening when you try to train an algorithm.
+
+3. Kevin Murphy. [Probabilistic Machine Learning](https://probml.github.io/pml-book/book1.html). 
+
+Extremely comprehensive book with a no-nonsense style that some will appreciate. An alternative to Elements of Statistical Learning if you find them too wordy. Very advanced.
+
+4. Andriy Burkov. [The 100 Page Machine Learning Book](https://themlbook.com/)
+
+If you need something concise.
+
+
+

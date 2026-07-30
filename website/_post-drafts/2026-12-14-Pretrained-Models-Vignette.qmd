@@ -1,0 +1,34 @@
+---
+title: "Pretrained Model Vignettes"
+author: "George I. Hagstrom"
+date: 2026-12-14
+draft: false
+description: "Click Here for three vignettes on using Causal Forests for Causal Inference"
+image: "../images/bull_bear.png"
+image-height: "300px"
+---
+
+Hello class,
+
+I have uploaded a google colab notebook that goes through three fine-tuning examples related to your homework assignment. Your homework assignment
+is essentially to pick one of these examples, modify it according to the instructions, and then run it and observe the results. The examples involve both
+training/fine-tuning a network, and also exploring how to optimize hyperparameters using 'optuna'. The three examples are:
+
+1. Using an LSTM to perform financial sentiment analysis using both trained and Bert embeddings
+2. Fine-tuning ModernBERT to do the same, exploring how to only fine-tune part of the network
+3. Fine-tuning an open-weight LLM called Qwen 2.5 using QLoRA. We also look at varying the perturbation rank and the parts of the network targeted.
+
+
+
+Code is available here: [Pretrained Vignette](https://colab.research.google.com/drive/1pvc99evah2QEWWtTO6tj6luiZR_sq4mr?usp=sharing)
+
+Note that this is somewhat of a living document. At the moment some of the initial code is not "executed". There will be videos depending on how much is covered
+in the class meetup today.
+
+
+
+
+
+
+
+

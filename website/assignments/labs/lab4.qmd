@@ -1,0 +1,178 @@
+---
+title: "DATA 622 Lab 4: NBA Player Evaluation Using Ridge Regression and the Lasso"
+format: html
+editor: source
+jupyter: data622
+---
+
+```{python}
+import pandas as pd
+
+```
+
+### Overview
+
+
+Complete this assignment by answering the following questions using code, text descriptions, and mathematics in a quarto markdown document. Render your .qmd to a pdf and submit both the qmd and pdf files on brightspace.
+
+In this lab you are going to be using resampling techniques (cross-validation and the bootstrap) along with regularization 
+(ridge regression and the lasso) to rank basketball players based on their performance during the 2022 NBA season. To get the most out
+of this lab, you do not need to be an expert on the NBA, but you do need to pay attention to the following background information.
+
+Basketball is a sport played between two teams. Each team has 12 total players, but only 5 are on the court for each team at a given
+time. The goal of the game is to score more points than the other team during the 48 minutes of game time. Points are scored by "shooting" 
+a ball into a 10 foot tall metal hoop called the "basket". If you want to watch the gameplay, [skim this video](https://www.youtube.com/watch?v=LPDnemFoqVk). Or, you can watch [this 8 minute video that explains the rules](https://www.youtube.com/watch?v=DJDK0GBUOhc).
+Traditionally, basketball players have been evaluated based on their individual statistics, such as the number of points that they score
+in a game, the number of "rebounds" they get (a rebound is when a player catches the ball after a missed shot), the number of "steals" (when a player takes the ball from the other team), and more. However, basketball is a complicated team sport, and the actions of all five
+players on a team contribute to these individual statistics. 
+
+The goal of capturing these more abstract contributions to success has led to the concept of "plus-minus", which looks at how the presence
+or absence of a player on the court correlates with the scoring margin of the team. The idea is to model what happens in a basketball
+game by assigning each player on both teams a "coefficient", which will be called 'RAPM' during this homework assignment. 'RAPM' stands for
+Regularized Adjusted Plus Minus, and it measures the contribution of each player to the expected point differential between
+the two teams. A player with a RAPM of 3 is expected to add 3 points to their team's net performance for every 100 possessions of a basketball game (a possession is defined as a period of the game where a single team has control of the ball, games consist of a series of alternating possessions and there are usually about 200 possessions in a game, 100 per team). 
+
+Suppose that two teams are playing against each other, and that the 'lineups' of the two teams stay the same for a certain number of possessions, call it 'num_pos'. This period of time with constant lineups is called a 'stint', and we can model the probability distribution
+for the point 'margin' (defined as $(\mathrm{points\_home} - \mathrm{points\_road})\cdot \frac{100}{\mathrm{n\_pos}}$ ) in the 'stint' using the following formula:
+
+$$
+\mathrm{margin}_i \sim \mathrm{Normal}\left(\sum_{j} c_{ij}\left(\mathrm{RAPM}\right)_j, \sigma^2 \right)
+$$
+
+
+Here, the sum is over all the different players in the dataset, and the coefficient $c_{ij}$ is +1 if that player $j$ was on the court during stint $i$ and playing for the 'home' team, and -1 if they were on the court for the 'road' team. The coefficient is $0$ otherwise. The 'home' team and 'road' team distinction allows us to use the same data for players who were playing against each-other. The 'margin' variable is the point differential during the stint normalized to points per 100 possessions.
+
+The dataset to fit this model is contained in [nba_stint_data.csv](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/nba_stint_data.csv). Let's take a look at it:
+
+```{python}
+
+nba_stints = pd.read_csv("https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/nba_stint_data.csv")
+
+nba_stints.head(10)
+
+```
+
+Here you can see that each row corresponds to a stint where the players on the court didn't change. The 'n_pos' variable is the number
+of possessions that took place during that stint. The 'home_points' and 'away_points' are the number of points scored by the home and away teams respectively. The 'minutes' describes how long in minutes the stint lasted, and the 'margin' is the target variable (defined earlier). The features in column 7 onwards are labeled by player ids, 
+and the value in each cell corresponds to the $c_i$ values for that stint (whether the player was on the court for the home team, road team, or neither). You can recover the identity of the players from the ['player_id']("https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/player_id.csv") file. 
+
+In the following lab you will be exploring different ways of calculating the the 'RAPM' model coefficients and interpreting them in terms 
+of player skill.
+
+
+
+### Problem 1: Ridge Regression for Inference
+
+(a) __Ordinary Linear Regression:__  Use ordinary linear regression to fit the model described in the overview. Use cross-validation to
+estimate the out of sample root mean squared error and compare it to the in sample error, you may use 'RidgeCV' with $alpha=1e-8$ to keep
+consistency with the rest of the assignment, or use 'LinearRegression'. Make sure 'fit_intercept=True', the intercept corresponds to the home court advantage, and do not use 'sample_weight'. Does the difference between in-sample and cross-validated mean squared error suggest a major problem with overfitting?
+
+(b) __Examining 'RAPM' Coefficients:__ Create a dataframe with the player-ids, the RAPM coefficients, and join it with the player names (from the data file shared earlier). Use the stint matrix to calculate the number of minutes that each player played ('minutes' variable)
+and add that to the data frame too. Sort the players in descending order by 'RAPM' and print the top 20 players by 'RAPM'. What do you notice about their minutes played? Look up the names of a few of the top players on the internet- are they regarded as top NBA players?
+Make a scatter plot of 'RAPM' versus minutes-played.
+
+(c) __Ridge Regression RAPM:__ The results of (b) suggest that the model is attaching extreme values of 'RAPM' to low minute players, something which can be potentially fixed with regularization. Define a vector of regularization parameters 'alpha' on a logarithmic scale between $10^{-2}$ and $10^{5}$ (look up 'np.logspace'). Make this vector contain at least 10 but not more than 200 values of 'alpha' (pick based on
+how fast your computer is). Use 'RidgeCV' to fit a ridge regression model, selecting the model with the best value of the hyperparameters.
+What value of 'alpha' is optimal? Next repeat the same calculation as you did in part (b) (you could create a function or just copy the dataframe and replace the old 'RAPM' with new 'RAPM'). Look up some of the top players that your model identified, are they well regarded by the NBA? Make a scatterplot of 'RAPM' versus minutes played.
+
+
+
+### Problem 2: Possession Weights
+
+(a) __Heteroscedasticity in Stints:__ Make a plot of the 'margin' variable as a function of the number of possessions in a stint. 
+What do you notice about the variance of 'margin'? Why do you think it is happening?
+
+(b) __Implementing Weights Regression:__ The solution to the issue that you observed in 2(a) is something called __weighted least squares__.
+This involves adjusting the error term for each stint based on a weight that accounts for whatever factor controls the variance. The new 
+weighted model looks like this:
+
+$$
+\mathrm{margin}_i \sim \mathrm{Normal}\left(\sum_{j} c_{ij}\left(\mathrm{RAPM}\right)_j, \frac{\sigma^2}{w_i} \right)
+$$
+
+where $w_i$ is a coefficient that determines how the variance of 'margin' should scale for each stint. The idea is that $w_i$ should
+be smaller for stints where the variance is high, and larger for stints where the variance is low. This forces the model to fit the
+low-variance stints more closely than the high-variance stints. The correct weights for this problem are the $w_i = \mathrm{num\_pos}_i$,
+which implies that the variance of the margin is inversely proportional to the number of stints. Verify this by making a scatter plot of the
+margin rate times the square root of the number of possessions versus the number of possessions. Then recalculate the player 'RAPM' coefficients
+from 1(c) by setting the 'weights' keyword in the model fit to be 'n_pos'.  How have the rankings of top players changed? 
+
+
+
+### Problem 3: Interpreting Bootstrap Uncertainty
+
+(a) __Calculate Confidence Intervals Using the Bootstrap:__ Suppose you are a general manager for a basketball team. You want to identify candidate players to add to your team, but you are 
+unsure how certain to be about the 'RAPM' coefficients for the model. The bootstrap is a standard approach for calculating confidence
+intervals for model coefficients. Use either the 'resample' function from 'sklearn' or 'np.random.choice' along with a loop to calculate bootstrap samples
+of the model coefficients for each player. You may use the optimal 'alpha' found during the hyperparameter search in 2(b) for all bootstrap fits. Do not forget to resample the weights when bootstrapping!. For the top 20 players, display the RAPM estimates 
+along with the confidence interval (calculate 92% intervals or some other high value that isn't 95%). How much do the intervals of the top 20 overlap?
+
+(b) __Impact of Minutes Played on Confidence Intervals:__ One potential use of a model like this is to find players who do not play much but who might do well with more opportunity. Calculate the standard errors of each coefficient from the bootstrap samples 
+and make a scatterplot of standard error versus minutes played. Comment on the relationship between minutes played and standard error- does 
+it make sense to you intuitively and/or statistically?
+
+
+(c) __Comparison to Bayesian Credible Intervals:__ Bayesian statistics (which you should have learned about briefly in DATA 606) is a 
+field of statistics based on an interpretation of probability as referring to uncertainty about the real world rather than as 
+the frequency of outcomes in repeated experiments. In the Bayesian framework, it is normal to talk about the probability
+distribution of model parameters, which leads to the concept of a 'credible interval', defined as an interval with a certain probability
+of containing the model parameter (a 92\% credible interval would have a 92\% chance of containing the model parameter). Credible 
+intervals often correspond closely to confidence intervals captured using standard statistics, but this problem is one case where they
+diverge sharply. Ridge regression has an interpretation in Bayesian statistics, where the regulrization parameter corresponds to the strength
+of a prior belief that the model coefficients have a normal distribution centered around zero and with variance inversely proportional to 
+the regularization penalty $\alpha$. For ridge regression interpreted as Bayesian statistics, there is an exact formula for the standard
+errors and confidence intervals which we can use to contrast with the bootstrap estimate. I have provided code below to calculate the
+standard errors and the Bayesian credible intervals (if you are curious about the full details [read this article](https://en.wikipedia.org/wiki/Bayesian_linear_regression)). You will need to adapt this code to your variable names and data structures:
+
+```{python}
+#| echo: True
+#| eval: False
+
+# Here MarginVector is your Target
+# StintMatrix are your observations
+# WeightVector are your weights
+# model_ridge is your selected model
+
+# alpha_opt is the optimal regularization parameter from cross validation
+
+
+weights = WeightVector.values # Need to do this is WeightVector is a pandas series or df etc
+stint_mat = StintMatrix.values # Ditto
+margin_vec = MarginVector.values # Ditto
+
+
+
+var = np.average((margin_vec - model_ridge.predict(stint_mat))**2, weights=weights) # We need to incorporate weights into variance calculation
+num_players = stint_mat.shape[1]
+
+AMat = (stint_mat * weights.reshape(-1, 1)).T @ stint_mat + alpha_opt * np.eye(num_players)
+
+
+# This is the covariance matrix. You could find very high covariance between players on the same teams
+
+posterior_covariance = var * np.linalg.inv(AMat) 
+
+se_vec = np.sqrt(np.diag(posterior_covariance)) # These are the standard errors
+
+
+
+
+```
+
+Use the above code and calculate the Bayesian standard errors for each 'RAPM' coefficient. Make a plot of the Bayesian standard errors 
+versus minutes played and compare to the standard errors calculated from the bootstrap. In which part of the range is the agreement highest? In which part is the disagreement highest? Focusing on the areas where the disagreement is highest, put yourself in the shoes of someone using the model and discuss which estimate of uncertainty is more realistic and why.
+
+
+### Extra Credit (5 Points): Ridge versus Lasso and Confidence/Credible Interval Calculations
+
+(a) An alternative to ridge regression that is used for variable selection is called the Lasso. The Lasso differs penalty causes a
+large number of model coefficients to be zero, making it a good tool for variable selection and for creating interpretable models.
+Use 'LassoCV' to calculate the 'RAPM' coefficients. I recommend using regularization weights that range between $10^{-4}$ and $10^2$ 
+(the scale needs to be different compared to ridge regression). 
+Compare the 'RAPM' values calculated with lasso to those calculated with ridge regression. Are there any notable differences in the top
+20 players? Find the 10 players with the largest difference between lasso RAPM and Ridge RAPM in both directions (ridge greater than lasso and lasso greater than ridge). Within the players where there was large disagreement, consider how the players performed in the next NBA season (you may do this however you like, I recommend reading media reports about those players during the next season) and determine which
+model was more correct when it comes to players with large disagreements.
+
+(b) There is a subtle conceptual flaw in how the confidence or credible intervals were calculated in this lab. This is apparent if you paid very close attention during the meetup. Can you tell me what it is?
+
+

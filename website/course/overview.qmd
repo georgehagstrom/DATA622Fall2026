@@ -1,0 +1,10 @@
+---
+title: "DATA 622 - Machine Learning and Big Data"
+---
+
+Machine learning consists of a set of models and algorithms that allows us to derive insights, discover patterns, and make predictions of complex phenomenon by adapting to training data.
+The development and widespread adoption of machine learning over the past decades has led to a revolution in wide variety of domains, including business, health care, government, economics,
+and the sciences. In this course we will learn the fundamentals of machine learning, from linear models to regression trees and deep neural networks, the fundamental trade-offs between 
+different models, how to evaluate and compare models, the differences between causal inference and prediction, and how to put models into production.
+
+

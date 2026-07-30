@@ -1,0 +1,22 @@
+---
+title: "Week 7 Info: Regularization Methods"
+author: "George I. Hagstrom"
+date: 2026-10-11
+draft: false
+description: "Click here for info on Week 7"
+image: "week7.png"
+---
+
+Week 7 is here and it is time to learn about regularization. Regularization methods were first invented to handle problems in the applied sciences, with first application (that I am aware
+of) in the geosciences to estiamte the internal structure of the Earth from sparse measurements. Regularization methods have since spread and become highly developed. They allow for 
+models of arbitrary complexity to be used in situations where they would normally overfit. Regularization methods achieve this by penalizing models for assigning values to coefficients
+different than 0, causing "shrinkage" of coefficients. This increases bias, but reduces variance and thus helps with overfitting. We will learn about the two most important regularization 
+methods, _Ridge_ regression (or an $L_2$ penalty) and the _Lasso_ (or an $L_1$ penalty). 
+
+You can read more about the plan for the week and the reading/resources in [Module 7](../modules/module7.qmd).
+
+Project Proposal presentations are this week. I have heard from most teams but if I have not heard form you yet make sure to contact me asap.
+
+[Lab 4](../assignments/labs/lab4.qmd) is due Sunday at midnight.
+
+

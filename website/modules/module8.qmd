@@ -1,0 +1,38 @@
+---
+title: "Module 8 - Trees"
+editor: source
+---
+
+
+### Overview
+
+During this week, we will begin working with highly nonlinear models that stand in stark contrast to linear and logistic regression models, namely decision and regression
+trees. These models rely on making successive cuts in the data-space, leading to a tree-structure where each "leaf" is a subset of the data-space and is accompanied by a
+decision rule to either predict a number (regression trees) or class (classification trees). The problem of finding the optimal tree for a given problem is usually computationally
+intractable, a scenario that is common for many of the most complex and powerful ML algorithms, and methods for finding trees non-deterministic and based on heuristics. We
+build your intuition for how decision trees work by contrasting them with other models, and we will discover that on their own, single trees make poor models.
+
+
+
+### Learning Objectives
+
+* Defining classification and regression trees
+* Contrasting trees with other models
+* Pruning to Regularize Trees
+* Bagging and Random Forests
+
+
+
+### Readings
+
+* __ISLP__ (Introduction to Statistical Learning with Python): [8.1](https://www.statlearning.com)
+* __HOML__ (Hands on Machine Learning): Chapters 5 and 6
+
+### Videos
+
+
+* [ISLP 8.1: Tree Based Methods](https://www.youtube.com/watch?v=QNnayf--_yk&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=59)
+* [ISLP 8.2: More Details on Tress](https://www.youtube.com/watch?v=QNnayf--_yk&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=60)
+* [ISLP 8.3: Classification Trees](https://www.youtube.com/watch?v=QNnayf--_yk&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=61)
+* [ISLP 8.4: Bagging](https://www.youtube.com/watch?v=QNnayf--_yk&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=62)
+* [ISLP 8.py: Coding Video](https://www.youtube.com/watch?v=AVTfC5WnDTo&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=65)

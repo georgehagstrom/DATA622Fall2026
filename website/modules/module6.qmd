@@ -1,0 +1,84 @@
+---
+title: "Module 6 - Resampling and Cross Validation"
+editor: source
+---
+
+
+### Overview
+
+In traditional statistical modeling, model fits are evaluated using test statistics, hypothesis tests, or examination of the posterior distribution. These statistical tools
+are often not available for machine learning models because of their complexity. Instead, computational methods based on resampling have been developed which allow for
+estimation of uncertainty, out of sample accuracy (generalization), and model comparison. During this week we will begin our exploration of these tools by studying resampling,
+the boostrap, and cross-validation, which is one of the most crucial techniques for evaluating machine learning models. 
+
+
+### Learning Objectives
+
+* Understand how to apply cross-validation to assess out of sample accuracy
+* Understand the trade-offs in different data splits
+* Apply the bootstrap to estimate uncertainty in predictions and parameters
+
+
+### Readings
+
+* __ISLP__ (Introduction to Statistical Learning): [Chapter 5](https://www.statlearning.com)
+
+Extra Reading. If you want to be a cross-validation pro, this paper represents the state of the art in my opinion, it extends well beyond the ecology context in which it was published.
+
+* __Luke Yates et al. 2022:__ [Cross validation for model selection: A review with examples from ecology
+ ](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecm.1557)
+
+Why no HOML recommendation? There really isn't a specific section on cross-validation in that book. But I highly recommend that if you enjoy the book, you should search for cross-validation (include the hyphen) and read the relevant snippets which occur throughout.
+
+### Course Meetup Video
+
+* [Meetup 6 Video](https://youtu.be/tSdjqg5MHbY)
+
+
+### Vignette Videos
+
+* [NFL Poisson Regression and Data Wrangling Vignette](https://youtu.be/fGQAdxt6Q4k)
+* [NFL Cross Validation](https://youtu.be/vFzMl2VTYaA)
+* [NFL Bootstrap](https://youtu.be/JtOlb_6ngjw) 
+
+The code for these can be found in the following jupyter notebook:
+[cross-validation-bootstrap-vignette.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-6/cross-validation-bootstrap-vignette.ipynb) or
+[cv-nfl-live.ipynb](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/meetups/meetup-6/cv-nfl-live.ipynb)
+
+
+
+### Videos
+
+* [ISLP 5.1 Cross Validation](https://www.youtube.com/watch?v=6eWODQJrMKs&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=33)
+* [ISLP 5.2 K-Fold Cross Validation](https://www.youtube.com/watch?v=AMfvd_hLssE&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=34)
+* [ISLP 5.3 Cross Validation Right and Wrong](https://www.youtube.com/watch?v=AMfvd_hLssE&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=35)
+* [ISLP 5.4 The Bootstrap](https://www.youtube.com/watch?v=h_LweqiIotE&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=36)
+* [ISLP 5.5 More Bootstrap](https://www.youtube.com/watch?v=OKREmw6YP64&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=37)
+
+### ISLP Coding Videos
+
+* [ISLP Py Cross Validation](https://www.youtube.com/watch?v=oYzo95sFoSY&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=38)
+* [ISLP Py Bootstrap](https://www.youtube.com/watch?v=1BxtC6ZOvJQ&list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&index=39)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

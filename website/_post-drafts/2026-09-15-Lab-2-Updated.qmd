@@ -1,0 +1,26 @@
+---
+title: "Lab 2 Updated"
+author: "George I. Hagstrom"
+date: 2026-09-15
+draft: false
+description: "Click Here to read about lab 2 changes"
+image: "attention.png"
+---
+
+Hello all, 
+
+The data dictionary that was supposed to accompany [lab 2](../assignments/labs/lab2.qmd) was missing and you can now
+view it here: [earnings_dictionary.qmd](../assignments/labs/labData/earnings_dictionary.qmd). In the process of compiling the
+dictionary, I noticed that the original dataset had some errors. Two of the variables, `tense` and `anger` were incorrect,
+and the script that generated the dataset actually extracted the data for the `yell` variable (a variable in the original `WFW` 
+dataset) for both of those variables (this is a rare case where someone else wrote the bug and not me, it comes from the Regression and Other
+Stories github page). I corrected the script that compiles the dataset and regenerated the dataset. You can download the
+new dataset here: [earnings.csv](https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/earnings.csv).
+
+The links in the original lab have been updated (and additionally fixed). I'm sorry for any confusion and inconvenience this has caused.
+
+
+
+
+
+
