@@ -1,0 +1,3783 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.54">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>bankmarketingnaivebayesvignette – DATA 622 Fall 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<meta property="og:title" content="DATA 622 Fall 2026">
+<meta property="og:site_name" content="DATA 622 Fall 2026">
+</head>
+
+<body class="nav-sidebar docked fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/course_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/georgehagstrom/DATA622Fall2026" title="Github" class="quarto-navigation-tool px-1" aria-label="Github" target="_blank"><i class="bi bi-github"></i></a>
+    <a href="https://cuny-msds.slack.com/archives/C0BLXQGRCKC" title="Slack" class="quarto-navigation-tool px-1" aria-label="Slack" target="_blank"><i class="bi bi-slack"></i></a>
+    <div class="dropdown">
+      <a href="" title="CUNY" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="CUNY"><i class="bi bi-link-45deg"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://brightspace.cuny.edu" target="_blank">
+            Brightspace LMS
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://sps.cuny.edu/academics/graduate/master-science-data-science-ms" target="_blank">
+            MSDS Program Page
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://cunyfirst.cuny.edu" target="_blank">
+            CUNYfirst
+            </a>
+          </li>
+      </ul>
+    </div>
+    <a href="mailto:george.hagstrom@cuny.edu?subject=DATA622" title="Email" class="quarto-navigation-tool px-1" aria-label="Email"><i class="bi bi-envelope"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Announcements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/instructors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instructors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/textbooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Textbooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/labs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Labs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../assignments/project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 - What is Machine Learning?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 - Bias-Variance Trade-Off</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 - The Linear Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 - Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5 - Generative Classification Models and Class Imbalance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6 - Resampling and Cross Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 - Regularization and Model Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 - Tree Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9 - Ensembles of Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 - Causal Inference</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11 - Model Interpretation and Ethics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 - Neural Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13 - Deep Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14 - RNNs and NLP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15 - Pretrained Models</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+
+<div id="e6b78582" class="cell" data-execution_count="86">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn <span class="im">as</span> sk</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotnine <span class="im">as</span> p9</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sk.set_config(transform_output<span class="op">=</span><span class="st">"pandas"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer, make_column_selector</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, OrdinalEncoder, StandardScaler</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score, roc_curve</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.base <span class="im">import</span> BaseEstimator, TransformerMixin, ClassifierMixin</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> FunctionTransformer</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> GaussianNB, CategoricalNB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="957fd44c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bank_full<span class="op">=</span>pd.read_csv(<span class="st">"../../assignments/labs/labData/bank_marketing_dataset.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e8e946fc" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bank_full</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">job</th>
+<th data-quarto-table-cell-role="th">marital</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">default</th>
+<th data-quarto-table-cell-role="th">balance</th>
+<th data-quarto-table-cell-role="th">housing</th>
+<th data-quarto-table-cell-role="th">loan</th>
+<th data-quarto-table-cell-role="th">contact</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">previous</th>
+<th data-quarto-table-cell-role="th">poutcome</th>
+<th data-quarto-table-cell-role="th">month_numeric</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">euribor3m</th>
+<th data-quarto-table-cell-role="th">emp.var.rate</th>
+<th data-quarto-table-cell-role="th">nr.employed</th>
+<th data-quarto-table-cell-role="th">cons.price.idx</th>
+<th data-quarto-table-cell-role="th">cons.conf.idx</th>
+<th data-quarto-table-cell-role="th">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>58</td>
+<td>management</td>
+<td>married</td>
+<td>tertiary</td>
+<td>no</td>
+<td>2143</td>
+<td>yes</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>5</td>
+<td>2008</td>
+<td>4.857</td>
+<td>1.1</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>-36.4</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>44</td>
+<td>technician</td>
+<td>single</td>
+<td>secondary</td>
+<td>no</td>
+<td>29</td>
+<td>yes</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>5</td>
+<td>2008</td>
+<td>4.857</td>
+<td>1.1</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>-36.4</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>33</td>
+<td>entrepreneur</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>2</td>
+<td>yes</td>
+<td>yes</td>
+<td>unknown</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>5</td>
+<td>2008</td>
+<td>4.857</td>
+<td>1.1</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>-36.4</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3</td>
+<td>47</td>
+<td>blue-collar</td>
+<td>married</td>
+<td>unknown</td>
+<td>no</td>
+<td>1506</td>
+<td>yes</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>5</td>
+<td>2008</td>
+<td>4.857</td>
+<td>1.1</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>-36.4</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>4</td>
+<td>33</td>
+<td>unknown</td>
+<td>single</td>
+<td>unknown</td>
+<td>no</td>
+<td>1</td>
+<td>no</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>5</td>
+<td>2008</td>
+<td>4.857</td>
+<td>1.1</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>-36.4</td>
+<td>no</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">45206</td>
+<td>45206</td>
+<td>51</td>
+<td>technician</td>
+<td>married</td>
+<td>tertiary</td>
+<td>no</td>
+<td>825</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>11</td>
+<td>2010</td>
+<td>1.047</td>
+<td>-1.1</td>
+<td>4963.6</td>
+<td>94.767</td>
+<td>-50.8</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">45207</td>
+<td>45207</td>
+<td>71</td>
+<td>retired</td>
+<td>divorced</td>
+<td>primary</td>
+<td>no</td>
+<td>1729</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>11</td>
+<td>2010</td>
+<td>1.047</td>
+<td>-1.1</td>
+<td>4963.6</td>
+<td>94.767</td>
+<td>-50.8</td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">45208</td>
+<td>45208</td>
+<td>72</td>
+<td>retired</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>5715</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>3</td>
+<td>success</td>
+<td>11</td>
+<td>2010</td>
+<td>1.047</td>
+<td>-1.1</td>
+<td>4963.6</td>
+<td>94.767</td>
+<td>-50.8</td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">45209</td>
+<td>45209</td>
+<td>57</td>
+<td>blue-collar</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>668</td>
+<td>no</td>
+<td>no</td>
+<td>telephone</td>
+<td>...</td>
+<td>0</td>
+<td>unknown</td>
+<td>11</td>
+<td>2010</td>
+<td>1.047</td>
+<td>-1.1</td>
+<td>4963.6</td>
+<td>94.767</td>
+<td>-50.8</td>
+<td>no</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">45210</td>
+<td>45210</td>
+<td>37</td>
+<td>entrepreneur</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>2971</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>11</td>
+<td>other</td>
+<td>11</td>
+<td>2010</td>
+<td>1.047</td>
+<td>-1.1</td>
+<td>4963.6</td>
+<td>94.767</td>
+<td>-50.8</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+
+<p>45211 rows × 24 columns</p>
+</div>
+</div>
+</div>
+<div id="137a52ba" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bank_full.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.DataFrame'&gt;
+RangeIndex: 45211 entries, 0 to 45210
+Data columns (total 24 columns):
+ #   Column          Non-Null Count  Dtype  
+---  ------          --------------  -----  
+ 0   Unnamed: 0      45211 non-null  int64  
+ 1   age             45211 non-null  int64  
+ 2   job             45211 non-null  str    
+ 3   marital         45211 non-null  str    
+ 4   education       45211 non-null  str    
+ 5   default         45211 non-null  str    
+ 6   balance         45211 non-null  int64  
+ 7   housing         45211 non-null  str    
+ 8   loan            45211 non-null  str    
+ 9   contact         45211 non-null  str    
+ 10  day             45211 non-null  int64  
+ 11  duration        45211 non-null  int64  
+ 12  campaign        45211 non-null  int64  
+ 13  pdays           45211 non-null  int64  
+ 14  previous        45211 non-null  int64  
+ 15  poutcome        45211 non-null  str    
+ 16  month_numeric   45211 non-null  int64  
+ 17  year            45211 non-null  int64  
+ 18  euribor3m       45211 non-null  float64
+ 19  emp.var.rate    45211 non-null  float64
+ 20  nr.employed     45211 non-null  float64
+ 21  cons.price.idx  45211 non-null  float64
+ 22  cons.conf.idx   45211 non-null  float64
+ 23  y               45211 non-null  str    
+dtypes: float64(5), int64(10), str(9)
+memory usage: 10.4 MB</code></pre>
+</div>
+</div>
+<div id="884c2a25" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bank_full[<span class="st">"age_cat"</span>] <span class="op">=</span> pd.cut(bank_full[<span class="st">"age"</span>], bins<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">25</span>,<span class="dv">40</span>,  <span class="dv">60</span>, np.inf], labels<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>train_set, test_set <span class="op">=</span> train_test_split(bank_full, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">93210</span>,stratify<span class="op">=</span>bank_full[[<span class="st">"year"</span>,<span class="st">"age_cat"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="00386097" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>train_set, x<span class="op">=</span><span class="st">"age"</span>, hue<span class="op">=</span><span class="st">"y"</span>, stat<span class="op">=</span><span class="st">"density"</span>, common_norm<span class="op">=</span><span class="va">False</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Age by Target"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Text(0.5, 1.0, 'Age by Target')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="1ed65bef" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>train_set, x<span class="op">=</span><span class="st">"euribor3m"</span>, hue<span class="op">=</span><span class="st">"y"</span>, stat<span class="op">=</span><span class="st">"density"</span>, common_norm<span class="op">=</span><span class="va">False</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Euribor By Target"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Text(0.5, 1.0, 'Age by Target')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="6c5ff50d" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>train_set, x<span class="op">=</span><span class="st">"euribor3m"</span>, hue<span class="op">=</span><span class="st">"y"</span>, stat<span class="op">=</span><span class="st">"density"</span>,  ax<span class="op">=</span>ax)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Age by Target"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Text(0.5, 1.0, 'Age by Target')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="ee431098" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>train_set[<span class="st">"date"</span>] <span class="op">=</span> pd.to_datetime({<span class="st">'year'</span>: train_set[<span class="st">'year'</span>], <span class="st">'month'</span>: train_set[<span class="st">'month_numeric'</span>], <span class="st">'day'</span>: train_set[<span class="st">'day'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3f2ee7ef" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>euribor_df <span class="op">=</span> (train_set.groupby(<span class="st">'date'</span>)[<span class="st">'euribor3m'</span>]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    .first()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="34d225b8" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>euribor_df <span class="op">=</span> (train_set.groupby(<span class="st">'date'</span>)[[<span class="st">'euribor3m'</span>, <span class="st">'cons.conf.idx'</span>, <span class="st">'cons.price.idx'</span>,<span class="st">'nr.employed'</span>]]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    .first()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>euribor_df, x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span><span class="st">'euribor3m'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="d933c9dc" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>euribor_df, x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span><span class="st">'cons.conf.idx'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="18613a74" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>euribor_df, x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span><span class="st">'cons.price.idx'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="9431aa78" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>euribor_df, x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span><span class="st">'nr.employed'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="5a776ecb" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>euribor_df <span class="op">=</span> euribor_df.sort_values(<span class="st">'date'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>euribor_df[<span class="st">"cpi_lag_90"</span>] <span class="op">=</span> np.interp(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    (euribor_df[<span class="st">'date'</span>]<span class="op">-</span>pd.Timedelta(days<span class="op">=</span><span class="dv">90</span>)).astype(<span class="bu">int</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    euribor_df[<span class="st">'date'</span>].index.astype(<span class="bu">int</span>),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    euribor_df[<span class="st">"cons.price.idx"</span>]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>euribor_df[<span class="st">"inflation_3m"</span>] <span class="op">=</span> (euribor_df[<span class="st">"cons.price.idx"</span>]<span class="op">/</span>euribor_df[<span class="st">'cpi_lag_90'</span>])<span class="op">**</span>(<span class="dv">365</span> <span class="op">/</span> <span class="fl">90.0</span>)<span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2caa1fc5" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(euribor_df[<span class="st">"cons.price.idx"</span>]<span class="op">/</span>euribor_df[<span class="st">'cpi_lag_90'</span>])<span class="op">**</span>(<span class="fl">365.0</span><span class="op">/</span><span class="fl">90.0</span>)<span class="op">-</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>date
+2008-05-05    0.000000
+2008-05-06    0.000000
+2008-05-07    0.000000
+2008-05-08    0.000000
+2008-05-09    0.000000
+                ...   
+2010-11-11    0.032303
+2010-11-12    0.032303
+2010-11-15    0.032303
+2010-11-16    0.032303
+2010-11-17    0.032303
+Length: 556, dtype: float64</code></pre>
+</div>
+</div>
+<div id="8f916eea" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>euribor_df, x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span><span class="st">'inflation_3m'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="2d935429" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>inflation_df <span class="op">=</span> euribor_df[[<span class="st">"date"</span>,<span class="st">"inflation_3m"</span>]]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>train_set <span class="op">=</span> train_set.merge(inflation_df,on<span class="op">=</span><span class="st">"date"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>test_set[<span class="st">"date"</span>] <span class="op">=</span> pd.to_datetime({<span class="st">'year'</span>: test_set[<span class="st">'year'</span>], <span class="st">'month'</span>: test_set[<span class="st">'month_numeric'</span>], <span class="st">'day'</span>: test_set[<span class="st">'day'</span>]})</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>test_set <span class="op">=</span> test_set.merge(inflation_df,on<span class="op">=</span><span class="st">"date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="2f06c43f" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>test_set</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">job</th>
+<th data-quarto-table-cell-role="th">marital</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">default</th>
+<th data-quarto-table-cell-role="th">balance</th>
+<th data-quarto-table-cell-role="th">housing</th>
+<th data-quarto-table-cell-role="th">loan</th>
+<th data-quarto-table-cell-role="th">contact</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">euribor3m</th>
+<th data-quarto-table-cell-role="th">emp.var.rate</th>
+<th data-quarto-table-cell-role="th">nr.employed</th>
+<th data-quarto-table-cell-role="th">cons.price.idx</th>
+<th data-quarto-table-cell-role="th">cons.conf.idx</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">age_cat</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">inflation_3m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>25059</td>
+<td>55</td>
+<td>technician</td>
+<td>single</td>
+<td>secondary</td>
+<td>no</td>
+<td>2043</td>
+<td>yes</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>2008</td>
+<td>4.733</td>
+<td>-0.1</td>
+<td>5195.8</td>
+<td>93.200</td>
+<td>-42.0</td>
+<td>no</td>
+<td>2</td>
+<td>2008-11-18</td>
+<td>-0.065385</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>9678</td>
+<td>54</td>
+<td>self-employed</td>
+<td>divorced</td>
+<td>tertiary</td>
+<td>no</td>
+<td>3952</td>
+<td>no</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>2008</td>
+<td>4.865</td>
+<td>1.4</td>
+<td>5228.1</td>
+<td>94.465</td>
+<td>-41.8</td>
+<td>no</td>
+<td>2</td>
+<td>2008-06-06</td>
+<td>-0.012861</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>23205</td>
+<td>35</td>
+<td>technician</td>
+<td>divorced</td>
+<td>secondary</td>
+<td>no</td>
+<td>1085</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>2008</td>
+<td>4.970</td>
+<td>1.4</td>
+<td>5228.1</td>
+<td>93.444</td>
+<td>-36.1</td>
+<td>no</td>
+<td>1</td>
+<td>2008-08-27</td>
+<td>-0.055422</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>17726</td>
+<td>45</td>
+<td>services</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>-158</td>
+<td>yes</td>
+<td>no</td>
+<td>telephone</td>
+<td>...</td>
+<td>2008</td>
+<td>4.955</td>
+<td>1.4</td>
+<td>5228.1</td>
+<td>93.918</td>
+<td>-42.7</td>
+<td>no</td>
+<td>2</td>
+<td>2008-07-29</td>
+<td>-0.035839</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>945</td>
+<td>33</td>
+<td>admin.</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>-6</td>
+<td>yes</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>2008</td>
+<td>4.857</td>
+<td>1.1</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>-36.4</td>
+<td>no</td>
+<td>1</td>
+<td>2008-05-07</td>
+<td>-0.032671</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9029</td>
+<td>7927</td>
+<td>37</td>
+<td>admin.</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>-47</td>
+<td>yes</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>2008</td>
+<td>4.857</td>
+<td>1.1</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>-36.4</td>
+<td>no</td>
+<td>1</td>
+<td>2008-05-30</td>
+<td>-0.032671</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9030</td>
+<td>19525</td>
+<td>52</td>
+<td>management</td>
+<td>married</td>
+<td>tertiary</td>
+<td>no</td>
+<td>0</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>2008</td>
+<td>4.970</td>
+<td>1.4</td>
+<td>5228.1</td>
+<td>93.444</td>
+<td>-36.1</td>
+<td>no</td>
+<td>2</td>
+<td>2008-08-07</td>
+<td>-0.055422</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9031</td>
+<td>39892</td>
+<td>50</td>
+<td>blue-collar</td>
+<td>married</td>
+<td>primary</td>
+<td>no</td>
+<td>3764</td>
+<td>no</td>
+<td>no</td>
+<td>telephone</td>
+<td>...</td>
+<td>2009</td>
+<td>1.266</td>
+<td>-2.9</td>
+<td>5076.2</td>
+<td>92.963</td>
+<td>-40.8</td>
+<td>no</td>
+<td>2</td>
+<td>2009-06-02</td>
+<td>-0.074986</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9032</td>
+<td>24921</td>
+<td>41</td>
+<td>entrepreneur</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>8491</td>
+<td>yes</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>2008</td>
+<td>4.733</td>
+<td>-0.1</td>
+<td>5195.8</td>
+<td>93.200</td>
+<td>-42.0</td>
+<td>yes</td>
+<td>2</td>
+<td>2008-11-18</td>
+<td>-0.065385</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9033</td>
+<td>20171</td>
+<td>34</td>
+<td>management</td>
+<td>married</td>
+<td>tertiary</td>
+<td>no</td>
+<td>5665</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>2008</td>
+<td>4.970</td>
+<td>1.4</td>
+<td>5228.1</td>
+<td>93.444</td>
+<td>-36.1</td>
+<td>no</td>
+<td>1</td>
+<td>2008-08-11</td>
+<td>-0.055422</td>
+</tr>
+</tbody>
+</table>
+
+<p>9034 rows × 27 columns</p>
+</div>
+</div>
+</div>
+<div id="8a4c0e4d" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>train_set, x<span class="op">=</span><span class="st">"inflation_3m_x"</span>, hue<span class="op">=</span><span class="st">"y"</span>, stat<span class="op">=</span><span class="st">"density"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Age by Target"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Text(0.5, 1.0, 'Age by Target')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-21-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="8c930890" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>train_set, x<span class="op">=</span><span class="st">"year"</span>, hue<span class="op">=</span><span class="st">"y"</span>, stat<span class="op">=</span><span class="st">"density"</span>,  ax<span class="op">=</span>ax)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Age by Target"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Text(0.5, 1.0, 'Age by Target')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-22-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="3730029b" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, col <span class="kw">in</span> <span class="bu">zip</span>(axes.flatten(), [<span class="st">"job"</span>, <span class="st">"education"</span>, <span class="st">"marital"</span>, <span class="st">"age_cat"</span>]):</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    pd.crosstab(train_set[col], train_set[<span class="st">"y"</span>], normalize<span class="op">=</span><span class="st">"index"</span>).plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> vs Target"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Proportion"</span>)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">"x"</span>, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="7062f447" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>euribor_df <span class="op">=</span> (train_set.groupby(<span class="st">'date'</span>)[<span class="st">'euribor3m'</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    .first()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    .reset_index()</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>euribor_df, x<span class="op">=</span><span class="st">'date'</span>, y<span class="op">=</span><span class="st">'euribor3m'</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c3c98b07" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>test_set</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">job</th>
+<th data-quarto-table-cell-role="th">marital</th>
+<th data-quarto-table-cell-role="th">education</th>
+<th data-quarto-table-cell-role="th">default</th>
+<th data-quarto-table-cell-role="th">balance</th>
+<th data-quarto-table-cell-role="th">housing</th>
+<th data-quarto-table-cell-role="th">loan</th>
+<th data-quarto-table-cell-role="th">contact</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">cons.conf.idx_x</th>
+<th data-quarto-table-cell-role="th">y</th>
+<th data-quarto-table-cell-role="th">age_cat</th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">euribor3m_y</th>
+<th data-quarto-table-cell-role="th">cons.conf.idx_y</th>
+<th data-quarto-table-cell-role="th">cons.price.idx_y</th>
+<th data-quarto-table-cell-role="th">nr.employed_y</th>
+<th data-quarto-table-cell-role="th">cpi_lag_90</th>
+<th data-quarto-table-cell-role="th">inflation_3m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>25059</td>
+<td>55</td>
+<td>technician</td>
+<td>single</td>
+<td>secondary</td>
+<td>no</td>
+<td>2043</td>
+<td>yes</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>-42.0</td>
+<td>no</td>
+<td>2</td>
+<td>2008-11-18</td>
+<td>4.733</td>
+<td>-42.0</td>
+<td>93.200</td>
+<td>5195.8</td>
+<td>93.444</td>
+<td>-0.010548</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>9678</td>
+<td>54</td>
+<td>self-employed</td>
+<td>divorced</td>
+<td>tertiary</td>
+<td>no</td>
+<td>3952</td>
+<td>no</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>-41.8</td>
+<td>no</td>
+<td>2</td>
+<td>2008-06-06</td>
+<td>4.865</td>
+<td>-41.8</td>
+<td>94.465</td>
+<td>5228.1</td>
+<td>93.994</td>
+<td>0.020478</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>23205</td>
+<td>35</td>
+<td>technician</td>
+<td>divorced</td>
+<td>secondary</td>
+<td>no</td>
+<td>1085</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>-36.1</td>
+<td>no</td>
+<td>1</td>
+<td>2008-08-27</td>
+<td>4.970</td>
+<td>-36.1</td>
+<td>93.444</td>
+<td>5228.1</td>
+<td>93.994</td>
+<td>-0.023520</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>17726</td>
+<td>45</td>
+<td>services</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>-158</td>
+<td>yes</td>
+<td>no</td>
+<td>telephone</td>
+<td>...</td>
+<td>-42.7</td>
+<td>no</td>
+<td>2</td>
+<td>2008-07-29</td>
+<td>4.955</td>
+<td>-42.7</td>
+<td>93.918</td>
+<td>5228.1</td>
+<td>93.994</td>
+<td>-0.003275</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>945</td>
+<td>33</td>
+<td>admin.</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>-6</td>
+<td>yes</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>-36.4</td>
+<td>no</td>
+<td>1</td>
+<td>2008-05-07</td>
+<td>4.857</td>
+<td>-36.4</td>
+<td>93.994</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9029</td>
+<td>7927</td>
+<td>37</td>
+<td>admin.</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>-47</td>
+<td>yes</td>
+<td>no</td>
+<td>unknown</td>
+<td>...</td>
+<td>-36.4</td>
+<td>no</td>
+<td>1</td>
+<td>2008-05-30</td>
+<td>4.857</td>
+<td>-36.4</td>
+<td>93.994</td>
+<td>5191.0</td>
+<td>93.994</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9030</td>
+<td>19525</td>
+<td>52</td>
+<td>management</td>
+<td>married</td>
+<td>tertiary</td>
+<td>no</td>
+<td>0</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>-36.1</td>
+<td>no</td>
+<td>2</td>
+<td>2008-08-07</td>
+<td>4.970</td>
+<td>-36.1</td>
+<td>93.444</td>
+<td>5228.1</td>
+<td>93.994</td>
+<td>-0.023520</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9031</td>
+<td>39892</td>
+<td>50</td>
+<td>blue-collar</td>
+<td>married</td>
+<td>primary</td>
+<td>no</td>
+<td>3764</td>
+<td>no</td>
+<td>no</td>
+<td>telephone</td>
+<td>...</td>
+<td>-40.8</td>
+<td>no</td>
+<td>2</td>
+<td>2009-06-02</td>
+<td>1.266</td>
+<td>-40.8</td>
+<td>92.963</td>
+<td>5076.2</td>
+<td>92.843</td>
+<td>0.005252</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9032</td>
+<td>24921</td>
+<td>41</td>
+<td>entrepreneur</td>
+<td>married</td>
+<td>secondary</td>
+<td>no</td>
+<td>8491</td>
+<td>yes</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>-42.0</td>
+<td>yes</td>
+<td>2</td>
+<td>2008-11-18</td>
+<td>4.733</td>
+<td>-42.0</td>
+<td>93.200</td>
+<td>5195.8</td>
+<td>93.444</td>
+<td>-0.010548</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9033</td>
+<td>20171</td>
+<td>34</td>
+<td>management</td>
+<td>married</td>
+<td>tertiary</td>
+<td>no</td>
+<td>5665</td>
+<td>no</td>
+<td>no</td>
+<td>cellular</td>
+<td>...</td>
+<td>-36.1</td>
+<td>no</td>
+<td>1</td>
+<td>2008-08-11</td>
+<td>4.970</td>
+<td>-36.1</td>
+<td>93.444</td>
+<td>5228.1</td>
+<td>93.994</td>
+<td>-0.023520</td>
+</tr>
+</tbody>
+</table>
+
+<p>9034 rows × 32 columns</p>
+</div>
+</div>
+</div>
+<div id="a11653b0" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>train_set_target <span class="op">=</span> train_set[<span class="st">"y"</span>].copy()</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>test_set_target <span class="op">=</span> test_set[<span class="st">"y"</span>].copy()</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>train_set_drop <span class="op">=</span> train_set.copy().drop([<span class="st">"duration"</span>,<span class="st">"y"</span>,<span class="st">"year"</span>,<span class="st">"day"</span>,<span class="st">"month_numeric"</span>,<span class="st">"cons.price.idx"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>test_set_drop <span class="op">=</span> test_set.copy().drop([<span class="st">"duration"</span>,<span class="st">"y"</span>,<span class="st">"year"</span>,<span class="st">"day"</span>,<span class="st">"month_numeric"</span>,<span class="st">"cons.price.idx"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="9adf1e5c" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>test_set_drop <span class="op">=</span> test_set.copy().drop([<span class="st">"duration"</span>,<span class="st">"y"</span>,<span class="st">"day"</span>,<span class="st">"month_numeric"</span>,<span class="st">"cons.price.idx"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="9334c60b" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>num_nb<span class="op">=</span> [<span class="st">'age'</span>,  <span class="st">'campaign'</span>, <span class="st">'pdays'</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">'euribor3m'</span>, <span class="st">'emp.var.rate'</span>, <span class="st">'nr.employed'</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">'inflation_3m'</span>, <span class="st">'cons.conf.idx'</span>]</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>cat_nb <span class="op">=</span> [<span class="st">'marital'</span>, <span class="st">'education'</span>, <span class="st">'default'</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">'housing'</span>, <span class="st">'loan'</span>, <span class="st">'contact'</span>, <span class="st">'poutcome'</span>, <span class="st">'housing'</span>,<span class="st">'loan'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b04086d4" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer([</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'num'</span>, StandardScaler(), num_nb),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'cat'</span>, OrdinalEncoder(handle_unknown<span class="op">=</span><span class="st">'use_encoded_value'</span>, unknown_value<span class="op">=-</span><span class="dv">1</span>), </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>     cat_nb)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="987da7e7" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick guide to this code</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># BaseEstimator and ClassifierMixin are two classes in Sklearn. </span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># BaseEstimator is a general Sklearn model</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mixin is a term from software engineering, refers to a class that</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># mixes in one additional feature. The model we are creating is a</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># classification model so it will inherit a classification</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># score method from classifier mixin. This specifies that we are making a </span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># classification model. There is also a RegressorMixin that we would use instead if we were doing regression</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NaiveBayes_Hybrid(BaseEstimator, ClassifierMixin):</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We always need an init method</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, numeric_features):</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We are going to have a Gaussian Naive Bayes model for the</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># continuous features and a Categorical one for the categorical</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># features. We create them when we initialize</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We use this to split the features into Numerical and Categorical</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.numeric_features <span class="op">=</span> numeric_features</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gnb <span class="op">=</span> GaussianNB()</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cnb <span class="op">=</span> CategoricalNB()</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sklearn models can have a variety of methods (check out their source code to learn more)</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># The naive bayes models have a class, but it has more methods than we want here</span></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># so we don't want to try it</span></span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This is the function that does the fitting. We are going to basically</span></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># split the categorical and numerical variables and feed each to the appropriate</span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># naive Bayes</span></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># These are what we will predict</span></span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># This is a standard feature of all the fit methods</span></span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.classes_ <span class="op">=</span> np.unique(y)</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_ <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.numeric_features)</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>        <span class="co"># From our preprocessor, the numerical features come first</span></span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> np.array(X)</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>        X_num <span class="op">=</span> X[:, :<span class="va">self</span>.n_]</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>        X_cat <span class="op">=</span> X[:, <span class="va">self</span>.n_:]</span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Now we fit the Gaussian Naive Bayes and</span></span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># the categorical naive bayes</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.gnb.fit(X_num, y)</span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.cnb.fit(X_cat, y)</span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We always return self, which lets us fit and then do otherstuff in the same</span></span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># pipeline</span></span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We will predict some probabilities so we can show the awful model calibration</span></span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict_proba(<span class="va">self</span>, X):</span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Same deal with splitting</span></span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>        X <span class="op">=</span> np.array(X)</span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a>        X_num <span class="op">=</span> X[:, :<span class="va">self</span>.n_]</span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>        X_cat <span class="op">=</span> X[:, <span class="va">self</span>.n_:]</span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We could also have a predict_log_proba method and if we wanted this to</span></span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># be more useful we would</span></span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>        <span class="co"># We get the log probability from our gnb and cnb models</span></span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Then we need to subtract off one of the priors because</span></span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>        <span class="co"># each of the gnb and cnb are going to use the prior</span></span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a>        log_prob <span class="op">=</span> (<span class="va">self</span>.gnb.predict_log_proba(X_num) </span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a>                    <span class="op">+</span> <span class="va">self</span>.cnb.predict_log_proba(X_cat)</span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a>                    <span class="op">-</span> np.log(<span class="va">self</span>.gnb.class_prior_))  </span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Normalize to probabilities        </span></span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a>        prob <span class="op">=</span> np.exp(log_prob)</span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> prob <span class="op">/</span> prob.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>, keepdims<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We predict by finding the probabilities of each class and taking the max</span></span>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.classes_[<span class="va">self</span>.predict_proba(X).argmax(axis<span class="op">=</span><span class="dv">1</span>)]</span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a>pipe_nb <span class="op">=</span> Pipeline([</span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'prep'</span>, preprocessor),</span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'model'</span>, NaiveBayes_Hybrid(num_nb))</span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="8f9fa1b2" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>pipe_nb.fit(train_set_drop, train_set_target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>#sk-container-id-2 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+}
+
+#sk-container-id-2.light {
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: black;
+  --sklearn-color-background: white;
+  --sklearn-color-border-box: black;
+  --sklearn-color-icon: #696969;
+}
+
+#sk-container-id-2.dark {
+  --sklearn-color-text-on-default-background: white;
+  --sklearn-color-background: #111;
+  --sklearn-color-border-box: white;
+  --sklearn-color-icon: #878787;
+}
+
+#sk-container-id-2 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-2 pre {
+  padding: 0;
+}
+
+#sk-container-id-2 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-2 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-2 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-2 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-2 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-2 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-2 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-2 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-2 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+#sk-container-id-2 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-2 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-2 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+#sk-container-id-2 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-2 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-2 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-2 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-3) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3) 1pt solid;
+  color: var(--sklearn-color-fitted-level-3);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-0);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-fitted-level-0);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-2 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-2 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table {
+    font-family: monospace;
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.estimator-table summary::marker {
+    font-size: 0.7rem;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+/*
+    `table td`is set in notebook with right text-align.
+    We need to overwrite it.
+*/
+.estimator-table table td.param {
+    text-align: left;
+    position: relative;
+    padding: 0;
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left !important;
+}
+
+.user-set td.value {
+    color:rgb(255, 94, 0);
+    background-color: transparent;
+}
+
+.default td {
+    color: black;
+    text-align: left !important;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+/*
+    Styles for parameter documentation links
+    We need styling for visited so jupyter doesn't overwrite it
+*/
+a.param-doc-link,
+a.param-doc-link:link,
+a.param-doc-link:visited {
+    text-decoration: underline dashed;
+    text-underline-offset: .3em;
+    color: inherit;
+    display: block;
+    padding: .5em;
+}
+
+/* "hack" to make the entire area of the cell containing the link clickable */
+a.param-doc-link::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+}
+
+.param-doc-description {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    padding: .5ex;
+    margin-left: 1.5em;
+    color: var(--sklearn-color-text);
+    box-shadow: .3em .3em .4em #999;
+    width: max-content;
+    text-align: left;
+    max-height: 10em;
+    overflow-y: auto;
+
+    /* unfitted */
+    background: var(--sklearn-color-unfitted-level-0);
+    border: thin solid var(--sklearn-color-unfitted-level-3);
+}
+
+/* Fitted state for parameter tooltips */
+.fitted .param-doc-description {
+    /* fitted */
+    background: var(--sklearn-color-fitted-level-0);
+    border: thin solid var(--sklearn-color-fitted-level-3);
+}
+
+.param-doc-link:hover .param-doc-description {
+    display: block;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</a></style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('prep',
+                 ColumnTransformer(transformers=[('num', StandardScaler(),
+                                                  ['age', 'campaign', 'pdays',
+                                                   'euribor3m', 'emp.var.rate',
+                                                   'nr.employed',
+                                                   'inflation_3m',
+                                                   'cons.conf.idx']),
+                                                 ('cat',
+                                                  OrdinalEncoder(handle_unknown='use_encoded_value',
+                                                                 unknown_value=-1),
+                                                  ['marital', 'education',
+                                                   'default', 'housing', 'loan',
+                                                   'contact', 'poutcome',
+                                                   'housing', 'loan'])])),
+                ('model',
+                 NaiveBayes_Hybrid(numeric_features=['age', 'campaign', 'pdays',
+                                                     'euribor3m',
+                                                     'emp.var.rate',
+                                                     'nr.employed',
+                                                     'inflation_3m',
+                                                     'cons.conf.idx']))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.pipeline.Pipeline.html#:~:text=steps,-list%20of%20tuples" class="param-doc-link" rel="noreferrer" target="_blank">steps <span class="param-doc-description">steps: list of tuples<br>
+<br>
+List of (name of step, estimator) tuples that are to be chained in<br>
+sequential order. To be compatible with the scikit-learn API, all steps<br>
+must define `fit`. All non-last steps must also define `transform`. See<br>
+:ref:`Combining Estimators <combining_estimators>` for more details.</combining_estimators></span></a></td>
+<td class="value">[('prep', ...), ('model', ...)]</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.pipeline.Pipeline.html#:~:text=transform_input,-list%20of%20str%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">transform_input <span class="param-doc-description">transform_input: list of str, default=None<br>
+<br>
+The names of the :term:`metadata` parameters that should be transformed by the<br>
+pipeline before passing it to the step consuming it.<br>
+<br>
+This enables transforming some input arguments to ``fit`` (other than ``X``)<br>
+to be transformed by the steps of the pipeline up to the step which requires<br>
+them. Requirement is defined via :ref:`metadata routing <metadata_routing>`.<br>
+For instance, this can be used to pass a validation set through the pipeline.<br>
+<br>
+You can only set this if metadata routing is enabled, which you<br>
+can enable using ``sklearn.set_config(enable_metadata_routing=True)``.<br>
+<br>
+.. versionadded:: 1.6</metadata_routing></span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.pipeline.Pipeline.html#:~:text=memory,-str%20or%20object%20with%20the%20joblib.Memory%20interface%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">memory <span class="param-doc-description">memory: str or object with the joblib.Memory interface, default=None<br>
+<br>
+Used to cache the fitted transformers of the pipeline. The last step<br>
+will never be cached, even if it is a transformer. By default, no<br>
+caching is performed. If a string is given, it is the path to the<br>
+caching directory. Enabling caching triggers a clone of the transformers<br>
+before fitting. Therefore, the transformer instance given to the<br>
+pipeline cannot be inspected directly. Use the attribute ``named_steps``<br>
+or ``steps`` to inspect estimators within the pipeline. Caching the<br>
+transformers is advantageous when fitting is time consuming. See<br>
+:ref:`sphx_glr_auto_examples_neighbors_plot_caching_nearest_neighbors.py`<br>
+for an example on how to enable caching.</span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.pipeline.Pipeline.html#:~:text=verbose,-bool%2C%20default%3DFalse" class="param-doc-link" rel="noreferrer" target="_blank">verbose <span class="param-doc-description">verbose: bool, default=False<br>
+<br>
+If True, the time elapsed while fitting each step will be printed as it<br>
+is completed.</span></a></td>
+<td class="value">False</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>prep: ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for prep: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="prep__">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=transformers,-list%20of%20tuples" class="param-doc-link" rel="noreferrer" target="_blank">transformers <span class="param-doc-description">transformers: list of tuples<br>
+<br>
+List of (name, transformer, columns) tuples specifying the<br>
+transformer objects to be applied to subsets of the data.<br>
+<br>
+name : str<br>
+Like in Pipeline and FeatureUnion, this allows the transformer and<br>
+its parameters to be set using ``set_params`` and searched in grid<br>
+search.<br>
+transformer : {'drop', 'passthrough'} or estimator<br>
+Estimator must support :term:`fit` and :term:`transform`.<br>
+Special-cased strings 'drop' and 'passthrough' are accepted as<br>
+well, to indicate to drop the columns or to pass them through<br>
+untransformed, respectively.<br>
+columns : str, array-like of str, int, array-like of int, array-like of bool, slice or callable<br>
+Indexes the data on its second axis. Integers are interpreted as<br>
+positional columns, while strings can reference DataFrame columns<br>
+by name. A scalar string or int should be used where<br>
+``transformer`` expects X to be a 1d array-like (vector),<br>
+otherwise a 2d array will be passed to the transformer.<br>
+A callable is passed the input data `X` and can return any of the<br>
+above. To select multiple columns by name or dtype, you can use<br>
+:obj:`make_column_selector`.</span></a></td>
+<td class="value">[('num', ...), ('cat', ...)]</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=remainder,-%7B%27drop%27%2C%20%27passthrough%27%7D%20or%20estimator%2C%20default%3D%27drop%27" class="param-doc-link" rel="noreferrer" target="_blank">remainder <span class="param-doc-description">remainder: {'drop', 'passthrough'} or estimator, default='drop'<br>
+<br>
+By default, only the specified columns in `transformers` are<br>
+transformed and combined in the output, and the non-specified<br>
+columns are dropped. (default of ``'drop'``).<br>
+By specifying ``remainder='passthrough'``, all remaining columns that<br>
+were not specified in `transformers`, but present in the data passed<br>
+to `fit` will be automatically passed through. This subset of columns<br>
+is concatenated with the output of the transformers. For dataframes,<br>
+extra columns not seen during `fit` will be excluded from the output<br>
+of `transform`.<br>
+By setting ``remainder`` to be an estimator, the remaining<br>
+non-specified columns will use the ``remainder`` estimator. The<br>
+estimator must support :term:`fit` and :term:`transform`.<br>
+Note that using this feature requires that the DataFrame columns<br>
+input at :term:`fit` and :term:`transform` have identical order.</span></a></td>
+<td class="value">'drop'</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=sparse_threshold,-float%2C%20default%3D0.3" class="param-doc-link" rel="noreferrer" target="_blank">sparse_threshold <span class="param-doc-description">sparse_threshold: float, default=0.3<br>
+<br>
+If the output of the different transformers contains sparse matrices,<br>
+these will be stacked as a sparse matrix if the overall density is<br>
+lower than this value. Use ``sparse_threshold=0`` to always return<br>
+dense. When the transformed output consists of all dense data, the<br>
+stacked result will be dense, and this keyword will be ignored.</span></a></td>
+<td class="value">0.3</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=n_jobs,-int%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">n_jobs <span class="param-doc-description">n_jobs: int, default=None<br>
+<br>
+Number of jobs to run in parallel.<br>
+``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.<br>
+``-1`` means using all processors. See :term:`Glossary <n_jobs>`<br>
+for more details.</n_jobs></span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=transformer_weights,-dict%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">transformer_weights <span class="param-doc-description">transformer_weights: dict, default=None<br>
+<br>
+Multiplicative weights for features per transformer. The output of the<br>
+transformer is multiplied by these weights. Keys are transformer names,<br>
+values the weights.</span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=verbose,-bool%2C%20default%3DFalse" class="param-doc-link" rel="noreferrer" target="_blank">verbose <span class="param-doc-description">verbose: bool, default=False<br>
+<br>
+If True, the time elapsed while fitting each transformer will be<br>
+printed as it is completed.</span></a></td>
+<td class="value">False</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=verbose_feature_names_out,-bool%2C%20str%20or%20Callable%5B%5Bstr%2C%20str%5D%2C%20str%5D%2C%20default%3DTrue" class="param-doc-link" rel="noreferrer" target="_blank">verbose_feature_names_out <span class="param-doc-description">verbose_feature_names_out: bool, str or Callable[[str, str], str], default=True<br>
+<br>
+- If True, :meth:`ColumnTransformer.get_feature_names_out` will prefix<br>
+all feature names with the name of the transformer that generated that<br>
+feature. It is equivalent to setting<br>
+`verbose_feature_names_out="{transformer_name}__{feature_name}"`.<br>
+- If False, :meth:`ColumnTransformer.get_feature_names_out` will not<br>
+prefix any feature names and will error if feature names are not<br>
+unique.<br>
+- If ``Callable[[str, str], str]``,<br>
+:meth:`ColumnTransformer.get_feature_names_out` will rename all the features<br>
+using the name of the transformer. The first argument of the callable is the<br>
+transformer name and the second argument is the feature name. The returned<br>
+string will be the new feature name.<br>
+- If ``str``, it must be a string ready for formatting. The given string will<br>
+be formatted using two field names: ``transformer_name`` and ``feature_name``.<br>
+e.g. ``"{feature_name}__{transformer_name}"``. See :meth:`str.format` method<br>
+from the standard library for more info.<br>
+<br>
+.. versionadded:: 1.0<br>
+<br>
+.. versionchanged:: 1.6<br>
+`verbose_feature_names_out` can be a callable or a string to be formatted.</span></a></td>
+<td class="value">True</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.compose.ColumnTransformer.html#:~:text=force_int_remainder_cols,-bool%2C%20default%3DFalse" class="param-doc-link" rel="noreferrer" target="_blank">force_int_remainder_cols <span class="param-doc-description">force_int_remainder_cols: bool, default=False<br>
+<br>
+This parameter has no effect.<br>
+<br>
+.. note::<br>
+If you do not access the list of columns for the remainder columns<br>
+in the `transformers_` fitted attribute, you do not need to set<br>
+this parameter.<br>
+<br>
+.. versionadded:: 1.5<br>
+<br>
+.. versionchanged:: 1.7<br>
+The default value for `force_int_remainder_cols` will change from<br>
+`True` to `False` in version 1.7.<br>
+<br>
+.. deprecated:: 1.7<br>
+`force_int_remainder_cols` is deprecated and will be removed in 1.9.</span></a></td>
+<td class="value">'deprecated'</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="prep__num__"><pre>['age', 'campaign', 'pdays', 'euribor3m', 'emp.var.rate', 'nr.employed', 'inflation_3m', 'cons.conf.idx']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="prep__num__">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html#:~:text=copy,-bool%2C%20default%3DTrue" class="param-doc-link" rel="noreferrer" target="_blank">copy <span class="param-doc-description">copy: bool, default=True<br>
+<br>
+If False, try to avoid a copy and do inplace scaling instead.<br>
+This is not guaranteed to always work inplace; e.g. if the data is<br>
+not a NumPy array or scipy.sparse CSR matrix, a copy may still be<br>
+returned.</span></a></td>
+<td class="value">True</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html#:~:text=with_mean,-bool%2C%20default%3DTrue" class="param-doc-link" rel="noreferrer" target="_blank">with_mean <span class="param-doc-description">with_mean: bool, default=True<br>
+<br>
+If True, center the data before scaling.<br>
+This does not work (and will raise an exception) when attempted on<br>
+sparse matrices, because centering them entails building a dense<br>
+matrix which in common use cases is likely to be too large to fit in<br>
+memory.</span></a></td>
+<td class="value">True</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.StandardScaler.html#:~:text=with_std,-bool%2C%20default%3DTrue" class="param-doc-link" rel="noreferrer" target="_blank">with_std <span class="param-doc-description">with_std: bool, default=True<br>
+<br>
+If True, scale the data to unit variance (or equivalently,<br>
+unit standard deviation).</span></a></td>
+<td class="value">True</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="prep__cat__"><pre>['marital', 'education', 'default', 'housing', 'loan', 'contact', 'poutcome', 'housing', 'loan']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OrdinalEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html">?<span>Documentation for OrdinalEncoder</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="prep__cat__">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#:~:text=categories,-%27auto%27%20or%20a%20list%20of%20array-like%2C%20default%3D%27auto%27" class="param-doc-link" rel="noreferrer" target="_blank">categories <span class="param-doc-description">categories: 'auto' or a list of array-like, default='auto'<br>
+<br>
+Categories (unique values) per feature:<br>
+<br>
+- 'auto' : Determine categories automatically from the training data.<br>
+- list : ``categories[i]`` holds the categories expected in the ith<br>
+column. The passed categories should not mix strings and numeric<br>
+values, and should be sorted in case of numeric values.<br>
+<br>
+The used categories can be found in the ``categories_`` attribute.</span></a></td>
+<td class="value">'auto'</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#:~:text=dtype,-number%20type%2C%20default%3Dnp.float64" class="param-doc-link" rel="noreferrer" target="_blank">dtype <span class="param-doc-description">dtype: number type, default=np.float64<br>
+<br>
+Desired dtype of output.</span></a></td>
+<td class="value">&lt;class 'numpy.float64'&gt;</td>
+</tr>
+<tr class="odd user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#:~:text=handle_unknown,-%7B%27error%27%2C%20%27use_encoded_value%27%7D%2C%20default%3D%27error%27" class="param-doc-link" rel="noreferrer" target="_blank">handle_unknown <span class="param-doc-description">handle_unknown: {'error', 'use_encoded_value'}, default='error'<br>
+<br>
+When set to 'error' an error will be raised in case an unknown<br>
+categorical feature is present during transform. When set to<br>
+'use_encoded_value', the encoded value of unknown categories will be<br>
+set to the value given for the parameter `unknown_value`. In<br>
+:meth:`inverse_transform`, an unknown category will be denoted as None.<br>
+<br>
+.. versionadded:: 0.24</span></a></td>
+<td class="value">'use_encoded_value'</td>
+</tr>
+<tr class="even user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#:~:text=unknown_value,-int%20or%20np.nan%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">unknown_value <span class="param-doc-description">unknown_value: int or np.nan, default=None<br>
+<br>
+When the parameter handle_unknown is set to 'use_encoded_value', this<br>
+parameter is required and will set the encoded value of unknown<br>
+categories. It has to be distinct from the values used to encode any of<br>
+the categories in `fit`. If set to np.nan, the `dtype` parameter must<br>
+be a float dtype.<br>
+<br>
+.. versionadded:: 0.24</span></a></td>
+<td class="value">-1</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#:~:text=encoded_missing_value,-int%20or%20np.nan%2C%20default%3Dnp.nan" class="param-doc-link" rel="noreferrer" target="_blank">encoded_missing_value <span class="param-doc-description">encoded_missing_value: int or np.nan, default=np.nan<br>
+<br>
+Encoded value of missing categories. If set to `np.nan`, then the `dtype`<br>
+parameter must be a float dtype.<br>
+<br>
+.. versionadded:: 1.1</span></a></td>
+<td class="value">nan</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#:~:text=min_frequency,-int%20or%20float%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">min_frequency <span class="param-doc-description">min_frequency: int or float, default=None<br>
+<br>
+Specifies the minimum frequency below which a category will be<br>
+considered infrequent.<br>
+<br>
+- If `int`, categories with a smaller cardinality will be considered<br>
+infrequent.<br>
+<br>
+- If `float`, categories with a smaller cardinality than<br>
+`min_frequency * n_samples` will be considered infrequent.<br>
+<br>
+.. versionadded:: 1.3<br>
+Read more in the :ref:`User Guide <encoder_infrequent_categories>`.</encoder_infrequent_categories></span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.preprocessing.OrdinalEncoder.html#:~:text=max_categories,-int%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">max_categories <span class="param-doc-description">max_categories: int, default=None<br>
+<br>
+Specifies an upper limit to the number of output categories for each input<br>
+feature when considering infrequent categories. If there are infrequent<br>
+categories, `max_categories` includes the category representing the<br>
+infrequent categories along with the frequent categories. If `None`,<br>
+there is no limit to the number of output features.<br>
+<br>
+`max_categories` do **not** take into account missing or unknown<br>
+categories. Setting `unknown_value` or `encoded_missing_value` to an<br>
+integer will increase the number of unique integer codes by one each.<br>
+This can result in up to `max_categories + 2` integer codes.<br>
+<br>
+.. versionadded:: 1.3<br>
+Read more in the :ref:`User Guide <encoder_infrequent_categories>`.</encoder_infrequent_categories></span></a></td>
+<td class="value">None</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>NaiveBayes_Hybrid</div></div></label><div class="sk-toggleable__content fitted" data-param-prefix="model__">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd user-set">
+<td><em></em></td>
+<td class="param">numeric_features</td>
+<td class="value">['age', 'campaign', ...]</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.copy-paste-icon').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling
+        .textContent.trim().split(' ')[0];
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+
+
+/**
+ * Adapted from Skrub
+ * https://github.com/skrub-data/skrub/blob/403466d1d5d4dc76a7ef569b3f8228db59a31dc3/skrub/_reporting/_data/templates/report.js#L789
+ * @returns "light" or "dark"
+ */
+function detectTheme(element) {
+    const body = document.querySelector('body');
+
+    // Check VSCode theme
+    const themeKindAttr = body.getAttribute('data-vscode-theme-kind');
+    const themeNameAttr = body.getAttribute('data-vscode-theme-name');
+
+    if (themeKindAttr && themeNameAttr) {
+        const themeKind = themeKindAttr.toLowerCase();
+        const themeName = themeNameAttr.toLowerCase();
+
+        if (themeKind.includes("dark") || themeName.includes("dark")) {
+            return "dark";
+        }
+        if (themeKind.includes("light") || themeName.includes("light")) {
+            return "light";
+        }
+    }
+
+    // Check Jupyter theme
+    if (body.getAttribute('data-jp-theme-light') === 'false') {
+        return 'dark';
+    } else if (body.getAttribute('data-jp-theme-light') === 'true') {
+        return 'light';
+    }
+
+    // Guess based on a parent element's color
+    const color = window.getComputedStyle(element.parentNode, null).getPropertyValue('color');
+    const match = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)\s*$/i);
+    if (match) {
+        const [r, g, b] = [
+            parseFloat(match[1]),
+            parseFloat(match[2]),
+            parseFloat(match[3])
+        ];
+
+        // https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+        const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+
+        if (luma > 180) {
+            // If the text is very bright we have a dark theme
+            return 'dark';
+        }
+        if (luma < 75) {
+            // If the text is very dark we have a light theme
+            return 'light';
+        }
+        // Otherwise fall back to the next heuristic.
+    }
+
+    // Fallback to system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+
+function forceTheme(elementId) {
+    const estimatorElement = document.querySelector(`#${elementId}`);
+    if (estimatorElement === null) {
+        console.error(`Element with id ${elementId} not found.`);
+    } else {
+        const theme = detectTheme(estimatorElement);
+        estimatorElement.classList.add(theme);
+    }
+}
+
+forceTheme('sk-container-id-2');</script>
+</div>
+</div>
+<div id="8192b283" class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(test_set_target, pipe_nb.predict(test_set_drop)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              precision    recall  f1-score   support
+
+          no       0.94      0.80      0.87      7986
+         yes       0.30      0.64      0.41      1048
+
+    accuracy                           0.78      9034
+   macro avg       0.62      0.72      0.64      9034
+weighted avg       0.87      0.78      0.81      9034
+</code></pre>
+</div>
+</div>
+<div id="5eddd6e6" class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lift <span class="im">import</span> lift_func</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+
+Cell <span class="ansi-green-fg">In[123], line 1</span>
+
+<span class="ansi-green-fg">----&gt; 1</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,0,255)">lift</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">import</span> lift_func
+
+
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'lift'</pre>
+</div>
+</div>
+</div>
+<div id="966ddeb2" class="cell" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">'.'</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lift <span class="im">import</span> lift_func</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="b4d2c2e3" class="cell" data-execution_count="141">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>lift_df <span class="op">=</span> lift_func(pipe_nb,test_set_drop,test_set_target)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>lift_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">propensity</th>
+<th data-quarto-table-cell-role="th">outcome</th>
+<th data-quarto-table-cell-role="th">conversion_rate</th>
+<th data-quarto-table-cell-role="th">LIFT</th>
+<th data-quarto-table-cell-role="th">depth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8403</td>
+<td>1.000000e+00</td>
+<td>0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000111</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6709</td>
+<td>9.999999e-01</td>
+<td>1</td>
+<td>0.500000</td>
+<td>4.310115</td>
+<td>0.000221</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6959</td>
+<td>9.999999e-01</td>
+<td>0</td>
+<td>0.333333</td>
+<td>2.873410</td>
+<td>0.000332</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5872</td>
+<td>9.999998e-01</td>
+<td>1</td>
+<td>0.500000</td>
+<td>4.310115</td>
+<td>0.000443</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5346</td>
+<td>9.999996e-01</td>
+<td>0</td>
+<td>0.400000</td>
+<td>3.448092</td>
+<td>0.000553</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1031</td>
+<td>1.613621e-43</td>
+<td>0</td>
+<td>0.116058</td>
+<td>1.000443</td>
+<td>0.997288</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1837</td>
+<td>3.506982e-44</td>
+<td>0</td>
+<td>0.116045</td>
+<td>1.000332</td>
+<td>0.997288</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">499</td>
+<td>9.915630e-50</td>
+<td>0</td>
+<td>0.116032</td>
+<td>1.000221</td>
+<td>0.997288</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7501</td>
+<td>9.052844e-50</td>
+<td>0</td>
+<td>0.116019</td>
+<td>1.000111</td>
+<td>0.997288</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4562</td>
+<td>4.441417e-66</td>
+<td>0</td>
+<td>0.116006</td>
+<td>1.000000</td>
+<td>0.997288</td>
+</tr>
+</tbody>
+</table>
+
+<p>9034 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<div id="6dbaf154" class="cell" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>lift_df.loc[(lift_df[<span class="st">'depth'</span>] <span class="op">-</span> <span class="fl">0.10</span>).<span class="bu">abs</span>().idxmin()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>propensity         0.949961
+outcome            0.000000
+conversion_rate    0.480620
+LIFT               4.143056
+depth              0.099956
+Name: 3499, dtype: float64</code></pre>
+</div>
+</div>
+<div id="37b9fd08" class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>lift_df.loc[(lift_df[<span class="st">'depth'</span>] <span class="op">-</span> <span class="fl">0.50</span>).<span class="bu">abs</span>().idxmin()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>propensity         0.007014
+outcome            0.000000
+conversion_rate    0.186670
+LIFT               1.609135
+depth              0.500055
+Name: 3416, dtype: float64</code></pre>
+</div>
+</div>
+<div id="440c3b04" class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>lift_df.plot(kind<span class="op">=</span><span class="st">"line"</span>,x<span class="op">=</span><span class="st">'depth'</span>,y<span class="op">=</span><span class="st">'propensity'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-40-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="f5f24ed9" class="cell" data-execution_count="139">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>lift_df.plot(kind<span class="op">=</span><span class="st">"line"</span>,x<span class="op">=</span><span class="st">'depth'</span>,y<span class="op">=</span><span class="st">'LIFT'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-41-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="1e8f988a" class="cell" data-execution_count="140">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>lift_df.plot(kind<span class="op">=</span><span class="st">"line"</span>,x<span class="op">=</span><span class="st">"depth"</span>,y<span class="op">=</span><span class="st">"conversion_rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-42-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="60114698" class="cell" data-execution_count="142">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>year_vec <span class="op">=</span> test_set_drop[<span class="st">"year"</span>].unique()</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>test_full <span class="op">=</span> test_set_drop.copy()</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>test_full[<span class="st">"outcome"</span>] <span class="op">=</span> test_set_target</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> year_vec:</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    test_year <span class="op">=</span> test_full[test_full[<span class="st">'year'</span>] <span class="op">==</span> year].copy()</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    lift_year <span class="op">=</span> lift_func(pipe_nb,test_year,test_year[<span class="st">"outcome"</span>])</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> lift_year.plot(kind<span class="op">=</span><span class="st">"line"</span>,x<span class="op">=</span><span class="st">'depth'</span>,y<span class="op">=</span><span class="st">'LIFT'</span>)<span class="op">;</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f'Lift Curve </span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-43-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-43-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="BankMarketingNaiveBayesVignette_files/figure-html/cell-43-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="7c2ff503" class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>lift_func(pipe_nb,test_year,test_year[<span class="st">'outcome'</span>].reset_index())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+
+Cell <span class="ansi-green-fg">In[117], line 1</span>
+
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">lift_func</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">pipe_nb</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">test_year</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg">test_year</span><span class="ansi-yellow-bg">[</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">outcome</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">]</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">reset_index</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">)</span>
+
+
+
+Cell <span class="ansi-green-fg">In[106], line 5</span>, in <span class="ansi-cyan-fg">lift_func</span><span class="ansi-blue-fg">(model, test_proc, test_target)</span>
+
+<span class="ansi-green-fg ansi-bold">      3</span> prob_yes <span style="color:rgb(98,98,98)">=</span> model<span style="color:rgb(98,98,98)">.</span>predict_proba(test_proc)[:, <span style="color:rgb(98,98,98)">1</span>]
+
+<span class="ansi-green-fg ansi-bold">      4</span> test_set_target_encoded <span style="color:rgb(98,98,98)">=</span> (test_set_target <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">yes</span><span style="color:rgb(175,0,0)">'</span>)<span style="color:rgb(98,98,98)">.</span>astype(<span style="color:rgb(0,135,0)">int</span>)
+
+<span class="ansi-green-fg">----&gt; 5</span> fpr, tpr, thresholds <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">roc_curve</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">test_set_target_encoded</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">prob_yes</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-green-fg ansi-bold">      6</span> lift_df <span style="color:rgb(98,98,98)">=</span> pd<span style="color:rgb(98,98,98)">.</span>DataFrame({<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">propensity</span><span style="color:rgb(175,0,0)">"</span>:prob_yes, <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">outcome</span><span style="color:rgb(175,0,0)">"</span>:test_set_target_encoded})
+
+<span class="ansi-green-fg ansi-bold">      7</span> lift_sorted <span style="color:rgb(98,98,98)">=</span> lift_df<span style="color:rgb(98,98,98)">.</span>sort_values(<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">propensity</span><span style="color:rgb(175,0,0)">"</span>,ascending<span style="color:rgb(98,98,98)">=</span><span style="font-weight:bold;color:rgb(0,135,0)">False</span>)
+
+
+
+File <span class="ansi-green-fg">~/miniforge3/envs/DATA622/lib/python3.11/site-packages/sklearn/utils/_param_validation.py:218</span>, in <span class="ansi-cyan-fg">validate_params.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+
+<span class="ansi-green-fg ansi-bold">    212</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
+
+<span class="ansi-green-fg ansi-bold">    213</span>     <span style="font-weight:bold;color:rgb(0,135,0)">with</span> config_context(
+
+<span class="ansi-green-fg ansi-bold">    214</span>         skip_parameter_validation<span style="color:rgb(98,98,98)">=</span>(
+
+<span class="ansi-green-fg ansi-bold">    215</span>             prefer_skip_nested_validation <span style="font-weight:bold;color:rgb(175,0,255)">or</span> global_skip_validation
+
+<span class="ansi-green-fg ansi-bold">    216</span>         )
+
+<span class="ansi-green-fg ansi-bold">    217</span>     ):
+
+<span class="ansi-green-fg">--&gt; 218</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-green-fg ansi-bold">    219</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> InvalidParameterError <span style="font-weight:bold;color:rgb(0,135,0)">as</span> e:
+
+<span class="ansi-green-fg ansi-bold">    220</span>     <span style="font-style:italic;color:rgb(95,135,135)"># When the function is just a wrapper around an estimator, we allow</span>
+
+<span class="ansi-green-fg ansi-bold">    221</span>     <span style="font-style:italic;color:rgb(95,135,135)"># the function to delegate validation to the estimator, but we replace</span>
+
+<span class="ansi-green-fg ansi-bold">    222</span>     <span style="font-style:italic;color:rgb(95,135,135)"># the name of the estimator by the name of the function in the error</span>
+
+<span class="ansi-green-fg ansi-bold">    223</span>     <span style="font-style:italic;color:rgb(95,135,135)"># message to avoid confusion.</span>
+
+<span class="ansi-green-fg ansi-bold">    224</span>     msg <span style="color:rgb(98,98,98)">=</span> re<span style="color:rgb(98,98,98)">.</span>sub(
+
+<span class="ansi-green-fg ansi-bold">    225</span>         <span style="color:rgb(175,0,0)">r</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">parameter of </span><span style="color:rgb(175,0,0)">\</span><span style="color:rgb(175,0,0)">w+ must be</span><span style="color:rgb(175,0,0)">"</span>,
+
+<span class="ansi-green-fg ansi-bold">    226</span>         <span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">parameter of </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>func<span style="color:rgb(98,98,98)">.</span><span style="color:rgb(0,0,135)">__qualname__</span><span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)"> must be</span><span style="color:rgb(175,0,0)">"</span>,
+
+<span class="ansi-green-fg ansi-bold">    227</span>         <span style="color:rgb(0,135,0)">str</span>(e),
+
+<span class="ansi-green-fg ansi-bold">    228</span>     )
+
+
+
+File <span class="ansi-green-fg">~/miniforge3/envs/DATA622/lib/python3.11/site-packages/sklearn/metrics/_ranking.py:1258</span>, in <span class="ansi-cyan-fg">roc_curve</span><span class="ansi-blue-fg">(y_true, y_score, pos_label, sample_weight, drop_intermediate)</span>
+
+<span class="ansi-green-fg ansi-bold">   1160</span> <span style="font-style:italic;color:rgb(175,0,0)">"""Compute Receiver operating characteristic (ROC).</span>
+
+<span class="ansi-green-fg ansi-bold">   1161</span> 
+
+<span class="ansi-green-fg ansi-bold">   1162</span> <span style="font-style:italic;color:rgb(175,0,0)">Note: Support beyond :term:`binary` classification tasks, via one-vs-rest or</span>
+
+<span class="ansi-green-fg">   (...)</span>
+
+<span class="ansi-green-fg ansi-bold">   1254</span> <span style="font-style:italic;color:rgb(175,0,0)">array([ inf, 0.8 , 0.4 , 0.35, 0.1 ])</span>
+
+<span class="ansi-green-fg ansi-bold">   1255</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
+
+<span class="ansi-green-fg ansi-bold">   1256</span> xp, _, device <span style="color:rgb(98,98,98)">=</span> get_namespace_and_device(y_true, y_score)
+
+<span class="ansi-green-fg">-&gt; 1258</span> _, fps, _, tps, thresholds <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">confusion_matrix_at_thresholds</span><span class="ansi-yellow-bg">(</span>
+
+<span class="ansi-green-fg ansi-bold">   1259</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">y_true</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">y_score</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">pos_label</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">pos_label</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sample_weight</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">sample_weight</span>
+
+<span class="ansi-green-fg ansi-bold">   1260</span> <span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-green-fg ansi-bold">   1262</span> <span style="font-style:italic;color:rgb(95,135,135)"># Attempt to drop thresholds corresponding to points in between and</span>
+
+<span class="ansi-green-fg ansi-bold">   1263</span> <span style="font-style:italic;color:rgb(95,135,135)"># collinear with other points. These are always suboptimal and do not</span>
+
+<span class="ansi-green-fg ansi-bold">   1264</span> <span style="font-style:italic;color:rgb(95,135,135)"># appear on a plotted ROC curve (and thus do not affect the AUC).</span>
+
+<span class="ansi-green-fg">   (...)</span>
+
+<span class="ansi-green-fg ansi-bold">   1269</span> <span style="font-style:italic;color:rgb(95,135,135)"># kept, but does not drop more complicated cases like fps = [1, 3, 7],</span>
+
+<span class="ansi-green-fg ansi-bold">   1270</span> <span style="font-style:italic;color:rgb(95,135,135)"># tps = [1, 2, 4]; there is no harm in keeping too many thresholds.</span>
+
+<span class="ansi-green-fg ansi-bold">   1271</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> drop_intermediate <span style="font-weight:bold;color:rgb(175,0,255)">and</span> fps<span style="color:rgb(98,98,98)">.</span>shape[<span style="color:rgb(98,98,98)">0</span>] <span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(98,98,98)">2</span>:
+
+
+
+File <span class="ansi-green-fg">~/miniforge3/envs/DATA622/lib/python3.11/site-packages/sklearn/utils/_param_validation.py:191</span>, in <span class="ansi-cyan-fg">validate_params.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+
+<span class="ansi-green-fg ansi-bold">    189</span> global_skip_validation <span style="color:rgb(98,98,98)">=</span> get_config()[<span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">skip_parameter_validation</span><span style="color:rgb(175,0,0)">"</span>]
+
+<span class="ansi-green-fg ansi-bold">    190</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> global_skip_validation:
+
+<span class="ansi-green-fg">--&gt; 191</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-green-fg ansi-bold">    193</span> func_sig <span style="color:rgb(98,98,98)">=</span> signature(func)
+
+<span class="ansi-green-fg ansi-bold">    195</span> <span style="font-style:italic;color:rgb(95,135,135)"># Map *args/**kwargs to the function signature</span>
+
+
+
+File <span class="ansi-green-fg">~/miniforge3/envs/DATA622/lib/python3.11/site-packages/sklearn/metrics/_ranking.py:930</span>, in <span class="ansi-cyan-fg">confusion_matrix_at_thresholds</span><span class="ansi-blue-fg">(y_true, y_score, pos_label, sample_weight)</span>
+
+<span class="ansi-green-fg ansi-bold">    926</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(<span style="color:rgb(175,0,0)">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{0}</span><span style="color:rgb(175,0,0)"> format is not supported</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(98,98,98)">.</span>format(y_type))
+
+<span class="ansi-green-fg ansi-bold">    928</span> xp, _, device <span style="color:rgb(98,98,98)">=</span> get_namespace_and_device(y_true, y_score, sample_weight)
+
+<span class="ansi-green-fg">--&gt; 930</span> <span class="ansi-yellow-bg">check_consistent_length</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">y_true</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">y_score</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">sample_weight</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-green-fg ansi-bold">    931</span> y_true <span style="color:rgb(98,98,98)">=</span> column_or_1d(y_true)
+
+<span class="ansi-green-fg ansi-bold">    932</span> y_score <span style="color:rgb(98,98,98)">=</span> column_or_1d(y_score)
+
+
+
+File <span class="ansi-green-fg">~/miniforge3/envs/DATA622/lib/python3.11/site-packages/sklearn/utils/validation.py:464</span>, in <span class="ansi-cyan-fg">check_consistent_length</span><span class="ansi-blue-fg">(*arrays)</span>
+
+<span class="ansi-green-fg ansi-bold">    462</span> lengths <span style="color:rgb(98,98,98)">=</span> [_num_samples(X) <span style="font-weight:bold;color:rgb(0,135,0)">for</span> X <span style="font-weight:bold;color:rgb(175,0,255)">in</span> arrays <span style="font-weight:bold;color:rgb(0,135,0)">if</span> X <span style="font-weight:bold;color:rgb(175,0,255)">is</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">None</span>]
+
+<span class="ansi-green-fg ansi-bold">    463</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">len</span>(<span style="color:rgb(0,135,0)">set</span>(lengths)) <span style="color:rgb(98,98,98)">&gt;</span> <span style="color:rgb(98,98,98)">1</span>:
+
+<span class="ansi-green-fg">--&gt; 464</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
+
+<span class="ansi-green-fg ansi-bold">    465</span>         <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Found input variables with inconsistent numbers of samples: </span><span style="font-weight:bold;color:rgb(175,95,135)">%r</span><span style="color:rgb(175,0,0)">"</span>
+
+<span class="ansi-green-fg ansi-bold">    466</span>         <span style="color:rgb(98,98,98)">%</span> [<span style="color:rgb(0,135,0)">int</span>(l) <span style="font-weight:bold;color:rgb(0,135,0)">for</span> l <span style="font-weight:bold;color:rgb(175,0,255)">in</span> lengths]
+
+<span class="ansi-green-fg ansi-bold">    467</span>     )
+
+
+
+<span class="ansi-red-fg">ValueError</span>: Found input variables with inconsistent numbers of samples: [9034, 5539]</pre>
+</div>
+</div>
+</div>
+<div id="93d2653c" class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>test_year[<span class="st">'outcome'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>0       0
+1       0
+2       0
+3       0
+4       0
+       ..
+9028    0
+9029    0
+9030    0
+9032    1
+9033    0
+Name: outcome, Length: 5539, dtype: int64</code></pre>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/georgehagstrom\.github\.io\/DATA622Fall2026\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../license.html">
+<p>License</p>
+</a>
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions"><ul><li><a href="https://github.dev/georgehagstrom/DATA622Fall2026/blob/main/meetups/meetup-5/BankMarketingNaiveBayesVignette.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://datasciencebox.org/">
+<p>Some content on this page was derived from and inspired by the open source Data Science in a Box course materials developed by Mine Çetinkaya-Rundel</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
