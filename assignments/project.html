@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Project – DATA 622 Fall 2026</title>
+<title>Project: ML In Production – DATA 622 Fall 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Data Project – DATA 622 Fall 2026">
+<meta property="og:title" content="Project: ML In Production – DATA 622 Fall 2026">
 <meta property="og:description" content="DATA 622 - Machine Learning and Big Data - CUNY School of Professional Studies">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
 </head>
@@ -330,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/labs.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/project.html">Project</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Data Project</h1>
+<h1 class="title">Project: ML In Production</h1>
 </div>
 
 
@@ -349,24 +349,30 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="group-project" class="level2">
 <h2 class="anchored" data-anchor-id="group-project">Group Project</h2>
-<p>For this project, you will work in small teams to develop a machine learning application which solves a problem of your choosing (in consultation with your professor) and which you will deploy in production. The final outcome will ideally be an interactive shiny <code>app</code> implementing a machine learning solution, but other tools are acceptable (though I may not be able to help as much, <code>FastAPI</code> is a potential alternative tool).</p>
+<p>For this project, you will work in small teams to develop a production machine learning project. In this project you will be playing the role of a data science and data engineering team working at <a href="https://citibikenyc.com/">‘citibike’</a>, which provides bike sharing services in NYC. An interesting aspect of ‘citibike’ is that it is a hybrid between a business which earns revenue, and a part of the public transport infrastructure of ‘NYC’. Owing to its hybrid nature, citibike provides a wealth of public data which can be used to solve data science problems relating both to business and to municipal governance.</p>
+<p>Your projects will be developed and deployed on a class-specific ‘databricks’/‘AWS’ workspace which has been logging the status of citibike stations every 5 minutes and station information each day using the citibike ‘GBFS’ feed. You will also have access to other data, including trip data and weather data accessible through ‘bigquery’, and any data that you think you might need for your project.</p>
 <p>The timeline for the project is as follows:</p>
 <ol type="1">
-<li><p>Team Formation (Weeks 1-4, by September 27th). This will take place on the course slack page. Ideal teams will be 3 or 4 students. You should message your classmates and post both what topics you are interested in or what tools and technologies you want to work with in this project. If at the end of Week 4 you are unable to find a team, you must contact me and I will assign you to a team. It is important to be thinking about your project idea and working towards your project proposal towards the end of this phase.</p></li>
+<li><p>Team Formation (Weeks 1-4, by September 27th). This will take place on the course slack page. Ideal teams will be 3 or 4 students. You should message your classmates and post what problems you are interested in working on. If at the end of Week 4 you are unable to find a team, you must contact me and I will assign you to a team. It is important to be thinking about your project idea and working towards your project proposal towards the end of this phase. After you form your team, I will send you an invitation to a GitHub Classroom and DataBricks workspace.</p></li>
 <li><p>Project Proposal (October 4th, 10%). You will develop and submit a project proposal with a maximum length of 3 pages (not including references). The proposal should define the problem and outline your proposed solution. It should also answer as best as possible the following questions:</p>
 <ol type="1">
-<li><p>Who are your target users, and what app features are needed to ensure that the app is useful for them? You do not necessarily have to achieve these goals but they are useful to have in mind.</p></li>
-<li><p>What interface do you plan to use for you app? (Shiny is recommended, for other choices you must convince me you have the relevant expertise)</p></li>
-<li><p>What data sources are you planning to use? Does the data you need already exist and is publicly available, or will you need to gather your data on your own?</p></li>
-<li><p>What type of Machine Learning problem will you need to solve for your app, and which are the initial model types that you will try?</p></li>
-<li><p>How will you evaluate both model performance and app performance?</p></li>
+<li><p>What type of Machine Learning problem will you solve, and how might citibike, New York City, or New Yorkers use the outputs? You do not necessarily have to achieve these goals but they are useful to have in mind.</p></li>
+<li><p>What data sources are you planning to use, and which if any external data sources will you add? Each project is required to add at least one additional data set/data source and make it available as a documented table in the shared catalog for other teams to potentially use.</p></li>
+<li><p>What initial approach/model types will you use to solve the problem?</p></li>
+<li><p>How will you evaluate model performance?</p></li>
 <li><p>Will model training be online (model updates whenever new data is ingested) or batch (at scheduled intervals)?</p></li>
-<li><p>Do you anticipate any large computational needs? If you think you will need to use large neural network models, LLMs, GPUs/TPUs, make sure to let me know here. Pricing for AWS/Google Cloud can be found here (<a href="https://cloud.google.com/compute/all-pricing">GCP pricing</a> <a href="https://aws.amazon.com/aws-cost-management/aws-pricing-calculator/">AWS pricing</a> Where do you plan to host your app?</p></li>
+<li><p>Do you anticipate any large computational needs? If you think you will need to use large neural network models, LLMs, GPUs/TPUs, make sure to let me know here.</p></li>
 <li><p>The key midterm check for this project is the development of a minimally viable product, which will demonstrate feasibility and which you will iteratively improve. What does your minimally viable product look like?</p></li>
 </ol></li>
-<li><p>MVP (Minimally Viable Product Demo) (November 2nd-7th, 20%) You will present/demonstrate your minimally viable project to your professor. Your presentation should be about 10 minutes long. The first part should be a slideshow presentation (target 5 mintues and 3 slides) which pitches your project, gives a diagram of your proposed solution, and outlines what challenges remain. The second part is a 5 minute demo of your MVP. It is ok if your MVP is very basic- ideally I want to see that you have given good thought to your application, tried to make your MVP an end-to-end product, and have a good understanding of the challenges that await.</p></li>
-<li><p>Final Demo (December 14th, 35%) In class live demo. Each team will do a 10 minute presentation. The presentation should consist of a short introduction to the team, description of the problem, description of the technology used to solve the problem, and a scripted live demo. Live demos are challenging. An example of highly polished demo (not live so above the expectations for this class, can be found here (https://www.youtube.com/watch?v=fw9f_HPFnok). This demo was created for the <a href="https://stanford-cs329s.github.io/">Stanford Class CS 239</a>, which provided inspiration for this assignment. If you want to see other examples of demos, that class had a demo day with a similar structure. Keep in mind that, students in that class already had extensive programming and machine learning experience, but for this class we are making use of some tools to make those aspects less challenging.</p></li>
-<li><p>Project Writeup/Whitepaper (December 18th, 35%) 2500 word description of your project. This aims to be less formal than an academic research paper and more in the style of a white paper or even a technical blog post. You should have sections of the problem definition, system design, machine learning components, application demonstration (ideally you can integrate parts of your application into your report), and a conclusion/reflection. A great example of a whitepaper (though not an app) is here <a href="https://www.offgridai.us/">offgrid ai</a>. Some great examples of reports are <a href="https://openai.com/blog/dall-e/">here</a>, <a href="https://openai.com/blog/clip/">here</a>, and <a href="https://ai.googleblog.com/2020/12/privacy-considerations-in-large.html">here</a>.</p></li>
+<li><p>Midterm Check In (November 2nd-7th, 20%) You will present/demonstrate a minimal viable product version (MVP) of your system to your professor. Your presentation should be about 10 minutes long. The first part should be a slideshow presentation (target 5 minutes and 3 slides) which pitches your project, gives a diagram of your proposed solution, and outlines what challenges remain. The second part is a 5 minute demo of your MVP. It is ok if your MVP is very basic, ideally I want to see that you have given good thought to your application, tried to make your MVP an end-to-end product, and have a good understanding of the challenges that await. Afterwards there will be a question and answer session about your project.</p></li>
+<li><p>Production Deployment and Final Presentation (November 16th to December 14th, 50%) Projects should be deployed in production starting on November 16th and their performance monitored for 4 weeks. This production period will culminate in a final presentation which will be scheduled with your professor during the week of the 14th. The presentation will include an introduction to your system, a live-demo, and a question and answer with the instructor about your project and codebase. Your final presentation should include measures of model performance from the production period.</p></li>
+<li><p>Project Writeup/Documentation (December 18th, 20%): The documentation for this project shall consist of four things:</p></li>
+</ol>
+<ol type="i">
+<li>A short model card which describes the model, its intended purpose, training data, and performance. Follow the format of <a href="https://skops.readthedocs.io/en/stable/examples.html">‘skops’</a> or read the paper that introduced the concept here <a href="https://arxiv.org/abs/1810.03993"><em>Model Cards for Model Reporting</em></a>. Standardized model documentation is common across a variety of industries including banking, medicine, and artificial intelligence (where the model card is typical).</li>
+<li>A datasheet which documents the dataset(s) that you collected to support your project. This should describe the motivation, composition, collection process, and intended uses. See the guide here <a href="https://arxiv.org/abs/1803.09010"><em>Datasheets for Datasets</em></a>. Think of this as a data dictionary but with additional information on the provenance and purpose of the dataset.</li>
+<li>A short <em>runbook</em> which describes the mechanics of your production system, i.e.&nbsp;what jobs run and when, where fitted models, logs, and performance measures are stored, etc.</li>
+<li>A whitepaper/technical blog post. Target length of 2000 words. This aims to be less formal than an academic research paper. You should have sections of the problem definition, system design, machine learning components, application demonstration (ideally you can integrate parts of your application into your report), and a conclusion/reflection. A great example of a whitepaper (though not an app) is here <a href="https://www.offgridai.us/">offgrid ai</a>. Some great examples of reports are <a href="https://openai.com/blog/dall-e/">here</a>, <a href="https://openai.com/blog/clip/">here</a>, and <a href="https://ai.googleblog.com/2020/12/privacy-considerations-in-large.html">here</a>.</li>
 </ol>
 
 
