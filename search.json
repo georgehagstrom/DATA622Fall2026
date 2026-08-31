@@ -7,6 +7,20 @@
     "text": "Welcome to DATA 622!"
   },
   {
+    "objectID": "meetups/meetup-1/meetup-1.html#events-upcoming",
+    "href": "meetups/meetup-1/meetup-1.html#events-upcoming",
+    "title": "DATA 622 Meetup 1: What is Machine Learning?",
+    "section": "Events Upcoming!",
+    "text": "Events Upcoming!\n\nnyhackr.org"
+  },
+  {
+    "objectID": "meetups/meetup-1/meetup-1.html#events-upcoming-1",
+    "href": "meetups/meetup-1/meetup-1.html#events-upcoming-1",
+    "title": "DATA 622 Meetup 1: What is Machine Learning?",
+    "section": "Events Upcoming!",
+    "text": "Events Upcoming!\n\nnyhackr.org"
+  },
+  {
     "objectID": "meetups/meetup-1/meetup-1.html#what-to-expect",
     "href": "meetups/meetup-1/meetup-1.html#what-to-expect",
     "title": "DATA 622 Meetup 1: What is Machine Learning?",
@@ -74,14 +88,21 @@
     "href": "meetups/meetup-1/meetup-1.html#research-on-llms-in-education",
     "title": "DATA 622 Meetup 1: What is Machine Learning?",
     "section": "Research on LLMs in Education",
-    "text": "Research on LLMs in Education\n\nEarly days, but mixed results\nOpinions range from ‘LLMs stop you from being able to think for yourself’ to ‘Concern over LLMs is just another moral panic’\nYour Brain on ChatGPT (I’m skeptical)\nWhy knowledge is important in the age of AI (makes excellent points)"
+    "text": "Research on LLMs in Education\n\nEarly days, but mixed results\nOpinions range from ‘LLMs stop you from being able to think for yourself’ to ‘Concern over LLMs is just another moral panic’\nWhy knowledge is important in the age of AI (makes excellent points)\nThe Generative AI Learning Penalty: Evidenc from Chinese Secondary Education"
   },
   {
     "objectID": "meetups/meetup-1/meetup-1.html#research-on-llms-in-education-1",
     "href": "meetups/meetup-1/meetup-1.html#research-on-llms-in-education-1",
     "title": "DATA 622 Meetup 1: What is Machine Learning?",
     "section": "Research on LLMs in Education",
-    "text": "Research on LLMs in Education\n\n\n\n\nAbstract\n\n\nIn the age of generative AI and ubiquitous digital tools, human cognition faces a structural paradox: as external aids become more capable, internal memory systems risk atrophy. Drawing on neuroscience and cognitive psychology, this paper examines how heavy reliance on AI systems and discovery-based pedagogies may impair the consolidation of declarative and procedural memory – systems essential for expertise, critical thinking, and long-term retention. We review how tools like ChatGPT and calculators can short-circuit the retrieval, error correction, and schema-building processes necessary for robust neural encoding. Notably, we highlight striking parallels between deep learning phenomena such as “grokking” and the neuroscience of overlearning and intuition. Empirical studies are discussed showing how premature reliance on AI during learning inhibits proceduralization and intuitive mastery. We argue that effective human-AI interaction depends on strong internal models – biological “schemata” and neural manifolds – that enable users to evaluate, refine, and guide AI output…."
+    "text": "Research on LLMs in Education\n\n\n\n\nResearch on LLMs in Education\n\n\n\n\n\nStromberg et al 2026\n\n\n\nAbstract\nIn the age of generative AI and ubiquitous digital tools, human cognition faces a structural paradox: as external aids become more capable, internal memory systems risk atrophy. Drawing on neuroscience and cognitive psychology, this paper examines how heavy reliance on AI systems and discovery-based pedagogies may impair the consolidation of declarative and procedural memory – systems essential for expertise, critical thinking, and long-term retention. We review how tools like ChatGPT and calculators can short-circuit the retrieval, error correction, and schema-building processes necessary for robust neural encoding. Notably, we highlight striking parallels between deep learning phenomena such as “grokking” and the neuroscience of overlearning and intuition. Empirical studies are discussed showing how premature reliance on AI during learning inhibits proceduralization and intuitive mastery. We argue that effective human-AI interaction depends on strong internal models – biological “schemata” and neural manifolds – that enable users to evaluate, refine, and guide AI output…."
+  },
+  {
+    "objectID": "meetups/meetup-1/meetup-1.html#abstract",
+    "href": "meetups/meetup-1/meetup-1.html#abstract",
+    "title": "DATA 622 Meetup 1: What is Machine Learning?",
+    "section": "Abstract",
+    "text": "Abstract\nIn the age of generative AI and ubiquitous digital tools, human cognition faces a structural paradox: as external aids become more capable, internal memory systems risk atrophy. Drawing on neuroscience and cognitive psychology, this paper examines how heavy reliance on AI systems and discovery-based pedagogies may impair the consolidation of declarative and procedural memory – systems essential for expertise, critical thinking, and long-term retention. We review how tools like ChatGPT and calculators can short-circuit the retrieval, error correction, and schema-building processes necessary for robust neural encoding. Notably, we highlight striking parallels between deep learning phenomena such as “grokking” and the neuroscience of overlearning and intuition. Empirical studies are discussed showing how premature reliance on AI during learning inhibits proceduralization and intuitive mastery. We argue that effective human-AI interaction depends on strong internal models – biological “schemata” and neural manifolds – that enable users to evaluate, refine, and guide AI output…."
   },
   {
     "objectID": "meetups/meetup-1/meetup-1.html#what-i-have-seen",
@@ -359,6 +380,13 @@
   {
     "objectID": "meetups/meetup-1/meetup-1.html#regression-and-classification-1",
     "href": "meetups/meetup-1/meetup-1.html#regression-and-classification-1",
+    "title": "DATA 622 Meetup 1: What is Machine Learning?",
+    "section": "Regression and Classification",
+    "text": "Regression and Classification\n\nRegression problems have continuous \\(y\\)\n\nPredicting income, temperature, cost\nTypical loss function\n\n\n\\[\n\\mathrm{loss}(y_1, g(x_1)) = -\\log g_{y_1}(x_1)\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-1/meetup-1.html#regression-and-classification-2",
+    "href": "meetups/meetup-1/meetup-1.html#regression-and-classification-2",
     "title": "DATA 622 Meetup 1: What is Machine Learning?",
     "section": "Regression and Classification",
     "text": "Regression and Classification\n\nClassification problems have discrete \\(y\\)\n\nTumor type, fraud or real transaction, Default or not on loan\nTypical loss function is misclassification:\n\n\\[\n  \\mathrm{loss}(y_1,g(x_1)) = 1-\\delta(y_1,g(x_1))\n  \\]"
