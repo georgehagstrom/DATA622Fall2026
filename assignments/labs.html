@@ -349,27 +349,8 @@ ul.task-list li input[type="checkbox"] {
 
 <p>The primary homework assignments in this course are lab assignments where you will use <code>python</code> and occasionally other software to acquire, explore, wrangle, and manage different data sets. <strong>Please submit a PDF (preferred) or HTML file along with your <code>qmd</code> file.</strong> Labs should be submitted on Brightspace.</p>
 <p>Each lab is released the week it is assigned; until then its link goes to a placeholder page. Once released, the lab title links to the assignment and the “Template” link downloads the raw <code>.qmd</code> for you to fill in.</p>
-<!--
-TO RELEASE A LAB, e.g. Lab 1:
-
-  1. swap this line
-         1. [Bias-Variance Tradeoff](labs/tbd.qmd)
-     for
-         1. [Bias-Variance Tradeoff](labs/lab1.qmd)
-         ([Template](https://github.com/georgehagstrom/DATA622Fall2026/raw/main/website/assignments/labs/lab1.qmd))
-  2. repoint the other pages that mention that lab. To find them all:
-         grep -rn 'labs/tbd.qmd' --include='*.qmd' .
-     For Lab 1 that is course/schedule.qmd, modules/module2.qmd and
-     meetups/meetup-1/meetup-1.qmd; Lab 2 also appears in modules/module3.qmd.
-  3. render it:  quarto render assignments/labs/lab1.qmd
-
-The lab source files are already in assignments/labs/ -- they are simply not
-linked or rendered until you release them. The announcement drafts in
-_post-drafts/ still link to the real lab pages, which is correct: you promote
-a draft in the same week you release its lab.
--->
 <ol type="1">
-<li><a href="../assignments/labs/tbd.html">Bias-Variance Tradeoff</a></li>
+<li><a href="labs/lab1.qmd">Bias-Variance Tradeoff</a></li>
 <li><a href="../assignments/labs/tbd.html">The Linear Model</a></li>
 <li><a href="../assignments/labs/tbd.html">Classification</a></li>
 <li><a href="../assignments/labs/tbd.html">Regularization and Generalization</a></li>
