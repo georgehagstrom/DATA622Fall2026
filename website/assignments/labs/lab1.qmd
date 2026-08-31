@@ -1,60 +1,24 @@
 ---
-title: "DATA 622: Lab 1: Bias Variance Trade-Off "
+title: "DATA 622: Lab 1: Bias Variance Trade-Off Using kNN "
 format: html
 ---
 
 ## Instructions:
 
 Complete this assignment by answering the following questions using code, text descriptions, and mathematics in a quarto markdown document.
-Render your .qmd to a pdf and submit both the qmd and pdf files on brightspace.
-
-The purpose of this assignment is for you to review basic data manipulation and plotting in python, make sure that you have working
-software tools to complete the assignment, and learn a little bit about using sci-kit learn to explore the bias-variance tradeoff.
+Render your .qmd to a pdf and submit both the qmd and pdf files on brightspace. Treat this submission as if it were a report that you were submitting at a workplace to a supervisor.
 
 
-
-
-
-
-
-
-## Problem 1: Exploring the `Auto` data set
-
-This exercise involves the `Auto` data set studied in the interactive lab in chapter 2 of `ISLP`. Make sure
-that the missing values have been removed from the data.
-
-(a) Which of the predictors are quantitative, and which are qualitative?
-
-(b) What is the range of each quantitative predictor? You can answer this using the min() and max() methods in numpy. 
-
-(c) What is the mean and standard deviation of each quantitative 
-predictor?
-
-(d) Now remove the 10th through 85th observations. What is the
-range, mean, and standard deviation of each predictor in the
-subset of the data that remains?
-
-(e) Using the full data set, investigate the predictors graphically,
-using scatterplots or other tools of your choice. Create some plots
-highlighting the relationships among the predictors. Comment
-on your findings.
-
-(f) Suppose that we wish to predict gas mileage (mpg) on the basis
-of the other variables. Do your plots suggest that any of the
-other variables might be useful in predicting mpg? Justify your
-answer.
-
-
-## Problem 2: `kNN` Classification of the ZIP code digit data
+## Problem 1: `kNN` Classification of the ZIP code digit data
 
 In order to complete this problem you will need to download [`zip.train`](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/zip.train) and 
 [`zip.test`](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/zip.test) from the course github page. These datasets
 contain images of hand-drawn digits. We will be experimenting with `kNN` classification and factors impacting the bias-variance 
 trade-off, and this will also be chance to practice using `scikit-learn`.
 
-(a) Download and load the training and test data sets using pandas. Make sure to load all of the data (there is no header) The zeroth column corresponds to the class label, a digit from 0-9, and the columns 1 to 256 correspond to a grayscale value from -1 to 1. Select the first entry in the training set, resize it to 16x16, and plot the image (you can use `plt.imshow()`).
+(a) __Look at the data__: Download and load the training and test data sets using pandas. Make sure to load all of the data (there is no header). The zeroth column corresponds to the class label, a digit from 0-9, and the columns 1 to 256 correspond to a grayscale value from -1 to 1. Select the first entry in the training set, resize it to 16x16, and plot the image (you can use `plt.imshow()`).
 
-(b) The following code imports the `kNN` classification function from `scikit-learn` as well as an accuracy function, trains
+(b) __Validation Curves__: The following code imports the `kNN` classification function from `scikit-learn` as well as an accuracy function, trains
 a `kNN` classifier, and tests its accuracy on hypothetical training and testing data:
 
 ```{python}
@@ -81,13 +45,80 @@ print(f'Accuracy: {accuracy:.4f}')
 
 Where the dataframes contain just the training and testing images and class.
 
-Adapt this code to determine if the we can observe the bias variance trade-off for different numbers of neighbors $k$. Specifically,
-recreate plot 2.17 (pay attention to the x-axis scale and use the same choice as in the book) which shows test and train classification accuracy as a function of $1/k$. Select a range of $k$ from 1 to 300. You do not have to plot every single $k$ value in this range if the problem is computationally intensive on your machine. Do you observe a $U$-shaped curve in the testing error (and a divergence from training error) as $1/k$ increases?
+Adapt this code to determine if we can observe the bias variance trade-off for different numbers of neighbors $k$. Specifically,
+recreate Figure 2.17 from Introduction to Statistical Learning (pay attention to the x-axis scale and use the same choice as in the book) which shows test and train classification accuracy as a function of $1/k$. Select a range of $k$ from 1 to 300. You do not have to plot every single $k$ value in this range if the problem is computationally intensive on your machine. Do you observe a $U$-shaped curve in the testing error (and a divergence from training error) as $1/k$ increases? Which values of $k$ could you justify using for a model based on the accuracy metric?
 
-(c) Introduce some noise in the training and testing labels for both the training and testing data. You can do this by using `np.random.choice` to sample from the range of indices of each of the training and test set to determine which labels will be changed, and 
-`np.random.choice` again to pick the new label. After making this modification, repeat problem (b). How did adding label noise impact the
-shape of the testing and training error versus $1/k$ curves?
+(c) __Log Loss:__ Another metric for judging the quality of a classification model is called the log loss (also called the log score or cross entropy; lower is better). Log loss penalizes overconfident
+wrong predictions much more heavily than accuracy. The purpose of log loss is to estimate the probability of an unknown sample being in each class, rather than to predict just the most likely class. You can apply log loss using the `log_loss` function built into `sklearn` as follows:
+
+```{python}
+#| echo: true
+#| eval: false
+
+from sklearn.metrics import log_loss
+
+knn = KNeighborsClassifier(n_neighbors=4)
+knn.fit(zip_image_train, zip_class_train)
+
+zip_prob_train = knn.predict_proba(zip_image_train) # Notice how we are predicting probabilities here not the class
+loss_train = log_loss(zip_class_train, zip_prob_train, labels = knn.classes_)
+print(f'loss_train: {loss_train:.4f}')
+
+zip_prob_test = knn.predict_proba(zip_image_test)
+loss_test = log_loss(zip_class_test, zip_prob_test, labels = knn.classes_)
+print(f'loss_test: {loss_test:.4f}')
+
+
+```
+
+Repeat exercise (b) using `log_loss` instead of accuracy. Compare and contrast the two validation curves you generated and the optimal values of
+$k$ observed in each. It is said in Machine Learning that probability estimation is more difficult than classification. How does that manifest 
+with the values of $k$ observed in (b) and (c)?
 
 
 
+## Problem 2: Learning Curves
 
+(a) A learning curve shows how training and testing error evolve as the size of the dataset increases. Coupled with the validation curve,
+you can use a learning curve to understand what factors might be limiting your machine learning method. Write code (or a function) which finds the value of `k` with the lowest testing error given a subsample of the training set in problem 1. Then calculate the best `k` and the training and testing accuracy of the corresponding `kNN` model for a range of sizes of the training data set. Plot how the training and testing error vary with data set size, as well as the optimal value of $k$ (note: reporting the training error of the optimal `k` is slightly optimistic, as we will learn later in the semester). Do you see evidence that the testing error has stopped improving with increasing 
+data set size (hint: this is much easier to understand on a log-log plot). Suppose you are leading a data team tasked with decreasing 
+error further. Discuss which of the following options might help and their pros and cons: (1) spending resources to acquire a larger data set, (2) using a more complex model/engineering more complex features, (3) searching for alternative data related to the images that provides additional information not contained in the images.
+
+(b) A very different dataset from the `zip` digit data is the Abalone dataset. This dataset originated from a fisheries study and later
+became a benchmark dataset in the [UCI machine learning repository]( https://archive.ics.uci.edu/dataset/1/abalone). The dataset contains information on the physiological characteristics of 
+abalone (a type of shellfish) and their shells, with variables that include their `sex`, `length` (also `diameter` and `height`), `weight` (of the different components), and `rings` (which corresponds to age). The code below downloads this data and trains a `kNN` model to predict sex.
+Individuals fall into three categories, male (`M`), female (`F`), and indeterminable/immature (`I`).
+
+```{python}
+#| echo: true
+#| eval: false
+
+from sklearn.datasets import fetch_openml
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+abalone = fetch_openml(name="abalone", version=1, as_frame=True, parser="auto").frame
+abalone_features = abalone.drop(columns=["Sex", "Class_number_of_rings"])
+abalone_sex = abalone["Sex"]
+
+X_train, X_test, y_train, y_test = train_test_split(abalone_features, abalone_sex, test_size=0.5, stratify=abalone_sex, random_state=1001)
+
+# It is a good idea to standardize features when using kNN. It doesn't really matter here very much but I do it anyways
+
+knn = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=4))
+knn.fit(X_train, y_train)
+
+sex_pred_train = knn.predict(X_train)
+accuracy = accuracy_score(y_train, sex_pred_train)
+print(f'Accuracy: {accuracy:.4f}')
+
+sex_pred_test = knn.predict(X_test)
+accuracy = accuracy_score(y_test, sex_pred_test)
+print(f'Accuracy: {accuracy:.4f}')
+
+
+```
+
+Compute the learning curve for the abalone sex prediction problem. Contrast it to the learning curve calculated in part (a). If you were
+asked to improve prediction for this problem, which of the options would be most promising among (1) buy more data, (2) use a more complex model/engineer new features, (3) find alternative data with new information?
