@@ -46,7 +46,7 @@ np.random.seed(434901)
 
 - In regression, measures like mean square error:
 $$
-\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - g(\mathbf{x}_i)^2)
+\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - g(\mathbf{x}_i))^2
 $$
 - or $R^2:$
 $$
@@ -309,7 +309,7 @@ $$
 
 - When fitting a model $g$ to the data, there are two sources of error:
 $$
-E((g-y)^2) = E((g-f)^2) - \mathrm{var}(\epsilon)
+E((g-y)^2) = E((g-f)^2) + \mathrm{var}(\epsilon)
 $$
 - The $E((g-f)^2)$ term is the _reducible_ error
 - Total error is a sum of _reducible_ and _irreducible_ errors
@@ -576,6 +576,25 @@ pcheb = plot_chebyshev_fit(xvec, yvec, full_xvec, full_yvec, degree=50,linewidth
 
 ```
 
+## What Complexity to Pick?
+
+_Answering this is one of the main subjects of this class!_
+
+1. Experimental Answers- save some data for testing and use that to estimate out of sample performance
+  - Cross-Validation, Train-Test Split, bootstrapping
+
+## What Complexity to Pick?
+
+_Answering this is one of the main subjects of this class!_
+
+2. Theoretical Answers- For statistical models there are _information criteria_ that tell us how to balance in-sample accuracy versus model complexity
+  - AIC, BIC, WAIC, Mallow's P, etc
+
+
+
+
+
+
 ## Classification Accuracy
 
 - Switch gears to classification
@@ -590,7 +609,7 @@ $$
 \mathrm{Error} = \frac{1}{n}\sum_{i=1}^n I(g(\mathbf{x}_i)\neq y_i)
 $$
 
-- Here $I=1$ if $g(\mathbf{x_i}\neq y_i)$ and $I=0$ if $g(\mathbf{x}_i=y_i)$
+- Here $I=1$ if $g(\mathbf{x}_i)\neq y_i$ and $I=0$ if $g(\mathbf{x}_i)=y_i$
 - This counts the number of times the prediction is the wrong class
 
 ## Bayes Classifier
@@ -631,7 +650,7 @@ $$
 
 - Very simple _non-parametric_ classification model is called _k-nearest-neighbors_
 $$
-g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})} I(y\neq y_i)
+g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})} I(y = y_i)
 $$
 - Look at the $k$ nearest points to $\mathbf{x}$
 - Pick the $y$ occuring most often 
@@ -686,5 +705,97 @@ $$
 ![ISL](knn-5.png){width="60%"}
 :::
 
+
+## kNN Bias-Variance Example
+
+- Consider this general classification problem:
+
+![](bayes_knn.png)
+
+- Probability that $y=1$ proportional to distance from boundary
+
+
+## kNN Bias-Variance Example
+
+- When number of points is small
+
+::: {.r-stack}
+![](knn_rules_k1_n100.png)
+
+![](knn_rules_kopt_n100.png){.fragment}
+
+![](knn_rules_k30_n100.png){.fragment}
+
+:::
+
+## kNN Bias-Variance Example
+
+- When number of points is small
+
+![](bias_variance_n100.png)
+
+## kNN Bias-Variance
+
+- When number of points is moderate
+
+::: {.r-stack}
+![](knn_rules_k1_n1000.png)
+
+![](knn_rules_kopt_n1000.png){.fragment}
+
+![](knn_rules_k300_n1000.png){.fragment}
+
+:::
+
+
+## kNN Bias-Variance Example
+
+- When number of points is moderate
+
+![](bias_variance_n1000.png)
+
+
+## kNN Bias-Variance Example
+
+- When number of points is large
+
+::: {.r-stack}
+![](knn_rules_k1_n10000.png)
+
+![](knn_rules_kopt_n10000.png){.fragment}
+
+![](knn_rules_k3000_n10000.png){.fragment}
+
+:::
+
+
+## kNN Bias-Variance Example
+
+- When number of points is large
+
+![](bias_variance_n10000.png)
+
+
+## Did Complexity Increase With Data?
+
+| $n$    | $k_{\mathrm{opt}}$ |
+|--------|-----|
+| $100$  | $15$  |
+| $1000$ | $23$  |
+| $10000$| $145$ |
+
+- Looks like $k$ went up.....
+
+
+## Did Complexity Increase With Data?
+
+| $n$     | $k_{\mathrm{opt}}$   | $r_{\mathrm{eff}} = \sqrt{k/(\pi n)}$ |
+|---------|-------|------------------------|
+| $100$   | $15$  | $0.21$            |
+| $1000$  | $23$  | $0.086$           |
+| $10000$ | $145$ | $0.068$           |
+
+- Best measure of "complexity" here actually goes up
+- Expected radius of circle that a test point "sees"
 
 ## Thanks!
