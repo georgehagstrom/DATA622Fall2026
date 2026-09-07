@@ -365,7 +365,7 @@ George I. Hagstrom
 <h2>Assessing Model Accuracy</h2>
 <ul>
 <li>In regression, measures like mean square error: <span class="math display">\[
-\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - g(\mathbf{x}_i)^2)
+\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - g(\mathbf{x}_i))^2
 \]</span></li>
 <li>or <span class="math inline">\(R^2:\)</span> <span class="math display">\[
 R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
@@ -402,7 +402,7 @@ R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
 <li>Linear Model: <span class="math inline">\(g(x) = g_0 + g_1 x\)</span></li>
 </ul>
 <div style="width: 50%; margin: auto;">
-<div id="2d74226d" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="4">
+<div id="97522be8" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -419,7 +419,7 @@ R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
 <li>Quadratic Model: <span class="math inline">\(g(x) = g_0 + g_1 x + g_2 x^2\)</span></li>
 </ol>
 <div style="width: 50%; margin: auto;">
-<div id="e7eaf41e" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="5">
+<div id="69873c99" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -436,7 +436,7 @@ R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
 <li>5th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^5 g_i x^i\)</span></li>
 </ul>
 <div style="width: 50%; margin: auto;">
-<div id="9022a117" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="6">
+<div id="4db946cb" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -453,7 +453,7 @@ R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
 <li>10th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{10} g_i x^i\)</span></li>
 </ul>
 <div style="width: 50%; margin: auto;">
-<div id="65eccf26" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="7">
+<div id="1c390557" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -470,7 +470,7 @@ R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
 <li>25th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{25} g_i x^i\)</span></li>
 </ul>
 <div style="width: 50%; margin: auto;">
-<div id="8151f890" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="8">
+<div id="3f135310" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -487,7 +487,7 @@ R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
 <li>50th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{50} g_i x^i\)</span></li>
 </ul>
 <div style="width: 50%; margin: auto;">
-<div id="a4551dfd" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="9">
+<div id="4965a094" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -512,7 +512,7 @@ R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
 <li>Generalization Gap at high complexity</li>
 </ul>
 <div style="width: 60%; margin: auto;">
-<div id="88d20cd2" class="cell" data-fig-height="9" data-fig-width="12" data-execution_count="10">
+<div id="ead5e947" class="cell" data-fig-height="9" data-fig-width="12" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -541,7 +541,7 @@ y = f(\mathbf{x}) + \epsilon
 <h2>Reducible Error</h2>
 <ul>
 <li>When fitting a model <span class="math inline">\(g\)</span> to the data, there are two sources of error: <span class="math display">\[
-E((g-y)^2) = E((g-f)^2) - \mathrm{var}(\epsilon)
+E((g-y)^2) = E((g-f)^2) + \mathrm{var}(\epsilon)
 \]</span></li>
 <li>The <span class="math inline">\(E((g-f)^2)\)</span> term is the <em>reducible</em> error</li>
 <li>Total error is a sum of <em>reducible</em> and <em>irreducible</em> errors</li>
@@ -646,6 +646,26 @@ E((g-y)^2) = E((g-f)^2) - \mathrm{var}(\epsilon)
 </div>
 
 <img data-src="meetup-2_files/figure-revealjs/cell-17-output-1.png" class="r-stretch"></section>
+<section id="what-complexity-to-pick-2" class="slide level2">
+<h2>What Complexity to Pick?</h2>
+<p><em>Answering this is one of the main subjects of this class!</em></p>
+<ol type="1">
+<li>Experimental Answers- save some data for testing and use that to estimate out of sample performance</li>
+</ol>
+<ul>
+<li>Cross-Validation, Train-Test Split, bootstrapping</li>
+</ul>
+</section>
+<section id="what-complexity-to-pick-3" class="slide level2">
+<h2>What Complexity to Pick?</h2>
+<p><em>Answering this is one of the main subjects of this class!</em></p>
+<ol start="2" type="1">
+<li>Theoretical Answers- For statistical models there are <em>information criteria</em> that tell us how to balance in-sample accuracy versus model complexity</li>
+</ol>
+<ul>
+<li>AIC, BIC, WAIC, Mallow’s P, etc</li>
+</ul>
+</section>
 <section id="classification-accuracy" class="slide level2">
 <h2>Classification Accuracy</h2>
 <ul>
@@ -660,7 +680,7 @@ E((g-y)^2) = E((g-f)^2) - \mathrm{var}(\epsilon)
 \mathrm{Error} = \frac{1}{n}\sum_{i=1}^n I(g(\mathbf{x}_i)\neq y_i)
 \]</span></p>
 <ul>
-<li>Here <span class="math inline">\(I=1\)</span> if <span class="math inline">\(g(\mathbf{x_i}\neq y_i)\)</span> and <span class="math inline">\(I=0\)</span> if <span class="math inline">\(g(\mathbf{x}_i=y_i)\)</span></li>
+<li>Here <span class="math inline">\(I=1\)</span> if <span class="math inline">\(g(\mathbf{x}_i)\neq y_i\)</span> and <span class="math inline">\(I=0\)</span> if <span class="math inline">\(g(\mathbf{x}_i)=y_i\)</span></li>
 <li>This counts the number of times the prediction is the wrong class</li>
 </ul>
 </section>
@@ -703,7 +723,7 @@ y_{\mathrm{Bayes}}(\mathbf{x}) = \mathrm{argmax}_{y} P(y|\mathbf{x})
 <h2>kNN Model</h2>
 <ul>
 <li>Very simple <em>non-parametric</em> classification model is called <em>k-nearest-neighbors</em> <span class="math display">\[
-g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})} I(y\neq y_i)
+g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})} I(y = y_i)
 \]</span></li>
 <li>Look at the <span class="math inline">\(k\)</span> nearest points to <span class="math inline">\(\mathbf{x}\)</span></li>
 <li>Pick the <span class="math inline">\(y\)</span> occuring most often</li>
@@ -788,6 +808,136 @@ g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})}
 </figure>
 </div>
 </div>
+</section>
+<section id="knn-bias-variance-example" class="slide level2">
+<h2>kNN Bias-Variance Example</h2>
+<ul>
+<li>Consider this general classification problem:</li>
+</ul>
+
+<img data-src="bayes_knn.png" class="r-stretch"><ul>
+<li>Probability that <span class="math inline">\(y=1\)</span> proportional to distance from boundary</li>
+</ul>
+</section>
+<section id="knn-bias-variance-example-1" class="slide level2">
+<h2>kNN Bias-Variance Example</h2>
+<ul>
+<li>When number of points is small</li>
+</ul>
+<div class="r-stack">
+<p><img data-src="knn_rules_k1_n100.png"></p>
+<p><img data-src="knn_rules_kopt_n100.png" class="fragment"></p>
+<p><img data-src="knn_rules_k30_n100.png" class="fragment"></p>
+</div>
+</section>
+<section id="knn-bias-variance-example-2" class="slide level2">
+<h2>kNN Bias-Variance Example</h2>
+<ul>
+<li>When number of points is small</li>
+</ul>
+
+<img data-src="bias_variance_n100.png" class="r-stretch"></section>
+<section id="knn-bias-variance" class="slide level2">
+<h2>kNN Bias-Variance</h2>
+<ul>
+<li>When number of points is moderate</li>
+</ul>
+<div class="r-stack">
+<p><img data-src="knn_rules_k1_n1000.png"></p>
+<p><img data-src="knn_rules_kopt_n1000.png" class="fragment"></p>
+<p><img data-src="knn_rules_k300_n1000.png" class="fragment"></p>
+</div>
+</section>
+<section id="knn-bias-variance-example-3" class="slide level2">
+<h2>kNN Bias-Variance Example</h2>
+<ul>
+<li>When number of points is moderate</li>
+</ul>
+
+<img data-src="bias_variance_n1000.png" class="r-stretch"></section>
+<section id="knn-bias-variance-example-4" class="slide level2">
+<h2>kNN Bias-Variance Example</h2>
+<ul>
+<li>When number of points is large</li>
+</ul>
+<div class="r-stack">
+<p><img data-src="knn_rules_k1_n10000.png"></p>
+<p><img data-src="knn_rules_kopt_n10000.png" class="fragment"></p>
+<p><img data-src="knn_rules_k3000_n10000.png" class="fragment"></p>
+</div>
+</section>
+<section id="knn-bias-variance-example-5" class="slide level2">
+<h2>kNN Bias-Variance Example</h2>
+<ul>
+<li>When number of points is large</li>
+</ul>
+
+<img data-src="bias_variance_n10000.png" class="r-stretch"></section>
+<section id="did-complexity-increase-with-data" class="slide level2">
+<h2>Did Complexity Increase With Data?</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th><span class="math inline">\(k_{\mathrm{opt}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(100\)</span></td>
+<td><span class="math inline">\(15\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1000\)</span></td>
+<td><span class="math inline">\(23\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10000\)</span></td>
+<td><span class="math inline">\(145\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Looks like <span class="math inline">\(k\)</span> went up…..</li>
+</ul>
+</section>
+<section id="did-complexity-increase-with-data-1" class="slide level2">
+<h2>Did Complexity Increase With Data?</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 17%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th><span class="math inline">\(k_{\mathrm{opt}}\)</span></th>
+<th><span class="math inline">\(r_{\mathrm{eff}} = \sqrt{k/(\pi n)}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(100\)</span></td>
+<td><span class="math inline">\(15\)</span></td>
+<td><span class="math inline">\(0.21\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(1000\)</span></td>
+<td><span class="math inline">\(23\)</span></td>
+<td><span class="math inline">\(0.086\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10000\)</span></td>
+<td><span class="math inline">\(145\)</span></td>
+<td><span class="math inline">\(0.068\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Best measure of “complexity” here actually goes up</li>
+<li>Expected radius of circle that a test point “sees”</li>
+</ul>
 </section>
 <section id="thanks" class="slide level2">
 <h2>Thanks!</h2>

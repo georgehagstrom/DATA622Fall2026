@@ -25,7 +25,7 @@
     "href": "meetups/meetup-2/meetup-2.html#assessing-model-accuracy",
     "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
     "section": "Assessing Model Accuracy",
-    "text": "Assessing Model Accuracy\n\nIn regression, measures like mean square error: \\[\n\\mathrm{MSE} = \\frac{1}{n}\\sum_{i=1}^n (y_i - g(\\mathbf{x}_i)^2)\n\\]\nor \\(R^2:\\) \\[\nR^2 = 1 - \\frac{\\mathrm{MSE}}{\\mathrm{var(y)}}\n\\] Are used to assess model accuracy"
+    "text": "Assessing Model Accuracy\n\nIn regression, measures like mean square error: \\[\n\\mathrm{MSE} = \\frac{1}{n}\\sum_{i=1}^n (y_i - g(\\mathbf{x}_i))^2\n\\]\nor \\(R^2:\\) \\[\nR^2 = 1 - \\frac{\\mathrm{MSE}}{\\mathrm{var(y)}}\n\\] Are used to assess model accuracy"
   },
   {
     "objectID": "meetups/meetup-2/meetup-2.html#question",
@@ -116,7 +116,7 @@
     "href": "meetups/meetup-2/meetup-2.html#reducible-error",
     "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
     "section": "Reducible Error",
-    "text": "Reducible Error\n\nWhen fitting a model \\(g\\) to the data, there are two sources of error: \\[\nE((g-y)^2) = E((g-f)^2) - \\mathrm{var}(\\epsilon)\n\\]\nThe \\(E((g-f)^2)\\) term is the reducible error\nTotal error is a sum of reducible and irreducible errors"
+    "text": "Reducible Error\n\nWhen fitting a model \\(g\\) to the data, there are two sources of error: \\[\nE((g-y)^2) = E((g-f)^2) + \\mathrm{var}(\\epsilon)\n\\]\nThe \\(E((g-f)^2)\\) term is the reducible error\nTotal error is a sum of reducible and irreducible errors"
   },
   {
     "objectID": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit",
@@ -203,6 +203,20 @@
     "text": "What Complexity to Pick?\n\nModel complexity dictated by your data more so than the complexity of the phenomenon!"
   },
   {
+    "objectID": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick-2",
+    "href": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick-2",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "What Complexity to Pick?",
+    "text": "What Complexity to Pick?\nAnswering this is one of the main subjects of this class!\n\nExperimental Answers- save some data for testing and use that to estimate out of sample performance\n\n\nCross-Validation, Train-Test Split, bootstrapping"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick-3",
+    "href": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick-3",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "What Complexity to Pick?",
+    "text": "What Complexity to Pick?\nAnswering this is one of the main subjects of this class!\n\nTheoretical Answers- For statistical models there are information criteria that tell us how to balance in-sample accuracy versus model complexity\n\n\nAIC, BIC, WAIC, Mallow’s P, etc"
+  },
+  {
     "objectID": "meetups/meetup-2/meetup-2.html#classification-accuracy",
     "href": "meetups/meetup-2/meetup-2.html#classification-accuracy",
     "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
@@ -214,7 +228,7 @@
     "href": "meetups/meetup-2/meetup-2.html#classification-accuracy-1",
     "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
     "section": "Classification Accuracy",
-    "text": "Classification Accuracy\n\\[\n\\mathrm{Error} = \\frac{1}{n}\\sum_{i=1}^n I(g(\\mathbf{x}_i)\\neq y_i)\n\\]\n\nHere \\(I=1\\) if \\(g(\\mathbf{x_i}\\neq y_i)\\) and \\(I=0\\) if \\(g(\\mathbf{x}_i=y_i)\\)\nThis counts the number of times the prediction is the wrong class"
+    "text": "Classification Accuracy\n\\[\n\\mathrm{Error} = \\frac{1}{n}\\sum_{i=1}^n I(g(\\mathbf{x}_i)\\neq y_i)\n\\]\n\nHere \\(I=1\\) if \\(g(\\mathbf{x}_i)\\neq y_i\\) and \\(I=0\\) if \\(g(\\mathbf{x}_i)=y_i\\)\nThis counts the number of times the prediction is the wrong class"
   },
   {
     "objectID": "meetups/meetup-2/meetup-2.html#bayes-classifier",
@@ -242,7 +256,7 @@
     "href": "meetups/meetup-2/meetup-2.html#knn-model",
     "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
     "section": "kNN Model",
-    "text": "kNN Model\n\nVery simple non-parametric classification model is called k-nearest-neighbors \\[\ng(\\mathbf{x})_{kNN} = \\mathrm{argmax}_{y}\\sum_{\\mathbf{x}_i \\in N_k(\\mathbf{x})} I(y\\neq y_i)\n\\]\nLook at the \\(k\\) nearest points to \\(\\mathbf{x}\\)\nPick the \\(y\\) occuring most often"
+    "text": "kNN Model\n\nVery simple non-parametric classification model is called k-nearest-neighbors \\[\ng(\\mathbf{x})_{kNN} = \\mathrm{argmax}_{y}\\sum_{\\mathbf{x}_i \\in N_k(\\mathbf{x})} I(y = y_i)\n\\]\nLook at the \\(k\\) nearest points to \\(\\mathbf{x}\\)\nPick the \\(y\\) occuring most often"
   },
   {
     "objectID": "meetups/meetup-2/meetup-2.html#knn-model-1",
@@ -285,6 +299,69 @@
     "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
     "section": "kNN Model Generalization Error",
     "text": "kNN Model Generalization Error\n\n\\(1/k\\) corresponds to model complexity\nOptimal out of sample accuracy at intermediate \\(k\\)\n\n\n\n\n\nISL"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example",
+    "href": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Bias-Variance Example",
+    "text": "kNN Bias-Variance Example\n\nConsider this general classification problem:\n\n\n\nProbability that \\(y=1\\) proportional to distance from boundary"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-1",
+    "href": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Bias-Variance Example",
+    "text": "kNN Bias-Variance Example\n\nWhen number of points is small"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-2",
+    "href": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-2",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Bias-Variance Example",
+    "text": "kNN Bias-Variance Example\n\nWhen number of points is small"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-bias-variance",
+    "href": "meetups/meetup-2/meetup-2.html#knn-bias-variance",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Bias-Variance",
+    "text": "kNN Bias-Variance\n\nWhen number of points is moderate"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-3",
+    "href": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-3",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Bias-Variance Example",
+    "text": "kNN Bias-Variance Example\n\nWhen number of points is moderate"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-4",
+    "href": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-4",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Bias-Variance Example",
+    "text": "kNN Bias-Variance Example\n\nWhen number of points is large"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-5",
+    "href": "meetups/meetup-2/meetup-2.html#knn-bias-variance-example-5",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Bias-Variance Example",
+    "text": "kNN Bias-Variance Example\n\nWhen number of points is large"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#did-complexity-increase-with-data",
+    "href": "meetups/meetup-2/meetup-2.html#did-complexity-increase-with-data",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Did Complexity Increase With Data?",
+    "text": "Did Complexity Increase With Data?\n\n\n\n\\(n\\)\n\\(k_{\\mathrm{opt}}\\)\n\n\n\n\n\\(100\\)\n\\(15\\)\n\n\n\\(1000\\)\n\\(23\\)\n\n\n\\(10000\\)\n\\(145\\)\n\n\n\n\nLooks like \\(k\\) went up….."
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#did-complexity-increase-with-data-1",
+    "href": "meetups/meetup-2/meetup-2.html#did-complexity-increase-with-data-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Did Complexity Increase With Data?",
+    "text": "Did Complexity Increase With Data?\n\n\n\n\n\n\n\n\n\\(n\\)\n\\(k_{\\mathrm{opt}}\\)\n\\(r_{\\mathrm{eff}} = \\sqrt{k/(\\pi n)}\\)\n\n\n\n\n\\(100\\)\n\\(15\\)\n\\(0.21\\)\n\n\n\\(1000\\)\n\\(23\\)\n\\(0.086\\)\n\n\n\\(10000\\)\n\\(145\\)\n\\(0.068\\)\n\n\n\n\nBest measure of “complexity” here actually goes up\nExpected radius of circle that a test point “sees”"
   },
   {
     "objectID": "meetups/meetup-2/meetup-2.html#thanks",
@@ -554,7 +631,7 @@
     "href": "course/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\n\n\nLab 1\n\n\nSep 14\nThe Linear Model\n\n\nLab 2\n\n\nSep 21\nClassification\n\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\n\nLab 1\n\n\nSep 14\nThe Linear Model\n\n\nLab 2\n\n\nSep 21\nClassification\n\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -565,7 +642,7 @@
     "href": "course/schedule.html#meetup-link",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\n\n\nLab 1\n\n\nSep 14\nThe Linear Model\n\n\nLab 2\n\n\nSep 21\nClassification\n\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\n\nLab 1\n\n\nSep 14\nThe Linear Model\n\n\nLab 2\n\n\nSep 21\nClassification\n\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
