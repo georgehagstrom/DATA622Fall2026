@@ -1,0 +1,57 @@
+---
+title: Bank Marketing Data Dictionary
+format: html
+jupyter: data622
+---
+
+## Source
+
+This dataset originates from a study by Portuguese researchers aiming to 
+predict the outcome of calls that took place as part of a bank marketing campaign
+from 2008 to 2014:
+
+[A data-driven approach to predict the success of bank telemarketing](https://www.semanticscholar.org/paper/cab86052882d126d43f72108c6cb41b295cc8a9e)
+By Sérgio Moro, P. Cortez, P. Rita. 2014
+
+This paper was published in the journal _Decision Support Systems_
+
+Several versions of this dataset exist. Moro 2014 uses a private dataset with much 
+richer features for their analysis. Two simpler versions have been published on 
+the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/222/bank+marketing), where they serve as benchmarks in the machine learning community. For 
+this assignment, we are using the dataset in [bank_marketing_dataset.csv](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/bank_marketing_dataset.csv).
+
+This dataset combines some of the features found in the 'bank-full.csv' and 'bank-additional-full.csv' files on the UCI repo. In particular, it has all of the macroeconomic indicators present in 'bank-additional-full', the 'year', and the rest of the features are from
+'bank-full.csv'. 
+
+## Variables
+
+| Variable | Role | Type | Description |
+|----------|------|------|-------------|
+| age | Feature | Integer | Client age in years |
+| job | Feature | Categorical | Occupation type (admin, blue-collar, entrepreneur, housemaid, management, retired, self-employed, services, student, technician, unemployed, unknown) |
+| marital | Feature | Categorical | Marital status (married, divorced, single). Divorced includes widowed |
+| education | Feature | Categorical | Education level (primary, secondary, tertiary, unknown) |
+| default | Feature | Binary | Has credit in default? |
+| balance | Feature | Integer | Average yearly balance in euros |
+| housing | Feature | Binary | Has housing loan? |
+| loan | Feature | Binary | Has personal loan? |
+| contact | Feature | Categorical | Contact communication type (cellular, telephone, unknown) |
+| month | Feature | Categorical | Last contact month of year |
+| day | Feature | Integer | Day of call |
+| duration | Feature | Integer | Duration of marketing call |
+| campaign | Feature | Integer | Number of contacts during this campaign for this client |
+| pdays | Feature | Integer | Days since last contact from a previous campaign. -1 means not previously contacted |
+| previous | Feature | Integer | Number of contacts before this campaign for this client |
+| poutcome | Feature | Categorical | Outcome of previous marketing campaign (unknown, failure, other, success) |
+| month_numeric | Feature | Integer | Month of the call |
+| year     | Feature | Integer | Year of the call |
+| euribor3m | Feature | Numeric | [Euribor 3-month rate — daily indicator](https://www.euribor-rates.eu/en/current-euribor-rates/2/euribor-rate-3-months/) |
+| emp.var.rate | Feature | Numeric | Employment variation rate in Portugal, change in unemployment rate from one quarter to the next — quarterly indicator |
+| nr.employed | Feature | Numeric | Number of employees in Portugal — quarterly indicator (thousands) |
+| cons.price.idx | Feature | Numeric | Consumer price index in Portugal — monthly indicator |
+| cons.conf.idx | Feature | Numeric | Consumer confidence index in Portugal — monthly indicator |
+| y | Target | Binary | Has the client subscribed a term deposit? |
+
+
+
+

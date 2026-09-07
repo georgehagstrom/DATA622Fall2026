@@ -1,0 +1,99 @@
+---
+title: Earning Data Dictionary
+format: html
+jupyter: data622
+---
+
+## Source
+
+This dataset originates from the **Work, Family, and Well-Being in the United States, 1990** survey (ICPSR 6666), a national probability sample of U.S. households conducted by Catherine E. Ross at the University of Illinois. The survey measured the effects of various social conditions on individuals's physical and mental health. 
+
+
+## Variables
+
+
+#### `height` (numeric) 
+
+Height in inches, values above 83 inches are coded as `NA` 
+
+#### `weight` (integer)
+
+Weight in pounds without clothing. Missing values correspond to weights that were recorded 
+initially as exceeding 500 pounds and surveys where the weight was either not recorded or the responder said that they did not know their weight.
+
+#### `male` (Categorical variable coded as an integer.)
+
+Sex of respondent.  Coded as: 1 = Male, 0 = Female.
+
+#### `earn` (numeric)
+
+Personal income in dollars during 1989, before taxes. When available, exact earnings were used. When exact earnings
+were unavailable, survey participants were asked a series of questions to estimate their earnings and those estimates were used.
+
+#### `earnk` (numeric)
+
+Personal income in thousands of dollars (`earn` / 1000).
+
+#### `ethnicity` (categorical)
+
+Coded as: 'Hispanic', 'White', 'Black', or 'Other' 
+
+
+#### `education` (integer)
+
+Highest grade or year of school completed by the respondent. Ranges from 0 (None) to 18 (Graduate or professional degree). Values above 18 are set to `NA`, as are responses where the survey was blank or the respondent reported 
+Don't Know 
+
+#### `mother_education` (integer)
+
+Highest grade or year of school completed by the respondent's mother. Ranges from 0 (None) to 18 (Graduate or professional degree). Values above 18 are set to `NA`, as are responses where the survey was blank or the respondent reported 
+Don't Know 
+
+#### `father_education` (integer)
+
+Highest grade or year of school completed by the respondent's father. Ranges from 0 (None) to 18 (Graduate or professional degree). Values above 18 are set to `NA`, as are responses where the survey was blank or the respondent reported 
+Don't Know 
+
+#### `walk` (ordinal coded as integer)
+
+Frequency of taking a walk (includes walking to work/train station etc.). From Q.43a: "How often do you take a walk?" Coded as:
+
+        - 1 = Never, 
+        - 2 = Once a month or less, 
+        - 3 = About twice a month, 
+        - 4 = About once a week, 
+        - 5 = Twice a week, 
+        - 6 = Three times a week, 
+        - 7 = More than 3 times a week, 
+        - 8 = Every day. 
+
+#### `exercise` (ordinal coded as integer) 
+
+Frequency of strenuous exercise. "How often do you do strenuous exercise such as running, basketball, aerobics, tennis, swimming, biking, and so on?" Coded as: 
+
+        - 1 = Never, 
+        - 2 = Once a month or less, 
+        - 3 = About twice a month, 
+        - 4 = About once a week, 
+        - 5 = Twice a week, 
+        - 6 = Three times a week, 
+        - 7 = More than 3 times a week.
+
+#### `smokenow` (categorical coded as integer)
+
+Current smoking status. "Do you currently smoke 7 or more cigarettes a week?" Coded as: 1 = Yes, 2 = No.
+
+#### `tense` (integer)
+
+Number of days felt tense or anxious in the past 7 days. 
+
+#### `angry` (integer)
+
+Number of days felt angry in the past 7 days. Ranges from 0 to 7. 
+
+#### `age` (integer)
+
+Age of respondent in 1990 in years
+
+
+

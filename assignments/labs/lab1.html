@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA 622: Lab 1: Bias Variance Trade-Off – DATA 622 Fall 2026</title>
+<title>DATA 622: Lab 1: Bias Variance Trade-Off Using kNN – DATA 622 Fall 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="DATA 622: Lab 1: Bias Variance Trade-Off – DATA 622 Fall 2026">
+<meta property="og:title" content="DATA 622: Lab 1: Bias Variance Trade-Off Using kNN – DATA 622 Fall 2026">
 <meta property="og:description" content="DATA 622 - Machine Learning and Big Data - CUNY School of Professional Studies">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
 </head>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">DATA 622: Lab 1: Bias Variance Trade-Off</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">DATA 622: Lab 1: Bias Variance Trade-Off Using kNN</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -391,7 +391,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DATA 622: Lab 1: Bias Variance Trade-Off</h1>
+<h1 class="title">DATA 622: Lab 1: Bias Variance Trade-Off Using kNN</h1>
 </div>
 
 
@@ -410,29 +410,16 @@ window.Quarto = {
 
 <section id="instructions" class="level2">
 <h2 class="anchored" data-anchor-id="instructions">Instructions:</h2>
-<p>Complete this assignment by answering the following questions using code, text descriptions, and mathematics in a quarto markdown document. Render your .qmd to a pdf and submit both the qmd and pdf files on brightspace.</p>
-<p>The purpose of this assignment is for you to review basic data manipulation and plotting in python, make sure that you have working software tools to complete the assignment, and learn a little bit about using sci-kit learn to explore the bias-variance tradeoff.</p>
+<p>Complete this assignment by answering the following questions using code, text descriptions, and mathematics in a quarto markdown document. Render your .qmd to a pdf and submit both the qmd and pdf files on brightspace. Treat this submission as if it were a report that you were submitting at a workplace to a supervisor.</p>
 </section>
-<section id="problem-1-exploring-the-auto-data-set" class="level2">
-<h2 class="anchored" data-anchor-id="problem-1-exploring-the-auto-data-set">Problem 1: Exploring the <code>Auto</code> data set</h2>
-<p>This exercise involves the <code>Auto</code> data set studied in the interactive lab in chapter 2 of <code>ISLP</code>. Make sure that the missing values have been removed from the data.</p>
-<ol type="a">
-<li><p>Which of the predictors are quantitative, and which are qualitative?</p></li>
-<li><p>What is the range of each quantitative predictor? You can answer this using the min() and max() methods in numpy.</p></li>
-<li><p>What is the mean and standard deviation of each quantitative predictor?</p></li>
-<li><p>Now remove the 10th through 85th observations. What is the range, mean, and standard deviation of each predictor in the subset of the data that remains?</p></li>
-<li><p>Using the full data set, investigate the predictors graphically, using scatterplots or other tools of your choice. Create some plots highlighting the relationships among the predictors. Comment on your findings.</p></li>
-<li><p>Suppose that we wish to predict gas mileage (mpg) on the basis of the other variables. Do your plots suggest that any of the other variables might be useful in predicting mpg? Justify your answer.</p></li>
-</ol>
-</section>
-<section id="problem-2-knn-classification-of-the-zip-code-digit-data" class="level2">
-<h2 class="anchored" data-anchor-id="problem-2-knn-classification-of-the-zip-code-digit-data">Problem 2: <code>kNN</code> Classification of the ZIP code digit data</h2>
+<section id="problem-1-knn-classification-of-the-zip-code-digit-data" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-knn-classification-of-the-zip-code-digit-data">Problem 1: <code>kNN</code> Classification of the ZIP code digit data</h2>
 <p>In order to complete this problem you will need to download <a href="https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/zip.train"><code>zip.train</code></a> and <a href="https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/zip.test"><code>zip.test</code></a> from the course github page. These datasets contain images of hand-drawn digits. We will be experimenting with <code>kNN</code> classification and factors impacting the bias-variance trade-off, and this will also be chance to practice using <code>scikit-learn</code>.</p>
 <ol type="a">
-<li><p>Download and load the training and test data sets using pandas. Make sure to load all of the data (there is no header) The zeroth column corresponds to the class label, a digit from 0-9, and the columns 1 to 256 correspond to a grayscale value from -1 to 1. Select the first entry in the training set, resize it to 16x16, and plot the image (you can use <code>plt.imshow()</code>).</p></li>
-<li><p>The following code imports the <code>kNN</code> classification function from <code>scikit-learn</code> as well as an accuracy function, trains a <code>kNN</code> classifier, and tests its accuracy on hypothetical training and testing data:</p></li>
+<li><p><strong>Look at the data</strong>: Download and load the training and test data sets using pandas. Make sure to load all of the data (there is no header). The zeroth column corresponds to the class label, a digit from 0-9, and the columns 1 to 256 correspond to a grayscale value from -1 to 1. Select the first entry in the training set, resize it to 16x16, and plot the image (you can use <code>plt.imshow()</code>).</p></li>
+<li><p><strong>Validation Curves</strong>: The following code imports the <code>kNN</code> classification function from <code>scikit-learn</code> as well as an accuracy function, trains a <code>kNN</code> classifier, and tests its accuracy on hypothetical training and testing data:</p></li>
 </ol>
-<div id="ea11a6c7" class="cell" data-execution_count="1">
+<div id="f0e449c3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -450,10 +437,58 @@ window.Quarto = {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Where the dataframes contain just the training and testing images and class.</p>
-<p>Adapt this code to determine if the we can observe the bias variance trade-off for different numbers of neighbors <span class="math inline">\(k\)</span>. Specifically, recreate plot 2.17 (pay attention to the x-axis scale and use the same choice as in the book) which shows test and train classification accuracy as a function of <span class="math inline">\(1/k\)</span>. Select a range of <span class="math inline">\(k\)</span> from 1 to 300. You do not have to plot every single <span class="math inline">\(k\)</span> value in this range if the problem is computationally intensive on your machine. Do you observe a <span class="math inline">\(U\)</span>-shaped curve in the testing error (and a divergence from training error) as <span class="math inline">\(1/k\)</span> increases?</p>
+<p>Adapt this code to determine if we can observe the bias variance trade-off for different numbers of neighbors <span class="math inline">\(k\)</span>. Specifically, recreate Figure 2.17 from Introduction to Statistical Learning (pay attention to the x-axis scale and use the same choice as in the book) which shows test and train classification accuracy as a function of <span class="math inline">\(1/k\)</span>. Select a range of <span class="math inline">\(k\)</span> from 1 to 300. You do not have to plot every single <span class="math inline">\(k\)</span> value in this range if the problem is computationally intensive on your machine. Do you observe a <span class="math inline">\(U\)</span>-shaped curve in the testing error (and a divergence from training error) as <span class="math inline">\(1/k\)</span> increases? Which values of <span class="math inline">\(k\)</span> could you justify using for a model based on the accuracy metric?</p>
 <ol start="3" type="a">
-<li>Introduce some noise in the training and testing labels for both the training and testing data. You can do this by using <code>np.random.choice</code> to sample from the range of indices of each of the training and test set to determine which labels will be changed, and <code>np.random.choice</code> again to pick the new label. After making this modification, repeat problem (b). How did adding label noise impact the shape of the testing and training error versus <span class="math inline">\(1/k\)</span> curves?</li>
+<li><strong>Log Loss:</strong> Another metric for judging the quality of a classification model is called the log loss (also called the log score or cross entropy; lower is better). Log loss penalizes overconfident wrong predictions much more heavily than accuracy. The purpose of log loss is to estimate the probability of an unknown sample being in each class, rather than to predict just the most likely class. You can apply log loss using the <code>log_loss</code> function built into <code>sklearn</code> as follows:</li>
 </ol>
+<div id="d9a87718" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> log_loss</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>knn.fit(zip_image_train, zip_class_train)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>zip_prob_train <span class="op">=</span> knn.predict_proba(zip_image_train) <span class="co"># Notice how we are predicting probabilities here not the class</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>loss_train <span class="op">=</span> log_loss(zip_class_train, zip_prob_train, labels <span class="op">=</span> knn.classes_)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'loss_train: </span><span class="sc">{</span>loss_train<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>zip_prob_test <span class="op">=</span> knn.predict_proba(zip_image_test)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>loss_test <span class="op">=</span> log_loss(zip_class_test, zip_prob_test, labels <span class="op">=</span> knn.classes_)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'loss_test: </span><span class="sc">{</span>loss_test<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repeat exercise (b) using <code>log_loss</code> instead of accuracy. Compare and contrast the two validation curves you generated and the optimal values of <span class="math inline">\(k\)</span> observed in each. It is said in Machine Learning that probability estimation is more difficult than classification. How does that manifest with the values of <span class="math inline">\(k\)</span> observed in (b) and (c)?</p>
+</section>
+<section id="problem-2-learning-curves" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2-learning-curves">Problem 2: Learning Curves</h2>
+<ol type="a">
+<li><p>A learning curve shows how training and testing error evolve as the size of the dataset increases. Coupled with the validation curve, you can use a learning curve to understand what factors might be limiting your machine learning method. Write code (or a function) which finds the value of <code>k</code> with the lowest testing error given a subsample of the training set in problem 1. Then calculate the best <code>k</code> and the training and testing accuracy of the corresponding <code>kNN</code> model for a range of sizes of the training data set. Plot how the training and testing error vary with data set size, as well as the optimal value of <span class="math inline">\(k\)</span> (note: reporting the training error of the optimal <code>k</code> is slightly optimistic, as we will learn later in the semester). Do you see evidence that the testing error has stopped improving with increasing data set size (hint: this is much easier to understand on a log-log plot). Suppose you are leading a data team tasked with decreasing error further. Discuss which of the following options might help and their pros and cons: (1) spending resources to acquire a larger data set, (2) using a more complex model/engineering more complex features, (3) searching for alternative data related to the images that provides additional information not contained in the images.</p></li>
+<li><p>A very different dataset from the <code>zip</code> digit data is the Abalone dataset. This dataset originated from a fisheries study and later became a benchmark dataset in the <a href="https://archive.ics.uci.edu/dataset/1/abalone">UCI machine learning repository</a>. The dataset contains information on the physiological characteristics of abalone (a type of shellfish) and their shells, with variables that include their <code>sex</code>, <code>length</code> (also <code>diameter</code> and <code>height</code>), <code>weight</code> (of the different components), and <code>rings</code> (which corresponds to age). The code below downloads this data and trains a <code>kNN</code> model to predict sex. Individuals fall into three categories, male (<code>M</code>), female (<code>F</code>), and indeterminable/immature (<code>I</code>).</p></li>
+</ol>
+<div id="8861ef94" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_openml</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>abalone <span class="op">=</span> fetch_openml(name<span class="op">=</span><span class="st">"abalone"</span>, version<span class="op">=</span><span class="dv">1</span>, as_frame<span class="op">=</span><span class="va">True</span>, parser<span class="op">=</span><span class="st">"auto"</span>).frame</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>abalone_features <span class="op">=</span> abalone.drop(columns<span class="op">=</span>[<span class="st">"Sex"</span>, <span class="st">"Class_number_of_rings"</span>])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>abalone_sex <span class="op">=</span> abalone[<span class="st">"Sex"</span>]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(abalone_features, abalone_sex, test_size<span class="op">=</span><span class="fl">0.5</span>, stratify<span class="op">=</span>abalone_sex, random_state<span class="op">=</span><span class="dv">1001</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># It is a good idea to standardize features when using kNN. It doesn't really matter here very much but I do it anyways</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">4</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>knn.fit(X_train, y_train)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>sex_pred_train <span class="op">=</span> knn.predict(X_train)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_train, sex_pred_train)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>sex_pred_test <span class="op">=</span> knn.predict(X_test)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, sex_pred_test)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Compute the learning curve for the abalone sex prediction problem. Contrast it to the learning curve calculated in part (a). If you were asked to improve prediction for this problem, which of the options would be most promising among (1) buy more data, (2) use a more complex model/engineer new features, (3) find alternative data with new information?</p>
 
 
 </section>
