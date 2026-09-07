@@ -1,5 +1,299 @@
 [
   {
+    "objectID": "meetups/meetup-2/meetup-2.html#recap-the-learning-problem",
+    "href": "meetups/meetup-2/meetup-2.html#recap-the-learning-problem",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Recap: The Learning Problem",
+    "text": "Recap: The Learning Problem"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#goals",
+    "href": "meetups/meetup-2/meetup-2.html#goals",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Goals",
+    "text": "Goals\n\nModel Fit versus Generalization\nBias-Variance Tradeoff"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#weekly-tasks",
+    "href": "meetups/meetup-2/meetup-2.html#weekly-tasks",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Weekly Tasks",
+    "text": "Weekly Tasks\n\nLab 1 due Sunday at midnight\nReading: ISLP 2.2-2.4\nCoding Vignette: Chapter 2 of HOML in sklearn\nKeep posting ideas and finding team-mates in Slack"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#assessing-model-accuracy",
+    "href": "meetups/meetup-2/meetup-2.html#assessing-model-accuracy",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Assessing Model Accuracy",
+    "text": "Assessing Model Accuracy\n\nIn regression, measures like mean square error: \\[\n\\mathrm{MSE} = \\frac{1}{n}\\sum_{i=1}^n (y_i - g(\\mathbf{x}_i)^2)\n\\]\nor \\(R^2:\\) \\[\nR^2 = 1 - \\frac{\\mathrm{MSE}}{\\mathrm{var(y)}}\n\\] Are used to assess model accuracy"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#question",
+    "href": "meetups/meetup-2/meetup-2.html#question",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Question:",
+    "text": "Question:\nSuppose we have trained a model which has high accuracy on the training data. Are we done?\n\nBut what we really care about is whether we can extrapolate assessed accuracy to unseen examples"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#generalization",
+    "href": "meetups/meetup-2/meetup-2.html#generalization",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Generalization",
+    "text": "Generalization\nGeneralization is defined as the ability of a model to maintain its accuracy on observations outside of its training\n\n\nWhen a model has high in-sample accuracy, it is not guaranteed that it performs well out of sample"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#overfitting",
+    "href": "meetups/meetup-2/meetup-2.html#overfitting",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Overfitting",
+    "text": "Overfitting\n\nOverfitting is a phenomenon that causes bad generalization\nConsider the following dataset:"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity",
+    "href": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Models of Increasing Complexity",
+    "text": "Models of Increasing Complexity\n\nLinear Model: \\(g(x) = g_0 + g_1 x\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-1",
+    "href": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Models of Increasing Complexity",
+    "text": "Models of Increasing Complexity\n\nQuadratic Model: \\(g(x) = g_0 + g_1 x + g_2 x^2\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-2",
+    "href": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-2",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Models of Increasing Complexity",
+    "text": "Models of Increasing Complexity\n\n5th Degree fit: \\(g(x) = \\sum_{i=0}^5 g_i x^i\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-3",
+    "href": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-3",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Models of Increasing Complexity",
+    "text": "Models of Increasing Complexity\n\n10th Degree fit: \\(g(x) = \\sum_{i=0}^{10} g_i x^i\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-4",
+    "href": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-4",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Models of Increasing Complexity",
+    "text": "Models of Increasing Complexity\n\n25th Degree fit: \\(g(x) = \\sum_{i=0}^{25} g_i x^i\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-5",
+    "href": "meetups/meetup-2/meetup-2.html#models-of-increasing-complexity-5",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Models of Increasing Complexity",
+    "text": "Models of Increasing Complexity\n\n50th Degree fit: \\(g(x) = \\sum_{i=0}^{50} g_i x^i\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#overfitting-1",
+    "href": "meetups/meetup-2/meetup-2.html#overfitting-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Overfitting",
+    "text": "Overfitting\n\nAt low flexibility, in sample error was high\nAt mid flexibility, in sample error dropped, pattern approximated\nAt high flexibility, in sample error was zero"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#training-versus-testing-error",
+    "href": "meetups/meetup-2/meetup-2.html#training-versus-testing-error",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Training versus Testing Error",
+    "text": "Training versus Testing Error\n\nGeneralization Gap at high complexity"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#irreducible-error",
+    "href": "meetups/meetup-2/meetup-2.html#irreducible-error",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Irreducible Error",
+    "text": "Irreducible Error\n\nTarget function \\(f(\\mathbf{x})\\) encodes all the information about \\(y\\) contained in the variables \\(\\mathbf{x}\\)\n\n\\[\ny = f(\\mathbf{x}) + \\epsilon\n\\]\n\n\\(\\epsilon\\) is called the irreducible error\nIt accounts for other variables that are not measured and randomness\nWe have \\(E(\\epsilon) = 0\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#reducible-error",
+    "href": "meetups/meetup-2/meetup-2.html#reducible-error",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Reducible Error",
+    "text": "Reducible Error\n\nWhen fitting a model \\(g\\) to the data, there are two sources of error: \\[\nE((g-y)^2) = E((g-f)^2) - \\mathrm{var}(\\epsilon)\n\\]\nThe \\(E((g-f)^2)\\) term is the reducible error\nTotal error is a sum of reducible and irreducible errors"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit",
+    "href": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Why do complex models overfit?",
+    "text": "Why do complex models overfit?\n\nHypothetical scenario: study the performance of a model on a repeated learning task"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit-1",
+    "href": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Why do complex models overfit?",
+    "text": "Why do complex models overfit?\n\nEach fit will be compared to the target function \\(f\\)"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff",
+    "href": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Bias Variance Tradeoff",
+    "text": "Bias Variance Tradeoff\n\nCan look at the “average” fit model"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit-2",
+    "href": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit-2",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Why do complex models overfit?",
+    "text": "Why do complex models overfit?\n\nBias is the distance from average fit to target"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit-3",
+    "href": "meetups/meetup-2/meetup-2.html#why-do-complex-models-overfit-3",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Why do complex models overfit?",
+    "text": "Why do complex models overfit?\n\nVariance is how much individual fits vary from average"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff-1",
+    "href": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Bias-Variance Tradeoff",
+    "text": "Bias-Variance Tradeoff\n\nExpected out of sample error is sum of squared bias, variance, and irreducible error"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff-2",
+    "href": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff-2",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Bias-Variance Tradeoff",
+    "text": "Bias-Variance Tradeoff\n\nBias and variance trade-off"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff-3",
+    "href": "meetups/meetup-2/meetup-2.html#bias-variance-tradeoff-3",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Bias-Variance Tradeoff",
+    "text": "Bias-Variance Tradeoff\n\nBias and Variance Tradeoff"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#learning-curves",
+    "href": "meetups/meetup-2/meetup-2.html#learning-curves",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Learning Curves",
+    "text": "Learning Curves\n\nSimple versus complex models as amount of data increases"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#learning-curves-1",
+    "href": "meetups/meetup-2/meetup-2.html#learning-curves-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Learning Curves",
+    "text": "Learning Curves\n\nSimple versus complex models as amount of data increases"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick",
+    "href": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "What Complexity to Pick?",
+    "text": "What Complexity to Pick?\n\nModel complexity dictated by your data more so than the complexity of the phenomenon!"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick-1",
+    "href": "meetups/meetup-2/meetup-2.html#what-complexity-to-pick-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "What Complexity to Pick?",
+    "text": "What Complexity to Pick?\n\nModel complexity dictated by your data more so than the complexity of the phenomenon!"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#classification-accuracy",
+    "href": "meetups/meetup-2/meetup-2.html#classification-accuracy",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Classification Accuracy",
+    "text": "Classification Accuracy\n\nSwitch gears to classification\nNow \\(y\\) is a class label\npredictors \\(\\mathbf{x}\\) can still be continuous or discrete"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#classification-accuracy-1",
+    "href": "meetups/meetup-2/meetup-2.html#classification-accuracy-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Classification Accuracy",
+    "text": "Classification Accuracy\n\\[\n\\mathrm{Error} = \\frac{1}{n}\\sum_{i=1}^n I(g(\\mathbf{x}_i)\\neq y_i)\n\\]\n\nHere \\(I=1\\) if \\(g(\\mathbf{x_i}\\neq y_i)\\) and \\(I=0\\) if \\(g(\\mathbf{x}_i=y_i)\\)\nThis counts the number of times the prediction is the wrong class"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#bayes-classifier",
+    "href": "meetups/meetup-2/meetup-2.html#bayes-classifier",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Bayes Classifier",
+    "text": "Bayes Classifier\n\nConditional probability of \\(y\\) given \\(\\mathbf{x}\\): \\[\nP(y|\\mathbf{x})\n\\]\n\n\n\nThis is probability of class given characteristics\n\nProbability of default given balance, income\nProbability of hall of fame career given college stats\nProbability of disease given medical tests"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#bayes-classifier-1",
+    "href": "meetups/meetup-2/meetup-2.html#bayes-classifier-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Bayes Classifier",
+    "text": "Bayes Classifier\n\nBest prediction is to pick class with highest chance: \\[\ny_{\\mathrm{Bayes}}(\\mathbf{x}) = \\mathrm{argmax}_{y} P(y|\\mathbf{x})\n\\]\nCalled Bayes Classifier or Bayes Decision Rule"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#applying-bayes-decision-rule",
+    "href": "meetups/meetup-2/meetup-2.html#applying-bayes-decision-rule",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Applying Bayes Decision Rule",
+    "text": "Applying Bayes Decision Rule\n\nWe don’t generally know the probabilities\nClassification models often approximate them\nOften the decision rule is basically an extension of Bayes Decision assuming good probabilities"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-model",
+    "href": "meetups/meetup-2/meetup-2.html#knn-model",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Model",
+    "text": "kNN Model\n\nVery simple non-parametric classification model is called k-nearest-neighbors \\[\ng(\\mathbf{x})_{kNN} = \\mathrm{argmax}_{y}\\sum_{\\mathbf{x}_i \\in N_k(\\mathbf{x})} I(y\\neq y_i)\n\\]\nLook at the \\(k\\) nearest points to \\(\\mathbf{x}\\)\nPick the \\(y\\) occuring most often"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-model-1",
+    "href": "meetups/meetup-2/meetup-2.html#knn-model-1",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Model",
+    "text": "kNN Model\n\nHere is an example for \\(k=3\\).\n\n\n\n\n\nISL"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-question",
+    "href": "meetups/meetup-2/meetup-2.html#knn-question",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Question",
+    "text": "kNN Question\n\nWhat do you think happens when \\(k\\) is very small?\nWhat about when \\(k\\) is very big?"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-model-2",
+    "href": "meetups/meetup-2/meetup-2.html#knn-model-2",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Model",
+    "text": "kNN Model\n\nClassification problem with two classes\nBoundary is the border between 50% probability of blue\n\n\n\n\n\nISL"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-model-3",
+    "href": "meetups/meetup-2/meetup-2.html#knn-model-3",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Model",
+    "text": "kNN Model\n\nDecision boundary for \\(k=10\\)\n\n\n\n\n\nISL"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-model-over-and-under-fitting",
+    "href": "meetups/meetup-2/meetup-2.html#knn-model-over-and-under-fitting",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Model Over and Under fitting",
+    "text": "kNN Model Over and Under fitting\n\n\\(k=1\\) corresponds to overfitting\n\\(k=100\\) corresponds to underfitting\n\n\n\n\n\nISL"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#knn-model-generalization-error",
+    "href": "meetups/meetup-2/meetup-2.html#knn-model-generalization-error",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "kNN Model Generalization Error",
+    "text": "kNN Model Generalization Error\n\n\\(1/k\\) corresponds to model complexity\nOptimal out of sample accuracy at intermediate \\(k\\)\n\n\n\n\n\nISL"
+  },
+  {
+    "objectID": "meetups/meetup-2/meetup-2.html#thanks",
+    "href": "meetups/meetup-2/meetup-2.html#thanks",
+    "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
+    "section": "Thanks!",
+    "text": "Thanks!\n\n\n\n\nDATA 622"
+  },
+  {
     "objectID": "meetups/meetup-1/environment_as_code_vignette.html#libraries-and-dependencies",
     "href": "meetups/meetup-1/environment_as_code_vignette.html#libraries-and-dependencies",
     "title": "DATA 622 Vignette: Environments as Code",
@@ -40,6 +334,13 @@
     "title": "DATA 622 Vignette: Environments as Code",
     "section": "Libraries and Dependencies",
     "text": "Libraries and Dependencies\n\n\n\n\n\n\n\n\n\n\n\n\n\nDATA 622"
+  },
+  {
+    "objectID": "meetups/meetup-2/knnVignette.html",
+    "href": "meetups/meetup-2/knnVignette.html",
+    "title": "DATA 622: kNN Example",
+    "section": "",
+    "text": "import numpy as np\nimport pandas as pd\nfrom sklearn.impute import KNNImputer\nimport matplotlib.pyplot as plt\n\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.pipeline import FeatureUnion, make_pipeline\nfrom sklearn.metrics import confusion_matrix\nfrom sklearn.metrics import accuracy_score\nfrom sklearn.preprocessing import StandardScaler, OneHotEncoder\nfrom sklearn.compose import make_column_transformer\nfrom sklearn.compose import ColumnTransformer\n\n\n\nfrom sklearn.neighbors import KNeighborsClassifier\n\n\n\n\n\n\n\nurl = 'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv'\npenguins = pd.read_csv(url)\n\npenguins.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nmale\n2007\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nfemale\n2007\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nfemale\n2007\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n2007\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nfemale\n2007\n\n\n\n\n\n\n\n\npenguins_clean = penguins.dropna()\n\nspecies_y = penguins_clean.loc[:,\"species\"]\nfeatures_X = penguins_clean.loc[:,\"island\":\"year\"]\n\n\nspecies_y.describe()\n\nfeatures_X.describe()\n\nX_train, X_test, y_train, y_test = train_test_split(features_X, species_y, test_size=0.3,\n                                            random_state = 111)\n\n\nnumerical_features = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']\ncategorical_features = ['island', 'sex']\n\n\n\npreprocessor = make_column_transformer(\n    (StandardScaler(), numerical_features),\n    (OneHotEncoder(drop='first'), categorical_features)\n)\n\nknn_pipeline = make_pipeline(\n      preprocessor,\n      KNeighborsClassifier(n_neighbors=40)\n)\n\n\nknn_pipeline.fit(X_train,y_train)\n\n\n\npenguin_pred_train = knn_pipeline.predict(X_train)\naccuracy = accuracy_score(y_train, penguin_pred_train)\nprint(f'Accuracy: {accuracy:.4f}')\n\npenguin_pred_test = knn_pipeline.predict(X_test)\naccuracy = accuracy_score(y_test, penguin_pred_test)\nprint(f'Accuracy: {accuracy:.4f}')\n\nAccuracy: 0.9828\nAccuracy: 0.9900"
   },
   {
     "objectID": "posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html",
@@ -141,7 +442,7 @@
     "href": "index.html",
     "title": "Announcements",
     "section": "",
-    "text": "Be sure to check this page regularly for updates. In addition to periodic updates about the course, slides and recordings of the weekly meetups will be posted here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 Info: Introduction to Machine Learning\n\n\n\n\n\nClick here to read about Week 1\n\n\n\n\n\nAug 31, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome to DATA 622\n\n\n\n\n\nImportant information on how to get started with this course. Click this post now for instructions on getting started.\n\n\n\n\n\nAug 30, 2026\n\n\n\n\n\n\nNo matching items",
+    "text": "Be sure to check this page regularly for updates. In addition to periodic updates about the course, slides and recordings of the weekly meetups will be posted here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 2 Info: Generalization and the Bias-Variance Trade-Off\n\n\n\n\n\nClick here for info on Week 2\n\n\n\n\n\nSep 6, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nWeek 1 Info: Introduction to Machine Learning\n\n\n\n\n\nClick here to read about Week 1\n\n\n\n\n\nAug 31, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome to DATA 622\n\n\n\n\n\nImportant information on how to get started with this course. Click this post now for instructions on getting started.\n\n\n\n\n\nAug 30, 2026\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Announcements"
     ]
@@ -392,6 +693,13 @@
     "title": "Welcome to DATA 622",
     "section": "",
     "text": "Welcome to DATA 622, Machine Learning and Big Data.\nClick this post now to get started!\nHere are the first steps:\n\nRead the syllabus.\nGo through the course overview materials, and complete the week 1 readings.\nMake sure you have a good python environment and IDE setup\nIntroduce yourself on the course Slack Channel.\nJoin our Slack workspace:\n\nI will invite you to a DATA 622 Slack Channel within that workspace when you join\n\nAttend our first meetup on Monday at 6:45 p.m. ET on Zoom\n\nI recorded a short video which introduces me and gives you more background on the course:"
+  },
+  {
+    "objectID": "posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html",
+    "href": "posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html",
+    "title": "Week 2 Info: Generalization and the Bias-Variance Trade-Off",
+    "section": "",
+    "text": "Welcome to Week 2! During this week we are going to learn about some of the foundational concepts of supervised learning, generalization and the Bias-Variance Trade-Off. These concepts relate to one of the most primary goals of machine learning, which is to make accurate predictions on unseen data, and the challenges in picking models that will enable that, a concept known as generalization. The Bias-Variance Trade-Off is one of the main frameworks for understanding why some models generalize well and others do not. We will try to cover these topics at an intuitive level. You can read more about them and your reading assignment for the week in Module 2.\nThis week we will also go over the basic structure of a machine learning project, through a code example in the scikit-learn machine learning library.\nLab 1 is due next Sunday at midnight."
   },
   {
     "objectID": "meetups/meetup-1/meetup-1.html#welcome-to-data-622",
@@ -819,5 +1127,96 @@
     "title": "DATA 622 Meetup 1: What is Machine Learning?",
     "section": "Thanks!",
     "text": "Thanks!\n\n\n\n\nDATA 622"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies",
+    "href": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Libraries and Dependencies",
+    "text": "Libraries and Dependencies\n\nData science in ‘python’ is made possible by packages\n\n‘import pandas as pd’\n‘import seaborn as sns’\n‘from sklearn.linear_model import LinearRegression’\n‘import torch as t’"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-1",
+    "href": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-1",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Libraries and Dependencies",
+    "text": "Libraries and Dependencies\n\nEach Library Depends on other libraries\n\n\ndirect('pandas')\n\n['numpy', 'python-dateutil']"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-2",
+    "href": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-2",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Libraries and Dependencies",
+    "text": "Libraries and Dependencies\n\nEach Library Depends on other libraries\n\n\nclosure('pandas')\n\n{'numpy', 'python-dateutil', 'six'}"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-3",
+    "href": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-3",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Libraries and Dependencies",
+    "text": "Libraries and Dependencies\n\nEach Library Depends on other libraries\n\n\ndirect('seaborn')\n\n['matplotlib', 'numpy', 'pandas']"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-4",
+    "href": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-4",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Libraries and Dependencies",
+    "text": "Libraries and Dependencies\n\nEach Library Depends on other libraries\n\n\nclosure('seaborn')\n\n{'contourpy',\n 'cycler',\n 'fonttools',\n 'kiwisolver',\n 'matplotlib',\n 'numpy',\n 'packaging',\n 'pandas',\n 'pillow',\n 'pyparsing',\n 'python-dateutil',\n 'six'}"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-5",
+    "href": "vignettes/environment_as_code_vignette.html#libraries-and-dependencies-5",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Libraries and Dependencies",
+    "text": "Libraries and Dependencies"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#dependency-conflict",
+    "href": "vignettes/environment_as_code_vignette.html#dependency-conflict",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Dependency Conflict",
+    "text": "Dependency Conflict\n\nYour package requires version A of a library\nAnother installed package requires version B of a library\nExample: ‘causalpy’ and ‘bambi’ require conflicting versions of ‘arviz’\n\n\n\ncausalpy 0.9.0: ['arviz&lt;1.0,&gt;=0.14.0', 'pymc&lt;6,&gt;=5.15.1', 'pytensor&lt;3,&gt;=2.38.1']\nbambi 0.20.0: ['pytensor&lt;4.0.0,&gt;=3.0.0', 'pymc&lt;7.0.0,&gt;=6.0.0']\n\n\n\nInstalling your package breaks the user’s python setup"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#breaking-changes",
+    "href": "vignettes/environment_as_code_vignette.html#breaking-changes",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Breaking Changes",
+    "text": "Breaking Changes\n\nYou write some software which uses v1.0.\nLater v2.0 released, makes some changes\nBreaks either your package or the user’s scripts\n\nExample: Pandas 3 versus Pandas 2"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#dependency-problems-with-non-python-libraries",
+    "href": "vignettes/environment_as_code_vignette.html#dependency-problems-with-non-python-libraries",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Dependency Problems with Non-Python Libraries",
+    "text": "Dependency Problems with Non-Python Libraries\n\nPython is high-level, relies on code in C/C++, Fortran, CUDA for speed\nInstalled versions of these libraries must match python expectations\nThese could be different than what another user has or needs for other tasks"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#solution-environments-as-code",
+    "href": "vignettes/environment_as_code_vignette.html#solution-environments-as-code",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Solution: Environments as Code",
+    "text": "Solution: Environments as Code\n\nState matters\n\nRunning cells in a ‘jupyter’ notebook ad hoc versus in order\nExecuting a script in a stale environment versus a new one\n\nTreat defining your environment as part of your code"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#types-of-isolation",
+    "href": "vignettes/environment_as_code_vignette.html#types-of-isolation",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Types of Isolation",
+    "text": "Types of Isolation\n\nIsolate your software along with its dependencies from the rest of the system\n\n\nVirtual Environments\n\n\nPython specific: ‘uv’/‘venv’\nLanguage agnostic: ‘conda/pixi’\n\n\nContainers\n\n\nEverything other than the Operating System: ‘docker’\n\n\nVirtual Machines\n\n\nWon’t be part of this course"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#project-based-workflow",
+    "href": "vignettes/environment_as_code_vignette.html#project-based-workflow",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Project Based Workflow",
+    "text": "Project Based Workflow\n\nEach project has directory\nManifest file (‘pyproject.toml’ or ‘pixi’)\n\nThis files contains your instructions\n\n\n[project]\nname = \"env-demo-2\"\nversion = \"0.1.0\"\ndescription = \"Add your description here\"\nreadme = \"README.md\"\nrequires-python = \"&gt;=3.12\"\ndependencies = [\n    \"matplotlib&gt;=3.11.1\",\n    \"pandas&gt;=3.0.5\",\n    \"polars&gt;=1.44.1\",\n    \"scikit-learn&gt;=1.9.0\",\n    \"seaborn&gt;=0.13.2\",\n]"
+  },
+  {
+    "objectID": "vignettes/environment_as_code_vignette.html#project-based-workflow-1",
+    "href": "vignettes/environment_as_code_vignette.html#project-based-workflow-1",
+    "title": "DATA 622 Vignette: Environments as Code",
+    "section": "Project Based Workflow",
+    "text": "Project Based Workflow\n\nEach project has directory\nLock file (‘uv.lock’ or ‘pixi.lock’)\n\nThis files contains your instructions\n\n\n\n\n\n\nDATA 622"
   }
 ]

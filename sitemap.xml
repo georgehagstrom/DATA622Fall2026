@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/meetup-2.html</loc>
+    <lastmod>2026-09-06T00:43:02.403Z</lastmod>
+  </url>
+  <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-1/environment_as_code_vignette.html</loc>
-    <lastmod>2026-09-03T20:28:16.860Z</lastmod>
+    <lastmod>2026-09-04T21:54:31.814Z</lastmod>
+  </url>
+  <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/knnVignette.html</loc>
+    <lastmod>2026-07-30T14:58:36.934Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html</loc>
@@ -102,7 +110,7 @@
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/modules/module2.html</loc>
-    <lastmod>2026-07-30T16:16:57.149Z</lastmod>
+    <lastmod>2026-09-07T12:25:47.638Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/modules/module4.html</loc>
@@ -121,7 +129,15 @@
     <lastmod>2026-08-31T03:05:17.724Z</lastmod>
   </url>
   <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html</loc>
+    <lastmod>2026-09-07T12:25:12.081Z</lastmod>
+  </url>
+  <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-1/meetup-1.html</loc>
     <lastmod>2026-08-31T22:24:10.928Z</lastmod>
+  </url>
+  <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/vignettes/environment_as_code_vignette.html</loc>
+    <lastmod>2026-09-06T16:09:30.226Z</lastmod>
   </url>
 </urlset>

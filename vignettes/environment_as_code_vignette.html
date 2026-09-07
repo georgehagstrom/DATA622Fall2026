@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-html/tabby.min.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.54">
 
   <meta name="author" content="George I. Hagstrom">
-  <meta name="dcterms.date" content="2026-09-07">
-  <title>DATA 622 Fall 2026 – DATA 622 Meetup 2: The Bias-Variance Tradeoff</title>
+  <meta name="dcterms.date" content="2026-09-03">
+  <title>DATA 622 Fall 2026 – DATA 622 Vignette: Environments as Code</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,12 +30,77 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -321,7 +386,7 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="DATA 622 Meetup 2: The Bias-Variance Tradeoff – DATA 622 Fall 2026">
+<meta property="og:title" content="DATA 622 Vignette: Environments as Code – DATA 622 Fall 2026">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
 </head>
 <body class="quarto-light">
@@ -329,7 +394,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">DATA 622 Meetup 2: The Bias-Variance Tradeoff</h1>
+  <h1 class="title">DATA 622 Vignette: Environments as Code</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -339,458 +404,186 @@ George I. Hagstrom
 </div>
 </div>
 
-  <p class="date">2026-09-07</p>
+  <p class="date">2026-09-03</p>
 </section>
-<section id="recap-the-learning-problem" class="slide level2">
-<h2>Recap: The Learning Problem</h2>
-
-<img data-src="../meetup-1/supevised-diagram3.png" style="width:50.0%" class="r-stretch"></section>
-<section id="goals" class="slide level2">
-<h2>Goals</h2>
-<ol type="1">
-<li>Model Fit versus Generalization</li>
-<li>Bias-Variance Tradeoff</li>
-</ol>
-</section>
-<section id="weekly-tasks" class="slide level2">
-<h2>Weekly Tasks</h2>
+<section id="libraries-and-dependencies" class="slide level2">
+<h2>Libraries and Dependencies</h2>
 <ul>
-<li>Lab 1 due Sunday at midnight</li>
-<li>Reading: ISLP 2.2-2.4</li>
-<li>Coding Vignette: Chapter 2 of HOML in <code>sklearn</code></li>
-<li>Keep posting ideas and finding team-mates in Slack</li>
-</ul>
-</section>
-<section id="assessing-model-accuracy" class="slide level2">
-<h2>Assessing Model Accuracy</h2>
+<li>Data science in ‘python’ is made possible by packages
 <ul>
-<li>In regression, measures like mean square error: <span class="math display">\[
-\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - g(\mathbf{x}_i)^2)
-\]</span></li>
-<li>or <span class="math inline">\(R^2:\)</span> <span class="math display">\[
-R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
-\]</span> Are used to assess model accuracy</li>
-</ul>
-</section>
-<section id="question" class="slide level2">
-<h2>Question:</h2>
-<p>Suppose we have trained a model which has high accuracy on the training data. Are we done?</p>
-<div class="fragment" style="border: 2px solid black; padding: 20px; border-radius: 5px;">
-<p><span class="incremental">But what we really care about is whether we can extrapolate assessed accuracy to unseen examples</span></p>
-</div>
-</section>
-<section id="generalization" class="slide level2">
-<h2>Generalization</h2>
-<p><strong>Generalization</strong> is defined as the ability of a model to maintain its accuracy on observations outside of its training</p>
-<div class="fragment">
-<ul>
-<li>When a model has high in-sample accuracy, it is not guaranteed that it performs well out of sample</li>
-</ul>
-</div>
-</section>
-<section id="overfitting" class="slide level2">
-<h2>Overfitting</h2>
-<ul>
-<li>Overfitting is a phenomenon that causes bad generalization</li>
-<li>Consider the following dataset:</li>
-</ul>
-
-<img data-src="meetup-2_files/figure-revealjs/cell-3-output-1.png" class="r-stretch"></section>
-<section id="models-of-increasing-complexity" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>Linear Model: <span class="math inline">\(g(x) = g_0 + g_1 x\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="2d74226d" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-5-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-1" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ol start="2" type="1">
-<li>Quadratic Model: <span class="math inline">\(g(x) = g_0 + g_1 x + g_2 x^2\)</span></li>
-</ol>
-<div style="width: 50%; margin: auto;">
-<div id="e7eaf41e" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-6-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-2" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>5th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^5 g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="9022a117" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="6">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-7-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-3" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>10th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{10} g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="65eccf26" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="7">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-8-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-4" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>25th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{25} g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="8151f890" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="8">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-9-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-5" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>50th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{50} g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="a4551dfd" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="9">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-10-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="overfitting-1" class="slide level2">
-<h2>Overfitting</h2>
-<ul>
-<li>At low flexibility, in sample error was high</li>
-<li>At mid flexibility, in sample error dropped, pattern approximated</li>
-<li>At high flexibility, in sample error was zero</li>
-</ul>
-</section>
-<section id="training-versus-testing-error" class="slide level2">
-<h2>Training versus Testing Error</h2>
-<ul>
-<li>Generalization Gap at high complexity</li>
-</ul>
-<div style="width: 60%; margin: auto;">
-<div id="88d20cd2" class="cell" data-fig-height="9" data-fig-width="12" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-11-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="irreducible-error" class="slide level2">
-<h2>Irreducible Error</h2>
-<ul>
-<li>Target function <span class="math inline">\(f(\mathbf{x})\)</span> encodes all the information about <span class="math inline">\(y\)</span> contained in the variables <span class="math inline">\(\mathbf{x}\)</span></li>
-</ul>
-<p><span class="math display">\[
-y = f(\mathbf{x}) + \epsilon
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\epsilon\)</span> is called the <em>irreducible error</em></li>
-<li>It accounts for other variables that are not measured and randomness</li>
-<li>We have <span class="math inline">\(E(\epsilon) = 0\)</span></li>
-</ul>
-</section>
-<section id="reducible-error" class="slide level2">
-<h2>Reducible Error</h2>
-<ul>
-<li>When fitting a model <span class="math inline">\(g\)</span> to the data, there are two sources of error: <span class="math display">\[
-E((g-y)^2) = E((g-f)^2) - \mathrm{var}(\epsilon)
-\]</span></li>
-<li>The <span class="math inline">\(E((g-f)^2)\)</span> term is the <em>reducible</em> error</li>
-<li>Total error is a sum of <em>reducible</em> and <em>irreducible</em> errors</li>
-</ul>
-</section>
-<section id="why-do-complex-models-overfit" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Hypothetical scenario: study the performance of a model on a repeated learning task</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance1.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="why-do-complex-models-overfit-1" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Each fit will be compared to the target function <span class="math inline">\(f\)</span></li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance2.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff" class="slide level2">
-<h2>Bias Variance Tradeoff</h2>
-<ul>
-<li>Can look at the “average” fit model</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance3.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="why-do-complex-models-overfit-2" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Bias is the distance from average fit to target</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance4.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="why-do-complex-models-overfit-3" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Variance is how much individual fits vary from average</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance5.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff-1" class="slide level2">
-<h2>Bias-Variance Tradeoff</h2>
-<ul>
-<li>Expected out of sample error is sum of squared bias, variance, and irreducible error</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance6.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff-2" class="slide level2">
-<h2>Bias-Variance Tradeoff</h2>
-<ul>
-<li>Bias and variance trade-off</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance7.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff-3" class="slide level2">
-<h2>Bias-Variance Tradeoff</h2>
-<ul>
-<li>Bias and Variance Tradeoff</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance8.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="learning-curves" class="slide level2">
-<h2>Learning Curves</h2>
-<ul>
-<li>Simple versus complex models as amount of data increases</li>
-</ul>
-
-<img data-src="meetup-2_files/figure-revealjs/cell-15-output-1.png" class="r-stretch"></section>
-<section id="learning-curves-1" class="slide level2">
-<h2>Learning Curves</h2>
-<ul>
-<li>Simple versus complex models as amount of data increases</li>
-</ul>
-
-<img data-src="meetup-2_files/figure-revealjs/cell-16-output-1.png" class="r-stretch"></section>
-<section id="what-complexity-to-pick" class="slide level2">
-<h2>What Complexity to Pick?</h2>
-<div class="fragment" style="border: 2px solid black; padding: 20px; border-radius: 5px;">
-<p>Model complexity dictated by your data more so than the complexity of the phenomenon!</p>
-</div>
-</section>
-<section id="what-complexity-to-pick-1" class="slide level2">
-<h2>What Complexity to Pick?</h2>
-<div style="border: 2px solid black; padding: 20px; border-radius: 5px;">
-<p>Model complexity dictated by your data more so than the complexity of the phenomenon!</p>
-</div>
-
-<img data-src="meetup-2_files/figure-revealjs/cell-17-output-1.png" class="r-stretch"></section>
-<section id="classification-accuracy" class="slide level2">
-<h2>Classification Accuracy</h2>
-<ul>
-<li>Switch gears to classification</li>
-<li>Now <span class="math inline">\(y\)</span> is a class label</li>
-<li>predictors <span class="math inline">\(\mathbf{x}\)</span> can still be continuous or discrete</li>
-</ul>
-</section>
-<section id="classification-accuracy-1" class="slide level2">
-<h2>Classification Accuracy</h2>
-<p><span class="math display">\[
-\mathrm{Error} = \frac{1}{n}\sum_{i=1}^n I(g(\mathbf{x}_i)\neq y_i)
-\]</span></p>
-<ul>
-<li>Here <span class="math inline">\(I=1\)</span> if <span class="math inline">\(g(\mathbf{x_i}\neq y_i)\)</span> and <span class="math inline">\(I=0\)</span> if <span class="math inline">\(g(\mathbf{x}_i=y_i)\)</span></li>
-<li>This counts the number of times the prediction is the wrong class</li>
-</ul>
-</section>
-<section id="bayes-classifier" class="slide level2">
-<h2>Bayes Classifier</h2>
-<ul>
-<li>Conditional probability of <span class="math inline">\(y\)</span> given <span class="math inline">\(\mathbf{x}\)</span>: <span class="math display">\[
-P(y|\mathbf{x})
-\]</span></li>
-</ul>
-<div class="fragment">
-<ul>
-<li class="fragment">This is probability of class given characteristics
-<ul>
-<li class="fragment">Probability of default given balance, income</li>
-<li class="fragment">Probability of hall of fame career given college stats</li>
-<li class="fragment">Probability of disease given medical tests</li>
+<li>‘import pandas as pd’</li>
+<li>‘import seaborn as sns’</li>
+<li>‘from sklearn.linear_model import LinearRegression’</li>
+<li>‘import torch as t’</li>
 </ul></li>
 </ul>
+</section>
+<section id="libraries-and-dependencies-1" class="slide level2">
+<h2>Libraries and Dependencies</h2>
+<ul>
+<li>Each Library Depends on other libraries</li>
+</ul>
+<div id="bb77fe3f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>direct(<span class="st">'pandas'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>['numpy', 'python-dateutil']</code></pre>
+</div>
 </div>
 </section>
-<section id="bayes-classifier-1" class="slide level2">
-<h2>Bayes Classifier</h2>
+<section id="libraries-and-dependencies-2" class="slide level2">
+<h2>Libraries and Dependencies</h2>
 <ul>
-<li>Best prediction is to pick class with highest chance: <span class="math display">\[
-y_{\mathrm{Bayes}}(\mathbf{x}) = \mathrm{argmax}_{y} P(y|\mathbf{x})
-\]</span></li>
-<li>Called <em>Bayes Classifier</em> or <em>Bayes Decision Rule</em></li>
+<li>Each Library Depends on other libraries</li>
+</ul>
+<div id="26514fca" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>closure(<span class="st">'pandas'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>{'numpy', 'python-dateutil', 'six'}</code></pre>
+</div>
+</div>
+</section>
+<section id="libraries-and-dependencies-3" class="slide level2">
+<h2>Libraries and Dependencies</h2>
+<ul>
+<li>Each Library Depends on other libraries</li>
+</ul>
+<div id="35c996aa" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>direct(<span class="st">'seaborn'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>['matplotlib', 'numpy', 'pandas']</code></pre>
+</div>
+</div>
+</section>
+<section id="libraries-and-dependencies-4" class="slide level2">
+<h2>Libraries and Dependencies</h2>
+<ul>
+<li>Each Library Depends on other libraries</li>
+</ul>
+<div id="c07b0891" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>closure(<span class="st">'seaborn'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>{'contourpy',
+ 'cycler',
+ 'fonttools',
+ 'kiwisolver',
+ 'matplotlib',
+ 'numpy',
+ 'packaging',
+ 'pandas',
+ 'pillow',
+ 'pyparsing',
+ 'python-dateutil',
+ 'six'}</code></pre>
+</div>
+</div>
+</section>
+<section id="libraries-and-dependencies-5" class="slide level2">
+<h2>Libraries and Dependencies</h2>
+
+<img data-src="environment_as_code_vignette_files/figure-revealjs/cell-7-output-1.png" class="r-stretch"></section>
+<section id="dependency-conflict" class="slide level2">
+<h2>Dependency Conflict</h2>
+<ul>
+<li>Your package requires version <em>A</em> of a library</li>
+<li>Another installed package requires version <em>B</em> of a library</li>
+<li>Example: ‘causalpy’ and ‘bambi’ require conflicting versions of ‘arviz’</li>
+</ul>
+<div id="0762ddb6" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-stdout">
+<pre><code>causalpy 0.9.0: ['arviz&lt;1.0,&gt;=0.14.0', 'pymc&lt;6,&gt;=5.15.1', 'pytensor&lt;3,&gt;=2.38.1']
+bambi 0.20.0: ['pytensor&lt;4.0.0,&gt;=3.0.0', 'pymc&lt;7.0.0,&gt;=6.0.0']</code></pre>
+</div>
+</div>
+<ul>
+<li>Installing your package breaks the user’s python setup</li>
 </ul>
 </section>
-<section id="applying-bayes-decision-rule" class="slide level2">
-<h2>Applying Bayes Decision Rule</h2>
+<section id="breaking-changes" class="slide level2">
+<h2>Breaking Changes</h2>
 <ul>
-<li>We don’t generally know the probabilities</li>
-<li>Classification models often approximate them</li>
-<li>Often the decision rule is basically an extension of Bayes Decision assuming good probabilities</li>
+<li>You write some software which uses <em>v1.0</em>.</li>
+<li>Later <em>v2.0</em> released, makes some changes</li>
+<li>Breaks either your package or the user’s scripts</li>
+</ul>
+<p>Example: Pandas 3 versus Pandas 2</p>
+</section>
+<section id="dependency-problems-with-non-python-libraries" class="slide level2">
+<h2>Dependency Problems with Non-Python Libraries</h2>
+<ul>
+<li>Python is high-level, relies on code in C/C++, Fortran, CUDA for speed</li>
+<li>Installed versions of these libraries must match python expectations</li>
+<li>These could be different than what another user has or needs for other tasks</li>
 </ul>
 </section>
-<section id="knn-model" class="slide level2">
-<h2>kNN Model</h2>
+<section id="solution-environments-as-code" class="slide level2">
+<h2>Solution: Environments as Code</h2>
 <ul>
-<li>Very simple <em>non-parametric</em> classification model is called <em>k-nearest-neighbors</em> <span class="math display">\[
-g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})} I(y\neq y_i)
-\]</span></li>
-<li>Look at the <span class="math inline">\(k\)</span> nearest points to <span class="math inline">\(\mathbf{x}\)</span></li>
-<li>Pick the <span class="math inline">\(y\)</span> occuring most often</li>
+<li><em>State</em> matters
+<ul>
+<li>Running cells in a ‘jupyter’ notebook <em>ad hoc</em> versus in order</li>
+<li>Executing a script in a stale environment versus a new one</li>
+</ul></li>
+<li>Treat defining your environment as part of your code</li>
 </ul>
 </section>
-<section id="knn-model-1" class="slide level2">
-<h2>kNN Model</h2>
+<section id="types-of-isolation" class="slide level2">
+<h2>Types of Isolation</h2>
 <ul>
-<li>Here is an example for <span class="math inline">\(k=3\)</span>.</li>
+<li>Isolate your software along with its dependencies from the rest of the system</li>
 </ul>
-<div style="text-align: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-1.png" style="width:60.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-question" class="slide level2">
-<h2>kNN Question</h2>
+<ol type="1">
+<li><em>Virtual Environments</em></li>
+</ol>
 <ul>
-<li>What do you think happens when <span class="math inline">\(k\)</span> is very small?</li>
-<li>What about when <span class="math inline">\(k\)</span> is very big?</li>
+<li>Python specific: ‘uv’/‘venv’</li>
+<li>Language agnostic: ‘conda/pixi’</li>
 </ul>
-</section>
-<section id="knn-model-2" class="slide level2">
-<h2>kNN Model</h2>
+<ol start="2" type="1">
+<li><em>Containers</em></li>
+</ol>
 <ul>
-<li>Classification problem with two classes</li>
-<li>Boundary is the border between 50% probability of blue</li>
+<li>Everything other than the Operating System: ‘docker’</li>
 </ul>
-<div style="text-align: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-2.png" style="width:40.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-model-3" class="slide level2">
-<h2>kNN Model</h2>
+<ol start="3" type="1">
+<li><em>Virtual Machines</em></li>
+</ol>
 <ul>
-<li>Decision boundary for <span class="math inline">\(k=10\)</span></li>
+<li>Won’t be part of this course</li>
 </ul>
-<div style="text-align: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-3.png" style="width:50.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
 </section>
-<section id="knn-model-over-and-under-fitting" class="slide level2">
-<h2>kNN Model Over and Under fitting</h2>
+<section id="project-based-workflow" class="slide level2">
+<h2>Project Based Workflow</h2>
 <ul>
-<li><span class="math inline">\(k=1\)</span> corresponds to overfitting</li>
-<li><span class="math inline">\(k=100\)</span> corresponds to underfitting</li>
-</ul>
-<div style="text-align: left;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-4.png" style="width:60.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-model-generalization-error" class="slide level2">
-<h2>kNN Model Generalization Error</h2>
+<li>Each project has directory</li>
+<li>Manifest file (‘pyproject.toml’ or ‘pixi’)
 <ul>
-<li><span class="math inline">\(1/k\)</span> corresponds to model complexity</li>
-<li>Optimal out of sample accuracy at intermediate <span class="math inline">\(k\)</span></li>
+<li>This files contains your instructions</li>
+</ul></li>
 </ul>
-<div style="text-align: left;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-5.png" style="width:60.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
+<pre><code>[project]
+name = "env-demo-2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "&gt;=3.12"
+dependencies = [
+    "matplotlib&gt;=3.11.1",
+    "pandas&gt;=3.0.5",
+    "polars&gt;=1.44.1",
+    "scikit-learn&gt;=1.9.0",
+    "seaborn&gt;=0.13.2",
+]
+</code></pre>
 </section>
-<section id="thanks" class="slide level2">
-<h2>Thanks!</h2>
+<section id="project-based-workflow-1" class="slide level2">
+<h2>Project Based Workflow</h2>
+<ul>
+<li>Each project has directory</li>
+<li>Lock file (‘uv.lock’ or ‘pixi.lock’)
+<ul>
+<li>This files contains your instructions</li>
+</ul></li>
+</ul>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../../images/CUNY_SPS_Logo_Wide.png" class="slide-logo"></p>
@@ -803,19 +596,19 @@ g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})}
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
