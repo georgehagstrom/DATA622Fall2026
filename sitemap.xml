@@ -2,22 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/meetup-2.html</loc>
-    <lastmod>2026-09-07T21:52:42.900Z</lastmod>
+    <lastmod>2026-09-08T22:00:16.110Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-1/environment_as_code_vignette.html</loc>
-    <lastmod>2026-09-04T21:54:31.814Z</lastmod>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/vignettes/sklearn_basics.html</loc>
+    <lastmod>2026-09-08T17:40:01.646Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab1.html</loc>
-    <lastmod>2026-08-31T19:38:54.371Z</lastmod>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-1/meetup-1.html</loc>
+    <lastmod>2026-08-31T22:24:10.928Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab4-draft.html</loc>
-    <lastmod>2026-07-30T14:48:33.342Z</lastmod>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab4.html</loc>
+    <lastmod>2026-07-30T14:48:33.343Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5.html</loc>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/knnVignette.html</loc>
+    <lastmod>2026-07-30T14:58:36.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5-draft.html</loc>
     <lastmod>2026-07-30T14:48:33.342Z</lastmod>
   </url>
   <url>
@@ -70,7 +74,7 @@
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/course/schedule.html</loc>
-    <lastmod>2026-09-08T13:33:08.975Z</lastmod>
+    <lastmod>2026-09-08T22:53:21.126Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/course/instructors.html</loc>
@@ -177,23 +181,27 @@
     <lastmod>2026-08-31T03:14:14.568Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5-draft.html</loc>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/posts/2026-09-08-sklearn-coding-vignette.html</loc>
+    <lastmod>2026-09-08T23:07:22.642Z</lastmod>
+  </url>
+  <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5.html</loc>
     <lastmod>2026-07-30T14:48:33.342Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/knnVignette.html</loc>
-    <lastmod>2026-07-30T14:58:36.934Z</lastmod>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab4-draft.html</loc>
+    <lastmod>2026-07-30T14:48:33.342Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab4.html</loc>
-    <lastmod>2026-07-30T14:48:33.343Z</lastmod>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab1.html</loc>
+    <lastmod>2026-08-31T19:38:54.371Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-1/meetup-1.html</loc>
-    <lastmod>2026-08-31T22:24:10.928Z</lastmod>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-1/environment_as_code_vignette.html</loc>
+    <lastmod>2026-09-04T21:54:31.814Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/vignettes/environment_as_code_vignette.html</loc>
-    <lastmod>2026-09-06T16:09:30.226Z</lastmod>
+    <lastmod>2026-09-08T22:00:09.951Z</lastmod>
   </url>
 </urlset>
