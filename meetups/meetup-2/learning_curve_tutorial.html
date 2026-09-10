@@ -10,9 +10,9 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.54">
 
-  <meta name="author" content="George I. Hagstrom">
-  <meta name="dcterms.date" content="2026-09-07">
-  <title>DATA 622 Fall 2026 – DATA 622 Meetup 2: The Bias-Variance Tradeoff</title>
+  <meta name="author" content="George Hagstrom">
+  <meta name="dcterms.date" content="2026-09-09">
+  <title>DATA 622 Fall 2026 – More About Learning Curves and kNN</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -321,7 +321,7 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="DATA 622 Meetup 2: The Bias-Variance Tradeoff – DATA 622 Fall 2026">
+<meta property="og:title" content="More About Learning Curves and kNN – DATA 622 Fall 2026">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
 </head>
 <body class="quarto-light">
@@ -329,618 +329,128 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">DATA 622 Meetup 2: The Bias-Variance Tradeoff</h1>
+  <h1 class="title">More About Learning Curves and kNN</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-George I. Hagstrom 
+George Hagstrom 
 </div>
 </div>
 </div>
 
-  <p class="date">2026-09-07</p>
-</section>
-<section id="recap-the-learning-problem" class="slide level2">
-<h2>Recap: The Learning Problem</h2>
-
-<img data-src="../meetup-1/supevised-diagram3.png" style="width:50.0%" class="r-stretch"></section>
-<section id="goals" class="slide level2">
-<h2>Goals</h2>
-<ol type="1">
-<li>Model Fit versus Generalization</li>
-<li>Bias-Variance Tradeoff</li>
-</ol>
-</section>
-<section id="weekly-tasks" class="slide level2">
-<h2>Weekly Tasks</h2>
-<ul>
-<li>Lab 1 due Sunday at midnight</li>
-<li>Reading: ISLP 2.2-2.4</li>
-<li>Coding Vignette: Chapter 2 of HOML in <code>sklearn</code></li>
-<li>Keep posting ideas and finding team-mates in Slack</li>
-</ul>
-</section>
-<section id="assessing-model-accuracy" class="slide level2">
-<h2>Assessing Model Accuracy</h2>
-<ul>
-<li>In regression, measures like mean square error: <span class="math display">\[
-\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - g(\mathbf{x}_i))^2
-\]</span></li>
-<li>or <span class="math inline">\(R^2:\)</span> <span class="math display">\[
-R^2 = 1 - \frac{\mathrm{MSE}}{\mathrm{var(y)}}
-\]</span> Are used to assess model accuracy</li>
-</ul>
-</section>
-<section id="question" class="slide level2">
-<h2>Question:</h2>
-<p>Suppose we have trained a model which has high accuracy on the training data. Are we done?</p>
-<div class="fragment" style="border: 2px solid black; padding: 20px; border-radius: 5px;">
-<p><span class="incremental">But what we really care about is whether we can extrapolate assessed accuracy to unseen examples</span></p>
-</div>
-</section>
-<section id="generalization" class="slide level2">
-<h2>Generalization</h2>
-<p><strong>Generalization</strong> is defined as the ability of a model to maintain its accuracy on observations outside of its training</p>
-<div class="fragment">
-<ul>
-<li>When a model has high in-sample accuracy, it is not guaranteed that it performs well out of sample</li>
-</ul>
-</div>
-</section>
-<section id="overfitting" class="slide level2">
-<h2>Overfitting</h2>
-<ul>
-<li>Overfitting is a phenomenon that causes bad generalization</li>
-<li>Consider the following dataset:</li>
-</ul>
-
-<img data-src="meetup-2_files/figure-revealjs/cell-3-output-1.png" class="r-stretch"></section>
-<section id="models-of-increasing-complexity" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>Linear Model: <span class="math inline">\(g(x) = g_0 + g_1 x\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="8da27d96" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-5-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-1" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ol start="2" type="1">
-<li>Quadratic Model: <span class="math inline">\(g(x) = g_0 + g_1 x + g_2 x^2\)</span></li>
-</ol>
-<div style="width: 50%; margin: auto;">
-<div id="26bf5d8a" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="5">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-6-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-2" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>5th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^5 g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="fc79472e" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="6">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-7-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-3" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>10th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{10} g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="0fd9ffe1" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="7">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-8-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-4" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>25th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{25} g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="813fe4ae" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="8">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-9-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="models-of-increasing-complexity-5" class="slide level2">
-<h2>Models of Increasing Complexity</h2>
-<ul>
-<li>50th Degree fit: <span class="math inline">\(g(x) = \sum_{i=0}^{50} g_i x^i\)</span></li>
-</ul>
-<div style="width: 50%; margin: auto;">
-<div id="42526838" class="cell" data-fig-height="8" data-fig-width="12" data-execution_count="9">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-10-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="overfitting-1" class="slide level2">
-<h2>Overfitting</h2>
-<ul>
-<li>At low flexibility, in sample error was high</li>
-<li>At mid flexibility, in sample error dropped, pattern approximated</li>
-<li>At high flexibility, in sample error was zero</li>
-</ul>
-</section>
-<section id="training-versus-testing-error" class="slide level2">
-<h2>Training versus Testing Error</h2>
-<ul>
-<li>Generalization Gap at high complexity</li>
-</ul>
-<div style="width: 60%; margin: auto;">
-<div id="07847883" class="cell" data-fig-height="9" data-fig-width="12" data-execution_count="10">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="meetup-2_files/figure-revealjs/cell-11-output-1.png"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="irreducible-error" class="slide level2">
-<h2>Irreducible Error</h2>
-<ul>
-<li>Target function <span class="math inline">\(f(\mathbf{x})\)</span> encodes all the information about <span class="math inline">\(y\)</span> contained in the variables <span class="math inline">\(\mathbf{x}\)</span></li>
-</ul>
-<p><span class="math display">\[
-y = f(\mathbf{x}) + \epsilon
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\epsilon\)</span> is called the <em>irreducible error</em></li>
-<li>It accounts for other variables that are not measured and randomness</li>
-<li>We have <span class="math inline">\(E(\epsilon) = 0\)</span></li>
-</ul>
-</section>
-<section id="reducible-error" class="slide level2">
-<h2>Reducible Error</h2>
-<ul>
-<li>When fitting a model <span class="math inline">\(g\)</span> to the data, there are two sources of error: <span class="math display">\[
-E((g-y)^2) = E((g-f)^2) + \mathrm{var}(\epsilon)
-\]</span></li>
-<li>The <span class="math inline">\(E((g-f)^2)\)</span> term is the <em>reducible</em> error</li>
-<li>Total error is a sum of <em>reducible</em> and <em>irreducible</em> errors</li>
-</ul>
-</section>
-<section id="why-do-complex-models-overfit" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Hypothetical scenario: study the performance of a model on a repeated learning task</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance1.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="why-do-complex-models-overfit-1" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Each fit will be compared to the target function <span class="math inline">\(f\)</span></li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance2.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff" class="slide level2">
-<h2>Bias Variance Tradeoff</h2>
-<ul>
-<li>Can look at the “average” fit model</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance3.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="why-do-complex-models-overfit-2" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Bias is the distance from average fit to target</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance4.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="why-do-complex-models-overfit-3" class="slide level2">
-<h2>Why do complex models overfit?</h2>
-<ul>
-<li>Variance is how much individual fits vary from average</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance5.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff-1" class="slide level2">
-<h2>Bias-Variance Tradeoff</h2>
-<ul>
-<li>Expected out of sample error is sum of squared bias, variance, and irreducible error</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance6.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff-2" class="slide level2">
-<h2>Bias-Variance Tradeoff</h2>
-<ul>
-<li>Bias and variance trade-off</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance7.png" style="width:80.0%"></p>
-</div>
-</section>
-<section id="bias-variance-tradeoff-3" class="slide level2">
-<h2>Bias-Variance Tradeoff</h2>
-<ul>
-<li>Bias and Variance Tradeoff</li>
-</ul>
-<div style="text-align: left;">
-<p><img data-src="bias-variance8.png" style="width:80.0%"></p>
-</div>
+  <p class="date">2026-09-09</p>
 </section>
 <section id="learning-curves" class="slide level2">
 <h2>Learning Curves</h2>
 <ul>
-<li>Simple versus complex models as amount of data increases</li>
+<li>Learning Curves tell us how error changes with data</li>
 </ul>
 
-<img data-src="meetup-2_files/figure-revealjs/cell-15-output-1.png" class="r-stretch"></section>
-<section id="learning-curves-1" class="slide level2">
-<h2>Learning Curves</h2>
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-6-output-1.png" class="r-stretch"></section>
+<section id="reading-a-learning-curve" class="slide level2">
+<h2>Reading a Learning Curve</h2>
 <ul>
-<li>Simple versus complex models as amount of data increases</li>
+<li>You can diagnose many things from a Learning Curve.</li>
 </ul>
 
-<img data-src="meetup-2_files/figure-revealjs/cell-16-output-1.png" class="r-stretch"></section>
-<section id="what-complexity-to-pick" class="slide level2">
-<h2>What Complexity to Pick?</h2>
-<div class="fragment" style="border: 2px solid black; padding: 20px; border-radius: 5px;">
-<p>Model complexity dictated by your data more so than the complexity of the phenomenon!</p>
-</div>
-</section>
-<section id="what-complexity-to-pick-1" class="slide level2">
-<h2>What Complexity to Pick?</h2>
-<div style="border: 2px solid black; padding: 20px; border-radius: 5px;">
-<p>Model complexity dictated by your data more so than the complexity of the phenomenon!</p>
-</div>
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-7-output-1.png" class="r-stretch"></section>
+<section id="variance-from-learning-curve" class="slide level2">
+<h2>Variance from Learning Curve</h2>
+<ul>
+<li>You can diagnose many things from a Learning Curve.</li>
+</ul>
 
-<img data-src="meetup-2_files/figure-revealjs/cell-17-output-1.png" class="r-stretch"></section>
-<section id="what-complexity-to-pick-2" class="slide level2">
-<h2>What Complexity to Pick?</h2>
-<p><em>Answering this is one of the main subjects of this class!</em></p>
-<ol type="1">
-<li>Experimental Answers- save some data for testing and use that to estimate out of sample performance</li>
-</ol>
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-8-output-1.png" class="r-stretch"></section>
+<section id="variance-from-learning-curve-1" class="slide level2">
+<h2>Variance from Learning Curve</h2>
 <ul>
-<li>Cross-Validation, Train-Test Split, bootstrapping</li>
+<li>You can diagnose many things from a Learning Curve.</li>
+</ul>
+
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-9-output-1.png" class="r-stretch"></section>
+<section id="tricks-for-irreducible-error" class="slide level2">
+<h2>Tricks for Irreducible Error</h2>
+<ul>
+<li>We do not usually get told <em>irreducible error</em> in advance</li>
+</ul>
+
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-10-output-1.png" class="r-stretch"></section>
+<section id="fix-for-high-bias" class="slide level2">
+<h2>Fix for High Bias</h2>
+<ul>
+<li>Lower Bias Model?</li>
+</ul>
+
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-11-output-1.png" class="r-stretch"></section>
+<section id="fix-for-high-bias-1" class="slide level2">
+<h2>Fix for High Bias</h2>
+<ul>
+<li><strong>Lower Bias Model</strong></li>
+<li>This could also involve incorporating clever features and leaving the model similar</li>
 </ul>
 </section>
-<section id="what-complexity-to-pick-3" class="slide level2">
-<h2>What Complexity to Pick?</h2>
-<p><em>Answering this is one of the main subjects of this class!</em></p>
-<ol start="2" type="1">
-<li>Theoretical Answers- For statistical models there are <em>information criteria</em> that tell us how to balance in-sample accuracy versus model complexity</li>
-</ol>
+<section id="fix-for-high-bias-2" class="slide level2">
+<h2>Fix for High Bias</h2>
 <ul>
-<li>AIC, BIC, WAIC, Mallow’s P, etc</li>
+<li>There is a limit from <em>irreducible error</em></li>
 </ul>
-</section>
-<section id="classification-accuracy" class="slide level2">
-<h2>Classification Accuracy</h2>
+
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-12-output-1.png" class="r-stretch"></section>
+<section id="does-a-fancy-model-help" class="slide level2">
+<h2>Does a fancy model help?</h2>
 <ul>
-<li>Switch gears to classification</li>
-<li>Now <span class="math inline">\(y\)</span> is a class label</li>
-<li>predictors <span class="math inline">\(\mathbf{x}\)</span> can still be continuous or discrete</li>
+<li>Use ‘kNN’ with optimal ‘k’ chosen for each dataset size</li>
 </ul>
-</section>
-<section id="classification-accuracy-1" class="slide level2">
-<h2>Classification Accuracy</h2>
-<p><span class="math display">\[
-\mathrm{Error} = \frac{1}{n}\sum_{i=1}^n I(g(\mathbf{x}_i)\neq y_i)
-\]</span></p>
+
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-14-output-1.png" class="r-stretch"></section>
+<section id="fix-for-high-bias-3" class="slide level2">
+<h2>Fix for High Bias</h2>
 <ul>
-<li>Here <span class="math inline">\(I=1\)</span> if <span class="math inline">\(g(\mathbf{x}_i)\neq y_i\)</span> and <span class="math inline">\(I=0\)</span> if <span class="math inline">\(g(\mathbf{x}_i)=y_i\)</span></li>
-<li>This counts the number of times the prediction is the wrong class</li>
-</ul>
-</section>
-<section id="bayes-classifier" class="slide level2">
-<h2>Bayes Classifier</h2>
+<li><strong>Lower Bias Model</strong></li>
+<li>There is a limit from <em>irreducible error</em>
 <ul>
-<li>Conditional probability of <span class="math inline">\(y\)</span> given <span class="math inline">\(\mathbf{x}\)</span>: <span class="math display">\[
-P(y|\mathbf{x})
-\]</span></li>
-</ul>
-<div class="fragment">
-<ul>
-<li class="fragment">This is probability of class given characteristics
-<ul>
-<li class="fragment">Probability of default given balance, income</li>
-<li class="fragment">Probability of hall of fame career given college stats</li>
-<li class="fragment">Probability of disease given medical tests</li>
+<li>The only way to improve once you have hit the <em>irreducible error</em> is to find additional information about the problem</li>
 </ul></li>
 </ul>
-</div>
 </section>
-<section id="bayes-classifier-1" class="slide level2">
-<h2>Bayes Classifier</h2>
+<section id="diagnosing-high-variance" class="slide level2">
+<h2>Diagnosing High Variance</h2>
 <ul>
-<li>Best prediction is to pick class with highest chance: <span class="math display">\[
-y_{\mathrm{Bayes}}(\mathbf{x}) = \mathrm{argmax}_{y} P(y|\mathbf{x})
-\]</span></li>
-<li>Called <em>Bayes Classifier</em> or <em>Bayes Decision Rule</em></li>
-</ul>
-</section>
-<section id="applying-bayes-decision-rule" class="slide level2">
-<h2>Applying Bayes Decision Rule</h2>
-<ul>
-<li>We don’t generally know the probabilities</li>
-<li>Classification models often approximate them</li>
-<li>Often the decision rule is basically an extension of Bayes Decision assuming good probabilities</li>
-</ul>
-</section>
-<section id="knn-model" class="slide level2">
-<h2>kNN Model</h2>
-<ul>
-<li>Very simple <em>non-parametric</em> classification model is called <em>k-nearest-neighbors</em> <span class="math display">\[
-g(\mathbf{x})_{kNN} = \mathrm{argmax}_{y}\sum_{\mathbf{x}_i \in N_k(\mathbf{x})} I(y = y_i)
-\]</span></li>
-<li>Look at the <span class="math inline">\(k\)</span> nearest points to <span class="math inline">\(\mathbf{x}\)</span></li>
-<li>Pick the <span class="math inline">\(y\)</span> occuring most often</li>
-</ul>
-</section>
-<section id="knn-model-1" class="slide level2">
-<h2>kNN Model</h2>
-<ul>
-<li>Here is an example for <span class="math inline">\(k=3\)</span>.</li>
-</ul>
-<div style="text-align: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-1.png" style="width:60.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-question" class="slide level2">
-<h2>kNN Question</h2>
-<ul>
-<li>What do you think happens when <span class="math inline">\(k\)</span> is very small?</li>
-<li>What about when <span class="math inline">\(k\)</span> is very big?</li>
-</ul>
-</section>
-<section id="knn-model-2" class="slide level2">
-<h2>kNN Model</h2>
-<ul>
-<li>Classification problem with two classes</li>
-<li>Boundary is the border between 50% probability of blue</li>
-</ul>
-<div style="text-align: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-2.png" style="width:40.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-model-3" class="slide level2">
-<h2>kNN Model</h2>
-<ul>
-<li>Decision boundary for <span class="math inline">\(k=10\)</span></li>
-</ul>
-<div style="text-align: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-3.png" style="width:50.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-model-over-and-under-fitting" class="slide level2">
-<h2>kNN Model Over and Under fitting</h2>
-<ul>
-<li><span class="math inline">\(k=1\)</span> corresponds to overfitting</li>
-<li><span class="math inline">\(k=100\)</span> corresponds to underfitting</li>
-</ul>
-<div style="text-align: left;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-4.png" style="width:60.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-model-generalization-error" class="slide level2">
-<h2>kNN Model Generalization Error</h2>
-<ul>
-<li><span class="math inline">\(1/k\)</span> corresponds to model complexity</li>
-<li>Optimal out of sample accuracy at intermediate <span class="math inline">\(k\)</span></li>
-</ul>
-<div style="text-align: left;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="knn-5.png" style="width:60.0%"></p>
-<figcaption>ISL</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="knn-bias-variance-example" class="slide level2">
-<h2>kNN Bias-Variance Example</h2>
-<ul>
-<li>Consider this general classification problem:</li>
+<li>A big gap between <em>test</em> and <em>train</em> error suggests high variance</li>
 </ul>
 
-<img data-src="bayes_knn.png" class="r-stretch"><ul>
-<li>Probability that <span class="math inline">\(y=1\)</span> proportional to distance from boundary</li>
-</ul>
-</section>
-<section id="knn-bias-variance-example-1" class="slide level2">
-<h2>kNN Bias-Variance Example</h2>
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-19-output-1.png" class="r-stretch"></section>
+<section id="log-scale-to-see-convergence" class="slide level2">
+<h2>Log Scale to See Convergence</h2>
 <ul>
-<li>When number of points is small</li>
-</ul>
-<div class="r-stack">
-<p><img data-src="knn_rules_k1_n100.png"></p>
-<p><img data-src="knn_rules_kopt_n100.png" class="fragment"></p>
-<p><img data-src="knn_rules_k30_n100.png" class="fragment"></p>
-</div>
-</section>
-<section id="knn-bias-variance-example-2" class="slide level2">
-<h2>kNN Bias-Variance Example</h2>
-<ul>
-<li>When number of points is small</li>
+<li>Buy More Data</li>
 </ul>
 
-<img data-src="bias_variance_n100.png" class="r-stretch"></section>
-<section id="knn-bias-variance" class="slide level2">
-<h2>kNN Bias-Variance</h2>
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-20-output-1.png" class="r-stretch"></section>
+<section id="log-scale-to-see-convergence-1" class="slide level2">
+<h2>Log Scale to See Convergence</h2>
 <ul>
-<li>When number of points is moderate</li>
-</ul>
-<div class="r-stack">
-<p><img data-src="knn_rules_k1_n1000.png"></p>
-<p><img data-src="knn_rules_kopt_n1000.png" class="fragment"></p>
-<p><img data-src="knn_rules_k300_n1000.png" class="fragment"></p>
-</div>
-</section>
-<section id="knn-bias-variance-example-3" class="slide level2">
-<h2>kNN Bias-Variance Example</h2>
-<ul>
-<li>When number of points is moderate</li>
+<li>Consider a Different Model</li>
 </ul>
 
-<img data-src="bias_variance_n1000.png" class="r-stretch"></section>
-<section id="knn-bias-variance-example-4" class="slide level2">
-<h2>kNN Bias-Variance Example</h2>
+<img data-src="learning_curve_tutorial_files/figure-revealjs/cell-21-output-1.png" class="r-stretch"></section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<ol type="1">
+<li>If the test and train error are the same, you are <em>bias limited</em> and might need a fancier model or better features</li>
+</ol>
 <ul>
-<li>When number of points is large</li>
+<li>But be wary of <em>irreducible error</em></li>
+<li>‘kNN’ is special and can help you approximate it</li>
 </ul>
-<div class="r-stack">
-<p><img data-src="knn_rules_k1_n10000.png"></p>
-<p><img data-src="knn_rules_kopt_n10000.png" class="fragment"></p>
-<p><img data-src="knn_rules_k3000_n10000.png" class="fragment"></p>
-</div>
-</section>
-<section id="knn-bias-variance-example-5" class="slide level2">
-<h2>kNN Bias-Variance Example</h2>
+<ol start="2" type="1">
+<li>If the test and train error have a gap, you are <em>variance limited</em></li>
+</ol>
 <ul>
-<li>When number of points is large</li>
+<li>Find more data, but check convergence first</li>
+<li>Look at model errors- maybe a model with a different structure would be better.</li>
 </ul>
-
-<img data-src="bias_variance_n10000.png" class="r-stretch"></section>
-<section id="did-complexity-increase-with-data" class="slide level2">
-<h2>Did Complexity Increase With Data?</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(n\)</span></th>
-<th><span class="math inline">\(k_{\mathrm{opt}}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(100\)</span></td>
-<td><span class="math inline">\(15\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(1000\)</span></td>
-<td><span class="math inline">\(23\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(10000\)</span></td>
-<td><span class="math inline">\(145\)</span></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Looks like <span class="math inline">\(k\)</span> went up…..</li>
-</ul>
-</section>
-<section id="did-complexity-increase-with-data-1" class="slide level2">
-<h2>Did Complexity Increase With Data?</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 17%">
-<col style="width: 60%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><span class="math inline">\(n\)</span></th>
-<th><span class="math inline">\(k_{\mathrm{opt}}\)</span></th>
-<th><span class="math inline">\(r_{\mathrm{eff}} = \sqrt{k/(\pi n)}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(100\)</span></td>
-<td><span class="math inline">\(15\)</span></td>
-<td><span class="math inline">\(0.21\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(1000\)</span></td>
-<td><span class="math inline">\(23\)</span></td>
-<td><span class="math inline">\(0.086\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(10000\)</span></td>
-<td><span class="math inline">\(145\)</span></td>
-<td><span class="math inline">\(0.068\)</span></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Best measure of “complexity” here actually goes up</li>
-<li>Expected radius of circle that a test point “sees”</li>
-</ul>
-</section>
-<section id="thanks" class="slide level2">
-<h2>Thanks!</h2>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../../images/CUNY_SPS_Logo_Wide.png" class="slide-logo"></p>
