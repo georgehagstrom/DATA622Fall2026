@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="George I. Hagstrom">
+<meta name="dcterms.date" content="2026-09-13">
+<meta name="description" content="Click here for info on Week 3">
 
-<title>Lab 2: The Linear Model – DATA 622 Fall 2026</title>
+<title>Week 3 Info: The Linear Model – DATA 622 Fall 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -68,39 +71,13 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Lab 2: The Linear Model – DATA 622 Fall 2026">
-<meta property="og:description" content="DATA 622 - Machine Learning and Big Data - CUNY School of Professional Studies">
+<meta property="og:title" content="Week 3 Info: The Linear Model – DATA 622 Fall 2026">
+<meta property="og:description" content="Click here for info on Week 3">
+<meta property="og:image" content="https://georgehagstrom.github.io/DATA622Fall2026/images/week3.png">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
+<meta property="og:image:height" content="592">
+<meta property="og:image:width" content="859">
 </head>
 
 <body class="nav-sidebar docked fullcontent">
@@ -112,7 +89,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lab 2: The Linear Model</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 3 Info: The Linear Model</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -126,8 +103,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../images/course_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/course_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/georgehagstrom/DATA622Fall2026" title="Github" class="quarto-navigation-tool px-1" aria-label="Github" target="_blank"><i class="bi bi-github"></i></a>
@@ -165,7 +142,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Announcements</span></a>
   </div>
 </li>
@@ -180,37 +157,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course/instructors.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/instructors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instructors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course/textbooks.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/textbooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Textbooks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../course/software.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -227,13 +204,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assignments/labs.html" class="sidebar-item-text sidebar-link">
+  <a href="../assignments/labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Labs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../assignments/project.html" class="sidebar-item-text sidebar-link">
+  <a href="../assignments/project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project</span></a>
   </div>
 </li>
@@ -250,91 +227,91 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module1.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1 - What is Machine Learning?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module2.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2 - Bias-Variance Trade-Off</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module3.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3 - The Linear Model</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module4.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4 - Classification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module5.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5 - Generative Classification Models and Class Imbalance</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module6.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6 - Resampling and Cross Validation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module7.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module7.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7 - Regularization and Model Selection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module8.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module8.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">8 - Tree Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module9.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module9.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">9 - Ensembles of Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module10.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">10 - Causal Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module11.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 - Model Interpretation and Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module12.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12 - Neural Networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module13.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module13.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">13 - Deep Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module14.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">14 - RNNs and NLP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module15.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module15.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15 - Pretrained Models</span></a>
   </div>
 </li>
@@ -342,7 +319,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../acknowledgements.html" class="sidebar-item-text sidebar-link">
+  <a href="../acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
@@ -357,14 +334,31 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 2: The Linear Model</h1>
+<h1 class="title">Week 3 Info: The Linear Model</h1>
 </div>
 
+<div>
+  <div class="description">
+    Click here for info on Week 3
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>George I. Hagstrom </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 13, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -374,42 +368,12 @@ window.Quarto = {
 </header>
 
 
-<section id="overview" class="level3">
-<h3 class="anchored" data-anchor-id="overview">Overview</h3>
-<p>Complete this assignment by answering the following questions using code, text descriptions, and mathematics in a quarto markdown document. Render your .qmd to a pdf and submit both the qmd and pdf files on brightspace.</p>
-<p>The purpose of this lab is for you to practice making linear regression models for inference and for prediction using <code>statsmodels</code> (my suggestion) or another library of your choosing. <code>statsmodels</code> is well featured for implementing statistical models and will automatically calculate most of the statistics that you need. <code>scikit-learn</code> is also possible to use. If you are feeling adventurous and want more of a challenge, you are welcome to perform the lab using <code>pymc</code> and do the regressions in a Bayesian framework (I would replace AIC with WAIC if you do so).</p>
-<p>We will use two datasets, one for each problem. For problem 1 we will use a dataset called <code>earnings</code>. It can be found on the website for the textbook <a href="https://avehtari.github.io/ROS-Examples/">Regression and Other Stories</a>, and if you are struggling this book has a good amount of discussion on this dataset. Use the version of the dataset that I provided, however, as I found some errors in the data processing in the originals on the website.</p>
-<p>The second dataset is the <a href="https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength">UCI concrete compressive strength dataset</a>, and we will use it for problem two. I have provided a training and testing dataset.</p>
-</section>
-<section id="problem-1-confounds-in-earnings-data" class="level3">
-<h3 class="anchored" data-anchor-id="problem-1-confounds-in-earnings-data">Problem 1: Confounds in Earnings Data</h3>
-<p>The dataset <a href="https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/earnings.csv">earnings.csv</a> contains samples from the <em>Work, Family, and Well Being</em> survey, which was collected by a group led by Catherine Ross in 1990. We are working with a processed version of the dataset, which contains information on the <code>height</code>, <code>weight</code>, <code>age</code>, <code>gender</code>, <code>ethnicity</code>, <code>earnings</code>, <code>education</code> (for the respondent and their mother and father), and their health habits (levels of <code>walk</code>, <code>smoking</code>, <code>exercise</code>, <code>anger</code>, and <code>tension</code>). You can read a dataset description at <a href="https://github.com/georgehagstrom/DATA622Fall2026/tree/main/website/assignments/labs/labData/earnings_dictionary.qmd">earnings_dictionary.qmd</a> or read it on this <a href="labData/earnings_dictionary.qmd">link</a>. The goal of this problem is to understand which socioeconomic factors have an effect on earnings.</p>
-<ol type="a">
-<li><p><strong>Missing Values and Transformations</strong>: An important decision is how to handle <code>earnk</code>, the target variable, and whether to <code>log</code> transform it or not. Look at the distribution of <code>earnk</code> and discuss the pros and cons of using the <code>log</code> transform, and make a decision about whether to perform the transformation. Describe and justify how you handle missing the missing values in this problem. If you drop data with 0 earnings, desribe how that changes the population that your model describes. A helpful article to avoid some pitfalls if you use the ‘log’ transform is here: <a href="https://aosmith.rbind.io/2018/09/19/the-log-0-problem/">The log-0 problem</a>. Two more complex and arguably better approaches that are beyond the scope of week 3 are the <a href="https://avehtari.github.io/ROS-Examples/Earnings/earnings_compound.html">Two-Stage Model</a> and the <a href="https://en.wikipedia.org/wiki/Heckman_correction">Heckman Correction</a>.</p></li>
-<li><p><strong>Height and Weight Confounds:</strong> Fit separate linear regression models predicting the effect of either <code>height</code> or <code>weight</code> on your earnings target variable (<code>log_earnk</code> or <code>earnk</code>). Report the model fit coefficients and their confidence intervals for each. Make a linear regression model that includes both height and weight and compare the confidence intervals for the coefficients. What is your explanation for what happened? Find another variable that could confound the relationship between height/weight and earnings, include it in a linear regression model, and explain the outcome.</p></li>
-<li><p><strong>Potential Colliders:</strong> Consider each variable carefully, as well as your data processing steps. Are there any variables that you can identify which have the potential to cause collider bias in your regression model? You do not need to perform any regressions, just describe your reasoning.</p></li>
-</ol>
-</section>
-<section id="problem-2-optimizing-a-predictive-model-by-engineering-features" class="level3">
-<h3 class="anchored" data-anchor-id="problem-2-optimizing-a-predictive-model-by-engineering-features">Problem 2: Optimizing a Predictive Model by Engineering Features</h3>
-<p>The background goal of this problem is to devise a linear regression model which optimally predicts strength. You should use ‘AIC’ (or you may use a related quantity called ‘WAIC’ if you want to complete the problem set using ‘pymc’) to select models. If you use a very large number of engineered features, make sure to use the <em>corrected</em> version of the formula. You can download the data here:</p>
-<ol type="1">
-<li><a href="https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/concrete_train.csv">concrete_train.csv</a></li>
-<li><a href="https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/concrete_test.csv">concrete_test.csv</a></li>
-<li><a href="https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/concrete_dictionary.txt">concrete_dictionary.txt</a></li>
-</ol>
-<ol type="a">
-<li><p><strong>Brawn Model:</strong> It is common in some domains to fit a linear regression model with a large number of interaction terms. This is called <em>response surface modeling</em>. Fit a model that uses all of the data variables, including all main effects, all pairwise interactions, and all squared terms to predict the variable ‘strength’. Calculate and report the AIC of this model on the training set.</p></li>
-<li><p><strong>Feature Engineering and Variable Selection:</strong> Build a simple model that aims to improves on the <em>Brawn Model</em> by engineering a small number of features. These features can come from a few sources, including the patterns of residuals on the brawn model. Two useful sources are this short chapter <a href="https://www.fhwa.dot.gov/pavement/recycling/fach03.cfm">Fly Ash Facts for Highway Engineers</a> and the models presented in the <a href="https://www.researchgate.net/publication/222447231_Modeling_of_Strength_of_High-Performance_Concrete_Using_Artificial_Neural_Networks_Cement_and_Concrete_research_2812_1797-1808">‘Modeling of Strength of High-Performance Concrete Using Artificial Neural Networks’</a> paper, in particular the introduction section and the section on statistical models. Concrete in lab conditions improves in strength over time as it sets. I recommend developing several time features by examining plots of how strength increases with age in the training set and/or the residuals of the brawn model. You are also encouraged to experiment with generating other features which use attributes of the mixture. For each feature, provide a brief rationale (including relevant plots of the residuals in (a) or of the data) for why you developed it, and fit a small number of models using your engineered features, reporting the AIC for your candidates.</p></li>
-<li><p>Evaluate the <em>brawn</em> model and the engineered models on the test set. Do the rankings out of sample agree with the rankings based on AIC? If it does not, redo the ranking with corrected AIC formula:</p></li>
-</ol>
-<p><span class="math display">\[
-\mathrm{AIC}_c = \mathrm{AIC} + \frac{2k(k+1)}{n-k-1}
-\]</span></p>
-<p>where <span class="math inline">\(k\)</span> is the total number of parameters and <span class="math inline">\(n\)</span> is the number of data points and check if that changes the outcome.</p>
+<p>Week 3 has arrived! During this week we are going to take a fresh look at a familiar model, the linear model (aka linear regression). You may be surprised to learn that despite its simplicity, linear regression is far and away the most commonly deployed type of machine learning model. Because you have studied this model before in a variety of different classes, this week we will cover linear regression with an eye towards two distinct perspectives: how to use it for causal inference versus how to use it to make accurate predictions. We will revisit the causal inference topic later in the course.</p>
+<p>You can read more about the plan for the week and the reading/resources in <a href="../modules/module3.html">Module 3</a>.</p>
+<p>There will be one coding video tutorial published on the <code>statsmodels</code> package.</p>
+<p><a href="../assignments/labs/lab2.html">Lab 2</a> is due next Sunday at midnight.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -982,7 +946,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../license.html">
+    <a class="nav-link" href="../license.html">
 <p>License</p>
 </a>
   </li>  
@@ -990,7 +954,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/edit/main/assignments/labs/lab2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/edit/main/posts/2026-09-13-Week-3-Linear-Model.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
