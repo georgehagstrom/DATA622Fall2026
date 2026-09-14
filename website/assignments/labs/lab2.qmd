@@ -12,10 +12,11 @@ Complete this assignment by answering the following questions using code, text d
 The purpose of this lab is for you to practice making linear regression models for inference and for prediction
 using `statsmodels` (my suggestion) or another library of your choosing. `statsmodels` is well featured for implementing statistical models and will automatically calculate most of the statistics that you need. `scikit-learn` is also possible to use. If you are feeling adventurous and want more of a challenge, you are welcome to perform the lab using `pymc` and do the regressions in a Bayesian framework (I would replace AIC with WAIC if you do so).
 
-We will use a dataset called `earnings`. It can be found on
-the website for the textbook [Regression and Other Stories](https://avehtari.github.io/ROS-Examples/), and if you are struggling this book has a good amount
+We will use two datasets, one for each problem. For problem 1 we will use a dataset called `earnings`. It can be found on the website for the textbook [Regression and Other Stories](https://avehtari.github.io/ROS-Examples/), and if you are struggling this book has a good amount
 of discussion on this dataset. Use the version of the dataset that I provided, however, as I found some errors in the data processing in the originals on the website. 
 
+The second dataset is the [UCI concrete compressive strength dataset](https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength), and we will use it for problem
+two. I have provided a training and testing dataset. 
 
 ### Problem 1: Confounds in Earnings Data
 
@@ -23,29 +24,55 @@ The dataset [earnings.csv](https://raw.githubusercontent.com/georgehagstrom/DATA
 a group led by Catherine Ross in 1990. We are working with a processed version of the dataset, which contains
 information on the `height`, `weight`, `age`, `gender`, `ethnicity`, `earnings`, `education` (for the respondent and their mother and father), and their health habits (levels of `walk`, `smoking`, `exercise`, `anger`, and `tension`). You can read a dataset description at [earnings_dictionary.qmd](https://github.com/georgehagstrom/DATA622Fall2026/tree/main/website/assignments/labs/labData/earnings_dictionary.qmd) or read it on this [link](labData/earnings_dictionary.qmd). The goal of this problem is to understand which socioeconomic factors have an effect on earnings. 
 
-(a) __EDA__: Perform a basic exploratory data analysis on this dataset. Tell me how you decided to handle rows with missing values, and show me the plots of the distributions of variables and the relationships between variables that you believe are most important. An important decision is how to handle `earnk`, the target variable, and whether to `log` transform it or not. Look at the distribution of `earnk` and discuss the pros and cons of using the `log` transform, and make a decision about whether perform to the transformation or not.
+(a) __Missing Values and Transformations__:  An important decision is how to handle `earnk`, the target variable, and whether to `log` transform it or not. Look at the distribution of `earnk` and discuss the pros and cons of using the `log` transform, and make a decision about whether to perform the transformation. Describe and justify how you handle missing the missing values in this problem. If you drop data
+with 0 earnings, desribe how that changes the population that your model describes. A helpful article
+to avoid some pitfalls if you use the 'log' transform is here: [The log-0 problem](https://aosmith.rbind.io/2018/09/19/the-log-0-problem/). Two more complex and arguably better approaches that are beyond the scope of week 3 are the [Two-Stage Model](https://avehtari.github.io/ROS-Examples/Earnings/earnings_compound.html) and the [Heckman Correction](https://en.wikipedia.org/wiki/Heckman_correction).
 
 (b) __Height and Weight Confounds:__ Fit separate linear regression models predicting the effect of either `height`
 or `weight` on your earnings target variable (`log_earnk` or `earnk`). Report the model fit coefficients and their
 confidence intervals for each. Make a linear regression model that includes both height and weight and compare the confidence intervals for the coefficients. What is your explanation for what happened? Find another variable that could confound the relationship between height/weight and earnings, include it in a linear regression model, and explain the outcome.
 
-(c) __Education Coefficients:__ Fit a linear regression model to measure the total effect of parental education on your earnings target (assuming no unmeasured confounding). Then compare the coefficients you found to those of a linear model which also includes the education variable. How do you interpret the coefficient of parental education variables in each of the two models?
-
-
-
-(d) __Potential Colliders:__ Consider each variable carefully, as well as your data processing steps. Are there any variables that you can identify which have the potential to cause collider bias in your regression models?
+(c) __Potential Colliders:__ Consider each variable carefully, as well as your data processing steps. Are there any variables that you can identify which have the potential to cause collider bias in your regression model?
 You do not need to perform any regressions, just describe your reasoning. 
 
 
 
-### Problem 2: Optimizing a Predictive Model
+### Problem 2: Optimizing a Predictive Model by Engineering Features
 
-The goal of this problem is to devise a linear regression model with 
-optimal expected out of sample performance. You should use `AIC` (or `WAIC` if you are trying `pymc`) as your proxy for predictive accuracy. For this problem you will try several different models, but they must all have the same target variable on the same scale in order for their `AIC` values to be comparable (this is a common pitfall).
+The background goal of this problem is to devise a linear regression model which
+optimally predicts strength. You should use 'AIC' (or you may use
+a related quantity called 'WAIC' if you want to complete the problem set using 'pymc')
+to select models. If you use a very large number of engineered features, make
+sure to use the _corrected_ version of the formula. You can download the data here:
 
-(a) __Baseline Model:__ Start with a model that includes `age`, `gender`, `education`, fit a linear model and calculate the `AIC`.
+1. [concrete_train.csv](https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/concrete_train.csv)
+2. [concrete_test.csv](https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/concrete_test.csv)
+3. [concrete_dictionary.txt](https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/concrete_dictionary.txt)
 
-(b) __Feature Engineering and Variable Selection:__ Based on your EDA and your experience fitting models so far, attempt to develop a model with the lowest possible `AIC`. You are encouraged to look at plots of variables versus the target and create custom features based on what you see, though it is not required to do so. I'll award one person 5 bonus points for the most useful engineered feature (subjectively judged). In your best model, which variables do you exclude? Do you include any pairs of collinear variables?
+
+(a) __Brawn Model:__ It is common in some domains to fit a linear regression model with a large number of interaction terms. This is called _response surface modeling_.
+Fit a model that uses all of the data variables, including all main effects, all pairwise interactions, and all squared terms to predict the variable 'strength'. Calculate and report the AIC of this model on the training set.
+
+
+(b) __Feature Engineering and Variable Selection:__ Build a simple model that aims to improves on the _Brawn Model_ by engineering a small number of features. These
+features can come from a few sources, including the patterns of residuals on the 
+brawn model. Two useful sources are this short chapter [Fly Ash Facts for Highway Engineers](https://www.fhwa.dot.gov/pavement/recycling/fach03.cfm) and the models presented in the ['Modeling of Strength of High-Performance Concrete Using Artificial Neural Networks'](https://www.researchgate.net/publication/222447231_Modeling_of_Strength_of_High-Performance_Concrete_Using_Artificial_Neural_Networks_Cement_and_Concrete_research_2812_1797-1808) paper, in particular the introduction section and the section on statistical models. Concrete in lab conditions improves in strength over time as it sets. I recommend developing
+several time features by examining plots of how strength increases with age
+in the training set and/or the residuals of the brawn model. You are also encouraged to experiment with generating other features which use attributes of 
+the mixture. For each feature, provide a brief rationale (including relevant plots of the residuals in (a) or of the data) for why you developed it,
+and fit a small number of models using your engineered features, reporting the AIC 
+for your candidates.
+
+(c) Evaluate the _brawn_ model and the engineered models on the test set. Do the 
+rankings out of sample agree with the rankings based on AIC? If it does not, 
+redo the ranking with corrected AIC formula: 
+
+$$
+\mathrm{AIC}_c = \mathrm{AIC} + \frac{2k(k+1)}{n-k-1}
+$$
+
+where $k$ is the total number of parameters and $n$ is the number of data points
+and check if that changes the outcome.
 
 
 
