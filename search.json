@@ -560,7 +560,7 @@
     "href": "assignments/labs.html",
     "title": "Labs",
     "section": "",
-    "text": "The primary homework assignments in this course are lab assignments where you will use python and occasionally other software to acquire, explore, wrangle, and manage different data sets. Please submit a PDF (preferred) or HTML file along with your qmd file. Labs should be submitted on Brightspace.\nEach lab is released the week it is assigned; until then its link goes to a placeholder page. Once released, the lab title links to the assignment and the “Template” link downloads the raw .qmd for you to fill in.\n\nBias-Variance Tradeoff (Template)\nThe Linear Model\nClassification\nRegularization and Generalization\nTrees and Ensembles\nCausal Inference\nNeural Networks and Deep Learning\nUnsupervised Learning and Pre-Trained Models",
+    "text": "The primary homework assignments in this course are lab assignments where you will use python and occasionally other software to acquire, explore, wrangle, and manage different data sets. Please submit a PDF (preferred) or HTML file along with your qmd file. Labs should be submitted on Brightspace.\nEach lab is released the week it is assigned; until then its link goes to a placeholder page. Once released, the lab title links to the assignment and the “Template” link downloads the raw .qmd for you to fill in.\n\nBias-Variance Tradeoff (Template)\nThe Linear Model (Template)\nClassification\nRegularization and Generalization\nTrees and Ensembles\nCausal Inference\nNeural Networks and Deep Learning\nUnsupervised Learning and Pre-Trained Models",
     "crumbs": [
       "Assignments",
       "Labs"
