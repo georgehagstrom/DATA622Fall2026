@@ -1353,8 +1353,8 @@
     "text": "Hello Class,\nI have recorded a short video tutorial on how to use learning curves to diagnose problems in your machine learning model. I talk about how to identify bias limitation, variance limitation, or hitting a limit due to irreducible error. I discuss what the best course of action is in each scenario, and show how to diagnose convergence rate using a ‘loglog’ plot and irreducible error using ‘kNN’ with 1 nearest neighbor.\nClick here to watch Learning Curves and kNN.\nIf you want to learn more, I recommend reading starting at page 55 of Machine Learning Yearning for information on learning curves, and Chapter 13 of Elements of Statistical Learning for applications of ‘kNN’ including to irreducible error estimation."
   },
   {
-    "objectID": "posts/2026-15-stats-models-vignette.html",
-    "href": "posts/2026-15-stats-models-vignette.html",
+    "objectID": "posts/2026-09-15-stats-models-vignette.html",
+    "href": "posts/2026-09-15-stats-models-vignette.html",
     "title": "Linear Regression in statsmodels",
     "section": "",
     "text": "I have recorded two videos on how to use the ‘statsmodels’ package in python to make linear regression models. I have also included a third video which I recorded last spring which is very long and comprehensive. The two new videos are a lot shorter and focus on AIC and on how to use residuals to do feature engineering. They also complete the end of the last meetup. I’ve edited the long video from last year to get rid of debuggin pauses to make it shorter, apologies if this made it flow less. The old video closely followed the python notebook provided by ‘ISLP’, the new videos look at the ‘hitters’ dataset.\nHere are the videos:\n\n‘statsmodels’ AIC vignette\n‘statsmodels’ Feature Engineering Vignette\n‘statsmodels’ Comprehensive Vignette\n\nHere are the notebooks:\n\nNew Vignette (Hitters, AIC, Feature Engineering): hitters_aic_features_vignette.ipynb\nOld Vignette (My take on the ISLP notebook): sm-vignette.ipynb\n\nYou can download my python notebook here: statsmodels vignette"
