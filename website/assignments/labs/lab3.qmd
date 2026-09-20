@@ -1,0 +1,75 @@
+---
+title: "Using Classification to Build a Marketing Target Model"
+format: html
+editor: source
+---
+
+
+### Overview
+
+In this lab assignment you will be exploring the _Portuguese Bank Marketing Dataset_, which consists of data on the outcomes of marketing calls to bank clients offering them a _term deposit_. A _term deposit_  is a fixed term deposit with the bank that returns the principal plus interest at the end of the pre-defined term period.
+The objective of this assignment is to apply classification models to make suggestions to the marketing team.
+
+The dataset can be found at the following link: [bank_marketing_dataset.csv](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/bank_marketing_dataset.csv). This dataset is a standard benchmark for classification in the ML community,
+see the 
+[UCI Machine Learning Repository page](https://archive.ics.uci.edu/dataset/222/bank+marketing), and this introductory paper: [A data driven approach to predict the success of bank telemarketing](https://repositorio.iscte-iul.pt/bitstream/10071/9499/5/dss_v3.pdf). The specific dataset used for this assignment has some subtle differences to those available at
+the 'UCI Page'. The data is described on the course website at [bank_marketing_dictionary.qmd](labData/bank_marketing_dictionary.qmd).
+
+### Problem 1: What Can Machine Learning Do?
+
+(a) This dataset has been analyzed extensively by many different people. `kaggle.com` is a machine learning community that shares datasets, analysis methods, and hosts competitions. The most upvoted analysis notebook on `kaggle` for the Bank Marketing dataset (see: [https://www.kaggle.com/code/janiobachmann/bank-marketing-campaign-opening-a-term-deposit](https://www.kaggle.com/code/janiobachmann/bank-marketing-campaign-opening-a-term-deposit)) has a glaring flaw that makes it useless in
+practice. Examine the analysis and determine the flaw. Your answer should be short. 
+_Hint: Take a careful look at all the variables used, or look for people complaining about it in the comments._
+
+### Problem 2: EDA and Baseline Model
+
+(a) __EDA and Temporal Patterns:__ Take a quick look at the initial distribution of the data, and perform a train-test split. Justify your choice of whether to stratify your split or not and if so by which variable (consider reading the rest of the question before deciding). Are there any additional variables that need to be added or recoded? Describe the most important
+relationships that you uncovered between the predictors and the target and show the visualizations you made specifically to support
+those conclusions. Pay particular attention to temporal variations in addition to correlation with the target: how did the success rate of the marketing campaign and the composition of the target population vary over time? Which variables (and related real world events) explain the temporal pattern?
+
+
+(b) __Baseline Model and Data Drift:__ The temporal variation in the dataset necessitates a careful approach to model evaluation. Explain (in one paragraph) why temporal variation in the data could cause model performance metrics evaluated on the entire testing split to mismatch the
+real-time experiences of the marketing team. 
+
+The standard way to approach this is to train and test your model against a 'rolling window' of 
+observations, mimicking how the model would be used and updated in the real world.
+I suggest taking a simpler approach (due to dramatic changes in the amount of data in different time periods): using the variables identified as causing the temporal patterns in 2(a),
+divide the data into 3 to 4 _epochs_ (you could use `pd.cut` on a suitable variable). Train the model on the full training split from 2(a), but divide
+the test splits by the epochs and test model performance separately on the subset
+of the testing split corresponding to each epoch. This should tell you how the model would perform in 
+different types of conditions.  
+
+   (c) Implement this plan by creating a baseline logistic regression model, either through 'statsmodels' or 'sklearn' (I recommend building your preprocessing steps and fitting steps into a pipeline). Select variables based on what you observed to be important in the EDA,
+    but avoid using temporal predictors ('month_numeric', 'day', 'year') or any predictor that could not be used to make a decision on who to call. For each testing epoch, report the overall error rate and the overall success rate of the
+    campaign during that epoch for context and comparison. For each epoch, plot the ROC curve and the probability calibration curve. What do you notice about the difference in model performance in different periods? Test the model on the entire testing set and report how the results compare to the individual epochs.
+
+
+(d) __Lift Curves and Hit Rates:__ Your marketing team is planning a marketing campaign where they will call the top $x$ percent of likely clients based on based on model forecasts. _Lift_ describes the ratio of the success rate in the top $x$ percent to
+the success rate in the entire population and _hit rate_ means the fraction of marketing calls that are
+successful. A campaign that targets the top 1\% will have a much higher _lift_ than one that targets the top
+50\%, and the lift of a campaign that targets everyone will be 1. A _lift curve_ is a graph showing the _lift_ on the y-axis and the percent
+targeted on the x-axis. Lift curves and hit rates are essential tools used to estimate the return on investment of a campaign. Estimate the lift on the testing set corresponding to each epoch by sorting the testing examples in 
+descending order of predicted probability and then calculating the fraction of successful conversions in the top $x$ percent and dividing
+by the total number of successful conversions in the testing set. Make a plot of the lift curve using your baseline model for each epoch
+and report the lift and hit rate for campaigns that target the top 10\% and top 50\% of potential customers. 
+
+
+
+### Extra Credit (5 pts): How Has the Marketing Team Already Been Optimizing?
+
+Understanding the data generating process is vital for modeling. This marketing dataset is not a random sample of 
+the bank's customers. Marketers may already be using a model or their own expertise to select which customers to call. This could
+lead to selection bias, where segments of the population are not represented in the dataset. As the marketing campaign progressed, 
+the marketing team may also have gained knowledge about the most effective practices, which could explain some of the temporal anomalies.
+Can you find evidence for this in any of the variables in the dataset? Note: there is a trade-off between exploration (getting data to 
+improve the model accuracy) and exploitation (making calls to optimize the number of term deposits the bank sells). This trade-off is often
+referred to as a 'multi-armed bandit' problem, see [https://en.wikipedia.org/wiki/Multi-armed_bandit](https://en.wikipedia.org/wiki/Multi-armed_bandit).
+
+
+
+
+
+
+
+
+
