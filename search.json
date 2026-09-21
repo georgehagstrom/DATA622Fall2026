@@ -105,11 +105,39 @@
     "text": "Week Summary\n\nEssential to contact others about projects this week\n\nProposal Due in 2 Weeks.\nEach team reach out to schedule 5-10 minute meeting during October 5 week\n\nHW 3 on Classification due in 2 weeks\nCoding vignette on classification/LR"
   },
   {
+    "objectID": "meetups/meetup-4/meetup-4.html#event-reminder",
+    "href": "meetups/meetup-4/meetup-4.html#event-reminder",
+    "title": "DATA 622 Meetup 4: Classification",
+    "section": "Event Reminder!",
+    "text": "Event Reminder!\n\n\nClick Here to sign up"
+  },
+  {
     "objectID": "meetups/meetup-4/meetup-4.html#hw-3-summary",
     "href": "meetups/meetup-4/meetup-4.html#hw-3-summary",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "HW 3 Summary:",
-    "text": "HW 3 Summary:\n\nAlways look at your figures very carefully.\nMisconception: Noise in data does not help regularize\n\nLater we will learn that noise in the algorithm can\n\nPython arrays indexed starting from 0"
+    "text": "HW 3 Summary:\n\nLearning Curve:"
+  },
+  {
+    "objectID": "meetups/meetup-4/meetup-4.html#hw-3-summary-1",
+    "href": "meetups/meetup-4/meetup-4.html#hw-3-summary-1",
+    "title": "DATA 622 Meetup 4: Classification",
+    "section": "HW 3 Summary:",
+    "text": "HW 3 Summary:\n\nLearning Curve:"
+  },
+  {
+    "objectID": "meetups/meetup-4/meetup-4.html#hw-3-summary-2",
+    "href": "meetups/meetup-4/meetup-4.html#hw-3-summary-2",
+    "title": "DATA 622 Meetup 4: Classification",
+    "section": "HW 3 Summary:",
+    "text": "HW 3 Summary:\n\nMore Data!"
+  },
+  {
+    "objectID": "meetups/meetup-4/meetup-4.html#hw-3-summary-3",
+    "href": "meetups/meetup-4/meetup-4.html#hw-3-summary-3",
+    "title": "DATA 622 Meetup 4: Classification",
+    "section": "HW 3 Summary:",
+    "text": "HW 3 Summary:\n\nIrreducible Error"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#weather-example",
@@ -210,11 +238,11 @@
     "text": "Surrogate Loss\n\nLearning algorithms cannot use this discontinuous rule!\nInstead use surrogate functions which mimic the loss rule\nBased on threshold function"
   },
   {
-    "objectID": "meetups/meetup-4/meetup-4.html#logistic-loss",
-    "href": "meetups/meetup-4/meetup-4.html#logistic-loss",
+    "objectID": "meetups/meetup-4/meetup-4.html#logistic-function",
+    "href": "meetups/meetup-4/meetup-4.html#logistic-function",
     "title": "DATA 622 Meetup 4: Classification",
-    "section": "Logistic loss",
-    "text": "Logistic loss\n\nlogistic function \\(\\sigma\\): \\[\n\\sigma(\\eta(\\mathbf{x})) = \\frac{1}{1+e^{-\\eta(\\mathbf{x})}}\n\\]\nHere is \\(\\eta\\) is a score that could range from \\(-\\infty\\) to \\(\\infty\\)\n\\(\\sigma\\) is between 0 and 1, can interpret as a probability"
+    "section": "Logistic function",
+    "text": "Logistic function\n\nlogistic function \\(\\sigma\\): \\[\n\\sigma(\\eta(\\mathbf{x})) = \\frac{1}{1+e^{-\\eta(\\mathbf{x})}}\n\\]\nHere is \\(\\eta\\) is a score that could range from \\(-\\infty\\) to \\(\\infty\\)\n\\(\\sigma\\) is between 0 and 1, can interpret as a probability"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#logistic-regression",
@@ -263,28 +291,28 @@
     "href": "meetups/meetup-4/meetup-4.html#example-credit-data",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Example: Credit Data",
-    "text": "Example: Credit Data\n\ndefault = islp.load_data('Default')\n\ndefault.head()\n\n\n\n\n\n\n\n\ndefault\nstudent\nbalance\nincome\n\n\n\n\n0\nNo\nNo\n729.526495\n44361.625074\n\n\n1\nNo\nYes\n817.180407\n12106.134700\n\n\n2\nNo\nNo\n1073.549164\n31767.138947\n\n\n3\nNo\nNo\n529.250605\n35704.493935\n\n\n4\nNo\nNo\n785.655883\n38463.495879"
+    "text": "Example: Credit Data\n\n\n\n\n\n\n\n\n\ndefault\nstudent\nbalance\nincome\n\n\n\n\n0\nNo\nNo\n729.526495\n44361.625074\n\n\n1\nNo\nYes\n817.180407\n12106.134700\n\n\n2\nNo\nNo\n1073.549164\n31767.138947\n\n\n3\nNo\nNo\n529.250605\n35704.493935\n\n\n4\nNo\nNo\n785.655883\n38463.495879"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#example-credit-data-1",
     "href": "meetups/meetup-4/meetup-4.html#example-credit-data-1",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Example: Credit Data",
-    "text": "Example: Credit Data\n\nfig, ax = subplots(figsize=(8,6))\n\nsns.scatterplot(data=default, x='balance', y='income', \n                hue='default', style='default', \n                markers=['+', 'x'],\n                s=50, alpha=0.7, ax=ax)\n\nax.set_xlabel(\"Credit Balance (USD)\",fontsize=20)\nax.set_ylabel(\"Income (USD)\",fontsize=20)\nfig.suptitle(\"Default Status Versus Income and Balance\",x=0.125,ha='left',fontsize=24,fontweight='bold')\nax.set_title(\"Credit card defaults seem to be driven\\n much more strongly by balance than income\",fontsize=20)\nplt.tight_layout()\nplt.show()"
+    "text": "Example: Credit Data"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#example-credit-data-2",
     "href": "meetups/meetup-4/meetup-4.html#example-credit-data-2",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Example: Credit Data",
-    "text": "Example: Credit Data\n\nfig, ax = subplots(figsize=(8,6))\n\nsns.scatterplot(data=default, x='balance', y='income', \n                hue='student', style='student', \n                markers=['o', 's'],\n                s=50, alpha=0.7, ax=ax)\n\nax.set_xlabel(\"Credit Balance (USD)\",fontsize=20)\nax.set_ylabel(\"Income (USD)\",fontsize=20)\nfig.suptitle(\"Student Status\",x=0.125,ha='left',fontsize=24,fontweight='bold')\nax.set_title(\"Students have lower income\",fontsize=20)\nplt.tight_layout()\nplt.show()"
+    "text": "Example: Credit Data"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#model-coefficients",
     "href": "meetups/meetup-4/meetup-4.html#model-coefficients",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Model Coefficients",
-    "text": "Model Coefficients\n\ntrain_set, test_set = train_test_split(default, test_size=0.2, random_state=123155,stratify=default[\"default\"])\n\n\n\ntrain_set_target = train_set[\"default\"].copy()\ntest_set_target = test_set[\"default\"].copy()\n\nle = LabelEncoder()\ny_train = le.fit_transform(train_set_target)\ny_test = le.transform(test_set_target)\n\ntrain_set_drop = train_set.copy().drop([\"default\"],axis=1)\ntest_set_drop = test_set.copy().drop([\"default\"],axis=1)\n\nnumerical_features = [\"balance\",\"income\"]\n\ncategorical_features = [\"student\"]\n\npreprocessor = ColumnTransformer([\n    ('num', StandardScaler(), numerical_features),\n    ('cat', OneHotEncoder(drop='first', handle_unknown='ignore', sparse_output=False), categorical_features)\n])  \n\npipe_lr = Pipeline([\n    ('prep', preprocessor),\n    ('model', LogisticRegression(max_iter=1000))\n])\n\npipe_lr.fit(train_set_drop,y_train)\n\nmodel_lr_f = pipe_lr.named_steps['model']\n\ndef logistic_features(pipe):\n    \n    model = pipe.named_steps['model']\n    preprocessor = pipe.named_steps['prep']\n    \n    feature_names = preprocessor.get_feature_names_out()\n\n    coef_df = pd.DataFrame({\n        'feature': list(feature_names),\n        'coefficient': list(model.coef_[0])\n    })\n\n    coef_df['odds_ratio'] = np.exp(coef_df['coefficient'])\n    coef_df['abs_coefficient'] = coef_df['coefficient'].abs()\n    coef_df = coef_df.sort_values('abs_coefficient', ascending=False)\n    return coef_df\n\ncoef_df = logistic_features(pipe_lr)\n\ncoef_df[[\"feature\",\"coefficient\"]]\n\n\n\n\n\n\n\n\nfeature\ncoefficient\n\n\n\n\n0\nnum__balance\n2.699375\n\n\n2\ncat__student_Yes\n-0.518437\n\n\n1\nnum__income\n0.121987\n\n\n\n\n\n\n\n\nWhat do these coefficients actually mean?"
+    "text": "Model Coefficients\n\n\n\n\n\n\n\n\n\nfeature\ncoefficient\n\n\n\n\n0\nnum__balance\n2.699375\n\n\n2\ncat__student_Yes\n-0.518437\n\n\n1\nnum__income\n0.121987\n\n\n\n\n\n\n\n\nWhat do these coefficients actually mean?"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#logit-transformation-to-odds-ratios",
@@ -298,7 +326,7 @@
     "href": "meetups/meetup-4/meetup-4.html#logit-transformation-to-odds-ratios-1",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "logit transformation to Odds Ratios",
-    "text": "logit transformation to Odds Ratios\n\nexponentiate coefficients to recover odds ratios\n\n\ncoef_df[[\"feature\",\"coefficient\",\"odds_ratio\"]]\n\n\n\n\n\n\n\n\nfeature\ncoefficient\nodds_ratio\n\n\n\n\n0\nnum__balance\n2.699375\n14.870429\n\n\n2\ncat__student_Yes\n-0.518437\n0.595451\n\n\n1\nnum__income\n0.121987\n1.129739\n\n\n\n\n\n\n\n\nA 1 unit change in variable leads to a change in odds equal to the ‘odds_ratio’"
+    "text": "logit transformation to Odds Ratios\n\nexponentiate coefficients to recover odds ratios\n\n\n\n\n\n\n\n\n\n\nfeature\ncoefficient\nodds_ratio\n\n\n\n\n0\nnum__balance\n2.699375\n14.870429\n\n\n2\ncat__student_Yes\n-0.518437\n0.595451\n\n\n1\nnum__income\n0.121987\n1.129739\n\n\n\n\n\n\n\n\nA 1 unit change in variable leads to a change in odds equal to the ‘odds_ratio’"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#marginal-effects",
@@ -312,21 +340,21 @@
     "href": "meetups/meetup-4/meetup-4.html#marginal-effects-1",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Marginal Effects",
-    "text": "Marginal Effects\n\nTo see how factors impact proability, decide where you want to make predictions\n\n\n# Very annoying I had to do things this way in case you are looking\n# at my code\n\ntrain_set_drop[\"student\"] = train_set_drop[\"student\"].astype(\"category\")\n\ntrain_set_drop[\"balance\"] = train_set_drop[\"balance\"] / 1000\ntrain_set_drop[\"income\"] = train_set_drop[\"income\"] / 1000\n\nmod = fit_sklearn(\n    \"default ~ balance + income + student\",\n    data=pd.concat([train_set_drop, train_set_target.rename(\"default\")], axis=1),\n    engine=LogisticRegression(max_iter=1000),\n)\n\n\naverage_slopes = avg_slopes(mod, \n    variables=[\"balance\", \"income\", \"student\"])\n\n\n\naverage_comparisons = avg_comparisons(mod, \n    variables={\"balance\": \"sd\", \"income\": \"sd\", \"student\": \"reference\"})\n\nprint(average_slopes)\nprint(average_comparisons);\n\nshape: (3, 3)\n┌─────────┬──────────┬──────────┐\n│ Term    ┆ Contrast ┆ Estimate │\n│ ---     ┆ ---      ┆ ---      │\n│ str     ┆ str      ┆ str      │\n╞═════════╪══════════╪══════════╡\n│ balance ┆ dY/dX    ┆ 0.119    │\n│ income  ┆ dY/dX    ┆ 0.000202 │\n│ student ┆ Yes - No ┆ -0.0103  │\n└─────────┴──────────┴──────────┘\nshape: (3, 3)\n┌─────────┬─────────────────────┬──────────┐\n│ Term    ┆ Contrast            ┆ Estimate │\n│ ---     ┆ ---                 ┆ ---      │\n│ str     ┆ str                 ┆ str      │\n╞═════════╪═════════════════════╪══════════╡\n│ balance ┆ (x+sd/2) - (x-sd/2) ┆ 0.0613   │\n│ income  ┆ (x+sd/2) - (x-sd/2) ┆ 0.00269  │\n│ student ┆ Yes - No            ┆ -0.0103  │\n└─────────┴─────────────────────┴──────────┘"
+    "text": "Marginal Effects\n\nTo see how factors impact proability, decide where you want to make predictions\n\n\n\nshape: (3, 3)\n┌─────────┬──────────┬──────────┐\n│ Term    ┆ Contrast ┆ Estimate │\n│ ---     ┆ ---      ┆ ---      │\n│ str     ┆ str      ┆ str      │\n╞═════════╪══════════╪══════════╡\n│ balance ┆ dY/dX    ┆ 0.119    │\n│ income  ┆ dY/dX    ┆ 0.000202 │\n│ student ┆ Yes - No ┆ -0.0103  │\n└─────────┴──────────┴──────────┘\nshape: (3, 3)\n┌─────────┬─────────────────────┬──────────┐\n│ Term    ┆ Contrast            ┆ Estimate │\n│ ---     ┆ ---                 ┆ ---      │\n│ str     ┆ str                 ┆ str      │\n╞═════════╪═════════════════════╪══════════╡\n│ balance ┆ (x+sd/2) - (x-sd/2) ┆ 0.0613   │\n│ income  ┆ (x+sd/2) - (x-sd/2) ┆ 0.00269  │\n│ student ┆ Yes - No            ┆ -0.0103  │\n└─────────┴─────────────────────┴──────────┘"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#plot-the-probability-predictions",
     "href": "meetups/meetup-4/meetup-4.html#plot-the-probability-predictions",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Plot the Probability Predictions",
-    "text": "Plot the Probability Predictions\n\npred_df = predictions(mod, \n    newdata=datagrid(model=mod, balance=np.linspace(0, 3, 200), student=[\"Yes\", \"No\"]))\n\nfig, ax = subplots(figsize=(8, 6))\nsns.lineplot(data=pred_df.to_pandas(), x=\"balance\", y=\"estimate\", hue=\"student\",linewidth=2.5, ax=ax)\nax.set_xlabel(\"Balance (1000 USD)\", fontsize=16)\nax.set_ylabel(\"P(Default)\", fontsize=16)\nax.set_title(\"Predicted Default Probability\", fontsize=20)\nax.legend(title=\"Student\", fontsize=14, title_fontsize=14)\nplt.tight_layout()\nplt.show()"
+    "text": "Plot the Probability Predictions"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#probability-calibration",
     "href": "meetups/meetup-4/meetup-4.html#probability-calibration",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Probability Calibration",
-    "text": "Probability Calibration\n\ny_prob = pipe_lr.predict_proba(test_set_drop)[:, 1]\nprob_true, prob_pred = calibration_curve(y_test, y_prob, n_bins=10, strategy=\"quantile\")\n\nmax_val = 0.25\n\nfig, ax = subplots(figsize=(8, 6))\nax.plot(prob_pred, prob_true, marker=\"o\", label=\"Model\")\nax.plot([0, max_val], [0, max_val], linestyle=\"--\", color=\"gray\", label=\"Perfect Calibration\")\nax.set_xlabel(\"Mean Predicted Probability\", fontsize=16)\nax.set_ylabel(\"Observed Frequency\", fontsize=16)\nax.set_title(\"Calibration Curve\", fontsize=20)\nax.legend(fontsize=14)\nplt.tight_layout()\nplt.show()"
+    "text": "Probability Calibration"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#types-of-errors",
@@ -347,21 +375,21 @@
     "href": "meetups/meetup-4/meetup-4.html#roc-curve",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "ROC Curve",
-    "text": "ROC Curve\n\ny_prob = pipe_lr.predict_proba(test_set_drop)[:, 1]\n\nfig, ax = subplots(figsize=(8, 6))\n\nRocCurveDisplay.from_predictions(y_test, y_prob, ax=ax);\nax.plot([0, 1], [0, 1], linestyle=\"--\", color=\"gray\")\nax.set_title(\"ROC Curve\", fontsize=20)\nax.set_xlabel(\"False Positive Rate\", fontsize=16)\nax.set_ylabel(\"True Positive Rate\", fontsize=16);\n\nplt.tight_layout();\nplt.show();"
+    "text": "ROC Curve"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#confusion-matrix",
     "href": "meetups/meetup-4/meetup-4.html#confusion-matrix",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Confusion Matrix",
-    "text": "Confusion Matrix\n\nTabular counterpart to ROC curve\nDisplays amount of different types of errors and successes\n\n\nthreshold = 0.5\ny_pred = (y_prob &gt;= threshold).astype(int)\n\nprint(\"Bayes Decision Rule\\n\")\nprint(classification_report(y_test, y_pred, target_names=[\"No Default\", \"Default\"]))\n\nBayes Decision Rule\n\n              precision    recall  f1-score   support\n\n  No Default       0.98      1.00      0.99      1933\n     Default       0.75      0.27      0.40        67\n\n    accuracy                           0.97      2000\n   macro avg       0.86      0.63      0.69      2000\nweighted avg       0.97      0.97      0.97      2000\n\n\n\n\nPrecision: If model said it, was it true?\nRecall: If it was true, did the model say it? (TPR/TNR)"
+    "text": "Confusion Matrix\n\nTabular counterpart to ROC curve\nDisplays amount of different types of errors and successes\n\n\n\nBayes Decision Rule\n\n              precision    recall  f1-score   support\n\n  No Default       0.98      1.00      0.99      1933\n     Default       0.75      0.27      0.40        67\n\n    accuracy                           0.97      2000\n   macro avg       0.86      0.63      0.69      2000\nweighted avg       0.97      0.97      0.97      2000\n\n\n\n\nPrecision: If model said it, was it true?\nRecall: If it was true, did the model say it? (TPR/TNR)"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#confusion-matrix-1",
     "href": "meetups/meetup-4/meetup-4.html#confusion-matrix-1",
     "title": "DATA 622 Meetup 4: Classification",
     "section": "Confusion Matrix",
-    "text": "Confusion Matrix\n\nTabular counterpart to ROC curve\nDisplays amount of different types of errors and successes\n\n\nthreshold = 0.1\ny_pred = (y_prob &gt;= threshold).astype(int)\n\nprint(\"10% threshold\\n\")\nprint(classification_report(y_test, y_pred, target_names=[\"No Default\", \"Default\"]))\n\n10% threshold\n\n              precision    recall  f1-score   support\n\n  No Default       0.99      0.94      0.97      1933\n     Default       0.30      0.72      0.43        67\n\n    accuracy                           0.94      2000\n   macro avg       0.65      0.83      0.70      2000\nweighted avg       0.97      0.94      0.95      2000\n\n\n\n\nPrecision: If model said it, was it true?\nRecall: If it was true, did the model say it?"
+    "text": "Confusion Matrix\n\nTabular counterpart to ROC curve\nDisplays amount of different types of errors and successes\n\n\n\n10% threshold\n\n              precision    recall  f1-score   support\n\n  No Default       0.99      0.94      0.97      1933\n     Default       0.30      0.72      0.43        67\n\n    accuracy                           0.94      2000\n   macro avg       0.65      0.83      0.70      2000\nweighted avg       0.97      0.94      0.95      2000\n\n\n\n\nPrecision: If model said it, was it true?\nRecall: If it was true, did the model say it?"
   },
   {
     "objectID": "meetups/meetup-4/meetup-4.html#thanks",
@@ -1453,7 +1481,7 @@
     "href": "course/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\n\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -1464,7 +1492,7 @@
     "href": "course/schedule.html#meetup-link",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\n\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\n\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\n\n\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"

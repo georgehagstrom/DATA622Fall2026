@@ -30,71 +30,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -409,33 +344,6 @@ George I. Hagstrom
 
   <p class="date">2026-09-21</p>
 </section>
-<section class="slide level2">
-
-<div id="a7d6f287" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> ISLP <span class="im">as</span> islp</span>
-<span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a></a><span class="im">from</span> IPython.core.pylabtools <span class="im">import</span> figsize</span>
-<span id="cb1-4"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-5"><a></a><span class="im">import</span> sklearn <span class="im">as</span> sklearn</span>
-<span id="cb1-6"><a></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> subplots</span>
-<span id="cb1-7"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-8"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a>sklearn.set_config(transform_output<span class="op">=</span><span class="st">"pandas"</span>)</span>
-<span id="cb1-11"><a></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-12"><a></a></span>
-<span id="cb1-13"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb1-14"><a></a></span>
-<span id="cb1-15"><a></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer, make_column_selector</span>
-<span id="cb1-16"><a></a></span>
-<span id="cb1-17"><a></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, OrdinalEncoder, StandardScaler, LabelEncoder</span>
-<span id="cb1-18"><a></a><span class="im">from</span> sklearn.calibration <span class="im">import</span> calibration_curve</span>
-<span id="cb1-19"><a></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report, accuracy_score, roc_auc_score, roc_curve, RocCurveDisplay, ConfusionMatrixDisplay</span>
-<span id="cb1-20"><a></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb1-21"><a></a></span>
-<span id="cb1-22"><a></a><span class="im">from</span> marginaleffects <span class="im">import</span> avg_slopes, slopes, plot_predictions, fit_sklearn, avg_comparisons, predictions, datagrid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 <section id="week-summary" class="slide level2">
 <h2>Week Summary</h2>
 <ul>
@@ -448,17 +356,40 @@ George I. Hagstrom
 <li>Coding vignette on classification/LR</li>
 </ul>
 </section>
+<section id="event-reminder" class="slide level2">
+<h2>Event Reminder!</h2>
+
+<img data-src="../../images/Oct2026Seminar.png" class="r-stretch"><ul>
+<li><a href="https://us02web.zoom.us/j/83840080608?pwd=KwzeAIG66KJQ27QeAqBGkqkr5XsxmI.1&amp;jst=1">Click Here to sign up</a></li>
+</ul>
+</section>
 <section id="hw-3-summary" class="slide level2">
 <h2>HW 3 Summary:</h2>
 <ul>
-<li>Always look at your figures very carefully.</li>
-<li>Misconception: Noise in data does not help regularize
+<li>Learning Curve:</li>
+</ul>
+
+<img data-src="abalone-1.png" class="r-stretch"></section>
+<section id="hw-3-summary-1" class="slide level2">
+<h2>HW 3 Summary:</h2>
 <ul>
-<li>Later we will learn that noise in the algorithm can</li>
-</ul></li>
-<li>Python arrays indexed starting from 0</li>
+<li>Learning Curve:</li>
+</ul>
+
+<img data-src="abalone-30.png" class="r-stretch"></section>
+<section id="hw-3-summary-2" class="slide level2">
+<h2>HW 3 Summary:</h2>
+<ul>
+<li>More Data!</li>
 </ul>
 </section>
+<section id="hw-3-summary-3" class="slide level2">
+<h2>HW 3 Summary:</h2>
+<ul>
+<li>Irreducible Error</li>
+</ul>
+
+<img data-src="abalone-30.png" class="r-stretch"></section>
 <section id="weather-example" class="slide level2">
 <h2>Weather Example</h2>
 <ul>
@@ -835,8 +766,8 @@ g(\mathbf{x}) = 0\quad\quad \mathrm{if}\quad\quad \eta(\mathbf{x}) &lt; 0
 </ul>
 
 <img data-src="surrogate.png" class="r-stretch"></section>
-<section id="logistic-loss" class="slide level2">
-<h2>Logistic loss</h2>
+<section id="logistic-function" class="slide level2">
+<h2>Logistic function</h2>
 <ul>
 <li>logistic function <span class="math inline">\(\sigma\)</span>: <span class="math display">\[
 \sigma(\eta(\mathbf{x})) = \frac{1}{1+e^{-\eta(\mathbf{x})}}
@@ -1014,10 +945,7 @@ p(y=k|\mathbf{x}) = \frac{\exp{\mathbf{w}_k\cdot\mathbf{x}}}{1 + \sum_{j=1}^{K-1
 </section>
 <section id="example-credit-data" class="slide level2">
 <h2>Example: Credit Data</h2>
-<div id="0f38485f" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>default <span class="op">=</span> islp.load_data(<span class="st">'Default'</span>)</span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a>default.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c24df098" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 <style scoped="">
@@ -1089,97 +1017,15 @@ p(y=k|\mathbf{x}) = \frac{\exp{\mathbf{w}_k\cdot\mathbf{x}}}{1 + \sum_{j=1}^{K-1
 </section>
 <section id="example-credit-data-1" class="slide level2">
 <h2>Example: Credit Data</h2>
-<div id="7290a3b5" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a>sns.scatterplot(data<span class="op">=</span>default, x<span class="op">=</span><span class="st">'balance'</span>, y<span class="op">=</span><span class="st">'income'</span>, </span>
-<span id="cb3-4"><a></a>                hue<span class="op">=</span><span class="st">'default'</span>, style<span class="op">=</span><span class="st">'default'</span>, </span>
-<span id="cb3-5"><a></a>                markers<span class="op">=</span>[<span class="st">'+'</span>, <span class="st">'x'</span>],</span>
-<span id="cb3-6"><a></a>                s<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb3-7"><a></a></span>
-<span id="cb3-8"><a></a>ax.set_xlabel(<span class="st">"Credit Balance (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb3-9"><a></a>ax.set_ylabel(<span class="st">"Income (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb3-10"><a></a>fig.suptitle(<span class="st">"Default Status Versus Income and Balance"</span>,x<span class="op">=</span><span class="fl">0.125</span>,ha<span class="op">=</span><span class="st">'left'</span>,fontsize<span class="op">=</span><span class="dv">24</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb3-11"><a></a>ax.set_title(<span class="st">"Credit card defaults seem to be driven</span><span class="ch">\n</span><span class="st"> much more strongly by balance than income"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb3-12"><a></a>plt.tight_layout()</span>
-<span id="cb3-13"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="meetup-4_files/figure-html/cell-4-output-1.png" class="r-stretch"></section>
+<img data-src="meetup-4_files/figure-revealjs/cell-4-output-1.png" class="r-stretch"></section>
 <section id="example-credit-data-2" class="slide level2">
 <h2>Example: Credit Data</h2>
-<div id="1095d4e4" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>sns.scatterplot(data<span class="op">=</span>default, x<span class="op">=</span><span class="st">'balance'</span>, y<span class="op">=</span><span class="st">'income'</span>, </span>
-<span id="cb4-4"><a></a>                hue<span class="op">=</span><span class="st">'student'</span>, style<span class="op">=</span><span class="st">'student'</span>, </span>
-<span id="cb4-5"><a></a>                markers<span class="op">=</span>[<span class="st">'o'</span>, <span class="st">'s'</span>],</span>
-<span id="cb4-6"><a></a>                s<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb4-7"><a></a></span>
-<span id="cb4-8"><a></a>ax.set_xlabel(<span class="st">"Credit Balance (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb4-9"><a></a>ax.set_ylabel(<span class="st">"Income (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb4-10"><a></a>fig.suptitle(<span class="st">"Student Status"</span>,x<span class="op">=</span><span class="fl">0.125</span>,ha<span class="op">=</span><span class="st">'left'</span>,fontsize<span class="op">=</span><span class="dv">24</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb4-11"><a></a>ax.set_title(<span class="st">"Students have lower income"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb4-12"><a></a>plt.tight_layout()</span>
-<span id="cb4-13"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="meetup-4_files/figure-html/cell-5-output-1.png" class="r-stretch"></section>
+<img data-src="meetup-4_files/figure-revealjs/cell-5-output-1.png" class="r-stretch"></section>
 <section id="model-coefficients" class="slide level2">
 <h2>Model Coefficients</h2>
-<div id="011ed855" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>train_set, test_set <span class="op">=</span> train_test_split(default, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">123155</span>,stratify<span class="op">=</span>default[<span class="st">"default"</span>])</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a>train_set_target <span class="op">=</span> train_set[<span class="st">"default"</span>].copy()</span>
-<span id="cb5-6"><a></a>test_set_target <span class="op">=</span> test_set[<span class="st">"default"</span>].copy()</span>
-<span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a>le <span class="op">=</span> LabelEncoder()</span>
-<span id="cb5-9"><a></a>y_train <span class="op">=</span> le.fit_transform(train_set_target)</span>
-<span id="cb5-10"><a></a>y_test <span class="op">=</span> le.transform(test_set_target)</span>
-<span id="cb5-11"><a></a></span>
-<span id="cb5-12"><a></a>train_set_drop <span class="op">=</span> train_set.copy().drop([<span class="st">"default"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-13"><a></a>test_set_drop <span class="op">=</span> test_set.copy().drop([<span class="st">"default"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-14"><a></a></span>
-<span id="cb5-15"><a></a>numerical_features <span class="op">=</span> [<span class="st">"balance"</span>,<span class="st">"income"</span>]</span>
-<span id="cb5-16"><a></a></span>
-<span id="cb5-17"><a></a>categorical_features <span class="op">=</span> [<span class="st">"student"</span>]</span>
-<span id="cb5-18"><a></a></span>
-<span id="cb5-19"><a></a>preprocessor <span class="op">=</span> ColumnTransformer([</span>
-<span id="cb5-20"><a></a>    (<span class="st">'num'</span>, StandardScaler(), numerical_features),</span>
-<span id="cb5-21"><a></a>    (<span class="st">'cat'</span>, OneHotEncoder(drop<span class="op">=</span><span class="st">'first'</span>, handle_unknown<span class="op">=</span><span class="st">'ignore'</span>, sparse_output<span class="op">=</span><span class="va">False</span>), categorical_features)</span>
-<span id="cb5-22"><a></a>])  </span>
-<span id="cb5-23"><a></a></span>
-<span id="cb5-24"><a></a>pipe_lr <span class="op">=</span> Pipeline([</span>
-<span id="cb5-25"><a></a>    (<span class="st">'prep'</span>, preprocessor),</span>
-<span id="cb5-26"><a></a>    (<span class="st">'model'</span>, LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>))</span>
-<span id="cb5-27"><a></a>])</span>
-<span id="cb5-28"><a></a></span>
-<span id="cb5-29"><a></a>pipe_lr.fit(train_set_drop,y_train)</span>
-<span id="cb5-30"><a></a></span>
-<span id="cb5-31"><a></a>model_lr_f <span class="op">=</span> pipe_lr.named_steps[<span class="st">'model'</span>]</span>
-<span id="cb5-32"><a></a></span>
-<span id="cb5-33"><a></a><span class="kw">def</span> logistic_features(pipe):</span>
-<span id="cb5-34"><a></a>    </span>
-<span id="cb5-35"><a></a>    model <span class="op">=</span> pipe.named_steps[<span class="st">'model'</span>]</span>
-<span id="cb5-36"><a></a>    preprocessor <span class="op">=</span> pipe.named_steps[<span class="st">'prep'</span>]</span>
-<span id="cb5-37"><a></a>    </span>
-<span id="cb5-38"><a></a>    feature_names <span class="op">=</span> preprocessor.get_feature_names_out()</span>
-<span id="cb5-39"><a></a></span>
-<span id="cb5-40"><a></a>    coef_df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb5-41"><a></a>        <span class="st">'feature'</span>: <span class="bu">list</span>(feature_names),</span>
-<span id="cb5-42"><a></a>        <span class="st">'coefficient'</span>: <span class="bu">list</span>(model.coef_[<span class="dv">0</span>])</span>
-<span id="cb5-43"><a></a>    })</span>
-<span id="cb5-44"><a></a></span>
-<span id="cb5-45"><a></a>    coef_df[<span class="st">'odds_ratio'</span>] <span class="op">=</span> np.exp(coef_df[<span class="st">'coefficient'</span>])</span>
-<span id="cb5-46"><a></a>    coef_df[<span class="st">'abs_coefficient'</span>] <span class="op">=</span> coef_df[<span class="st">'coefficient'</span>].<span class="bu">abs</span>()</span>
-<span id="cb5-47"><a></a>    coef_df <span class="op">=</span> coef_df.sort_values(<span class="st">'abs_coefficient'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-48"><a></a>    <span class="cf">return</span> coef_df</span>
-<span id="cb5-49"><a></a></span>
-<span id="cb5-50"><a></a>coef_df <span class="op">=</span> logistic_features(pipe_lr)</span>
-<span id="cb5-51"><a></a></span>
-<span id="cb5-52"><a></a>coef_df[[<span class="st">"feature"</span>,<span class="st">"coefficient"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="be754da9" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 <style scoped="">
@@ -1247,8 +1093,7 @@ p(y=k|\mathbf{x}) = \frac{\exp{\mathbf{w}_k\cdot\mathbf{x}}}{1 + \sum_{j=1}^{K-1
 <ul>
 <li>exponentiate coefficients to recover odds ratios</li>
 </ul>
-<div id="60a5ba6c" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>coef_df[[<span class="st">"feature"</span>,<span class="st">"coefficient"</span>,<span class="st">"odds_ratio"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2c4d81c8" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <style scoped="">
@@ -1319,32 +1164,7 @@ p(y=k|\mathbf{x}) = \frac{\exp{\mathbf{w}_k\cdot\mathbf{x}}}{1 + \sum_{j=1}^{K-1
 <ul>
 <li>To see how factors impact proability, decide where you want to make predictions</li>
 </ul>
-<div id="4729bb19" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Very annoying I had to do things this way in case you are looking</span></span>
-<span id="cb7-2"><a></a><span class="co"># at my code</span></span>
-<span id="cb7-3"><a></a></span>
-<span id="cb7-4"><a></a>train_set_drop[<span class="st">"student"</span>] <span class="op">=</span> train_set_drop[<span class="st">"student"</span>].astype(<span class="st">"category"</span>)</span>
-<span id="cb7-5"><a></a></span>
-<span id="cb7-6"><a></a>train_set_drop[<span class="st">"balance"</span>] <span class="op">=</span> train_set_drop[<span class="st">"balance"</span>] <span class="op">/</span> <span class="dv">1000</span></span>
-<span id="cb7-7"><a></a>train_set_drop[<span class="st">"income"</span>] <span class="op">=</span> train_set_drop[<span class="st">"income"</span>] <span class="op">/</span> <span class="dv">1000</span></span>
-<span id="cb7-8"><a></a></span>
-<span id="cb7-9"><a></a>mod <span class="op">=</span> fit_sklearn(</span>
-<span id="cb7-10"><a></a>    <span class="st">"default ~ balance + income + student"</span>,</span>
-<span id="cb7-11"><a></a>    data<span class="op">=</span>pd.concat([train_set_drop, train_set_target.rename(<span class="st">"default"</span>)], axis<span class="op">=</span><span class="dv">1</span>),</span>
-<span id="cb7-12"><a></a>    engine<span class="op">=</span>LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>),</span>
-<span id="cb7-13"><a></a>)</span>
-<span id="cb7-14"><a></a></span>
-<span id="cb7-15"><a></a></span>
-<span id="cb7-16"><a></a>average_slopes <span class="op">=</span> avg_slopes(mod, </span>
-<span id="cb7-17"><a></a>    variables<span class="op">=</span>[<span class="st">"balance"</span>, <span class="st">"income"</span>, <span class="st">"student"</span>])</span>
-<span id="cb7-18"><a></a></span>
-<span id="cb7-19"><a></a></span>
-<span id="cb7-20"><a></a></span>
-<span id="cb7-21"><a></a>average_comparisons <span class="op">=</span> avg_comparisons(mod, </span>
-<span id="cb7-22"><a></a>    variables<span class="op">=</span>{<span class="st">"balance"</span>: <span class="st">"sd"</span>, <span class="st">"income"</span>: <span class="st">"sd"</span>, <span class="st">"student"</span>: <span class="st">"reference"</span>})</span>
-<span id="cb7-23"><a></a></span>
-<span id="cb7-24"><a></a><span class="bu">print</span>(average_slopes)</span>
-<span id="cb7-25"><a></a><span class="bu">print</span>(average_comparisons)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="10f24f06" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>shape: (3, 3)
 ┌─────────┬──────────┬──────────┐
@@ -1371,41 +1191,12 @@ shape: (3, 3)
 </section>
 <section id="plot-the-probability-predictions" class="slide level2">
 <h2>Plot the Probability Predictions</h2>
-<div id="eb98fe5d" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>pred_df <span class="op">=</span> predictions(mod, </span>
-<span id="cb9-2"><a></a>    newdata<span class="op">=</span>datagrid(model<span class="op">=</span>mod, balance<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">200</span>), student<span class="op">=</span>[<span class="st">"Yes"</span>, <span class="st">"No"</span>]))</span>
-<span id="cb9-3"><a></a></span>
-<span id="cb9-4"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb9-5"><a></a>sns.lineplot(data<span class="op">=</span>pred_df.to_pandas(), x<span class="op">=</span><span class="st">"balance"</span>, y<span class="op">=</span><span class="st">"estimate"</span>, hue<span class="op">=</span><span class="st">"student"</span>,linewidth<span class="op">=</span><span class="fl">2.5</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb9-6"><a></a>ax.set_xlabel(<span class="st">"Balance (1000 USD)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb9-7"><a></a>ax.set_ylabel(<span class="st">"P(Default)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb9-8"><a></a>ax.set_title(<span class="st">"Predicted Default Probability"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb9-9"><a></a>ax.legend(title<span class="op">=</span><span class="st">"Student"</span>, fontsize<span class="op">=</span><span class="dv">14</span>, title_fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb9-10"><a></a>plt.tight_layout()</span>
-<span id="cb9-11"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="meetup-4_files/figure-html/cell-9-output-1.png" class="r-stretch"></section>
+<img data-src="meetup-4_files/figure-revealjs/cell-9-output-1.png" class="r-stretch"></section>
 <section id="probability-calibration" class="slide level2">
 <h2>Probability Calibration</h2>
-<div id="3a8324a7" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>y_prob <span class="op">=</span> pipe_lr.predict_proba(test_set_drop)[:, <span class="dv">1</span>]</span>
-<span id="cb10-2"><a></a>prob_true, prob_pred <span class="op">=</span> calibration_curve(y_test, y_prob, n_bins<span class="op">=</span><span class="dv">10</span>, strategy<span class="op">=</span><span class="st">"quantile"</span>)</span>
-<span id="cb10-3"><a></a></span>
-<span id="cb10-4"><a></a>max_val <span class="op">=</span> <span class="fl">0.25</span></span>
-<span id="cb10-5"><a></a></span>
-<span id="cb10-6"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb10-7"><a></a>ax.plot(prob_pred, prob_true, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Model"</span>)</span>
-<span id="cb10-8"><a></a>ax.plot([<span class="dv">0</span>, max_val], [<span class="dv">0</span>, max_val], linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"Perfect Calibration"</span>)</span>
-<span id="cb10-9"><a></a>ax.set_xlabel(<span class="st">"Mean Predicted Probability"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb10-10"><a></a>ax.set_ylabel(<span class="st">"Observed Frequency"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb10-11"><a></a>ax.set_title(<span class="st">"Calibration Curve"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb10-12"><a></a>ax.legend(fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb10-13"><a></a>plt.tight_layout()</span>
-<span id="cb10-14"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="meetup-4_files/figure-html/cell-10-output-1.png" class="r-stretch"></section>
+<img data-src="meetup-4_files/figure-revealjs/cell-10-output-1.png" class="r-stretch"></section>
 <section id="types-of-errors" class="slide level2">
 <h2>Types of errors</h2>
 <ul>
@@ -1429,34 +1220,15 @@ shape: (3, 3)
 </section>
 <section id="roc-curve" class="slide level2">
 <h2>ROC Curve</h2>
-<div id="eeb582d7" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>y_prob <span class="op">=</span> pipe_lr.predict_proba(test_set_drop)[:, <span class="dv">1</span>]</span>
-<span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb11-4"><a></a></span>
-<span id="cb11-5"><a></a>RocCurveDisplay.from_predictions(y_test, y_prob, ax<span class="op">=</span>ax)<span class="op">;</span></span>
-<span id="cb11-6"><a></a>ax.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>)</span>
-<span id="cb11-7"><a></a>ax.set_title(<span class="st">"ROC Curve"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb11-8"><a></a>ax.set_xlabel(<span class="st">"False Positive Rate"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb11-9"><a></a>ax.set_ylabel(<span class="st">"True Positive Rate"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
-<span id="cb11-10"><a></a></span>
-<span id="cb11-11"><a></a>plt.tight_layout()<span class="op">;</span></span>
-<span id="cb11-12"><a></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-</div>
-<img data-src="meetup-4_files/figure-html/cell-11-output-1.png" class="r-stretch"></section>
+<img data-src="meetup-4_files/figure-revealjs/cell-11-output-1.png" class="r-stretch"></section>
 <section id="confusion-matrix" class="slide level2">
 <h2>Confusion Matrix</h2>
 <ul>
 <li>Tabular counterpart to ROC curve</li>
 <li>Displays amount of different types of errors and successes</li>
 </ul>
-<div id="c1497613" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>threshold <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb12-2"><a></a>y_pred <span class="op">=</span> (y_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
-<span id="cb12-3"><a></a></span>
-<span id="cb12-4"><a></a><span class="bu">print</span>(<span class="st">"Bayes Decision Rule</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb12-5"><a></a><span class="bu">print</span>(classification_report(y_test, y_pred, target_names<span class="op">=</span>[<span class="st">"No Default"</span>, <span class="st">"Default"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="228dfb1f" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>Bayes Decision Rule
 
@@ -1482,12 +1254,7 @@ weighted avg       0.97      0.97      0.97      2000
 <li>Tabular counterpart to ROC curve</li>
 <li>Displays amount of different types of errors and successes</li>
 </ul>
-<div id="1f2fd717" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>threshold <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb14-2"><a></a>y_pred <span class="op">=</span> (y_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
-<span id="cb14-3"><a></a></span>
-<span id="cb14-4"><a></a><span class="bu">print</span>(<span class="st">"10% threshold</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb14-5"><a></a><span class="bu">print</span>(classification_report(y_test, y_pred, target_names<span class="op">=</span>[<span class="st">"No Default"</span>, <span class="st">"Default"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="add7cd75" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-stdout">
 <pre><code>10% threshold
 
