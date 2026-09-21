@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DATA 622: kNN Example – DATA 622 Fall 2026</title>
+<title>Using Classification to Build a Marketing Target Model – DATA 622 Fall 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,44 +20,10 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
@@ -101,12 +67,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
-<meta property="og:title" content="DATA 622: kNN Example – DATA 622 Fall 2026">
+<meta property="og:title" content="Using Classification to Build a Marketing Target Model – DATA 622 Fall 2026">
+<meta property="og:description" content="DATA 622 - Machine Learning and Big Data - CUNY School of Professional Studies">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
 </head>
 
@@ -119,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">DATA 622: kNN Example</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Using Classification to Build a Marketing Target Model</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -364,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DATA 622: kNN Example</h1>
+<h1 class="title">Using Classification to Build a Marketing Target Model</h1>
 </div>
 
 
@@ -381,163 +374,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="a8aa9855" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> KNNImputer</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> FeatureUnion, make_pipeline</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> make_column_transformer</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv'</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>penguins.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<p>In this lab assignment you will be exploring the <em>Portuguese Bank Marketing Dataset</em>, which consists of data on the outcomes of marketing calls to bank clients offering them a <em>term deposit</em>. A <em>term deposit</em> is a fixed term deposit with the bank that returns the principal plus interest at the end of the pre-defined term period. The objective of this assignment is to apply classification models to make suggestions to the marketing team.</p>
+<p>The dataset can be found at the following link: <a href="https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/bank_marketing_dataset.csv">bank_marketing_dataset.csv</a>. This dataset is a standard benchmark for classification in the ML community, see the <a href="https://archive.ics.uci.edu/dataset/222/bank+marketing">UCI Machine Learning Repository page</a>, and this introductory paper: <a href="https://repositorio.iscte-iul.pt/bitstream/10071/9499/5/dss_v3.pdf">A data driven approach to predict the success of bank telemarketing</a>. The specific dataset used for this assignment has some subtle differences to those available at the ‘UCI Page’. The data is described on the course website at <a href="labData/bank_marketing_dictionary.qmd">bank_marketing_dictionary.qmd</a>.</p>
+</section>
+<section id="problem-1-what-can-machine-learning-do" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-what-can-machine-learning-do">Problem 1: What Can Machine Learning Do?</h3>
+<ol type="a">
+<li>This dataset has been analyzed extensively by many different people. <code>kaggle.com</code> is a machine learning community that shares datasets, analysis methods, and hosts competitions. The most upvoted analysis notebook on <code>kaggle</code> for the Bank Marketing dataset (see: <a href="https://www.kaggle.com/code/janiobachmann/bank-marketing-campaign-opening-a-term-deposit">https://www.kaggle.com/code/janiobachmann/bank-marketing-campaign-opening-a-term-deposit</a>) has a glaring flaw that makes it useless in practice. Examine the analysis and determine the flaw. Your answer should be short. <em>Hint: Take a careful look at all the variables used, or look for people complaining about it in the comments.</em></li>
+</ol>
+</section>
+<section id="problem-2-eda-and-baseline-model" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-eda-and-baseline-model">Problem 2: EDA and Baseline Model</h3>
+<ol type="a">
+<li><p><strong>EDA Summary and Temporal Patterns:</strong> Take a quick look at the initial distribution of the data, and perform a train-test split. Justify your choice of whether to stratify your split or not and if so by which variable (consider reading the rest of the question before deciding). Are there any additional variables that need to be added or recoded? Describe the most important relationships that you uncovered between the predictors and the target and show the visualizations you made specifically to support those conclusions. Pay particular attention to temporal variations in addition to correlation with the target: how did the success rate of the marketing campaign and the composition of the target population vary over time? Which variables (and related real world events) explain the temporal pattern?</p></li>
+<li><p><strong>Baseline Model</strong> Create a baseline baseline logistic regression model, either through ‘statsmodels’ or ‘sklearn’ (I recommend building your preprocessing steps and fitting steps into a pipeline). Select variables based on what you observed to be important in the EDA, but avoid using temporal predictors (‘month_numeric’, ‘day’, ‘year’) or any predictor that could not be used to make a decision on who to call. Plot the ‘ROC’ curve and the probability calibration curve.</p></li>
+<li><p><strong>Data Drift:</strong> The temporal variation in the dataset necessitates a careful approach to model evaluation. Explain (in one paragraph) why temporal variation in the data could cause model performance metrics evaluated on the entire testing split to mismatch the real-time experiences of the marketing team.</p></li>
+<li><p><strong>Slice Evaluation</strong> There are several ways to handle the drift that occurs in this system. One of them is called <em>slice-based evaluation</em>, which you can read about in <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/aad9f93b86b7addfea4c419b9100c6cdd26cacea.pdf">Model 4 and Model 6 of <em>Google’s Production ML Checklist</em></a> or <a href="https://learning.oreilly.com/library/view/designing-machine-learning/9781098107956/ch06.html#baselines">the End of Chapter 6 of <em>Designing Machine Learning Systems</em></a></p></li>
+</ol>
+<p>The idea here is that the model should be separately evaluated on distinct <em>slices</em> of the data where system behavior was distinct. Using the variables identified as causing the temporal patterns in 2(a), divide the data into 3 to 4 <em>slices</em> (you could use <code>pd.cut</code> on a suitable variable). Train the model on the full training split from 2(a), but divide the test splits by the <em>slices</em> and test model performance separately on the subset of the testing split corresponding to each <em>slice</em>. This should tell you how the model would perform in different types of conditions.</p>
+<p>For each testing slice, report the overall error rate and the overall success rate of the campaign during that epoch for context and comparison. For each slice, plot the ROC curve and the probability calibration curve. What do you notice about the difference in model performance in different periods? Test the model on the entire testing set and report how the results compare to the individual slices.</p>
+</section>
+<section id="problem-3-lift-curves-and-hit-rates" class="level2">
+<h2 class="anchored" data-anchor-id="problem-3-lift-curves-and-hit-rates">Problem 3 <strong>Lift Curves and Hit Rates:</strong></h2>
+<p>Your marketing team is planning a campaign where they will call the top <span class="math inline">\(x\)</span> percent of likely clients based on based on model forecasts. <em>Lift</em> describes the ratio of the success rate in the top <span class="math inline">\(x\)</span> percent marketing leads to the success rate in the entire population and <em>hit rate</em> means the fraction of marketing calls that are successful. A campaign that targets the top 1% will (likely) have a much higher <em>lift</em> than one that targets the top 50%, and the lift of a campaign that targets everyone will be 1. A <em>lift curve</em> is a graph showing the <em>lift</em> on the y-axis and the percent targeted on the x-axis. Lift curves and hit rates are essential tools used to estimate the return on investment of a campaign. Estimate the lift on the testing set corresponding to each slice by sorting the testing examples in descending order of predicted probability and then calculating the fraction of successful conversions in the top <span class="math inline">\(x\)</span> percent and dividing by the overall conversion rate in the testing set. Make a plot of the lift curve using your baseline model for each slice and report the lift and hit rate for campaigns that target the top 10% and top 50% of potential customers.</p>
+</section>
+<section id="problem-4-how-has-the-marketing-team-already-been-optimizing" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4-how-has-the-marketing-team-already-been-optimizing">Problem 4: How Has the Marketing Team Already Been Optimizing?</h2>
+<ol type="a">
+<li><p><strong>Data Generating Process</strong> Understanding the data generating process is vital for modeling and for using models. This marketing dataset is not a random sample of the bank’s customers. Marketers may already be using a model or their own expertise to select which customers to call. This could lead to selection bias, where segments of the population are not represented in the dataset. As the marketing campaign progressed, the marketing team may also have gained knowledge about the most effective practices, which could explain some of the temporal anomalies. Can you find evidence for this in any of the variables in the dataset? Note: there is a trade-off between exploration (getting data to improve the model accuracy) and exploitation (making calls to optimize the number of term deposits the bank sells). This trade-off is often referred to as a ‘multi-armed bandit’ problem, see <a href="https://en.wikipedia.org/wiki/Multi-armed_bandit">https://en.wikipedia.org/wiki/Multi-armed_bandit</a>.</p></li>
+<li><p><strong>Who isn’t called?</strong> Suppose that we had a bigger dataset on customer behavior, which includes a full dataset of potential leads, including information on customers who signed up without being called. How could you use this dataset to increase the amount of subscriptions generated by calls?</p></li>
+</ol>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">species</th>
-<th data-quarto-table-cell-role="th">island</th>
-<th data-quarto-table-cell-role="th">bill_length_mm</th>
-<th data-quarto-table-cell-role="th">bill_depth_mm</th>
-<th data-quarto-table-cell-role="th">flipper_length_mm</th>
-<th data-quarto-table-cell-role="th">body_mass_g</th>
-<th data-quarto-table-cell-role="th">sex</th>
-<th data-quarto-table-cell-role="th">year</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>39.1</td>
-<td>18.7</td>
-<td>181.0</td>
-<td>3750.0</td>
-<td>male</td>
-<td>2007</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>39.5</td>
-<td>17.4</td>
-<td>186.0</td>
-<td>3800.0</td>
-<td>female</td>
-<td>2007</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>40.3</td>
-<td>18.0</td>
-<td>195.0</td>
-<td>3250.0</td>
-<td>female</td>
-<td>2007</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>2007</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>Adelie</td>
-<td>Torgersen</td>
-<td>36.7</td>
-<td>19.3</td>
-<td>193.0</td>
-<td>3450.0</td>
-<td>female</td>
-<td>2007</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="739079c1" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins_clean <span class="op">=</span> penguins.dropna()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>species_y <span class="op">=</span> penguins_clean.loc[:,<span class="st">"species"</span>]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>features_X <span class="op">=</span> penguins_clean.loc[:,<span class="st">"island"</span>:<span class="st">"year"</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>species_y.describe()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>features_X.describe()</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(features_X, species_y, test_size<span class="op">=</span><span class="fl">0.3</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                                            random_state <span class="op">=</span> <span class="dv">111</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>numerical_features <span class="op">=</span> [<span class="st">'bill_length_mm'</span>, <span class="st">'bill_depth_mm'</span>, <span class="st">'flipper_length_mm'</span>, <span class="st">'body_mass_g'</span>]</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>categorical_features <span class="op">=</span> [<span class="st">'island'</span>, <span class="st">'sex'</span>]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> make_column_transformer(</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    (StandardScaler(), numerical_features),</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    (OneHotEncoder(drop<span class="op">=</span><span class="st">'first'</span>), categorical_features)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>knn_pipeline <span class="op">=</span> make_pipeline(</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      preprocessor,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">40</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>knn_pipeline.fit(X_train,y_train)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>penguin_pred_train <span class="op">=</span> knn_pipeline.predict(X_train)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_train, penguin_pred_train)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>penguin_pred_test <span class="op">=</span> knn_pipeline.predict(X_test)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, penguin_pred_test)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Accuracy: </span><span class="sc">{</span>accuracy<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Accuracy: 0.9828
-Accuracy: 0.9900</code></pre>
-</div>
-</div>
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1118,7 +989,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/edit/main/meetups/meetup-2/knnVignette.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/edit/main/assignments/labs/lab3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">

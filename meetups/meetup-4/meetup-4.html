@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.54">
+
+  <meta name="author" content="George I. Hagstrom">
+  <meta name="dcterms.date" content="2026-09-21">
+  <title>DATA 622 Fall 2026 – DATA 622 Meetup 4: Classification</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<meta property="og:title" content="DATA 622 Meetup 4: Classification – DATA 622 Fall 2026">
+<meta property="og:site_name" content="DATA 622 Fall 2026">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">DATA 622 Meetup 4: Classification</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+George I. Hagstrom 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-09-21</p>
+</section>
+<section class="slide level2">
+
+<div id="a7d6f287" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> ISLP <span class="im">as</span> islp</span>
+<span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a></a><span class="im">from</span> IPython.core.pylabtools <span class="im">import</span> figsize</span>
+<span id="cb1-4"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a></a><span class="im">import</span> sklearn <span class="im">as</span> sklearn</span>
+<span id="cb1-6"><a></a><span class="im">from</span> matplotlib.pyplot <span class="im">import</span> subplots</span>
+<span id="cb1-7"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-8"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>sklearn.set_config(transform_output<span class="op">=</span><span class="st">"pandas"</span>)</span>
+<span id="cb1-11"><a></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-12"><a></a></span>
+<span id="cb1-13"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-14"><a></a></span>
+<span id="cb1-15"><a></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer, make_column_selector</span>
+<span id="cb1-16"><a></a></span>
+<span id="cb1-17"><a></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, OrdinalEncoder, StandardScaler, LabelEncoder</span>
+<span id="cb1-18"><a></a><span class="im">from</span> sklearn.calibration <span class="im">import</span> calibration_curve</span>
+<span id="cb1-19"><a></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report, accuracy_score, roc_auc_score, roc_curve, RocCurveDisplay, ConfusionMatrixDisplay</span>
+<span id="cb1-20"><a></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-21"><a></a></span>
+<span id="cb1-22"><a></a><span class="im">from</span> marginaleffects <span class="im">import</span> avg_slopes, slopes, plot_predictions, fit_sklearn, avg_comparisons, predictions, datagrid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="week-summary" class="slide level2">
+<h2>Week Summary</h2>
+<ul>
+<li>Essential to contact others about projects this week
+<ul>
+<li>Proposal Due in 2 Weeks.</li>
+<li>Each team reach out to schedule 5-10 minute meeting during October 5 week</li>
+</ul></li>
+<li>HW 3 on Classification due in 2 weeks</li>
+<li>Coding vignette on classification/LR</li>
+</ul>
+</section>
+<section id="hw-3-summary" class="slide level2">
+<h2>HW 3 Summary:</h2>
+<ul>
+<li>Always look at your figures very carefully.</li>
+<li>Misconception: Noise in data does not help regularize
+<ul>
+<li>Later we will learn that noise in the algorithm can</li>
+</ul></li>
+<li>Python arrays indexed starting from 0</li>
+</ul>
+</section>
+<section id="weather-example" class="slide level2">
+<h2>Weather Example</h2>
+<ul>
+<li>Meteorologist forecasts the weather</li>
+</ul>
+
+<img data-src="weather.png" class="r-stretch"></section>
+<section id="weather-example-1" class="slide level2">
+<h2>Weather Example</h2>
+<ul>
+<li>Here is an example of a potential forecast:</li>
+</ul>
+<div style="width: 80%; text-align: left;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prediction</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+</tr>
+<tr class="even">
+<td>Observed</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>How would you evaluate this?</li>
+</ul>
+</section>
+<section id="weather-example-2" class="slide level2">
+<h2>Weather Example</h2>
+<ul>
+<li>Which of these two forecasts do you think is better:</li>
+</ul>
+<div style="width: 80%; text-align: left;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prediction</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+</tr>
+<tr class="even">
+<td>Observed</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prediction</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+<tr class="even">
+<td>Observed</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="which-forecast-is-better" class="slide level2">
+<h2>Which forecast is better?</h2>
+<div style="border: 2px solid black; padding: 20px; border-radius: 5px;">
+<p>It depends on the consequences of your decisions!</p>
+</div>
+<div>
+<ul>
+<li class="fragment">Rain: Take the subway, bring umbrella</li>
+<li class="fragment">Sun: Bike to work, no umbrella</li>
+<li class="fragment">Cost of getting soaked on rainy day is probably higher than inconvenience of not biking or carrying an umbrella</li>
+</ul>
+</div>
+</section>
+<section id="probability-as-nuance" class="slide level2">
+<h2>Probability as Nuance</h2>
+<ul>
+<li>What if the forecasts were like this instead:</li>
+</ul>
+<div style="width: 80%; text-align: left;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prediction</td>
+<td>0.8</td>
+<td>0.8</td>
+<td>0.8</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+</tr>
+<tr class="even">
+<td>Observed</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prediction</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Observed</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="probability-adds-nuance" class="slide level2">
+<h2>Probability adds Nuance</h2>
+<ul>
+<li>Consider a disease classification model</li>
+<li>Patient 1: <span class="math inline">\(P(\mathrm{disease}|\mathrm{labs}) = 0.001\)</span></li>
+<li>Patient 2: <span class="math inline">\(P(\mathrm{disease}|\mathrm{labs}) = 0.15\)</span></li>
+</ul>
+<div style="border: 2px solid black; padding: 20px; border-radius: 5px;">
+<p>Both classify to “no disease”, but in patient 2 you might recommend further testing or monitoring</p>
+</div>
+</section>
+<section id="calibration-versus-relative-ranking" class="slide level2">
+<h2>Calibration versus Relative Ranking</h2>
+<ul>
+<li>A model with accurate probabilities is called <strong>well calibrated</strong></li>
+<li>Sometimes you just need relative rankings</li>
+<li>Which potential customers to call?</li>
+<li>Which drug candidates to test?</li>
+<li>Where to drill test wells?</li>
+</ul>
+</section>
+<section id="probability-prediction-versus-classification" class="slide level2">
+<h2>Probability Prediction Versus Classification</h2>
+<ul>
+<li>Computer Science focuses on error:</li>
+</ul>
+<p><span class="math display">\[
+\frac{1}{n}\sum_{i=1}^n I(y_i \neq g(\mathbf{x}_i))
+\]</span></p>
+<ul>
+<li>Statistics focuses on probabilities:</li>
+</ul>
+<p><span class="math display">\[
+p(y|\mathbf{x})
+\]</span></p>
+</section>
+<section id="loss-functions-for-classification" class="slide level2">
+<h2>Loss Functions for Classification</h2>
+<ul>
+<li><p>Classification often works with a threshold function: <span class="math display">\[
+g(\mathbf{x}) = 1\quad\quad \mathrm{if}\quad\quad \eta(\mathbf{x}) &gt; 0 \\
+g(\mathbf{x}) = 0\quad\quad \mathrm{if}\quad\quad \eta(\mathbf{x}) &lt; 0
+\]</span></p></li>
+<li><p>Minimizing standard error function is computationally intractable!</p></li>
+</ul>
+</section>
+<section id="classification-error" class="slide level2">
+<h2>Classification Error</h2>
+<ul>
+<li>Consider this set of points:</li>
+</ul>
+<div style="width: 60%; text-align: left;">
+<p><img data-src="class_error1.png"></p>
+</div>
+</section>
+<section id="classification-error-1" class="slide level2">
+<h2>Classification Error</h2>
+<ul>
+<li>Linear classifier, error is 2</li>
+</ul>
+<div style="width: 60%; text-align: left;">
+<p><img data-src="class_error2.png"></p>
+</div>
+</section>
+<section id="classification-error-2" class="slide level2">
+<h2>Classification Error</h2>
+<ul>
+<li>As we move line, error does not change</li>
+</ul>
+<div style="width: 60%; text-align: left;">
+<p><img data-src="class_error3.png"></p>
+</div>
+</section>
+<section id="classification-error-3" class="slide level2">
+<h2>Classification Error</h2>
+<ul>
+<li>Except for Sudden Jumps</li>
+</ul>
+<div style="width: 60%; text-align: left;">
+<p><img data-src="class_error4.png"></p>
+</div>
+</section>
+<section id="surrogate-loss" class="slide level2">
+<h2>Surrogate Loss</h2>
+<ul>
+<li>Learning algorithms cannot use this discontinuous rule!</li>
+<li>Instead use <em>surrogate</em> functions which mimic the loss rule</li>
+<li>Based on threshold function</li>
+</ul>
+
+<img data-src="surrogate.png" class="r-stretch"></section>
+<section id="logistic-loss" class="slide level2">
+<h2>Logistic loss</h2>
+<ul>
+<li>logistic function <span class="math inline">\(\sigma\)</span>: <span class="math display">\[
+\sigma(\eta(\mathbf{x})) = \frac{1}{1+e^{-\eta(\mathbf{x})}}
+\]</span></li>
+<li>Here is <span class="math inline">\(\eta\)</span> is a score that could range from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(\infty\)</span></li>
+<li><span class="math inline">\(\sigma\)</span> is between 0 and 1, can interpret as a probability</li>
+</ul>
+</section>
+<section id="logistic-regression" class="slide level2">
+<h2>Logistic Regression</h2>
+<ul>
+<li><span class="math inline">\(\eta\)</span> is linear function of predictors: <span class="math display">\[
+\eta(\mathbf{x}) = \sum_j w_jx_j
+\]</span></li>
+<li>Probability that <span class="math inline">\(y=1\)</span> is <span class="math inline">\(\sigma(\eta(\mathbf{x}))\)</span>: <span class="math display">\[
+p(y=1|\mathbf{x}) = \frac{1}{1+\exp(-\mathbf{w}\cdot\mathbf{x})}
+\]</span></li>
+</ul>
+</section>
+<section id="maximum-likelihood-for-lr" class="slide level2">
+<h2>Maximum Likelihood for LR</h2>
+<ul>
+<li>Minimizing logistic loss is equivalent to finding maximum likelihood</li>
+<li>‘log’ likelihood formula: <span class="math display">\[
+L(\mathbf{w}) = \sum_{y_i = 1} \log(p(1|\mathbf{x}_i)) + \sum_{y_i=0}\log(p(0|\mathbf{x}_i))
+\]</span></li>
+</ul>
+</section>
+<section id="multinomial-logistic-regression" class="slide level2">
+<h2>Multinomial Logistic Regression</h2>
+<ul>
+<li>What happens if there are more than one class?</li>
+<li>Get weight vector <span class="math inline">\(w_k\)</span> for each predictor (except last one)</li>
+</ul>
+<p><span class="math display">\[
+p(y=k|\mathbf{x}) = \frac{\exp{\mathbf{w}_k\cdot\mathbf{x}}}{1 + \sum_{j=1}^{K-1} \exp{\mathbf{w}_j\cdot\mathbf{x}}}
+\]</span></p>
+</section>
+<section id="understanding-log-loss" class="slide level2">
+<h2>Understanding ‘log’ loss</h2>
+<ul>
+<li>Consider weather examples again, interpreted as probabilities:</li>
+</ul>
+<div style="width: 80%; text-align: left;">
+<table class="caption-top">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prediction</td>
+<td>0.8</td>
+<td>0.8</td>
+<td>0.8</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+<td>0.6</td>
+</tr>
+<tr class="even">
+<td>Observed</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Day</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prediction</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Observed</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>🌧️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+<td>☀️</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="understanding-log-loss-1" class="slide level2">
+<h2>Understanding ‘log’ loss</h2>
+<ul>
+<li>Misclassification Error:
+<ul>
+<li>First forecast made 7 wrong predictions</li>
+<li>Second forecast made 3 wrong predictions</li>
+</ul></li>
+</ul>
+</section>
+<section id="understanding-log-loss-2" class="slide level2">
+<h2>Understanding ‘log’ loss</h2>
+<ul>
+<li>‘log’ loss
+<ul>
+<li>First forecast: <span class="math inline">\(3\log(0.8) + 7\log(0.4) = -7\)</span></li>
+<li>Second forecast <span class="math inline">\(3\log(0) + 7\log(1) = -\infty\)</span></li>
+</ul></li>
+</ul>
+<div class="fragment" style="border: 2px solid red; padding: 20px; border-radius: 5px;">
+<p>‘log’ loss massively penalizes overconfident wrong predictions!</p>
+</div>
+<div class="fragment" style="border: 2px solid blue; padding: 20px; border-radius: 5px;">
+<p>If this is a problem, consider using Brier score or some other loss function</p>
+</div>
+</section>
+<section id="example-credit-data" class="slide level2">
+<h2>Example: Credit Data</h2>
+<div id="0f38485f" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>default <span class="op">=</span> islp.load_data(<span class="st">'Default'</span>)</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a>default.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">default</th>
+<th data-quarto-table-cell-role="th">student</th>
+<th data-quarto-table-cell-role="th">balance</th>
+<th data-quarto-table-cell-role="th">income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>No</td>
+<td>No</td>
+<td>729.526495</td>
+<td>44361.625074</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>No</td>
+<td>Yes</td>
+<td>817.180407</td>
+<td>12106.134700</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>No</td>
+<td>No</td>
+<td>1073.549164</td>
+<td>31767.138947</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>No</td>
+<td>No</td>
+<td>529.250605</td>
+<td>35704.493935</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>No</td>
+<td>No</td>
+<td>785.655883</td>
+<td>38463.495879</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="example-credit-data-1" class="slide level2">
+<h2>Example: Credit Data</h2>
+<div id="7290a3b5" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a>sns.scatterplot(data<span class="op">=</span>default, x<span class="op">=</span><span class="st">'balance'</span>, y<span class="op">=</span><span class="st">'income'</span>, </span>
+<span id="cb3-4"><a></a>                hue<span class="op">=</span><span class="st">'default'</span>, style<span class="op">=</span><span class="st">'default'</span>, </span>
+<span id="cb3-5"><a></a>                markers<span class="op">=</span>[<span class="st">'+'</span>, <span class="st">'x'</span>],</span>
+<span id="cb3-6"><a></a>                s<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb3-7"><a></a></span>
+<span id="cb3-8"><a></a>ax.set_xlabel(<span class="st">"Credit Balance (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb3-9"><a></a>ax.set_ylabel(<span class="st">"Income (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb3-10"><a></a>fig.suptitle(<span class="st">"Default Status Versus Income and Balance"</span>,x<span class="op">=</span><span class="fl">0.125</span>,ha<span class="op">=</span><span class="st">'left'</span>,fontsize<span class="op">=</span><span class="dv">24</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-11"><a></a>ax.set_title(<span class="st">"Credit card defaults seem to be driven</span><span class="ch">\n</span><span class="st"> much more strongly by balance than income"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb3-12"><a></a>plt.tight_layout()</span>
+<span id="cb3-13"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="meetup-4_files/figure-html/cell-4-output-1.png" class="r-stretch"></section>
+<section id="example-credit-data-2" class="slide level2">
+<h2>Example: Credit Data</h2>
+<div id="1095d4e4" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>sns.scatterplot(data<span class="op">=</span>default, x<span class="op">=</span><span class="st">'balance'</span>, y<span class="op">=</span><span class="st">'income'</span>, </span>
+<span id="cb4-4"><a></a>                hue<span class="op">=</span><span class="st">'student'</span>, style<span class="op">=</span><span class="st">'student'</span>, </span>
+<span id="cb4-5"><a></a>                markers<span class="op">=</span>[<span class="st">'o'</span>, <span class="st">'s'</span>],</span>
+<span id="cb4-6"><a></a>                s<span class="op">=</span><span class="dv">50</span>, alpha<span class="op">=</span><span class="fl">0.7</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb4-7"><a></a></span>
+<span id="cb4-8"><a></a>ax.set_xlabel(<span class="st">"Credit Balance (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb4-9"><a></a>ax.set_ylabel(<span class="st">"Income (USD)"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb4-10"><a></a>fig.suptitle(<span class="st">"Student Status"</span>,x<span class="op">=</span><span class="fl">0.125</span>,ha<span class="op">=</span><span class="st">'left'</span>,fontsize<span class="op">=</span><span class="dv">24</span>,fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-11"><a></a>ax.set_title(<span class="st">"Students have lower income"</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb4-12"><a></a>plt.tight_layout()</span>
+<span id="cb4-13"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="meetup-4_files/figure-html/cell-5-output-1.png" class="r-stretch"></section>
+<section id="model-coefficients" class="slide level2">
+<h2>Model Coefficients</h2>
+<div id="011ed855" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>train_set, test_set <span class="op">=</span> train_test_split(default, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">123155</span>,stratify<span class="op">=</span>default[<span class="st">"default"</span>])</span>
+<span id="cb5-2"><a></a></span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a></span>
+<span id="cb5-5"><a></a>train_set_target <span class="op">=</span> train_set[<span class="st">"default"</span>].copy()</span>
+<span id="cb5-6"><a></a>test_set_target <span class="op">=</span> test_set[<span class="st">"default"</span>].copy()</span>
+<span id="cb5-7"><a></a></span>
+<span id="cb5-8"><a></a>le <span class="op">=</span> LabelEncoder()</span>
+<span id="cb5-9"><a></a>y_train <span class="op">=</span> le.fit_transform(train_set_target)</span>
+<span id="cb5-10"><a></a>y_test <span class="op">=</span> le.transform(test_set_target)</span>
+<span id="cb5-11"><a></a></span>
+<span id="cb5-12"><a></a>train_set_drop <span class="op">=</span> train_set.copy().drop([<span class="st">"default"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-13"><a></a>test_set_drop <span class="op">=</span> test_set.copy().drop([<span class="st">"default"</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-14"><a></a></span>
+<span id="cb5-15"><a></a>numerical_features <span class="op">=</span> [<span class="st">"balance"</span>,<span class="st">"income"</span>]</span>
+<span id="cb5-16"><a></a></span>
+<span id="cb5-17"><a></a>categorical_features <span class="op">=</span> [<span class="st">"student"</span>]</span>
+<span id="cb5-18"><a></a></span>
+<span id="cb5-19"><a></a>preprocessor <span class="op">=</span> ColumnTransformer([</span>
+<span id="cb5-20"><a></a>    (<span class="st">'num'</span>, StandardScaler(), numerical_features),</span>
+<span id="cb5-21"><a></a>    (<span class="st">'cat'</span>, OneHotEncoder(drop<span class="op">=</span><span class="st">'first'</span>, handle_unknown<span class="op">=</span><span class="st">'ignore'</span>, sparse_output<span class="op">=</span><span class="va">False</span>), categorical_features)</span>
+<span id="cb5-22"><a></a>])  </span>
+<span id="cb5-23"><a></a></span>
+<span id="cb5-24"><a></a>pipe_lr <span class="op">=</span> Pipeline([</span>
+<span id="cb5-25"><a></a>    (<span class="st">'prep'</span>, preprocessor),</span>
+<span id="cb5-26"><a></a>    (<span class="st">'model'</span>, LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>))</span>
+<span id="cb5-27"><a></a>])</span>
+<span id="cb5-28"><a></a></span>
+<span id="cb5-29"><a></a>pipe_lr.fit(train_set_drop,y_train)</span>
+<span id="cb5-30"><a></a></span>
+<span id="cb5-31"><a></a>model_lr_f <span class="op">=</span> pipe_lr.named_steps[<span class="st">'model'</span>]</span>
+<span id="cb5-32"><a></a></span>
+<span id="cb5-33"><a></a><span class="kw">def</span> logistic_features(pipe):</span>
+<span id="cb5-34"><a></a>    </span>
+<span id="cb5-35"><a></a>    model <span class="op">=</span> pipe.named_steps[<span class="st">'model'</span>]</span>
+<span id="cb5-36"><a></a>    preprocessor <span class="op">=</span> pipe.named_steps[<span class="st">'prep'</span>]</span>
+<span id="cb5-37"><a></a>    </span>
+<span id="cb5-38"><a></a>    feature_names <span class="op">=</span> preprocessor.get_feature_names_out()</span>
+<span id="cb5-39"><a></a></span>
+<span id="cb5-40"><a></a>    coef_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-41"><a></a>        <span class="st">'feature'</span>: <span class="bu">list</span>(feature_names),</span>
+<span id="cb5-42"><a></a>        <span class="st">'coefficient'</span>: <span class="bu">list</span>(model.coef_[<span class="dv">0</span>])</span>
+<span id="cb5-43"><a></a>    })</span>
+<span id="cb5-44"><a></a></span>
+<span id="cb5-45"><a></a>    coef_df[<span class="st">'odds_ratio'</span>] <span class="op">=</span> np.exp(coef_df[<span class="st">'coefficient'</span>])</span>
+<span id="cb5-46"><a></a>    coef_df[<span class="st">'abs_coefficient'</span>] <span class="op">=</span> coef_df[<span class="st">'coefficient'</span>].<span class="bu">abs</span>()</span>
+<span id="cb5-47"><a></a>    coef_df <span class="op">=</span> coef_df.sort_values(<span class="st">'abs_coefficient'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-48"><a></a>    <span class="cf">return</span> coef_df</span>
+<span id="cb5-49"><a></a></span>
+<span id="cb5-50"><a></a>coef_df <span class="op">=</span> logistic_features(pipe_lr)</span>
+<span id="cb5-51"><a></a></span>
+<span id="cb5-52"><a></a>coef_df[[<span class="st">"feature"</span>,<span class="st">"coefficient"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">feature</th>
+<th data-quarto-table-cell-role="th">coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>num__balance</td>
+<td>2.699375</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>cat__student_Yes</td>
+<td>-0.518437</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>num__income</td>
+<td>0.121987</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>What do these coefficients actually mean?</li>
+</ul>
+</section>
+<section id="logit-transformation-to-odds-ratios" class="slide level2">
+<h2>logit transformation to Odds Ratios</h2>
+<ul>
+<li>logistic regression predicts log-odds ratios of outcomes: <span class="math display">\[
+\log(\frac{p_{\mathrm{default}}}{1-p_{\mathrm{default}}}) = w_0 + w_1 x_1 + \cdots w_n x_n
+\]</span></li>
+<li>Coefficient relates feature to odds ratio</li>
+</ul>
+<div style="border: 2px solid black; padding: 20px; border-radius: 5px;">
+<p>Most people do not intuitively understand log-odds ratios, nor should they be expected to be</p>
+</div>
+</section>
+<section id="logit-transformation-to-odds-ratios-1" class="slide level2">
+<h2>logit transformation to Odds Ratios</h2>
+<ul>
+<li>exponentiate coefficients to recover odds ratios</li>
+</ul>
+<div id="60a5ba6c" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>coef_df[[<span class="st">"feature"</span>,<span class="st">"coefficient"</span>,<span class="st">"odds_ratio"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+<table class="dataframe caption-top" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">feature</th>
+<th data-quarto-table-cell-role="th">coefficient</th>
+<th data-quarto-table-cell-role="th">odds_ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>num__balance</td>
+<td>2.699375</td>
+<td>14.870429</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>cat__student_Yes</td>
+<td>-0.518437</td>
+<td>0.595451</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>num__income</td>
+<td>0.121987</td>
+<td>1.129739</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ul>
+<li>A 1 unit change in variable leads to a change in odds equal to the ‘odds_ratio’</li>
+</ul>
+</section>
+<section id="marginal-effects" class="slide level2">
+<h2>Marginal Effects</h2>
+<ul>
+<li>Odds ratios are good, but probabilities are even more intuitive</li>
+<li>Doubling the odds ratio:</li>
+<li>1% to 2%</li>
+<li>25% to 40%</li>
+<li>50% to 67%</li>
+<li>90% to 95%</li>
+</ul>
+</section>
+<section id="marginal-effects-1" class="slide level2">
+<h2>Marginal Effects</h2>
+<ul>
+<li>To see how factors impact proability, decide where you want to make predictions</li>
+</ul>
+<div id="4729bb19" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="co"># Very annoying I had to do things this way in case you are looking</span></span>
+<span id="cb7-2"><a></a><span class="co"># at my code</span></span>
+<span id="cb7-3"><a></a></span>
+<span id="cb7-4"><a></a>train_set_drop[<span class="st">"student"</span>] <span class="op">=</span> train_set_drop[<span class="st">"student"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb7-5"><a></a></span>
+<span id="cb7-6"><a></a>train_set_drop[<span class="st">"balance"</span>] <span class="op">=</span> train_set_drop[<span class="st">"balance"</span>] <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb7-7"><a></a>train_set_drop[<span class="st">"income"</span>] <span class="op">=</span> train_set_drop[<span class="st">"income"</span>] <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb7-8"><a></a></span>
+<span id="cb7-9"><a></a>mod <span class="op">=</span> fit_sklearn(</span>
+<span id="cb7-10"><a></a>    <span class="st">"default ~ balance + income + student"</span>,</span>
+<span id="cb7-11"><a></a>    data<span class="op">=</span>pd.concat([train_set_drop, train_set_target.rename(<span class="st">"default"</span>)], axis<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb7-12"><a></a>    engine<span class="op">=</span>LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>),</span>
+<span id="cb7-13"><a></a>)</span>
+<span id="cb7-14"><a></a></span>
+<span id="cb7-15"><a></a></span>
+<span id="cb7-16"><a></a>average_slopes <span class="op">=</span> avg_slopes(mod, </span>
+<span id="cb7-17"><a></a>    variables<span class="op">=</span>[<span class="st">"balance"</span>, <span class="st">"income"</span>, <span class="st">"student"</span>])</span>
+<span id="cb7-18"><a></a></span>
+<span id="cb7-19"><a></a></span>
+<span id="cb7-20"><a></a></span>
+<span id="cb7-21"><a></a>average_comparisons <span class="op">=</span> avg_comparisons(mod, </span>
+<span id="cb7-22"><a></a>    variables<span class="op">=</span>{<span class="st">"balance"</span>: <span class="st">"sd"</span>, <span class="st">"income"</span>: <span class="st">"sd"</span>, <span class="st">"student"</span>: <span class="st">"reference"</span>})</span>
+<span id="cb7-23"><a></a></span>
+<span id="cb7-24"><a></a><span class="bu">print</span>(average_slopes)</span>
+<span id="cb7-25"><a></a><span class="bu">print</span>(average_comparisons)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>shape: (3, 3)
+┌─────────┬──────────┬──────────┐
+│ Term    ┆ Contrast ┆ Estimate │
+│ ---     ┆ ---      ┆ ---      │
+│ str     ┆ str      ┆ str      │
+╞═════════╪══════════╪══════════╡
+│ balance ┆ dY/dX    ┆ 0.119    │
+│ income  ┆ dY/dX    ┆ 0.000202 │
+│ student ┆ Yes - No ┆ -0.0103  │
+└─────────┴──────────┴──────────┘
+shape: (3, 3)
+┌─────────┬─────────────────────┬──────────┐
+│ Term    ┆ Contrast            ┆ Estimate │
+│ ---     ┆ ---                 ┆ ---      │
+│ str     ┆ str                 ┆ str      │
+╞═════════╪═════════════════════╪══════════╡
+│ balance ┆ (x+sd/2) - (x-sd/2) ┆ 0.0613   │
+│ income  ┆ (x+sd/2) - (x-sd/2) ┆ 0.00269  │
+│ student ┆ Yes - No            ┆ -0.0103  │
+└─────────┴─────────────────────┴──────────┘</code></pre>
+</div>
+</div>
+</section>
+<section id="plot-the-probability-predictions" class="slide level2">
+<h2>Plot the Probability Predictions</h2>
+<div id="eb98fe5d" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>pred_df <span class="op">=</span> predictions(mod, </span>
+<span id="cb9-2"><a></a>    newdata<span class="op">=</span>datagrid(model<span class="op">=</span>mod, balance<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">200</span>), student<span class="op">=</span>[<span class="st">"Yes"</span>, <span class="st">"No"</span>]))</span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb9-5"><a></a>sns.lineplot(data<span class="op">=</span>pred_df.to_pandas(), x<span class="op">=</span><span class="st">"balance"</span>, y<span class="op">=</span><span class="st">"estimate"</span>, hue<span class="op">=</span><span class="st">"student"</span>,linewidth<span class="op">=</span><span class="fl">2.5</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb9-6"><a></a>ax.set_xlabel(<span class="st">"Balance (1000 USD)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb9-7"><a></a>ax.set_ylabel(<span class="st">"P(Default)"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb9-8"><a></a>ax.set_title(<span class="st">"Predicted Default Probability"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb9-9"><a></a>ax.legend(title<span class="op">=</span><span class="st">"Student"</span>, fontsize<span class="op">=</span><span class="dv">14</span>, title_fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb9-10"><a></a>plt.tight_layout()</span>
+<span id="cb9-11"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="meetup-4_files/figure-html/cell-9-output-1.png" class="r-stretch"></section>
+<section id="probability-calibration" class="slide level2">
+<h2>Probability Calibration</h2>
+<div id="3a8324a7" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>y_prob <span class="op">=</span> pipe_lr.predict_proba(test_set_drop)[:, <span class="dv">1</span>]</span>
+<span id="cb10-2"><a></a>prob_true, prob_pred <span class="op">=</span> calibration_curve(y_test, y_prob, n_bins<span class="op">=</span><span class="dv">10</span>, strategy<span class="op">=</span><span class="st">"quantile"</span>)</span>
+<span id="cb10-3"><a></a></span>
+<span id="cb10-4"><a></a>max_val <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb10-5"><a></a></span>
+<span id="cb10-6"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb10-7"><a></a>ax.plot(prob_pred, prob_true, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Model"</span>)</span>
+<span id="cb10-8"><a></a>ax.plot([<span class="dv">0</span>, max_val], [<span class="dv">0</span>, max_val], linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>, label<span class="op">=</span><span class="st">"Perfect Calibration"</span>)</span>
+<span id="cb10-9"><a></a>ax.set_xlabel(<span class="st">"Mean Predicted Probability"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb10-10"><a></a>ax.set_ylabel(<span class="st">"Observed Frequency"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb10-11"><a></a>ax.set_title(<span class="st">"Calibration Curve"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb10-12"><a></a>ax.legend(fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb10-13"><a></a>plt.tight_layout()</span>
+<span id="cb10-14"><a></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="meetup-4_files/figure-html/cell-10-output-1.png" class="r-stretch"></section>
+<section id="types-of-errors" class="slide level2">
+<h2>Types of errors</h2>
+<ul>
+<li>Defaults are very rare, Bayes decision rule predicts no defaults!</li>
+<li>False Negative: predicted no default, default happened</li>
+<li>False Positive: predicted default, no default happened</li>
+</ul>
+</section>
+<section id="decision-thresholds" class="slide level2">
+<h2>Decision Thresholds</h2>
+<ul>
+<li>Consequences of mistakes can vary:
+<ul>
+<li>Predict rain wrong you accidentally carried umbrella</li>
+<li>Predict sun wrong, you arrived to work soaked</li>
+</ul></li>
+</ul>
+<div style="border: 2px solid black; padding: 20px; border-radius: 5px;">
+<p><strong>Solution:</strong> Bias your prediction towards the mistake that has worse consequences</p>
+</div>
+</section>
+<section id="roc-curve" class="slide level2">
+<h2>ROC Curve</h2>
+<div id="eeb582d7" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>y_prob <span class="op">=</span> pipe_lr.predict_proba(test_set_drop)[:, <span class="dv">1</span>]</span>
+<span id="cb11-2"><a></a></span>
+<span id="cb11-3"><a></a>fig, ax <span class="op">=</span> subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb11-4"><a></a></span>
+<span id="cb11-5"><a></a>RocCurveDisplay.from_predictions(y_test, y_prob, ax<span class="op">=</span>ax)<span class="op">;</span></span>
+<span id="cb11-6"><a></a>ax.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb11-7"><a></a>ax.set_title(<span class="st">"ROC Curve"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb11-8"><a></a>ax.set_xlabel(<span class="st">"False Positive Rate"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb11-9"><a></a>ax.set_ylabel(<span class="st">"True Positive Rate"</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
+<span id="cb11-10"><a></a></span>
+<span id="cb11-11"><a></a>plt.tight_layout()<span class="op">;</span></span>
+<span id="cb11-12"><a></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="meetup-4_files/figure-html/cell-11-output-1.png" class="r-stretch"></section>
+<section id="confusion-matrix" class="slide level2">
+<h2>Confusion Matrix</h2>
+<ul>
+<li>Tabular counterpart to ROC curve</li>
+<li>Displays amount of different types of errors and successes</li>
+</ul>
+<div id="c1497613" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>threshold <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb12-2"><a></a>y_pred <span class="op">=</span> (y_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
+<span id="cb12-3"><a></a></span>
+<span id="cb12-4"><a></a><span class="bu">print</span>(<span class="st">"Bayes Decision Rule</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb12-5"><a></a><span class="bu">print</span>(classification_report(y_test, y_pred, target_names<span class="op">=</span>[<span class="st">"No Default"</span>, <span class="st">"Default"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bayes Decision Rule
+
+              precision    recall  f1-score   support
+
+  No Default       0.98      1.00      0.99      1933
+     Default       0.75      0.27      0.40        67
+
+    accuracy                           0.97      2000
+   macro avg       0.86      0.63      0.69      2000
+weighted avg       0.97      0.97      0.97      2000
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Precision: If model said it, was it true?</li>
+<li>Recall: If it was true, did the model say it? (TPR/TNR)</li>
+</ul>
+</section>
+<section id="confusion-matrix-1" class="slide level2">
+<h2>Confusion Matrix</h2>
+<ul>
+<li>Tabular counterpart to ROC curve</li>
+<li>Displays amount of different types of errors and successes</li>
+</ul>
+<div id="1f2fd717" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>threshold <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb14-2"><a></a>y_pred <span class="op">=</span> (y_prob <span class="op">&gt;=</span> threshold).astype(<span class="bu">int</span>)</span>
+<span id="cb14-3"><a></a></span>
+<span id="cb14-4"><a></a><span class="bu">print</span>(<span class="st">"10% threshold</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb14-5"><a></a><span class="bu">print</span>(classification_report(y_test, y_pred, target_names<span class="op">=</span>[<span class="st">"No Default"</span>, <span class="st">"Default"</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10% threshold
+
+              precision    recall  f1-score   support
+
+  No Default       0.99      0.94      0.97      1933
+     Default       0.30      0.72      0.43        67
+
+    accuracy                           0.94      2000
+   macro avg       0.65      0.83      0.70      2000
+weighted avg       0.97      0.94      0.95      2000
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Precision: If model said it, was it true?</li>
+<li>Recall: If it was true, did the model say it?</li>
+</ul>
+</section>
+<section id="thanks" class="slide level2">
+<h2>Thanks</h2>
+
+<div class="quarto-auto-generated-content">
+<p><img src="../../images/CUNY_SPS_Logo_Wide.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>DATA 622</p>
+</div>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/georgehagstrom\.github\.io\/DATA622Fall2026\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
