@@ -1414,6 +1414,13 @@
     "text": "Week Summary\n\nGroups: Email me your members asap, also set up time to meet\nIf not in a group, email me immediately if you want to get a grade for the proposal\nHW 4 available- it involves lots of reading but not as much work as it looks\nChapter 5 of ISLP"
   },
   {
+    "objectID": "meetups/meetup-6/meetup-6.html#november-meetup",
+    "href": "meetups/meetup-6/meetup-6.html#november-meetup",
+    "title": "DATA 622 Meetup 6: Resampling",
+    "section": "November Meetup!",
+    "text": "November Meetup!"
+  },
+  {
     "objectID": "meetups/meetup-6/meetup-6.html#train-test-redux",
     "href": "meetups/meetup-6/meetup-6.html#train-test-redux",
     "title": "DATA 622 Meetup 6: Resampling",
@@ -1481,14 +1488,14 @@
     "href": "meetups/meetup-6/meetup-6.html#loo-cv-tricks",
     "title": "DATA 622 Meetup 6: Resampling",
     "section": "LOO-CV Tricks",
-    "text": "LOO-CV Tricks\n\nRefitting model over and over sounds horrendous… but,\nThere are tricks to get ‘LOO-CV’ for free\n\nLinear Models\n\\[\n\\mathrm{CV}_n = \\frac{1}{n}\\sum_{i=1}^n \\frac{\\left(y_i - g_{\\mathrm{full}}(\\mathbf{x}_i)\\right)^2}{1-h_i}\n\\]\n\nLeverage \\(h_i = \\mathbf{x}_i^T(X^TX)^{-1}\\mathbf{x}_i\\)"
+    "text": "LOO-CV Tricks\n\nRefitting model over and over sounds horrendous… but,\nThere are tricks to get ‘LOO-CV’ for free\n\nLinear Models\n\\[\n\\mathrm{CV}_n = \\frac{1}{n}\\sum_{i=1}^n \\frac{\\left(y_i - g_{\\mathrm{full}}(\\mathbf{x}_i)\\right)^2}{(1-h_i)^2}\n\\]\n\nLeverage \\(h_i = \\mathbf{x}_i^T(X^TX)^{-1}\\mathbf{x}_i\\)"
   },
   {
     "objectID": "meetups/meetup-6/meetup-6.html#loo-cv-tricks-1",
     "href": "meetups/meetup-6/meetup-6.html#loo-cv-tricks-1",
     "title": "DATA 622 Meetup 6: Resampling",
     "section": "LOO-CV Tricks",
-    "text": "LOO-CV Tricks\n\nRefitting model over and over sounds horrendous… but,\nThere are tricks to get ‘LOO-CV’ for free\n\nLinear Models\n\\[\n\\mathrm{CV}_n = \\frac{1}{n}\\sum_{i=1}^n \\frac{\\left(y_i - g_{\\mathrm{full}}(\\mathbf{x}_i)\\right)^2}{1-h_i}\n\\]\n\n‘sklearn’s ’RidgeCV’ does this automatically"
+    "text": "LOO-CV Tricks\n\nRefitting model over and over sounds horrendous… but,\nThere are tricks to get ‘LOO-CV’ for free\n\nLinear Models\n\\[\n\\mathrm{CV}_n = \\frac{1}{n}\\sum_{i=1}^n \\frac{\\left(y_i - g_{\\mathrm{full}}(\\mathbf{x}_i)\\right)^2}{(1-h_i)^2}\n\\]\n\n‘sklearn’s ’RidgeCV’ does this automatically"
   },
   {
     "objectID": "meetups/meetup-6/meetup-6.html#loo-cv-tricks-2",
@@ -1551,6 +1558,13 @@
     "href": "meetups/meetup-6/meetup-6.html#what-metric-to-use",
     "title": "DATA 622 Meetup 6: Resampling",
     "section": "What Metric to Use?",
+    "text": "What Metric to Use?\n\nI said not possible to optimize model accuracy\nYou can calculate accuracy, log loss, F1 score, anything for your model selection step\nShould you?"
+  },
+  {
+    "objectID": "meetups/meetup-6/meetup-6.html#what-metric-to-use-1",
+    "href": "meetups/meetup-6/meetup-6.html#what-metric-to-use-1",
+    "title": "DATA 622 Meetup 6: Resampling",
+    "section": "What Metric to Use?",
     "text": "What Metric to Use?\n\nYates 2022 et al"
   },
   {
@@ -1558,7 +1572,7 @@
     "href": "meetups/meetup-6/meetup-6.html#proper-and-local-metrics",
     "title": "DATA 622 Meetup 6: Resampling",
     "section": "Proper and Local Metrics",
-    "text": "Proper and Local Metrics\n\nProper Metric: This is one where if your model was the data generating process it would be scored highest\nLocal Metric: For each observation, contribution to score only rates to probability of predicting correct class"
+    "text": "Proper and Local Metrics\n\nProper Metric: This is one where if your model was the data generating process it would be scored highest\n\n\nStrictly Proper: Uniquely highest\n\n\nLocal Metric: For each observation, contribution to score only relates to probability of predicting correct class"
   },
   {
     "objectID": "meetups/meetup-6/meetup-6.html#metric-selection-advice",
@@ -1566,6 +1580,27 @@
     "title": "DATA 622 Meetup 6: Resampling",
     "section": "Metric Selection Advice",
     "text": "Metric Selection Advice\n\nIf you have likelihood, use ‘log’ scoring\n\nBoth classification and regression\n\nIf costs are well known, you can construct a custom metric based on that\nIf ranking is key, AUC of ROC curve or similar is not bad"
+  },
+  {
+    "objectID": "meetups/meetup-6/meetup-6.html#when-to-incorporate-costs",
+    "href": "meetups/meetup-6/meetup-6.html#when-to-incorporate-costs",
+    "title": "DATA 622 Meetup 6: Resampling",
+    "section": "When to incorporate costs?",
+    "text": "When to incorporate costs?\n\nPick model with best score, use costs to make decisions: \\[\n\\mathrm{Predict\\, Positive\\, if}\\,\\, \\frac{p}{1-p} \\geq \\frac{C_{FP}-C_{TN}}{C_{FN}-C_{TP}}\n\\]\n\nor:\n\\[\np \\geq \\frac{1}{1+r} \\\\\nr = \\frac{\\Delta_{FN}}{\\Delta_{FP}} = \\frac{C_{FN}-C_{TP}}{C_{FP}-C_{TN}}\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-6/meetup-6.html#when-to-incorporate-costs-1",
+    "href": "meetups/meetup-6/meetup-6.html#when-to-incorporate-costs-1",
+    "title": "DATA 622 Meetup 6: Resampling",
+    "section": "When to incorporate costs?",
+    "text": "When to incorporate costs?\n\nPut costs in the model selection metric\n\n\nCalculate the cost based on model decisions made at the CV\nSame idea as previous slide just applied before decisions made"
+  },
+  {
+    "objectID": "meetups/meetup-6/meetup-6.html#when-to-incorporate-costs-2",
+    "href": "meetups/meetup-6/meetup-6.html#when-to-incorporate-costs-2",
+    "title": "DATA 622 Meetup 6: Resampling",
+    "section": "When to incorporate costs?",
+    "text": "When to incorporate costs?\n\nAdvantages of selection before decisions:\n\nSmoother model selection score\nEasy to update model if you change your costs\n\nAdvantages of selection using costs:\n\nA well-calibrated but misspecified model can predict probabilities badly near the decision boundary"
   },
   {
     "objectID": "meetups/meetup-6/meetup-6.html#the-bootstrap",
@@ -1603,11 +1638,18 @@
     "text": "No Inference after Model Selection\n\nSuppose you care about the values of the model coefficients\nYou have a family of different models, and you use cross-validation to pick the “best” one\nThen you look at the model coefficients of the best model\nSmart?"
   },
   {
-    "objectID": "meetups/meetup-6/meetup-6.html#no-inference-after-model-selection-1",
-    "href": "meetups/meetup-6/meetup-6.html#no-inference-after-model-selection-1",
+    "objectID": "meetups/meetup-6/meetup-6.html#winners-curse",
+    "href": "meetups/meetup-6/meetup-6.html#winners-curse",
     "title": "DATA 622 Meetup 6: Resampling",
-    "section": "No Inference after Model Selection",
-    "text": "No Inference after Model Selection\n\nWinner’s Curse- winning model will only include features with a high coefficient\nValues biased away from 0 and standard errors biased low"
+    "section": "Winner’s Curse",
+    "text": "Winner’s Curse\n\nWinning model will only include features with a high coefficient\nValues biased away from 0 and standard errors biased low"
+  },
+  {
+    "objectID": "meetups/meetup-6/meetup-6.html#decide-what-you-want",
+    "href": "meetups/meetup-6/meetup-6.html#decide-what-you-want",
+    "title": "DATA 622 Meetup 6: Resampling",
+    "section": "Decide What You Want",
+    "text": "Decide What You Want\n\nIf you have a specific model and want the parameters, fit just that not a lot of variants\nIf you care about prediciton, don’t get greedy and then use the model coefficients\nIf you must do both, set aside half the data to train the selected model on afterwards"
   },
   {
     "objectID": "meetups/meetup-6/meetup-6.html#bias-correction",
@@ -1621,14 +1663,14 @@
     "href": "meetups/meetup-6/meetup-6.html#one-standard-error-rule",
     "title": "DATA 622 Meetup 6: Resampling",
     "section": "One Standard Error Rule",
-    "text": "One Standard Error Rule\n\nOverfitting is something that can occur in model selection\nWhen you compare a lot of models, the ones that get selected have all there variables as important, some due to chance"
+    "text": "One Standard Error Rule\n\nOverfitting is something that can occur in model selection\nWhen you compare a lot of models, the ones that get selected have all their variables as important, some due to chance"
   },
   {
     "objectID": "meetups/meetup-6/meetup-6.html#one-standard-error-rule-1",
     "href": "meetups/meetup-6/meetup-6.html#one-standard-error-rule-1",
     "title": "DATA 622 Meetup 6: Resampling",
     "section": "One Standard Error Rule",
-    "text": "One Standard Error Rule\n\nCompute standard error of Score estimate of best model: \\[\nSE_{CV} = \\frac{\\hat{\\sigma}}{\\sqrt{n}}\n\\]\nPick simplest model with CV score within one standard error of the best model average"
+    "text": "One Standard Error Rule\n\nCompute standard error of Score estimate of best model: \\[\nSE_{CV} = \\frac{\\hat{\\sigma_{CV}}}{\\sqrt{k}}\n\\]\nPick simplest model with CV score within one standard error of the best model average"
   },
   {
     "objectID": "meetups/meetup-6/meetup-6.html#thanks",
@@ -1856,7 +1898,7 @@
     "href": "course/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -1867,7 +1909,7 @@
     "href": "course/schedule.html#meetup-link",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\n\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\n\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"

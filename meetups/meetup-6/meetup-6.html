@@ -350,6 +350,10 @@ George I. Hagstrom
 <li>Chapter 5 of ISLP</li>
 </ul>
 </section>
+<section id="november-meetup" class="slide level2">
+<h2>November Meetup!</h2>
+
+<img data-src="../../images/MeetupNovChristian2026Seminar.png" class="r-stretch"></section>
 <section id="train-test-redux" class="slide level2 nostretch">
 <h2>Train-Test Redux</h2>
 <ul>
@@ -438,7 +442,7 @@ George I. Hagstrom
 </ul>
 <p><strong>Linear Models</strong></p>
 <p><span class="math display">\[
-\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{1-h_i}
+\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{(1-h_i)^2}
 \]</span></p>
 <ul>
 <li>Leverage <span class="math inline">\(h_i = \mathbf{x}_i^T(X^TX)^{-1}\mathbf{x}_i\)</span></li>
@@ -452,7 +456,7 @@ George I. Hagstrom
 </ul>
 <p><strong>Linear Models</strong></p>
 <p><span class="math display">\[
-\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{1-h_i}
+\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{(1-h_i)^2}
 \]</span></p>
 <ul>
 <li>‘sklearn’s ’RidgeCV’ does this automatically</li>
@@ -535,13 +539,26 @@ George I. Hagstrom
 </section>
 <section id="what-metric-to-use" class="slide level2">
 <h2>What Metric to Use?</h2>
+<ul>
+<li>I said not possible to <em>optimize</em> model accuracy</li>
+<li>You can calculate accuracy, log loss, F1 score, anything for your model selection step</li>
+<li>Should you?</li>
+</ul>
+</section>
+<section id="what-metric-to-use-1" class="slide level2">
+<h2>What Metric to Use?</h2>
 
 <img data-src="metrics.png" class="r-stretch quarto-figure-center"><p class="caption">Yates 2022 et al</p></section>
 <section id="proper-and-local-metrics" class="slide level2">
 <h2>Proper and Local Metrics</h2>
 <ol type="1">
-<li><p>Proper Metric: This is one where if your model was the data generating process it would be scored highest</p></li>
-<li><p>Local Metric: For each observation, contribution to score <em>only</em> rates to probability of predicting correct class</p></li>
+<li>Proper Metric: This is one where if your model was the data generating process it would be scored highest</li>
+</ol>
+<ul>
+<li><em>Strictly Proper:</em> Uniquely highest</li>
+</ul>
+<ol start="2" type="1">
+<li>Local Metric: For each observation, contribution to score <em>only</em> relates to probability of predicting correct class</li>
 </ol>
 </section>
 <section id="metric-selection-advice" class="slide level2">
@@ -553,6 +570,43 @@ George I. Hagstrom
 </ul></li>
 <li>If costs are well known, you can construct a custom metric based on that</li>
 <li>If ranking is key, AUC of ROC curve or similar is not bad</li>
+</ul>
+</section>
+<section id="when-to-incorporate-costs" class="slide level2">
+<h2>When to incorporate costs?</h2>
+<ol type="1">
+<li>Pick model with best score, use costs to make decisions: <span class="math display">\[
+\mathrm{Predict\, Positive\, if}\,\, \frac{p}{1-p} \geq \frac{C_{FP}-C_{TN}}{C_{FN}-C_{TP}}
+\]</span></li>
+</ol>
+<p>or:</p>
+<p><span class="math display">\[
+p \geq \frac{1}{1+r} \\
+r = \frac{\Delta_{FN}}{\Delta_{FP}} = \frac{C_{FN}-C_{TP}}{C_{FP}-C_{TN}}
+\]</span></p>
+</section>
+<section id="when-to-incorporate-costs-1" class="slide level2">
+<h2>When to incorporate costs?</h2>
+<ol start="2" type="1">
+<li>Put costs in the model selection metric</li>
+</ol>
+<ul>
+<li>Calculate the cost based on model decisions made at the CV</li>
+<li>Same idea as previous slide just applied before decisions made</li>
+</ul>
+</section>
+<section id="when-to-incorporate-costs-2" class="slide level2">
+<h2>When to incorporate costs?</h2>
+<ul>
+<li>Advantages of selection before decisions:
+<ul>
+<li>Smoother model selection score</li>
+<li>Easy to update model if you change your costs</li>
+</ul></li>
+<li>Advantages of selection using costs:
+<ul>
+<li>A well-calibrated but misspecified model can predict probabilities badly near the decision boundary</li>
+</ul></li>
 </ul>
 </section>
 <section id="the-bootstrap" class="slide level2">
@@ -598,14 +652,22 @@ SE_{c} = \left(\frac{1}{B-1}\sum_{r=1}^B\left(c_r - \bar{c}\right)^2     \right)
 <li>Smart?</li>
 </ul>
 </section>
-<section id="no-inference-after-model-selection-1" class="slide level2">
-<h2>No Inference after Model Selection</h2>
+<section id="winners-curse" class="slide level2">
+<h2>Winner’s Curse</h2>
 <ul>
-<li>Winner’s Curse- winning model will only include features with a high coefficient</li>
+<li>Winning model will only include features with a high coefficient</li>
 <li>Values biased away from 0 and standard errors biased low</li>
 </ul>
 
 <img data-src="no_inference.png" class="r-stretch"></section>
+<section id="decide-what-you-want" class="slide level2">
+<h2>Decide What You Want</h2>
+<ol type="1">
+<li>If you have a specific model and want the parameters, fit just that not a lot of variants</li>
+<li>If you care about prediciton, don’t get greedy and then use the model coefficients</li>
+<li>If you must do both, set aside half the data to train the selected model on afterwards</li>
+</ol>
+</section>
 <section id="bias-correction" class="slide level2">
 <h2>Bias Correction</h2>
 <ul>
@@ -621,7 +683,7 @@ S_g^* = S_g +\frac{1}{n}\sum_{i=1}^n \nu_i, \\
 <h2>One Standard Error Rule</h2>
 <ul>
 <li>Overfitting is something that can occur in model selection</li>
-<li>When you compare a lot of models, the ones that get selected have all there variables as important, some due to chance</li>
+<li>When you compare a lot of models, the ones that get selected have all their variables as important, some due to chance</li>
 </ul>
 
 <img data-src="no_inference.png" class="r-stretch"></section>
@@ -629,7 +691,7 @@ S_g^* = S_g +\frac{1}{n}\sum_{i=1}^n \nu_i, \\
 <h2>One Standard Error Rule</h2>
 <ul>
 <li>Compute standard error of Score estimate of best model: <span class="math display">\[
-SE_{CV} = \frac{\hat{\sigma}}{\sqrt{n}}
+SE_{CV} = \frac{\hat{\sigma_{CV}}}{\sqrt{k}}
 \]</span></li>
 <li>Pick simplest model with CV score within one standard error of the best model average</li>
 </ul>
