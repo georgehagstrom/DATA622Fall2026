@@ -48,7 +48,7 @@ The dataset to fit this model is contained in [nba_stint_data.csv](https://githu
 
 ```{python}
 
-nba_stints = pd.read_csv(https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/nba_stint_data.csv)
+nba_stints = pd.read_csv("https://raw.githubusercontent.com/georgehagstrom/DATA622Fall2026/main/website/assignments/labs/labData/nba_stint_data.csv")
 
 nba_stints.head(10)
 
@@ -56,7 +56,7 @@ nba_stints.head(10)
 
 Here you can see that each row corresponds to a stint where the players on the court didn't change. The 'n_pos' variable is the number
 of possessions that took place during that stint. The 'home_points' and 'away_points' are the number of points scored by the home and away teams respectively. The 'minutes' describes how long in minutes the stint lasted, and the 'margin' is the target variable (defined earlier). The features in column 7 onwards are labeled by player ids, 
-and the value in each cell corresponds to the $c_{ij}$ values for that stint (whether the player was on the court for the home team, road team, or neither). You can recover the identity of the players from the ['player_id']("https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/player_id.csv") file. 
+and the value in each cell corresponds to the $c_{ij}$ values for that stint (whether the player was on the court for the home team, road team, or neither). You can recover the identity of the players from the ['player_id'](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/player_id.csv) file. 
 
 In the following lab you will be exploring different ways of calculating the 'RAPM' model coefficients and interpreting them in terms 
 of player skill.
