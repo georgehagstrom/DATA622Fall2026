@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/learning_curve_tutorial.html</loc>
-    <lastmod>2026-09-17T22:37:53.417Z</lastmod>
+    <lastmod>2026-10-04T14:42:25.583Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-4/meetup-4.html</loc>
@@ -22,15 +22,19 @@
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab4.html</loc>
-    <lastmod>2026-07-30T14:48:33.343Z</lastmod>
+    <lastmod>2026-10-05T05:29:32.331Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/knnVignette.html</loc>
-    <lastmod>2026-09-17T19:46:42.278Z</lastmod>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-6/meetup-6.html</loc>
+    <lastmod>2026-07-30T14:58:36.934Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5-draft.html</loc>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5.html</loc>
     <lastmod>2026-07-30T14:48:33.342Z</lastmod>
+  </url>
+  <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/posts/2026-10-04-Week-6-Resampling.html</loc>
+    <lastmod>2026-10-05T05:25:00.996Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html</loc>
@@ -62,7 +66,7 @@
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/modules/module6.html</loc>
-    <lastmod>2026-07-30T14:58:36.934Z</lastmod>
+    <lastmod>2026-10-05T05:07:08.814Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/modules/module4.html</loc>
@@ -98,7 +102,7 @@
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/course/schedule.html</loc>
-    <lastmod>2026-10-01T02:48:06.401Z</lastmod>
+    <lastmod>2026-10-05T05:05:41.808Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/course/instructors.html</loc>
@@ -130,7 +134,7 @@
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs.html</loc>
-    <lastmod>2026-09-23T15:02:20.624Z</lastmod>
+    <lastmod>2026-10-05T05:04:24.502Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab3.html</loc>
@@ -225,8 +229,12 @@
     <lastmod>2026-10-01T03:07:16.702Z</lastmod>
   </url>
   <url>
-    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5.html</loc>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab5-draft.html</loc>
     <lastmod>2026-07-30T14:48:33.342Z</lastmod>
+  </url>
+  <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/knnVignette.html</loc>
+    <lastmod>2026-09-17T19:46:42.278Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/assignments/labs/lab4-draft.html</loc>
