@@ -24,10 +24,23 @@ import seaborn as sns
 ![](../../images/course_logo.png)
 
 
+## Events Upcoming!
+
+![nyhackr.org](../../images/September_2026_Meetup_Card.png)
+
+
+
+## Events Upcoming!
+
+![nyhackr.org](../../images/Oct2026Seminar.png)
+
+
+
+
 ## What to Expect
 
 1. Meetups Monday 6:45-7:45PM
-  - There is a poll on the course `slack` channel '#data-622-fall-2026'
+
 
 
 ## What to Expect
@@ -86,16 +99,21 @@ import seaborn as sns
 
 -   Early days, but mixed results
 -   Opinions range from 'LLMs stop you from being able to think for yourself' to 'Concern over LLMs is just another moral panic'
--   [Your Brain on ChatGPT](https://www.media.mit.edu/publications/your-brain-on-chatgpt/) (I'm skeptical)
 -   [Why knowledge is important in the age of AI](https://arxiv.org/abs/2506.11015) (makes excellent points)
+- [The Generative AI Learning Penalty: Evidenc from Chinese Secondary Education](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6868618)
 
 ## Research on LLMs in Education {.smaller}
 
 ![](memory.png)
 
-::: {.callout-note icon=false}
+
+## Research on LLMs in Education 
+
+![Stromberg et al 2026](llm.png)
 
 ## Abstract
+
+::: {.callout-note icon=false}
 
 
 In the age of generative AI and ubiquitous digital tools, human cognition faces a structural paradox: as external aids become more capable, internal memory systems risk atrophy. Drawing on neuroscience and cognitive psychology, this paper examines how heavy reliance on AI systems and discovery-based pedagogies may impair the consolidation of declarative and procedural memory -- systems essential for expertise, critical thinking, and long-term retention. We review how tools like ChatGPT and calculators can short-circuit the retrieval, error correction, and schema-building processes necessary for robust neural encoding. Notably, we highlight striking parallels between deep learning phenomena such as "grokking" and the neuroscience of overlearning and intuition. Empirical studies are discussed showing how premature reliance on AI during learning inhibits proceduralization and intuitive mastery. We argue that effective human-AI interaction depends on strong internal models -- biological "schemata" and neural manifolds -- that enable users to evaluate, refine, and guide AI output.... 
@@ -191,7 +209,7 @@ In the age of generative AI and ubiquitous digital tools, human cognition faces 
 | Oct 26 | [Ensemble Models](../../modules/module9.qmd) | Lab 5 |
 | Nov 2 | [Causal Inference](../../modules/module10.qmd) | [Minimum Viable Product Demo](../../assignments/project.qmd) |
 | Nov 9 | [Model Interpretation, Communication, and Ethics](../../modules/module11.qmd) | Lab 6 |
-| Nov 16 | [Neural Networks](../../modules/module12.qmd) | |
+| Nov 16 | [Neural Networks](../../modules/module12.qmd) | [Final Project Production Deployment Period Stats](../../assignments/project.qmd) |
 | Nov 23 | No Meetup (Thanksgiving) | |
 | Nov 30 | [Deep Learning](../../modules/module13.qmd) | Lab 7 |
 | Dec 7 | [RNNs and NLP](../../modules/module14.qmd) | |
@@ -224,7 +242,7 @@ Problem: Fraudulent transactions are costly
 
 Can be several % of total revenue, billions of dollars
 
-![](../../images/paypal.jpg){width=1in}
+![](../../images/paypal.jpg){width=1.0in}
 
 
 ## Transaction Fraud Detection
@@ -236,14 +254,14 @@ Solution: Fradulent transactions are different
 ## Transaction Fraud Detection
 
 ::: {style="text-align: left;"}
-![](ML-diagram1.png){width=90%}
+![](ML-diagram1.png){width=75%}
 :::
 
 
 ## Transaction Fraud Detection
 
 ::: {style="text-align: left;"}
-![](ML-diagram1.png){width=90%}
+![](ML-diagram1.png){width=75%}
 :::
 
 Can create a formula:
@@ -255,7 +273,7 @@ $$
 ## Transaction Fraud Detection
 
 ::: {style="text-align: left;"}
-![](ML-diagram1.png){width=90%}
+![](ML-diagram1.png){width=75%}
 :::
 
 Can create a formula:
@@ -267,7 +285,7 @@ $$
 ## Transaction Fraud Detection
 
 ::: {style="text-align: left;"}
-![](ML-diagram1.png){width=90%}
+![](ML-diagram1.png){width=75%}
 :::
 
 Can create a formula:
@@ -366,7 +384,7 @@ credit_plot.fig.text(0.05,1.01,"Complex Pattern is ideal for ML",ha="left",fonts
 :::
 
 
-::: {.column width="50%}
+::: {.column width="50%"}
 $$
 \mathbf{F} = -\frac{Gm_1m_2\hat{\mathbf{r}}}{\|\mathbf{r}\|^2}
 $$
@@ -614,6 +632,18 @@ Example: Based on the observed fish stocks, water temperature, and ocean product
     $$
     \mathrm{loss(y_1,g(x_1))} = (y_1-g(x_1))^2
     $$
+
+
+
+## Regression and Classification
+
+1. Regression problems have continuous $y$
+    - Predicting income, temperature, cost
+    - Typical loss function 
+
+$$
+\mathrm{loss}(y_1, g(x_1)) = -\log g_{y_1}(x_1)
+$$
 
 ## Regression and Classification
 

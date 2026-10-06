@@ -21,6 +21,18 @@ import matplotlib.pyplot as plt
 
 ```
 
+
+## Events Upcoming!
+
+![nyhackr.org](../../images/September_2026_Meetup_Card.png)
+
+
+
+## Events Upcoming!
+
+![](../../images/Oct2026Seminar.png)
+
+
 ## Week Summary
 
 - HW 2 on Linear Regression is due Next Sunday at midnight
@@ -650,6 +662,68 @@ __Hint:__ Smokers were about twice as likely to have babies lighter than 2500 gr
 - Inference is only as good as your assumptions
 
 
+## Coda: Prediction vs Inference
+
+- ML Model Using Gene Expression to Predict Cancer:
+
+![Efron Prediction](efron1.png)
+
+## Coda: Prediction vs Inference
+
+- Which genes are important?
+
+![Efron Prediction](efron1.png)
+
+## Coda: Prediction vs Inference
+
+- Gene '1031' looks vitally important!
+
+![Efron Prediction](efron1.png)
+
+## Coda: Prediction vs Inference
+
+- Remove Gene '1031' from dataset
+  - Model is perfect on the test set
+
+
+## Coda: Prediction vs Inference
+
+- Remove Gene top 2 genes
+  - Model is 99+\% accurate
+
+  ## Coda: Prediction vs Inference
+
+- Remove Gene top 10 genes
+  - Model is 99+\% accurate
+
+  ## Coda: Prediction vs Inference
+
+- Remove Gene top 20 genes
+  - Model is 99+\% accurate
+
+  ## Coda: Prediction vs Inference
+
+- Remove Every Gene with Positive Importance
+  - Model is Pefect on the test set
+
+## Coda: Prediction vs Inference
+
+- Nearly big enough combination of the gene expression could have been used to predict
+- Large amount of data can reflect a deep underlying structure, but
+are _passengers_ rather than _drivers_
+
+## Prediction Fragility
+
+- Train model on early samples, test on later ones:
+
+![](efron_time.png)
+
+## Prediction Fragility
+
+- It is not known (at least to me) why prediction accuracy degraded like this
+- Probably something was unusual about the order in which the lab processed samples (maybe more urgent cases first?)
+- If some single core gene that (say) mutated in cancer was identified, this drift would _not_ have taken place
+
 
 ## Linear Models for Prediction
 
@@ -675,7 +749,7 @@ __Hint:__ Smokers were about twice as likely to have babies lighter than 2500 gr
 
 - AIC for statistical model is:
 $$
-AIC = n - \log(\hat{L})
+AIC = 2n - 2\log(\hat{L})
 $$
 
 - $\hat{L}$ is the likelihood of the model

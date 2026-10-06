@@ -17,7 +17,7 @@ import sklearn as sklearn
 from matplotlib.pyplot import subplots
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import numpy as np, statsmodels.api as sm
 sklearn.set_config(transform_output="pandas")
 from sklearn.model_selection import train_test_split
 
@@ -37,6 +37,10 @@ from sklearn.naive_bayes import GaussianNB
 ```
 
 
+## October 1st Meetup Postponed
+
+- Apologies
+- Next meetup likely November 3rd stay tuned
 
 ## Week Summary
 
@@ -101,7 +105,7 @@ from sklearn.naive_bayes import GaussianNB
 ## Gold Standard
 
 - Given covariates $\mathbf{x}$, model two things: 
-  - $p(y=0|\mathbf{x}$, i.e. probability of 0 
+  - $p(y=0|\mathbf{x})$, i.e. probability of 0 
   - $p(y|\mathbf{x},\, y>0)$, i.e. combine with the drop model
 
 
@@ -133,6 +137,15 @@ $$
 ![](var_selection.png)
 
 
+
+## Forward/Backward Selection?
+
+- Searching over many models makes AIC overoptimistic
+- You select one where the noise helped you
+- RIC correction:
+$$
+RIC = 2k\log(p) - 2\log(L)
+$$
 
 
 
@@ -312,7 +325,7 @@ print(classification_report(y_test, y_pred, target_names=["No Default", "Default
 
 ## Generative versus Discriminative
 
-- Classify coints at vending machine
+- Classify coins at vending machine
 - Discriminative model learns decision boundary with $p(y|\mathbf{x})$
 
 ![](coin_discriminative.png)
@@ -320,14 +333,14 @@ print(classification_report(y_test, y_pred, target_names=["No Default", "Default
 
 ## Generative versus Discriminative
 
-- Classify coints at vending machine
+- Classify coins at vending machine
 - Generative starts with distribution of each class $p(\mathbf{x}|y)$
 
 ![](coin_generative.png)
 
 ## Generative versus Discriminative
 
-- Classify coints at vending machine
+- Classify coins at vending machine
 - Generative also considers abundance of classes $p(y)$
 
 ![](coin_prior.png)
@@ -484,7 +497,7 @@ $$
   - Each class has a probability
 - $x_i$ is continuous:
   - Need to pick a family of distributions!
-  - Gaussian Naive Bayes: $ x_i \sim \mathrm{normal}\left(\mu_i,\sigma_i\right)$
+  - Gaussian Naive Bayes: $x_i \sim \mathrm{normal}\left(\mu_i,\sigma_i\right)$
   - You may choose other distributions
 
 
@@ -648,7 +661,7 @@ $$
 
 - For two Gaussians, Signal to Noise Ratio is:
 $$
-SNR = \frac{|\mu_0-\mu_1|}{\sqrt{\sigma_1^0+\sigma_1^2}}
+SNR = \frac{|\mu_0-\mu_1|}{\sqrt{\sigma_0^2+\sigma_1^2}}
 $$
 
 

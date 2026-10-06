@@ -45,15 +45,45 @@ from marginaleffects import avg_slopes, slopes, plot_predictions, fit_sklearn, a
 - HW 3 on Classification due in 2 weeks
 - Coding vignette on classification/LR
 
+## Event Reminder!
+
+
+![](../../images/Oct2026Seminar.png)
+
+- [Click Here to sign up](https://us02web.zoom.us/j/83840080608?pwd=KwzeAIG66KJQ27QeAqBGkqkr5XsxmI.1&jst=1)
+
+
+
 
 ## HW 3 Summary:
 
-- Always look at your figures very carefully. 
-- Misconception: Noise in data does not help regularize
-  - Later we will learn that noise in the algorithm can
-- Python arrays indexed starting from 0
+- Learning Curve:
 
 
+![](abalone-1.png)
+
+
+
+## HW 3 Summary:
+
+- Learning Curve:
+
+
+![](abalone-30.png)
+
+
+
+## HW 3 Summary:
+
+- More Data!
+
+
+
+## HW 3 Summary:
+
+- Irreducible Error
+
+![](abalone-30.png)
 
 
 ## Weather Example
@@ -216,7 +246,7 @@ $$
 ![](surrogate.png)
 
 
-## Logistic loss
+## Logistic function
 
 - logistic function $\sigma$:
 $$

@@ -46,6 +46,9 @@ from sklearn.naive_bayes import GaussianNB
 - HW 4 available- it involves lots of reading but not as much work as it looks
 - Chapter 5 of ISLP
 
+## November Meetup!
+
+![](../../images/MeetupNovChristian2026Seminar.png)
 
 ## Train-Test Redux {.nostretch}
 
@@ -240,7 +243,7 @@ plt.show()
 **Linear Models**
 
 $$
-\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{1-h_i}
+\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{(1-h_i)^2}
 $$
 
 - Leverage $h_i = \mathbf{x}_i^T(X^TX)^{-1}\mathbf{x}_i$
@@ -255,7 +258,7 @@ $$
 **Linear Models**
 
 $$
-\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{1-h_i}
+\mathrm{CV}_n = \frac{1}{n}\sum_{i=1}^n \frac{\left(y_i - g_{\mathrm{full}}(\mathbf{x}_i)\right)^2}{(1-h_i)^2}
 $$
 
 - 'sklearn's 'RidgeCV' does this automatically
@@ -339,6 +342,13 @@ to bias and variance
 
 ## What Metric to Use?
 
+- I said not possible to _optimize_ model accuracy
+- You can calculate accuracy, log loss, F1 score, anything for your model selection step
+- Should you?
+
+
+## What Metric to Use?
+
 ![Yates 2022 et al](metrics.png)
 
 
@@ -346,8 +356,9 @@ to bias and variance
 ## Proper and Local Metrics
 
 1. Proper Metric: This is one where if your model was the data generating process it would be scored highest
+  - _Strictly Proper:_ Uniquely highest
 
-2. Local Metric: For each observation, contribution to score _only_ rates to probability of predicting correct class
+2. Local Metric: For each observation, contribution to score _only_ relates to probability of predicting correct class
 
 
 
@@ -357,6 +368,41 @@ to bias and variance
   - Both classification and regression
 - If costs are well known, you can construct a custom metric based on that
 - If ranking is key, AUC of ROC curve or similar is not bad
+
+
+## When to incorporate costs?
+
+1. Pick model with best score, use costs to make decisions:
+$$
+\mathrm{Predict\, Positive\, if}\,\, \frac{p}{1-p} \geq \frac{C_{FP}-C_{TN}}{C_{FN}-C_{TP}}
+$$
+
+or:
+
+$$
+p \geq \frac{1}{1+r} \\
+r = \frac{\Delta_{FN}}{\Delta_{FP}} = \frac{C_{FN}-C_{TP}}{C_{FP}-C_{TN}}
+$$
+
+
+
+
+## When to incorporate costs?
+
+2. Put costs in the model selection metric
+ - Calculate the cost based on model decisions made at the CV
+ - Same idea as previous slide just applied before decisions made
+
+ 
+## When to incorporate costs?
+
+- Advantages of selection before decisions:
+  - Smoother model selection score
+  - Easy to update model if you change your costs
+- Advantages of selection using costs:
+  - A well-calibrated but misspecified model can predict probabilities badly
+  near the decision boundary
+
 
 
 
@@ -399,15 +445,19 @@ $$
 - Then you look at the model coefficients of the best model
 - Smart?
 
-## No Inference after Model Selection
+## Winner's Curse
 
-- Winner's Curse- winning model will only include features with a high coefficient
+- Winning model will only include features with a high coefficient
 - Values biased away from 0 and standard errors biased low
 
 ![](no_inference.png)
 
 
+## Decide What You Want
 
+1. If you have a specific model and want the parameters, fit just that not a lot of variants
+2. If you care about prediciton, don't get greedy and then use the model coefficients
+3. If you must do both, set aside half the data to train the selected model on afterwards
 
 
 ## Bias Correction
@@ -425,7 +475,7 @@ $$
 ## One Standard Error Rule
 
 - Overfitting is something that can occur in model selection
-- When you compare a lot of models, the ones that get selected have all there variables as important, some due to chance
+- When you compare a lot of models, the ones that get selected have all their variables as important, some due to chance
 
 ![](no_inference.png)
 
@@ -434,7 +484,7 @@ $$
 
 - Compute standard error of Score estimate of best model:
 $$
-SE_{CV} = \frac{\hat{\sigma}}{\sqrt{n}}
+SE_{CV} = \frac{\hat{\sigma_{CV}}}{\sqrt{k}}
 $$
 - Pick simplest model with CV score within one standard error of the best model average
 
