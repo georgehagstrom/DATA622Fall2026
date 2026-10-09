@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="George I. Hagstrom">
+<meta name="dcterms.date" content="2026-10-09">
+<meta name="description" content="Click here for some information on the project">
 
-<title>Announcements – DATA 622 Fall 2026</title>
+<title>quarto-input18ece6d3bf5a32a1 – DATA 622 Fall 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./course/overview.html" rel="next">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,69 +70,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<meta property="og:title" content="Announcements – DATA 622 Fall 2026">
-<meta property="og:description" content="DATA 622 - Machine Learning and Big Data - CUNY School of Professional Studies">
+<meta property="og:title" content="– DATA 622 Fall 2026">
+<meta property="og:description" content="Click here for some information on the project">
+<meta property="og:image" content="https://georgehagstrom.github.io/DATA622Fall2026/images/databricks.png">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
+<meta property="og:image:height" content="139">
+<meta property="og:image:width" content="732">
 </head>
 
 <body class="nav-sidebar docked fullcontent">
@@ -144,7 +89,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Announcements</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,8 +103,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/course_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/course_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/georgehagstrom/DATA622Fall2026" title="Github" class="quarto-navigation-tool px-1" aria-label="Github" target="_blank"><i class="bi bi-github"></i></a>
@@ -197,7 +142,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Announcements</span></a>
   </div>
 </li>
@@ -212,37 +157,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/instructors.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/instructors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instructors</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/textbooks.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/textbooks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Textbooks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./course/software.html" class="sidebar-item-text sidebar-link">
+  <a href="../course/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -259,13 +204,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assignments/labs.html" class="sidebar-item-text sidebar-link">
+  <a href="../assignments/labs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Labs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assignments/project.html" class="sidebar-item-text sidebar-link">
+  <a href="../assignments/project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project</span></a>
   </div>
 </li>
@@ -282,91 +227,91 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module1.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1 - What is Machine Learning?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module2.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2 - Bias-Variance Trade-Off</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module3.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3 - The Linear Model</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module4.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4 - Classification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module5.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5 - Generative Classification Models and Class Imbalance</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module6.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6 - Resampling and Cross Validation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module7.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module7.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7 - Regularization and Model Selection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module8.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module8.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">8 - Tree Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module9.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module9.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">9 - Ensembles of Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module10.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">10 - Causal Inference</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module11.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">11 - Model Interpretation and Ethics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module12.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module12.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12 - Neural Networks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module13.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module13.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">13 - Deep Learning</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module14.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module14.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">14 - RNNs and NLP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modules/module15.html" class="sidebar-item-text sidebar-link">
+  <a href="../modules/module15.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">15 - Pretrained Models</span></a>
   </div>
 </li>
@@ -374,7 +319,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+  <a href="../acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
@@ -389,14 +334,30 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Announcements</h1>
 </div>
 
+<div>
+  <div class="description">
+    Click here for some information on the project
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>George I. Hagstrom </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 9, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -406,393 +367,18 @@ window.Quarto = {
 </header>
 
 
-<p>Be sure to check this page regularly for updates. In addition to periodic updates about the course, slides and recordings of the weekly meetups will be posted here.</p>
+<p>Hello all, I am adding people to the github repository for our project, and also creating branches for each team. If people could post their github under their teams (and thereby confirm which team they are) in the Citibike-Project-Organization, I will make sure you get added to the project and The structure of our work is as follows:</p>
+<ol type="1">
+<li><p>In order to maintain our budget, we will use databricks free tier for interactive runs, model development, etc. This will prevent an accidental programming mistake from depleting our classwide credit budget. Other safeguards will be in place in order to prevent that. The primary work-space will only run code directly from the main branch of our github project, and only in a “jobs” format. Thus for production I will have to approve your merges/PRs from your team branch.</p></li>
+<li><p>For development and demonstrating that your jobs/code will be safe, you will use databricks free edition workspaces. I’ve setup the code in the main repo so that you can replicate most of the workflow in free edition, though there will be some caveats. Free edition gives allows you experiment/mess around while remaining on the safe side. I’ll make a video gives a tour of both the databricks workspace and the free edition that I use for development so that you can see what is required. Signup for databricks free edition here: https://docs.databricks.com/gcp/en/getting-started/free-edition . I had to use a different email address for free edition than my main account. Not sure if that is a me problem or something you will need to do to.</p></li>
+<li><p>Because we are sharing resources, be just a little extra careful with what you run, especially verify and test code that has been modified or generated with help of an LLM.&nbsp; It is easy to generate code that grows beyond your capacity to understand what it is doing, so put in extra effort to make such code easy to understand, as I’ll also need to understand and approve it. I’ll show you some basics on how to estimate the costs from free edition.</p></li>
+</ol>
+<p>Looking forward to reading your project proposals, and seeing what we all create this semester,</p>
+<p>Sincerely, George</p>
 
 
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1791518400000" data-listing-file-modified-sort="1791586571453" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="356">
-<div class="thumbnail">
-<p><a href="./posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.html" class="no-external"></a></p><a href="./posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.html" class="no-external">
-<p><img loading="lazy" src="./images/databricks.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.html" class="no-external"></a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.html" class="no-external">Click here for some information on the project</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.html" class="no-external">
-<div class="listing-date">
-Oct 9, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1791345600000" data-listing-file-modified-sort="1791434298739" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="336">
-<div class="thumbnail">
-<p><a href="./posts/2026-10-07-Cross-Validation-Bootstrap-Vignettes.html" class="no-external"></a></p><a href="./posts/2026-10-07-Cross-Validation-Bootstrap-Vignettes.html" class="no-external">
-<p><img loading="lazy" src="./images/nflreadpy.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-10-07-Cross-Validation-Bootstrap-Vignettes.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-10-07-Cross-Validation-Bootstrap-Vignettes.html" class="no-external">Bootstrapping and Cross-Validation Vignettes</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-10-07-Cross-Validation-Bootstrap-Vignettes.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-10-07-Cross-Validation-Bootstrap-Vignettes.html" class="no-external">Click here for three videos: A data wrangling/Poisson regression video using NFL data, a video on using cross validation on the resulting models, and a video using the bootstrap on the resulting models</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-10-07-Cross-Validation-Bootstrap-Vignettes.html" class="no-external">
-<div class="listing-date">
-Oct 7, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1791086400000" data-listing-file-modified-sort="1791177900996" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="200">
-<div class="thumbnail">
-<p><a href="./posts/2026-10-04-Week-6-Resampling.html" class="no-external"></a></p><a href="./posts/2026-10-04-Week-6-Resampling.html" class="no-external">
-<p><img loading="lazy" src="./posts/week6.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-10-04-Week-6-Resampling.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-10-04-Week-6-Resampling.html" class="no-external">Week 6 Info: Resampling Methods</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-10-04-Week-6-Resampling.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-10-04-Week-6-Resampling.html" class="no-external">Click here for info on Week 6</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-10-04-Week-6-Resampling.html" class="no-external">
-<div class="listing-date">
-Oct 4, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1790740800000" data-listing-file-modified-sort="1790824036702" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="104">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-30-Naive-Bayes-Vignettes.html" class="no-external"></a></p><a href="./posts/2026-09-30-Naive-Bayes-Vignettes.html" class="no-external">
-<p><img loading="lazy" src="./meetups/meetup-5/coin_generative.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-30-Naive-Bayes-Vignettes.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-30-Naive-Bayes-Vignettes.html" class="no-external">Naive Bayes Vignettes</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-30-Naive-Bayes-Vignettes.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-30-Naive-Bayes-Vignettes.html" class="no-external">Click here to watch a series of videos on Naive Bayes: bonus slides from Meetup 5 plus a coding vignette on a gene expression dataset</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-30-Naive-Bayes-Vignettes.html" class="no-external">
-<div class="listing-date">
-Sep 30, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1790654400000" data-listing-file-modified-sort="1790723540404" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="142">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html" class="no-external"></a></p><a href="./posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html" class="no-external">
-<p><img loading="lazy" src="./images/bank_marketing.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html" class="no-external">Bank Marketing Vignette Videos</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html" class="no-external">Click here to watch a series of videos on explorations of the Bank Marketing dataset</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-29-Bank-Marketing-Naive-Bayes-Custom-Classes-Vignette.html" class="no-external">
-<div class="listing-date">
-Sep 29, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1790481600000" data-listing-file-modified-sort="1790570836119" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="150">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-27-Week-5-Generative-Classification.html" class="no-external"></a></p><a href="./posts/2026-09-27-Week-5-Generative-Classification.html" class="no-external">
-<p><img loading="lazy" src="./posts/week5.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-27-Week-5-Generative-Classification.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-27-Week-5-Generative-Classification.html" class="no-external">Week 5 Info: Generative Classifiers</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-27-Week-5-Generative-Classification.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-27-Week-5-Generative-Classification.html" class="no-external">Click here for info on Week 5</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-27-Week-5-Generative-Classification.html" class="no-external">
-<div class="listing-date">
-Sep 27, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1790481600000" data-listing-file-modified-sort="1790562582473" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="197">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-27-logistic-regression-vignette.html" class="no-external"></a></p><a href="./posts/2026-09-27-logistic-regression-vignette.html" class="no-external">
-<p><img loading="lazy" src="./images/titanic.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-27-logistic-regression-vignette.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-27-logistic-regression-vignette.html" class="no-external">Classification on the Titanic using <code>sklearn</code></a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-27-logistic-regression-vignette.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-27-logistic-regression-vignette.html" class="no-external">Click here to watch a series of videos on fitting and evaluating logistic regression models on the Titanic dataset using ‘sklearn’</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-27-logistic-regression-vignette.html" class="no-external">
-<div class="listing-date">
-Sep 27, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1789876800000" data-listing-file-modified-sort="1789964123848" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="99">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-20-Week-4-Classification.html" class="no-external"></a></p><a href="./posts/2026-09-20-Week-4-Classification.html" class="no-external">
-<p><img loading="lazy" src="./posts/week4.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-20-Week-4-Classification.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-20-Week-4-Classification.html" class="no-external">Week 4 Info: Classification</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-20-Week-4-Classification.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-20-Week-4-Classification.html" class="no-external">Click here for info on Week 4</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-20-Week-4-Classification.html" class="no-external">
-<div class="listing-date">
-Sep 20, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-listing-date-sort="1789444800000" data-listing-file-modified-sort="1789531996902" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="156">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-15-stats-models-vignette.html" class="no-external"></a></p><a href="./posts/2026-09-15-stats-models-vignette.html" class="no-external">
-<p><img loading="lazy" src="./images/statsmodels.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-15-stats-models-vignette.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-15-stats-models-vignette.html" class="no-external">Linear Regression in <code>statsmodels</code></a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-15-stats-models-vignette.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-15-stats-models-vignette.html" class="no-external">Click here to watch a video on fitting linear regression models in ‘statsmodels’</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-15-stats-models-vignette.html" class="no-external">
-<div class="listing-date">
-Sep 15, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-listing-date-sort="1789272000000" data-listing-file-modified-sort="1789393012158" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="136">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-13-Week-3-Linear-Model.html" class="no-external"></a></p><a href="./posts/2026-09-13-Week-3-Linear-Model.html" class="no-external">
-<p><img loading="lazy" src="./images/week3.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-13-Week-3-Linear-Model.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-13-Week-3-Linear-Model.html" class="no-external">Week 3 Info: The Linear Model</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-13-Week-3-Linear-Model.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-13-Week-3-Linear-Model.html" class="no-external">Click here for info on Week 3</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-13-Week-3-Linear-Model.html" class="no-external">
-<div class="listing-date">
-Sep 13, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-listing-date-sort="1789012800000" data-listing-file-modified-sort="1789052655031" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="115">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-10-learning-curves-and-knn.html" class="no-external"></a></p><a href="./posts/2026-09-10-learning-curves-and-knn.html" class="no-external">
-<p><img loading="lazy" src="./images/learning_curves.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-10-learning-curves-and-knn.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-10-learning-curves-and-knn.html" class="no-external">Learning Curves and kNN Vignette</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-10-learning-curves-and-knn.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-10-learning-curves-and-knn.html" class="no-external">Click here to watch a series of videos on building a full machine learning pipeline in <code>sklearn</code></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-10-learning-curves-and-knn.html" class="no-external">
-<div class="listing-date">
-Sep 10, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-listing-date-sort="1788840000000" data-listing-file-modified-sort="1789052657775" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="406">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-08-sklearn-coding-vignette.html" class="no-external"></a></p><a href="./posts/2026-09-08-sklearn-coding-vignette.html" class="no-external">
-<p><img loading="lazy" src="./images/sklearn.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-08-sklearn-coding-vignette.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-08-sklearn-coding-vignette.html" class="no-external">ML Pipelines in <code>sklearn</code></a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-08-sklearn-coding-vignette.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-08-sklearn-coding-vignette.html" class="no-external">Click here to watch a series of videos on building a full machine learning pipeline in <code>sklearn</code></a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-08-sklearn-coding-vignette.html" class="no-external">
-<div class="listing-date">
-Sep 8, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="12" data-listing-date-sort="1788667200000" data-listing-file-modified-sort="1788785955275" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="141">
-<div class="thumbnail">
-<p><a href="./posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html" class="no-external"></a></p><a href="./posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html" class="no-external">
-<p><img loading="lazy" src="./images/week-2.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html" class="no-external">Week 2 Info: Generalization and the Bias-Variance Trade-Off</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html" class="no-external">Click here for info on Week 2</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-09-06-Week-2-Bias-Variance-Tradeoff.html" class="no-external">
-<div class="listing-date">
-Sep 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="13" data-listing-date-sort="1788148800000" data-listing-file-modified-sort="1788146054568" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="182">
-<div class="thumbnail">
-<p><a href="./posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html" class="no-external"></a></p><a href="./posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html" class="no-external">
-<p><img loading="lazy" src="./images/meetup-1.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html" class="no-external">Week 1 Info: Introduction to Machine Learning</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html" class="no-external">Click here to read about Week 1</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-08-31-Week-1-Introduction-to-Machine-Learning.html" class="no-external">
-<div class="listing-date">
-Aug 31, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="14" data-listing-date-sort="1788062400000" data-listing-file-modified-sort="1788145517724" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="113">
-<div class="thumbnail">
-<p><a href="./posts/2026-08-30-Welcome_to_DATA_622.html" class="no-external"></a></p><a href="./posts/2026-08-30-Welcome_to_DATA_622.html" class="no-external">
-<p><img loading="lazy" src="./images/course_logo.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/2026-08-30-Welcome_to_DATA_622.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-08-30-Welcome_to_DATA_622.html" class="no-external">Welcome to DATA 622</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2026-08-30-Welcome_to_DATA_622.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/2026-08-30-Welcome_to_DATA_622.html" class="no-external">Important information on how to get started with this course. Click this post now for instructions on getting started.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-08-30-Welcome_to_DATA_622.html" class="no-external">
-<div class="listing-date">
-Aug 30, 2026
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1357,22 +943,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./course/overview.html" class="pagination-link" aria-label="Overview">
-        <span class="nav-page-text">Overview</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="./license.html">
+    <a class="nav-link" href="../license.html">
 <p>License</p>
 </a>
   </li>  
@@ -1380,7 +957,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/edit/main/posts/2026-10-09-Post-Your-Github-In-Slack-for-Project.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/georgehagstrom/DATA622Fall2026/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
