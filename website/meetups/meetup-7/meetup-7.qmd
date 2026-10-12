@@ -21,11 +21,31 @@ from sklearn.metrics import log_loss, accuracy_score
 
 
 
+
+## November Meetup!
+
+![](MeetupNovChristian2026Seminar.png)
+
+
+
+## November Meetup!
+
+![](MeetupNovChristian2026Seminar.png)
+
+https://us02web.zoom.us/meeting/register/RQW4PGPcT0ixadrHwD0-aQ
+
+
+## October 'nyhackr' meetup
+
+![](October_2026_Meetup_Card.png)
+
+
+
 ## Week Summary
 
-- Presentations this week
-  - Work on projects with aim to get something  working this month
-  - Perfect it in the final month
+- Presentations this week and next
+  - Work on projects with aim to get something  working on free edition in the next month
+  - Move to production in final month
 - Homework 4 Due Sunday
 - Coding vignette on RidgeCV and Lasso
 
@@ -36,7 +56,9 @@ from sklearn.metrics import log_loss, accuracy_score
 - Modify learning algorithm by adding a "penalty" to coefficients
 
 $$
-\mathrm{argmin}_{\mathbf{w}} \sum_{i=1}^n \log(p(y_i|\mathbf{x}_i,\mathbf{w}_i)) + \alpha f(\mathbf{w})
+\underbrace{\mathrm{argmin}_{\mathbf{w}}}_{\substack{\text{find} \\ \text{parameters}}}
+\underbrace{-\sum_{i=1}^n \log p(y_i|\mathbf{x}_i,\mathbf{w})}_{\text{error}}
++ \underbrace{\alpha f(\mathbf{w})}_{\substack{\text{cost for} \\ \text{parameters}}}
 $$
 
 - Use "hyperparameter optimization" in a cross-validation loop to find best penalty
@@ -58,7 +80,9 @@ $$
 - Can create linear regression problem to determine local density:
 
 $$
-\mathbf{g} \sim A\mathbf{\rho} + \epsilon
+\underbrace{\mathbf{g}}_{\substack{\text{gravity} \\ \text{measurements}}} \sim 
+  \underbrace{A}_{\substack{\text{physics} \\ \text{laws}}} \times
+  \underbrace{\mathbf{\rho}}_{\substack{\text{density} \\ \text{ore/oil/water}}} + \epsilon
 $$
 
 
@@ -677,7 +701,7 @@ scaler = StandardScaler()
 X_train_s = scaler.fit_transform(X_train)
 X_test_s = scaler.transform(X_test)
 
-C_vec = np.logspace(-4, 10, 200)
+C_vec = np.logspace(-4, 3, 60) 
 l2_train_acc = np.zeros(len(C_vec))
 l2_test_acc = np.zeros(len(C_vec))
 l2_train_ll = np.zeros(len(C_vec))
@@ -968,7 +992,7 @@ def lasso_solution(alpha):
     x2_sol = 0
 
     if alpha < x2_cutoff:
-        x2_sol = 2.0 - alpha/4.0
+        x2_sol = 2.0 - alpha/2.0
     
     if alpha < x1_cutoff:
         x1_sol = 1.0 - 9* alpha/2.0
