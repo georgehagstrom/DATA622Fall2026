@@ -341,13 +341,26 @@ George I. Hagstrom
 
   <p class="date">2026-10-12</p>
 </section>
+<section id="november-meetup" class="slide level2">
+<h2>November Meetup!</h2>
+
+<img data-src="MeetupNovChristian2026Seminar.png" class="r-stretch"></section>
+<section id="november-meetup-1" class="slide level2">
+<h2>November Meetup!</h2>
+
+<img data-src="MeetupNovChristian2026Seminar.png" class="r-stretch"><p>https://us02web.zoom.us/meeting/register/RQW4PGPcT0ixadrHwD0-aQ</p>
+</section>
+<section id="october-nyhackr-meetup" class="slide level2">
+<h2>October ‘nyhackr’ meetup</h2>
+
+<img data-src="October_2026_Meetup_Card.png" class="r-stretch"></section>
 <section id="week-summary" class="slide level2">
 <h2>Week Summary</h2>
 <ul>
-<li>Presentations this week
+<li>Presentations this week and next
 <ul>
-<li>Work on projects with aim to get something working this month</li>
-<li>Perfect it in the final month</li>
+<li>Work on projects with aim to get something working on free edition in the next month</li>
+<li>Move to production in final month</li>
 </ul></li>
 <li>Homework 4 Due Sunday</li>
 <li>Coding vignette on RidgeCV and Lasso</li>
@@ -360,7 +373,9 @@ George I. Hagstrom
 <li>Modify learning algorithm by adding a “penalty” to coefficients</li>
 </ul>
 <p><span class="math display">\[
-\mathrm{argmin}_{\mathbf{w}} \sum_{i=1}^n \log(p(y_i|\mathbf{x}_i,\mathbf{w}_i)) + \alpha f(\mathbf{w})
+\underbrace{\mathrm{argmin}_{\mathbf{w}}}_{\substack{\text{find} \\ \text{parameters}}}
+\underbrace{-\sum_{i=1}^n \log p(y_i|\mathbf{x}_i,\mathbf{w})}_{\text{error}}
++ \underbrace{\alpha f(\mathbf{w})}_{\substack{\text{cost for} \\ \text{parameters}}}
 \]</span></p>
 <ul>
 <li>Use “hyperparameter optimization” in a cross-validation loop to find best penalty</li>
@@ -385,7 +400,9 @@ George I. Hagstrom
 <li>Can create linear regression problem to determine local density:</li>
 </ul>
 <p><span class="math display">\[
-\mathbf{g} \sim A\mathbf{\rho} + \epsilon
+\underbrace{\mathbf{g}}_{\substack{\text{gravity} \\ \text{measurements}}} \sim
+  \underbrace{A}_{\substack{\text{physics} \\ \text{laws}}} \times
+  \underbrace{\mathbf{\rho}}_{\substack{\text{density} \\ \text{ore/oil/water}}} + \epsilon
 \]</span></p>
 </section>
 <section id="what-is-underneath-the-surface-1" class="slide level2">

@@ -98,18 +98,39 @@
     "text": "Summary\n\nIf the test and train error are the same, you are bias limited and might need a fancier model or better features\n\n\nBut be wary of irreducible error\n‘kNN’ is special and can help you approximate it\n\n\nIf the test and train error have a gap, you are variance limited\n\n\nFind more data, but check convergence first\nLook at model errors- maybe a model with a different structure would be better.\n\n\n\n\n\nDATA 622"
   },
   {
+    "objectID": "meetups/meetup-7/meetup-7.html#november-meetup",
+    "href": "meetups/meetup-7/meetup-7.html#november-meetup",
+    "title": "DATA 622 Meetup 7: Regularization",
+    "section": "November Meetup!",
+    "text": "November Meetup!"
+  },
+  {
+    "objectID": "meetups/meetup-7/meetup-7.html#november-meetup-1",
+    "href": "meetups/meetup-7/meetup-7.html#november-meetup-1",
+    "title": "DATA 622 Meetup 7: Regularization",
+    "section": "November Meetup!",
+    "text": "November Meetup!\n\nhttps://us02web.zoom.us/meeting/register/RQW4PGPcT0ixadrHwD0-aQ"
+  },
+  {
+    "objectID": "meetups/meetup-7/meetup-7.html#october-nyhackr-meetup",
+    "href": "meetups/meetup-7/meetup-7.html#october-nyhackr-meetup",
+    "title": "DATA 622 Meetup 7: Regularization",
+    "section": "October ‘nyhackr’ meetup",
+    "text": "October ‘nyhackr’ meetup"
+  },
+  {
     "objectID": "meetups/meetup-7/meetup-7.html#week-summary",
     "href": "meetups/meetup-7/meetup-7.html#week-summary",
     "title": "DATA 622 Meetup 7: Regularization",
     "section": "Week Summary",
-    "text": "Week Summary\n\nPresentations this week\n\nWork on projects with aim to get something working this month\nPerfect it in the final month\n\nHomework 4 Due Sunday\nCoding vignette on RidgeCV and Lasso"
+    "text": "Week Summary\n\nPresentations this week and next\n\nWork on projects with aim to get something working on free edition in the next month\nMove to production in final month\n\nHomework 4 Due Sunday\nCoding vignette on RidgeCV and Lasso"
   },
   {
     "objectID": "meetups/meetup-7/meetup-7.html#regularization",
     "href": "meetups/meetup-7/meetup-7.html#regularization",
     "title": "DATA 622 Meetup 7: Regularization",
     "section": "Regularization",
-    "text": "Regularization\n\nMethod for optimizing the bias variance tradeoff\nModify learning algorithm by adding a “penalty” to coefficients\n\n\\[\n\\mathrm{argmin}_{\\mathbf{w}} \\sum_{i=1}^n \\log(p(y_i|\\mathbf{x}_i,\\mathbf{w}_i)) + \\alpha f(\\mathbf{w})\n\\]\n\nUse “hyperparameter optimization” in a cross-validation loop to find best penalty"
+    "text": "Regularization\n\nMethod for optimizing the bias variance tradeoff\nModify learning algorithm by adding a “penalty” to coefficients\n\n\\[\n\\underbrace{\\mathrm{argmin}_{\\mathbf{w}}}_{\\substack{\\text{find} \\\\ \\text{parameters}}}\n\\underbrace{-\\sum_{i=1}^n \\log p(y_i|\\mathbf{x}_i,\\mathbf{w})}_{\\text{error}}\n+ \\underbrace{\\alpha f(\\mathbf{w})}_{\\substack{\\text{cost for} \\\\ \\text{parameters}}}\n\\]\n\nUse “hyperparameter optimization” in a cross-validation loop to find best penalty"
   },
   {
     "objectID": "meetups/meetup-7/meetup-7.html#motivation-what-is-underneath-the-surface",
@@ -123,7 +144,7 @@
     "href": "meetups/meetup-7/meetup-7.html#what-is-underneath-the-surface",
     "title": "DATA 622 Meetup 7: Regularization",
     "section": "What is Underneath the Surface",
-    "text": "What is Underneath the Surface\n\nEach material has different density, so exerts different gravitational force\nCan create linear regression problem to determine local density:\n\n\\[\n\\mathbf{g} \\sim A\\mathbf{\\rho} + \\epsilon\n\\]"
+    "text": "What is Underneath the Surface\n\nEach material has different density, so exerts different gravitational force\nCan create linear regression problem to determine local density:\n\n\\[\n\\underbrace{\\mathbf{g}}_{\\substack{\\text{gravity} \\\\ \\text{measurements}}} \\sim\n  \\underbrace{A}_{\\substack{\\text{physics} \\\\ \\text{laws}}} \\times\n  \\underbrace{\\mathbf{\\rho}}_{\\substack{\\text{density} \\\\ \\text{ore/oil/water}}} + \\epsilon\n\\]"
   },
   {
     "objectID": "meetups/meetup-7/meetup-7.html#what-is-underneath-the-surface-1",
@@ -1523,7 +1544,7 @@
     "href": "course/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -1534,7 +1555,7 @@
     "href": "course/schedule.html#meetup-link",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\n\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\n\nLab 4\n\n\nOct 19\nTree Models\n\n\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\nMinimum Viable Product Demo\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\n\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
