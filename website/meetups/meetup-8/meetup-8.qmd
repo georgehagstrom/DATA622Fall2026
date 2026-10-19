@@ -53,6 +53,23 @@ from matplotlib.patches import Rectangle
 ```
 
 
+## November 3rd!
+
+![](MeetupNovChristian2026Seminar.png)
+
+https://us02web.zoom.us/meeting/register/RQW4PGPcT0ixadrHwD0-aQ
+
+
+## November 19th!
+
+![](Nov2026Seminar.png)
+
+
+## Internships and Jobs
+
+![](jobs-channel.png)
+
+
 ## Week Summary
 
 - Lab 5 Available, due in two weeks
@@ -520,9 +537,33 @@ plt.show()
 - Average them together and compute variance:
 $$
 \mathrm{Var}(\frac{1}{2}\delta_1 + \frac{1}{2}\delta_2) = \frac{1}{4}\mathrm{Var}(\delta_1) + \\
-\frac{1}{4}\mathrm{Var}(\delta_1) + \frac{1}{2}\mathrm{Cov}(\delta_1,\delta_2)
+\frac{1}{4}\mathrm{Var}(\delta_2) + \frac{1}{2}\mathrm{Cov}(\delta_1,\delta_2)
 $$
+
+
+## When does it help?
+
+- Consider errors from two models, $\delta_1$ and $\delta_2$
+- Average them together and compute variance:
+$$
+\mathrm{Var}(\frac{1}{2}\delta_1 + \frac{1}{2}\delta_2) = \frac{1}{4}\mathrm{Var}(\delta_1) + \\
+\frac{1}{4}\mathrm{Var}(\delta_2) + \frac{1}{2}\mathrm{Cov}(\delta_1,\delta_2) = \\
+\mathrm{Var}{\delta_1}
+$$
+
+
+
 - If models are same, makes no difference
+
+## When does it help?
+
+- Consider errors from two models, $\delta_1$ and $\delta_2$
+- Average them together and compute variance:
+$$
+\mathrm{Var}(\frac{1}{2}\delta_1 + \frac{1}{2}\delta_2) = \frac{1}{4}\mathrm{Var}(\delta_1) + \\
+\frac{1}{4}\mathrm{Var}(\delta_2) 
+$$
+
 - If models make different errors and accuracy is similar, improve error
 
 
@@ -616,7 +657,7 @@ ax.set_ylabel("MSE", fontsize=18);
 
 
 
-## Decreasing the Variance by Decorrelating Trees
+## Decorrelating Trees
 
 - Improvement from Bagging was modest
 - Trees tend to be similar to each-other even though different bootstrap samples
@@ -682,7 +723,7 @@ plt.show()
 
 
 p = X_train.shape[1]
-n_trees_vec = np.arange(10, 100, 10)
+n_trees_vec = np.arange(15, 100, 5)
 
 colors = ["#440154", "#31688E", "#35B779", "#FCA636"]
 
@@ -711,7 +752,7 @@ ax.plot(n_trees_vec, rf_oob, "--", color=colors[1], label="RF OOB MSE")
 ax.plot(n_trees_vec, bag_test, "-", color=colors[2], label="Bagging Test MSE")
 ax.plot(n_trees_vec, bag_oob, "--", color=colors[3], label="Bagging OOB MSE")
 
-ax.set_ylim(0.2,0.3)
+ax.set_ylim(0.1,0.3)
 
 ax.set_xlabel("Number of Trees", fontsize=18)
 ax.set_ylabel("MSE", fontsize=18)
