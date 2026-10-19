@@ -341,6 +341,19 @@ George I. Hagstrom
 
   <p class="date">2026-10-19</p>
 </section>
+<section id="november-3rd" class="slide level2">
+<h2>November 3rd!</h2>
+
+<img data-src="MeetupNovChristian2026Seminar.png" class="r-stretch"><p>https://us02web.zoom.us/meeting/register/RQW4PGPcT0ixadrHwD0-aQ#/registration</p>
+</section>
+<section id="november-19th" class="slide level2">
+<h2>November 19th!</h2>
+
+<img data-src="Nov2026Seminar.png" class="r-stretch"></section>
+<section id="internships-and-jobs" class="slide level2">
+<h2>Internships and Jobs</h2>
+
+<img data-src="jobs-channel.png" class="r-stretch"></section>
 <section id="week-summary" class="slide level2">
 <h2>Week Summary</h2>
 <ul>
@@ -353,6 +366,13 @@ George I. Hagstrom
 <li>One Vignette on Random Forests and Decision Trees</li>
 </ul>
 </section>
+<section id="lab-3-review" class="slide level2">
+<h2>Lab 3 Review</h2>
+<ul>
+<li>Miscalibration tells you something</li>
+</ul>
+
+<img data-src="slice_calibration.png" class="r-stretch"></section>
 <section id="decision-trees" class="slide level2">
 <h2>Decision Trees</h2>
 <ul>
@@ -586,10 +606,31 @@ George I. Hagstrom
 <li>Consider errors from two models, <span class="math inline">\(\delta_1\)</span> and <span class="math inline">\(\delta_2\)</span></li>
 <li>Average them together and compute variance: <span class="math display">\[
 \mathrm{Var}(\frac{1}{2}\delta_1 + \frac{1}{2}\delta_2) = \frac{1}{4}\mathrm{Var}(\delta_1) + \\
-\frac{1}{4}\mathrm{Var}(\delta_1) + \frac{1}{2}\mathrm{Cov}(\delta_1,\delta_2)
+\frac{1}{4}\mathrm{Var}(\delta_2) + \frac{1}{2}\mathrm{Cov}(\delta_1,\delta_2)
 \]</span></li>
-<li>If models are same, makes no difference</li>
-<li>If models make different errors and accuracy is similar, improve error</li>
+</ul>
+</section>
+<section id="when-does-it-help-1" class="slide level2">
+<h2>When does it help?</h2>
+<ul>
+<li><p>Consider errors from two models, <span class="math inline">\(\delta_1\)</span> and <span class="math inline">\(\delta_2\)</span></p></li>
+<li><p>Average them together and compute variance: <span class="math display">\[
+\mathrm{Var}(\frac{1}{2}\delta_1 + \frac{1}{2}\delta_2) = \frac{1}{4}\mathrm{Var}(\delta_1) + \\
+\frac{1}{4}\mathrm{Var}(\delta_2) + \frac{1}{2}\mathrm{Cov}(\delta_1,\delta_2) = \\
+\mathrm{Var}{\delta_1}
+\]</span></p></li>
+<li><p>If models are same, makes no difference</p></li>
+</ul>
+</section>
+<section id="when-does-it-help-2" class="slide level2">
+<h2>When does it help?</h2>
+<ul>
+<li><p>Consider errors from two models, <span class="math inline">\(\delta_1\)</span> and <span class="math inline">\(\delta_2\)</span></p></li>
+<li><p>Average them together and compute variance: <span class="math display">\[
+\mathrm{Var}(\frac{1}{2}\delta_1 + \frac{1}{2}\delta_2) = \frac{1}{4}\mathrm{Var}(\delta_1) + \\
+\frac{1}{4}\mathrm{Var}(\delta_2)
+\]</span></p></li>
+<li><p>If models make different errors and accuracy is similar, improve error</p></li>
 </ul>
 </section>
 <section id="bagging" class="slide level2">
@@ -639,8 +680,8 @@ George I. Hagstrom
 </ul>
 
 <img data-src="meetup-8_files/figure-revealjs/cell-11-output-1.png" class="r-stretch"></section>
-<section id="decreasing-the-variance-by-decorrelating-trees" class="slide level2">
-<h2>Decreasing the Variance by Decorrelating Trees</h2>
+<section id="decorrelating-trees" class="slide level2">
+<h2>Decorrelating Trees</h2>
 <ul>
 <li>Improvement from Bagging was modest</li>
 <li>Trees tend to be similar to each-other even though different bootstrap samples</li>
