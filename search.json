@@ -98,25 +98,39 @@
     "text": "Summary\n\nIf the test and train error are the same, you are bias limited and might need a fancier model or better features\n\n\nBut be wary of irreducible error\n‘kNN’ is special and can help you approximate it\n\n\nIf the test and train error have a gap, you are variance limited\n\n\nFind more data, but check convergence first\nLook at model errors- maybe a model with a different structure would be better.\n\n\n\n\n\nDATA 622"
   },
   {
-    "objectID": "meetups/meetup-9/meetup-9.html#next-week",
-    "href": "meetups/meetup-9/meetup-9.html#next-week",
+    "objectID": "meetups/meetup-9/meetup-9.html#tuesday",
+    "href": "meetups/meetup-9/meetup-9.html#tuesday",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
-    "section": "Next Week!",
-    "text": "Next Week!"
+    "section": "Tuesday!",
+    "text": "Tuesday!\n\nhttps://us02web.zoom.us/meeting/register/RQW4PGPcT0ixadrHwD0-aQ#/registration"
+  },
+  {
+    "objectID": "meetups/meetup-9/meetup-9.html#november-19th",
+    "href": "meetups/meetup-9/meetup-9.html#november-19th",
+    "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
+    "section": "November 19th!",
+    "text": "November 19th!"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#week-summary",
     "href": "meetups/meetup-9/meetup-9.html#week-summary",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
     "section": "Week Summary",
-    "text": "Week Summary\n\nLab 5 Available, due next Sunday\nReading:\n\nChapter 8 in ISLP: Boosting and Bart\nChapter 7 Boosting in ISLP\n\nVignette on Boosting\nVignette on Production Basics"
+    "text": "Week Summary\n\nLab 5 Available, due this Sunday\nReading:\n\nChapter 8 in ISLP: Boosting and Bart\nChapter 7 Boosting in HOML\n\nVignette on Boosting"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#lab-4-feedback",
     "href": "meetups/meetup-9/meetup-9.html#lab-4-feedback",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
     "section": "Lab 4 Feedback",
-    "text": "Lab 4 Feedback"
+    "text": "Lab 4 Feedback\n\nDouble check pdf read questions carefully"
+  },
+  {
+    "objectID": "meetups/meetup-9/meetup-9.html#lab-4-feedback-1",
+    "href": "meetups/meetup-9/meetup-9.html#lab-4-feedback-1",
+    "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
+    "section": "Lab 4 Feedback",
+    "text": "Lab 4 Feedback\n\nApplying weights inconsistently\n\n\ntrain_mse = mean_squared_error(y, \n    model.predict(X), \n    sample_weight=weights) * weights.mean() # Apply the weights \n\ncv_mse = np.average(model.cv_results_.ravel(), \n    weights=weights) # Wrong, error already weighted!    \n\ncv_mse = -model.best_score_  # This one!"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#bagging-review",
@@ -165,7 +179,7 @@
     "href": "meetups/meetup-9/meetup-9.html#adaptive-boosting",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
     "section": "Adaptive Boosting",
-    "text": "Adaptive Boosting\n\n‘AdaBoost’:\n\nFit simple tree \\(\\hat{f}_0\\)\nInitialize ensmeble \\(\\hat{f} = \\hat{f}_0\\)\nIdentify misclassified points under \\(f\\)\nWeight points based on error using learning rate \\(\\lambda\\)\nFit \\(\\hat{f}_1\\) with the new weights"
+    "text": "Adaptive Boosting\n\n‘AdaBoost’:\n\nFit simple tree \\(\\hat{f}_0\\)\nInitialize ensemble \\(\\hat{f} = \\hat{f}_0\\)\nIdentify misclassified points under \\(f\\)\nWeight points based on error using learning rate \\(\\lambda\\)\nFit \\(\\hat{f}_1\\) with the new weights"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#boosting-regression",
@@ -249,14 +263,14 @@
     "href": "meetups/meetup-9/meetup-9.html#other-hyperparameters",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
     "section": "Other Hyperparameters",
-    "text": "Other Hyperparameters\n\n‘subsample’ part of the data\n\nLarge, noisy data\nRegularizes\nIncreases speed\n\n‘min_samples_leaf’\nLasso and Ridge Penalties"
+    "text": "Other Hyperparameters\n\n‘subsample’ part of the data\n\nLarge, noisy data\nRegularizes\nIncreases speed\n\n‘min_child_weight’ (minimum sum of \\(p(1-p)\\) per leaf; ‘min_samples_leaf’ in ‘sklearn’)\nLasso and Ridge Penalties on leaf values"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#classification-and-gradient-boosting",
     "href": "meetups/meetup-9/meetup-9.html#classification-and-gradient-boosting",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
     "section": "Classification and Gradient Boosting",
-    "text": "Classification and Gradient Boosting\n\nBoosted Trees use regression for classification problems\nStandard Loss is called ‘cross-entropy’, equivalent to ‘log’ score\nFor each class there are trees that predict the weight: \\[\np(y=k|\\mathbf{x}) = \\frac{\\exp(\\hat{f}_k(\\mathbf{x}))}{\\sum_{k'=1}^K \\exp(\\hat{f}_k(\\mathbf{x}))}\n\\]"
+    "text": "Classification and Gradient Boosting\n\nBoosted Trees use regression for classification problems\nStandard Loss is called ‘cross-entropy’, equivalent to ‘log’ score\nFor each class there are trees that predict the weight: \\[\np(y=k|\\mathbf{x}) = \\frac{\\exp(\\hat{f}_k(\\mathbf{x}))}{\\sum_{k'=1}^K \\exp(\\hat{f}_{k'}(\\mathbf{x}))}\n\\]"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#classification-and-gradient-boosting-1",
@@ -284,28 +298,28 @@
     "href": "meetups/meetup-9/meetup-9.html#gradient-boosting-libraries",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
     "section": "Gradient Boosting Libraries",
-    "text": "Gradient Boosting Libraries\n\n‘XGBoost’: Oldest, slowest, most solid, needs one-hot\n‘CatBoost’: Best for categorical, some tricks for low bias\n‘LightGBM’: From Microsoft, built for speed, more overfitting potential\n‘HistGradientBoostingClassifier’: ‘sklearn’ implementation"
+    "text": "Gradient Boosting Libraries\n\n‘XGBoost’: Oldest, most solid, native categorical support (‘enable_categorical’)\n‘CatBoost’: Best for categorical, some tricks for low bias\n‘LightGBM’: From Microsoft, built for speed, more overfitting potential\n‘HistGradientBoostingClassifier’: ‘sklearn’ implementation\n‘DuckBoost’ Released today! Probably awesome!"
   },
   {
-    "objectID": "meetups/meetup-9/meetup-9.html#example-uci-credit-card-defaults",
-    "href": "meetups/meetup-9/meetup-9.html#example-uci-credit-card-defaults",
+    "objectID": "meetups/meetup-9/meetup-9.html#uci-credit-card-defaults",
+    "href": "meetups/meetup-9/meetup-9.html#uci-credit-card-defaults",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
-    "section": "Example: UCI Credit Card Defaults",
-    "text": "Example: UCI Credit Card Defaults\n\nDataset of 30,000 observations\nFeatures: Payment History\n\n\n\n\n\n\n\n\n\n\nLIMIT_BAL\nSEX\nEDUCATION\nMARRIAGE\nAGE\nPAY_0\nPAY_2\nPAY_3\nPAY_4\nPAY_5\n...\nBILL_AMT3\nBILL_AMT4\nBILL_AMT5\nBILL_AMT6\nPAY_AMT1\nPAY_AMT2\nPAY_AMT3\nPAY_AMT4\nPAY_AMT5\nPAY_AMT6\n\n\n\n\n17041\n190000.0\n2\n2\n2\n25\n0\n0\n0\n0\n0\n...\n23130.0\n28126.0\n26104.0\n18840.0\n1615.0\n1200.0\n26703.0\n2104.0\n7000.0\n11747.0\n\n\n8451\n50000.0\n1\n2\n2\n40\n0\n0\n0\n0\n0\n...\n48600.0\n7514.0\n9336.0\n-177.0\n10000.0\n21019.0\n1500.0\n3000.0\n1210.0\n7900.0\n\n\n5764\n80000.0\n2\n3\n2\n22\n0\n0\n-1\n-1\n-2\n...\n15674.0\n-1.0\n-1.0\n-1.0\n2400.0\n15674.0\n0.0\n0.0\n0.0\n0.0\n\n\n1745\n50000.0\n2\n1\n2\n22\n0\n0\n0\n0\n0\n...\n50071.0\n10104.0\n9208.0\n10075.0\n2300.0\n2000.0\n1000.0\n500.0\n1000.0\n500.0\n\n\n29645\n310000.0\n1\n2\n1\n34\n0\n0\n0\n0\n0\n...\n80533.0\n70343.0\n58365.0\n51454.0\n3100.0\n3604.0\n2366.0\n2018.0\n2000.0\n1700.0\n\n\n\n\n5 rows × 23 columns"
+    "section": "UCI Credit Card Defaults",
+    "text": "UCI Credit Card Defaults\n\nDataset of 30,000 observations\nFeatures: Payment History\n\n\n\n\n\n\n\n\n\n\nLIMIT_BAL\nSEX\nEDUCATION\nMARRIAGE\nAGE\nPAY_0\nPAY_2\nPAY_3\nPAY_4\nPAY_5\n...\nBILL_AMT3\nBILL_AMT4\nBILL_AMT5\nBILL_AMT6\nPAY_AMT1\nPAY_AMT2\nPAY_AMT3\nPAY_AMT4\nPAY_AMT5\nPAY_AMT6\n\n\n\n\n17041\n190000.0\n2\n2\n2\n25\n0\n0\n0\n0\n0\n...\n23130.0\n28126.0\n26104.0\n18840.0\n1615.0\n1200.0\n26703.0\n2104.0\n7000.0\n11747.0\n\n\n8451\n50000.0\n1\n2\n2\n40\n0\n0\n0\n0\n0\n...\n48600.0\n7514.0\n9336.0\n-177.0\n10000.0\n21019.0\n1500.0\n3000.0\n1210.0\n7900.0\n\n\n5764\n80000.0\n2\n3\n2\n22\n0\n0\n-1\n-1\n-2\n...\n15674.0\n-1.0\n-1.0\n-1.0\n2400.0\n15674.0\n0.0\n0.0\n0.0\n0.0\n\n\n1745\n50000.0\n2\n1\n2\n22\n0\n0\n0\n0\n0\n...\n50071.0\n10104.0\n9208.0\n10075.0\n2300.0\n2000.0\n1000.0\n500.0\n1000.0\n500.0\n\n\n29645\n310000.0\n1\n2\n1\n34\n0\n0\n0\n0\n0\n...\n80533.0\n70343.0\n58365.0\n51454.0\n3100.0\n3604.0\n2366.0\n2018.0\n2000.0\n1700.0\n\n\n\n\n5 rows × 23 columns"
   },
   {
-    "objectID": "meetups/meetup-9/meetup-9.html#example-uci-credit-card-default-dataset",
-    "href": "meetups/meetup-9/meetup-9.html#example-uci-credit-card-default-dataset",
+    "objectID": "meetups/meetup-9/meetup-9.html#uci-credit-card-default-dataset",
+    "href": "meetups/meetup-9/meetup-9.html#uci-credit-card-default-dataset",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
-    "section": "Example: UCI Credit Card Default Dataset",
-    "text": "Example: UCI Credit Card Default Dataset\n\nDataset of 30,000 observations\nTarget: Default in the next month\n78% don’t default\n\n\n\ndefault.payment.next.month\n0    18691\n1     5309\nName: count, dtype: int64"
+    "section": "UCI Credit Card Default Dataset",
+    "text": "UCI Credit Card Default Dataset\n\nDataset of 30,000 observations\nTarget: Default in the next month\n78% don’t default\n\n\n\ndefault.payment.next.month\n0    18691\n1     5309\nName: count, dtype: int64"
   },
   {
-    "objectID": "meetups/meetup-9/meetup-9.html#example-uci-credit-card-default-dataset-1",
-    "href": "meetups/meetup-9/meetup-9.html#example-uci-credit-card-default-dataset-1",
+    "objectID": "meetups/meetup-9/meetup-9.html#uci-credit-card-default-dataset-1",
+    "href": "meetups/meetup-9/meetup-9.html#uci-credit-card-default-dataset-1",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
-    "section": "Example: UCI Credit Card Default Dataset",
-    "text": "Example: UCI Credit Card Default Dataset\n\nDataset of 30,000 observations\nTarget: Default in the next month\n\n\n\n\n\n\n\n\n\n\ncorrelation\n\n\n\n\nPAY_0\n0.327770\n\n\nPAY_2\n0.263590\n\n\nPAY_3\n0.235160\n\n\nPAY_4\n0.218304\n\n\nPAY_5\n0.206920\n\n\nPAY_6\n0.188902\n\n\nLIMIT_BAL\n-0.155912\n\n\nPAY_AMT1\n-0.070510\n\n\nPAY_AMT5\n-0.056307\n\n\nPAY_AMT2\n-0.055253\n\n\nPAY_AMT3\n-0.055114\n\n\nPAY_AMT4\n-0.052717\n\n\nPAY_AMT6\n-0.047702\n\n\nSEX\n-0.042882\n\n\nEDUCATION\n0.025775"
+    "section": "UCI Credit Card Default Dataset",
+    "text": "UCI Credit Card Default Dataset\n\nDataset of 30,000 observations\nTarget: Default in the next month\n\n\n\n\n\n\n\n\n\n\ncorrelation\n\n\n\n\nPAY_0\n0.327770\n\n\nPAY_2\n0.263590\n\n\nPAY_3\n0.235160\n\n\nPAY_4\n0.218304\n\n\nPAY_5\n0.206920\n\n\nPAY_6\n0.188902\n\n\nLIMIT_BAL\n-0.155912\n\n\nPAY_AMT1\n-0.070510\n\n\nPAY_AMT5\n-0.056307\n\n\nPAY_AMT2\n-0.055253"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#cv-with-xgboost",
@@ -340,7 +354,7 @@
     "href": "meetups/meetup-9/meetup-9.html#eval-set",
     "title": "DATA 622 Meetup 9: Trees Part 2: Boosting",
     "section": "Eval Set",
-    "text": "Eval Set\n\nRefit the model with selected hyperparameters on the training\nBut hold out 15% to determine early stopping\nJust edges out a RF/LR models\n\n\n\nModel                       Log Loss   Accuracy\n-----------------------------------------------\nXGBoost                       0.4337     0.8200\nRandom Forest                 0.4423     0.8158\nLogistic Regression           0.4679     0.8113"
+    "text": "Eval Set\n\nRefit the model with selected hyperparameters on the training set\nBut hold out 15% to determine early stopping\nJust edges out a RF/LR models\n\n\n\nModel                       Log Loss   Accuracy\n-----------------------------------------------\nXGBoost                       0.4337     0.8200\nRandom Forest                 0.4423     0.8158\nLogistic Regression           0.4679     0.8113"
   },
   {
     "objectID": "meetups/meetup-9/meetup-9.html#roc-curves",
@@ -1520,7 +1534,7 @@
     "href": "course/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\n\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\nMeetup 9 Slides\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\n\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -1531,7 +1545,7 @@
     "href": "course/schedule.html#meetup-link",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\n\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\n\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\nMeetup 9 Slides\n\nLab 5\n\n\nNov 2\nCausal Inference\n\n\n\n\n\nNov 9\nModel Interpretation, Communication, and Ethics\n\n\nLab 6\n\n\nNov 16\nNeural Networks\n\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 8, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
