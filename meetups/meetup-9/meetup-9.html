@@ -344,6 +344,9 @@ George I. Hagstrom
 
   <p class="date">2026-10-26</p>
 </section>
+<section id="next-week" class="slide level2">
+<h2>Next Week!</h2>
+</section>
 <section id="week-summary" class="slide level2">
 <h2>Week Summary</h2>
 <ul>
@@ -357,53 +360,8 @@ George I. Hagstrom
 <li>Vignette on Production Basics</li>
 </ul>
 </section>
-<section id="lab-3-feedback" class="slide level2">
-<h2>Lab 3 Feedback</h2>
-<ul>
-<li>Be very wary of default or LLM chosen model parameters!!!
-<ul>
-<li>Penalty On by default</li>
-</ul></li>
-</ul>
-
-<img data-src="sklearn_reg.png" class="r-stretch"></section>
-<section id="lab-3-feedback-1" class="slide level2">
-<h2>Lab 3 Feedback</h2>
-<ul>
-<li>Be very cognizant of model options!!!
-<ul>
-<li>Without standard scaler, model is not what you expect</li>
-</ul></li>
-</ul>
-
-<img data-src="sklearn_reg.png" class="r-stretch"></section>
-<section id="lab-3-feedback-2" class="slide level2">
-<h2>Lab 3 Feedback</h2>
-<ul>
-<li>Be very cognizant of model options!!!
-<ul>
-<li>‘class_weights’ balanced ruins calibration</li>
-</ul></li>
-</ul>
-
-<img data-src="class_weights.png" class="r-stretch"></section>
-<section id="lab-3-feedback-3" class="slide level2">
-<h2>Lab 3 Feedback</h2>
-<ul>
-<li>Be very cognizant of model options!!!
-<ul>
-<li>‘class_weights’ balanced ruins calibration</li>
-</ul></li>
-</ul>
-
-<img data-src="no_class_weights.png" class="r-stretch"></section>
-<section id="lab-3-feedback-4" class="slide level2">
-<h2>Lab 3 Feedback</h2>
-<ul>
-<li>Read the questions</li>
-<li>Read your report</li>
-<li>Message me before turning in a really long report!</li>
-</ul>
+<section id="lab-4-feedback" class="slide level2">
+<h2>Lab 4 Feedback</h2>
 </section>
 <section id="bagging-review" class="slide level2">
 <h2>Bagging Review</h2>
@@ -605,7 +563,7 @@ p(y=k|\mathbf{x}) = \frac{\exp(\hat{f}_k(\mathbf{x}))}{\sum_{k'=1}^K \exp(\hat{f
 <li>Dataset of 30,000 observations</li>
 <li>Features: Payment History</li>
 </ul>
-<div id="72b75a68" class="cell" data-execution_count="13">
+<div id="2ef0e155" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 <style scoped="">
@@ -785,7 +743,7 @@ p(y=k|\mathbf{x}) = \frac{\exp(\hat{f}_k(\mathbf{x}))}{\sum_{k'=1}^K \exp(\hat{f
 <li>Target: Default in the next month</li>
 <li>78% don’t default</li>
 </ul>
-<div id="70668b19" class="cell" data-execution_count="14">
+<div id="50375355" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>default.payment.next.month
 0    18691
@@ -800,7 +758,7 @@ Name: count, dtype: int64</code></pre>
 <li>Dataset of 30,000 observations</li>
 <li>Target: Default in the next month</li>
 </ul>
-<div id="1d004171" class="cell" data-execution_count="15">
+<div id="382ee6ce" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
 <style scoped="">
@@ -931,7 +889,7 @@ Name: count, dtype: int64</code></pre>
 <li>But hold out 15% to determine early stopping</li>
 <li>Just edges out a RF/LR models</li>
 </ul>
-<div id="a1c28477" class="cell" data-execution_count="18">
+<div id="1a69d67b" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-stdout">
 <pre><code>Model                       Log Loss   Accuracy
 -----------------------------------------------
