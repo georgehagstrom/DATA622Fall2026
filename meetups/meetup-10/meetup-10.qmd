@@ -64,8 +64,29 @@ oi_colors = list(okabe_ito.values())
 - MVP Demo November 16th
 - Reading: ThinkCausal Tutorial
 
+## Do you want to be Causal?
 
+:::: {.columns}
 
+::: {.column width="35%"}
+![](jennifer-hill.png){width="100%"}
+:::
+
+::: {.column width="65%"}
+::: {style="margin-top: 1.5em; font-size: 1.5em; font-style: italic; border-left: 6px solid #0072B2; padding-left: 0.6em;"}
+“Deep down, everyone wants to be causal.”
+:::
+
+::: {style="text-align: right; margin-top: 0.8em;"}
+— Prof. Jennifer Hill
+:::
+
+::: {style="text-align: right; font-size: 0.6em; color: #808080;"}
+Psychometric Society keynote, 2021
+:::
+:::
+
+::::
 
 ##  Super Shoes
 
@@ -139,7 +160,7 @@ df = pd.DataFrame({
 
 weekly_miles = np.clip(20 + 10 * vo2_std + np.random.normal(0, 5, n), 5, 80)
 income = np.clip(50000 + 15000 * vo2_std + np.random.normal(0, 12000, n), 20000, 200000)
-races_per_year = np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15)
+races_per_year = np.random.poisson(np.clip(3 + 2 * vo2_std, 0.1, None))
 
 prob_premium = 1 / (1 + np.exp(-(
     -2 + 0.5 * vo2_std + 0.3 * income/50000 + 0.2 * races_per_year
@@ -682,7 +703,7 @@ df = pd.DataFrame({
 
 weekly_miles = np.clip(20 + 10 * vo2_std + np.random.normal(0, 5, n), 5, 80)
 income = np.clip(50000 + 15000 * vo2_std + np.random.normal(0, 12000, n), 20000, 200000)
-races_per_year = np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15)
+races_per_year = np.random.poisson(np.clip(3 + 2 * vo2_std, 0.1, None))
 
 prob_premium = 0.5 + 0.0* vo2 #1 / (2 + np.exp(-(
   #  -2 + 0.5 * vo2_std + 2 * income/50000 + 0.2 * races_per_year
@@ -784,8 +805,14 @@ plt.show()
   - If the variable could have been impacted by the treatment, you 
   cannot use it
 
+3b. Do not condition on colliders!
 
 
+## Requirements for Causal Inference
+
+4. SUTVA (Stable Unit Treatment Value Assumption)
+  - No interference between units (having a lot of supershoes in the pace group makes everyone go faster?)
+  - Consistent treatment: All supershoes and regular shoes assumed to be equal
 
 ## Continuous Treatments
 
