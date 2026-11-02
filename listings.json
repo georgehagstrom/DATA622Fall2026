@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2026-11-02-CausalMLVignettes.html",
       "/posts/2026-11-01-Week-10-Causal-Inference.html",
       "/posts/2026-10-26-Week-9-Boosted-Trees-And-BART.html",
       "/posts/2026-10-26-XGB-Vignettes.html",
