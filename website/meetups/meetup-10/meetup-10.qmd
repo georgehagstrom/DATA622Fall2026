@@ -38,14 +38,55 @@ oi_colors = list(okabe_ito.values())
 ```
 
 
+## Tomorrow!
+
+![](November2026SeminarMartinez.png)
+
+[Register on Zoom](https://us02web.zoom.us/meeting/register/RQW4PGPcT0ixadrHwD0-aQ#/registration)
+
+
+## November 19th!
+
+![](Nov2026Seminar.png)
+
+
+## NY Open Statistical Programming Meetup
+
+- Tuesday, November 10th, 6:30-8:30+
+- Great Networking/Learning Opportunity
+
+![](November_2026_Meetup_Card.png)
+
+
 ## Week Summary
 
-- Lab 6 Available (Due November 8th at midnight)
-- MVP Demo This Week
+- Lab 6 Available (Due November 15th at midnight)
+- MVP Demo November 16th
 - Reading: ThinkCausal Tutorial
 
+## Do you want to be Causal?
 
+:::: {.columns}
 
+::: {.column width="35%"}
+![](jennifer-hill.png){width="100%"}
+:::
+
+::: {.column width="65%"}
+::: {style="margin-top: 1.5em; font-size: 1.5em; font-style: italic; border-left: 6px solid #0072B2; padding-left: 0.6em;"}
+“Deep down, everyone wants to be causal.”
+:::
+
+::: {style="text-align: right; margin-top: 0.8em;"}
+— Prof. Jennifer Hill
+:::
+
+::: {style="text-align: right; font-size: 0.6em; color: #808080;"}
+Psychometric Society keynote, 2021
+:::
+:::
+
+::::
 
 ##  Super Shoes
 
@@ -72,7 +113,7 @@ oi_colors = list(okabe_ito.values())
 
 - Optimistic CEO:
 
-"Our super-shoes will save you almost 50 minutes off your marathon time"
+"Our super-shoes will save you over 40 minutes off your marathon time"
 
 
 
@@ -92,7 +133,7 @@ vo2_std = (vo2 - vo2.mean()) / vo2.std()
 
 
 
-prob_premium = 1 / (1 + np.exp(-(2*(vo2_std - 2))))
+prob_premium = 1 / (1 + np.exp(-(2*(vo2_std - 1.5))))
 
 
 premium_shoes = np.random.binomial(1, prob_premium)
@@ -119,7 +160,7 @@ df = pd.DataFrame({
 
 weekly_miles = np.clip(20 + 10 * vo2_std + np.random.normal(0, 5, n), 5, 80)
 income = np.clip(50000 + 15000 * vo2_std + np.random.normal(0, 12000, n), 20000, 200000)
-races_per_year = np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15)
+races_per_year = np.round(np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15))
 
 prob_premium = 1 / (1 + np.exp(-(
     -2 + 0.5 * vo2_std + 0.3 * income/50000 + 0.2 * races_per_year
@@ -143,7 +184,7 @@ df = pd.DataFrame({
 
 
 
-df.groupby('shoes')['time'].mean().rename_axis('Shoe Type').to_frame('Avg Race Time (min)').rename(index={0: 'Standard', 1: 'Premium'})
+df.groupby('shoes')['time'].mean().round(1).rename_axis('Shoe Type').to_frame('Avg Race Time (min)').rename(index={0: 'Standard', 1: 'Premium'})
 
 ```
 
@@ -172,10 +213,11 @@ ax.hist(df.loc[df['shoes'] == 0, 'time'],
 ax.hist(df.loc[df['shoes'] == 1, 'time'],
         bins=30, alpha=0.5, density=True, label='Premium', color=oi_colors[1])
 
-ax.set_xlabel('Marathon Time (min)')
-ax.set_ylabel('Density')
-ax.set_title('Marathon Time Distribution by Shoe Type')
-ax.legend()
+ax.set_xlabel('Marathon Time (min)', fontsize=14)
+ax.set_ylabel('Density', fontsize=14)
+ax.set_title('Marathon Time Distribution by Shoe Type', fontsize=16)
+ax.tick_params(labelsize=12)
+ax.legend(fontsize=12)
 plt.show()
 ```
 
@@ -241,7 +283,8 @@ for i in range(0, n, 5):  # every 5th point to avoid clutter
 ax.set_xlabel('VO2 Max',fontsize=18)
 ax.set_ylabel('Predicted Marathon Time',fontsize=18)
 ax.set_title('S-Learner: Predicted Times by Shoe Type',fontsize=24)
-ax.legend()
+ax.tick_params(labelsize=14)
+ax.legend(fontsize=14, markerscale=2)
 plt.show()
 
 
@@ -259,7 +302,7 @@ results = pd.DataFrame({
     'ATE': [true_shoe_effect, naive_diff, xgb_shoe_effect.mean()]
 })
 
-print(results.to_markdown(index=False))
+print(results.to_markdown(index=False, floatfmt='.2f'))
 
 ```
 
@@ -293,9 +336,9 @@ results = pd.DataFrame({
     'ATE (min)': [true_shoe_effect, naive_diff, xgb_shoe_effect.mean(), ate],
     '95% CI Lower': [None, None, None, ate_lb],
     '95% CI Upper': [None, None, None, ate_ub]
-})
+}, dtype=object)
 
-print(results.to_markdown(index=False))
+print(results.to_markdown(index=False, floatfmt='.2f', missingval=''))
 ```
 
 
@@ -386,7 +429,7 @@ $$
 
 - Average Treatment Effect on Controls  (ATC)
 $$
-\sum_{i\in \mathrm{Treated}} \frac{1}{n_T} \left(Y_{i1} - Y_{i0}\right)
+\sum_{i\in \mathrm{Control}} \frac{1}{n_C} \left(Y_{i1} - Y_{i0}\right)
 $$
 
 | Runner | $Y_0$ | $Y_1$ | Effect  | 
@@ -408,10 +451,10 @@ $$
 
 | Runner | Pro? | $Y_0$ | $Y_1$ | Effect  | 
 |--------:|:---|:-----------:|:-------------:|:----------------:|
-| George | No |  190              |    [185]{style="color:lightgrey"}           |   -5               | 
+| George | No |  190              |    [185]{style="color:#808080"}           |   -5               | 
 | Juanita |No |  [184]{style="color:#808080"}             |       181        |        -3          | 
 | David |Yes  |    [137]{style="color:#808080"}          |        135       |       -2           | 
-| Mary | No  |   205             |    [199]{style="color:lightgrey"}           |       -6           | 
+| Mary | No  |   205             |    [199]{style="color:#808080"}           |       -6           | 
 | __CATE__  |  __Yes__  |  __137__   |  __135__   | __-2__ |
 | __CATE__  |  __No__      | __193__ |  __188.3__ | __-4.6__ |
 
@@ -497,7 +540,7 @@ ax.plot(dims, nn_distance, '-',c=oi_colors[1], linewidth=2,
 ax.set_xlabel('Number of dimensions',fontsize=18)
 ax.set_ylabel('Distance',fontsize=18)
 ax.set_title('Curse of Dimensionality',fontsize=24)
-
+ax.tick_params(labelsize=16)
 
 ax.legend(fontsize=16)
 plt.tight_layout()
@@ -520,7 +563,21 @@ _probability of getting the treatment_.
   - Add as covariate, matching, inverse probability weighting, more
 - Compute ATE
 
-## Causal Machine Learning
+
+## Propensity Score for Supershoes
+
+- Suppose supershoes are a function both _VO2_ and _Income_
+- Income is a confounder, impacts probability of purchasing a shoe and race time (coaching, free time, etc)
+
+## Propensity Score for Supershoes
+
+- Find P(S|VO2,Income)
+- At a given propensity score, group that had supershoes is similar mix to one that didn't buy them!
+- Can subtract their race times to get treatment effect on that propensity group
+- Average across all to get ATE
+
+
+## Double Machine Learning
 
 - What if we use ML both to model outcome (running time) and treatment (odds of wearing shoe)?
 - Build two models:
@@ -528,6 +585,15 @@ _probability of getting the treatment_.
   - $f_Y(\mathbf{W})$ predicts outcome
 - Treatment effect is relationship between residuals of these two models
 
+
+## Double ML Cross-Fitting
+
+- To avoid overfitting, divide data into 'k' folds
+- Get treatment and outcome residuals on held out folds
+- Effect is relationship between residuals:
+$$
+\tilde{Y} = \theta \tilde{T}
+$$
 
 
 ## CATE
@@ -578,15 +644,16 @@ propensity = cross_val_predict(
 
 
 
-fig, ax = plt.subplots(figsize=(8, 5))
+fig, ax = plt.subplots(figsize=(10, 4))
 ax.hist(propensity[df['shoes'] == 0], bins=30, alpha=0.5,
-        density=True, label='Standard shoes', color=oi_colors[1])
+        density=True, label='Standard shoes', color=oi_colors[0])
 ax.hist(propensity[df['shoes'] == 1], bins=30, alpha=0.5,
-        density=True, label='Super shoes', color=oi_colors[2])
-ax.set_xlabel('Propensity Score P(Shoes | X)')
-ax.set_ylabel('Density')
-ax.set_title('Overlap Check: Propensity Score Distribution')
-ax.legend()
+        density=True, label='Super shoes', color=oi_colors[1])
+ax.set_xlabel('Propensity Score P(Shoes | X)', fontsize=14)
+ax.set_ylabel('Density', fontsize=14)
+ax.set_title('Overlap Check: Propensity Score Distribution', fontsize=16)
+ax.tick_params(labelsize=12)
+ax.legend(fontsize=12)
 plt.show()
 
 ```
@@ -636,7 +703,7 @@ df = pd.DataFrame({
 
 weekly_miles = np.clip(20 + 10 * vo2_std + np.random.normal(0, 5, n), 5, 80)
 income = np.clip(50000 + 15000 * vo2_std + np.random.normal(0, 12000, n), 20000, 200000)
-races_per_year = np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15)
+races_per_year = np.round(np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15))
 
 prob_premium = 0.5 + 0.0* vo2 #1 / (2 + np.exp(-(
   #  -2 + 0.5 * vo2_std + 2 * income/50000 + 0.2 * races_per_year
@@ -663,13 +730,13 @@ est = CausalForestDML(
     model_y=GradientBoostingRegressor(n_estimators=100, max_depth=3, random_state=4),
     model_t=GradientBoostingClassifier(n_estimators=100, max_depth=3, random_state=4),
     n_estimators=500,
-    min_samples_leaf=20,
+    min_samples_leaf=150,
     discrete_treatment=True,
     random_state=98876
 )
 est.fit(Y, T, X=X, W=W)
 
-vo2_grid = np.linspace(35, df['vo2'].max(), 100).reshape(-1, 1)
+vo2_grid = np.linspace(35, np.percentile(df['vo2'], 99), 100).reshape(-1, 1)
 cate_pred = est.effect(vo2_grid)
 cate_lb, cate_ub = est.effect_interval(vo2_grid, alpha=0.05)
 
@@ -679,14 +746,20 @@ true_cate_grid = true_shoe_effect * exp_time_grid / 120.0
 
 fig, ax = plt.subplots(figsize=(10, 6))
 
+ax.axvspan(35, 50, color='gray', alpha=0.15, label='Little overlap')
 ax.plot(vo2_grid, true_cate_grid, 'k-', linewidth=2.5, label='True CATE')
 ax.plot(vo2_grid, cate_pred, 'b-', linewidth=2, label='Causal Forest CATE')
 ax.fill_between(vo2_grid.ravel(), cate_lb, cate_ub,
                 alpha=0.2, color='blue', label='95% CI')
 ax.axhline(y=0, color='gray', linestyle=':', alpha=0.5)
+ax.plot(df.loc[df['shoes'] == 1, 'vo2'], np.full(df['shoes'].sum(), -14.5), '|',
+        color='black', alpha=0.3, markersize=12, label='Treated runners')
+ax.set_ylim(-15, 10)
+ax.set_xlim(vo2_grid.min(), vo2_grid.max())
 ax.set_xlabel('VO2',fontsize=16)
 ax.set_ylabel('CATE',fontsize=16)
 ax.set_title('Effect of Super Shoes on Marathon Time',fontsize=20)
+ax.tick_params(labelsize=14)
 ax.legend(fontsize=14)
 plt.show()
 
@@ -699,9 +772,10 @@ plt.show()
 ```{python}
 
 
-vo2_grid = np.linspace(55, df['vo2'].max(), 100).reshape(-1, 1)
+vo2_grid = np.linspace(55, np.percentile(df['vo2'], 99), 100).reshape(-1, 1)
 cate_pred = est.effect(vo2_grid)
 cate_lb, cate_ub = est.effect_interval(vo2_grid, alpha=0.05)
+true_cate_grid = true_shoe_effect * (120 + 8000 * (1/vo2_grid.ravel() - 1/90)) / 120.0
 
 
 fig, ax = plt.subplots(figsize=(10, 6))
@@ -711,9 +785,14 @@ ax.plot(vo2_grid, cate_pred, 'b-', linewidth=2, label='Causal Forest CATE')
 ax.fill_between(vo2_grid.ravel(), cate_lb, cate_ub,
                 alpha=0.2, color='blue', label='95% CI')
 ax.axhline(y=0, color='gray', linestyle=':', alpha=0.5)
+ax.plot(df.loc[df['shoes'] == 1, 'vo2'], np.full(df['shoes'].sum(), -7.7), '|',
+        color='black', alpha=0.3, markersize=12, label='Treated runners')
+ax.set_ylim(-8, 4)
+ax.set_xlim(vo2_grid.min(), vo2_grid.max())
 ax.set_xlabel('VO2',fontsize=16)
 ax.set_ylabel('CATE',fontsize=16)
 ax.set_title('Effect of Super Shoes on Marathon Time',fontsize=20)
+ax.tick_params(labelsize=14)
 ax.legend(fontsize=14)
 plt.show()
 
@@ -726,8 +805,14 @@ plt.show()
   - If the variable could have been impacted by the treatment, you 
   cannot use it
 
+3b. Do not condition on colliders!
 
 
+## Requirements for Causal Inference
+
+4. SUTVA (Stable Unit Treatment Value Assumption)
+  - No interference between units (having a lot of supershoes in the pace group makes everyone go faster?)
+  - Consistent treatment: All supershoes and regular shoes assumed to be equal
 
 ## Continuous Treatments
 
