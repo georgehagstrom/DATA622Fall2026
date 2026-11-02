@@ -113,7 +113,7 @@ Psychometric Society keynote, 2021
 
 - Optimistic CEO:
 
-"Our super-shoes will save you almost 50 minutes off your marathon time"
+"Our super-shoes will save you over 40 minutes off your marathon time"
 
 
 
@@ -133,7 +133,7 @@ vo2_std = (vo2 - vo2.mean()) / vo2.std()
 
 
 
-prob_premium = 1 / (1 + np.exp(-(2*(vo2_std - 2))))
+prob_premium = 1 / (1 + np.exp(-(2*(vo2_std - 1.5))))
 
 
 premium_shoes = np.random.binomial(1, prob_premium)
@@ -160,7 +160,7 @@ df = pd.DataFrame({
 
 weekly_miles = np.clip(20 + 10 * vo2_std + np.random.normal(0, 5, n), 5, 80)
 income = np.clip(50000 + 15000 * vo2_std + np.random.normal(0, 12000, n), 20000, 200000)
-races_per_year = np.random.poisson(np.clip(3 + 2 * vo2_std, 0.1, None))
+races_per_year = np.round(np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15))
 
 prob_premium = 1 / (1 + np.exp(-(
     -2 + 0.5 * vo2_std + 0.3 * income/50000 + 0.2 * races_per_year
@@ -703,7 +703,7 @@ df = pd.DataFrame({
 
 weekly_miles = np.clip(20 + 10 * vo2_std + np.random.normal(0, 5, n), 5, 80)
 income = np.clip(50000 + 15000 * vo2_std + np.random.normal(0, 12000, n), 20000, 200000)
-races_per_year = np.random.poisson(np.clip(3 + 2 * vo2_std, 0.1, None))
+races_per_year = np.round(np.clip(3 + 2 * vo2_std + np.random.normal(0, 2, n), 0, 15))
 
 prob_premium = 0.5 + 0.0* vo2 #1 / (2 + np.exp(-(
   #  -2 + 0.5 * vo2_std + 2 * income/50000 + 0.2 * races_per_year
