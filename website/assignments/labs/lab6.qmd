@@ -1,5 +1,5 @@
 ---
-title: "Lab 6: Causal ML for Orange Juice Price Elasticity"
+title: "Lab 6: Causal ML for Orange Juice Sales"
 format: html
 editor: source
 jupyter: data622
@@ -12,8 +12,8 @@ Business, which collaborated with a local supermarket chain called Dominick's Fi
 demographics on the sales of a number of products. The dataset we are working with has over 29,000 observations of the price of orange juice
 and sales for different brands at different Dominick's stores. There is a dataset description here: [oj_dictionary.qmd](https://github.com/georgehagstrom/DATA622Fall2026/blob/main/website/assignments/labs/labData/oj_dictionary.qmd).
 
-The goal of this homework assignment is to use Causal Machine Learning to understand how different demographic factors influence
-something called the 'price elasticity' of orange juice. You can read more about price elasticity here: 
+The goal of this homework assignment is to use Causal Machine Learning to understand how the sales price and advertisements impact orange juice sales.
+One of the conceptual tools economists use to understand how price impacts sales is the _price elasticity of demand_. You can read more about price elasticity here: 
 [Wikipedia Price Elasticity of Demand](https://en.wikipedia.org/wiki/Price_elasticity_of_demand). If we define demand as sales, the price
 elasticity of demand is the relationship between a percentage change in sales and a percentage change in price:
 
@@ -28,56 +28,47 @@ $$
 \log(\mathrm{SALES})  = \epsilon\log(\mathrm{PRICE}) + \mathrm{error terms}
 $$
 
-The elasticity $\epsilon$ can be dependent upon a variety of other factors. It can depend on the price itself (so that we don't get a straight line relationship between the logs), it can depend on the type of product, the demographics of the shoppers and more. The
+The elasticity $\epsilon$ can be dependent upon a variety of other factors. It can depend on the price itself (so that we don't get a straight line relationship between the logs), it can depend on the type of product, the demographics of the shoppers, alternative products, and more. The
 'EconML' package developed a vignette where they used Causal ML to show that $\epsilon$ is a function of income, which is to say that the
-sales are more sensitive to price in stores where the median income is lower. You can find that vignette here and I recommend that you read it and use some code from it as a starting point (it covers more than OJ but it is there): [EconML OJ Vignette](https://github.com/py-why/EconML/blob/main/notebooks/Causal%20Forest%20and%20Orthogonal%20Random%20Forest%20Examples.ipynb) . To read more about the package and its applications, see [pywhy EconML](https://www.pywhy.org/EconML/spec/spec.html).The [tutorial for this package](https://www.pywhy.org/dowhy/v0.8/example_notebooks/tutorial-causalinference-machinelearning-using-dowhy-econml.html) is helpful as well.
+sales are more sensitive to price in stores where the median income is lower. You can find that vignette here and I recommend that you read it and use some code from it as a starting point (it covers more than OJ but it is there): [EconML OJ Vignette](https://github.com/py-why/EconML/blob/main/notebooks/Causal%20Forest%20and%20Orthogonal%20Random%20Forest%20Examples.ipynb). To read more about the package and its applications, see [pywhy EconML](https://www.pywhy.org/EconML/spec/spec.html).The [tutorial for this package](https://www.pywhy.org/dowhy/v0.8/example_notebooks/tutorial-causalinference-machinelearning-using-dowhy-econml.html) is helpful as well.
+
+
+## Problem 1: Effects of Brand and Ads on Demand Elasticity
+
+Each row in the data describes what happened at one store during a single week for one of the three brands of orange juice ('tropicana', 'minute.maid', and 'dominicks'), including the 'price', the 
+'logmove' for each brand ('log' of sales), and the variable 'feat' which indicates if the brand was advertised in stores that week. The 'feat' variable is constant across each chain each week, if a single brand is featured during a week it is featured at every single
+store. Usually this indicates that each store will run a promotional sale, but the level of price decrease need not be uniform across the stores during a sale. The goal of this problem is to understand
+how price impacts orange juice sales, and whether that impact (measured by demand elasticity) depends on the brand of orange juice and whether there was an ad.
 
 
 
+(a) **Choosing Controls:** Go through the variables in the dataset and for each one determine if it is a potential confounder (meaning it could have an effect on both the choice of price at stores 
+and also the
+level of sales at the store). Confounders must be included in the control matrix 'W'. You can also include variables which don't impact treatment selection but which could impact sales, and you must
+exclude post-treatment variables or variables which impact the treatment but not sales. Which variables did you choose for 'W'? You do not need to put the modifier variables 'feat' or 'brand' in 'W'. Note:
+your modifier variables 'X' will include 'feat' and 'brand' dummies so these do not need to be included in 'W'. Make sure to exclude 'rowid' from the data, and to leave 'store' and 'week' (the former of which 
+is described by demographic variables and the latter of which identifies the treatment) out of 'W'.
 
-## Problem 1: Testing on Fake Data
+(b) **Checking Overlap:** In order for Causal ML to be successful, there needs to be variation in the treatment variable for all combinations of the confounder 
+ and modifier variables. For a continuous treatment, it is important that there is residual variation left-over after the Causal Forest predicts the treatment using confounders. 
+Following the procedure of the original vignette (with your adjustments to 'W' and 'X'), use 'LassoCV' (or if you prefer another model like 'HistGradientBoostingRegressor') to predict $T$ using $W$. Calculate and report the cross-validated $R^2$ from the 'nuisance_scores_t' object. Does this value of $R^2$ support the suitability of this dataset for Causal Inference? If it does not you must find a different formulation of your matrix 'W' or possibly your Causal Inference
+problem may not be solvable with this data.
 
-(a) It is standard practice in Causal Inference to test models on simulated response data based on the original covariates of the dataset before
-fitting to the original dataset. Use the same selection of confounders as in the original vignette (The 'W' matrix), excluding 'week', 'store', 'price', 'INCOME', and 'logmove', applying One-Hot encoding/dummies to the 'brand' variables to incorporate them into 'W'. Apply the 'StandardScaler' to 'W'. Then put the variable 'INCOME' into a matrix called "X" and standardize it. The matrix 'X' contains _modifier_ variables whose effect on the elasticity will be studied.
-Then you will simulate a relationship between your confounders and the price, you can use code like
-this: 'T_sim = 0.8 + W[:, support] @ coefs_T + noise', where 'support' is sparse (most entries are 0, the rest are 1) and 'coefs_T' is random (the 0.8 is just for scale). 
-Look to the simulation code earlier in the 'EconML' vignette for inspiration.
+(c) **Fitting the Model:**  Create the variable 'logprice' as the log of 'price'. Using either 'CausalForestDML' or 'LinearDML' ("if you choose 'CausalForestDML', note that the bootstrap in part (d) may take many hours with the vignette's settings") fit a model for 'logmove' in terms of 'logprice' (your 'Y' and 'T') with your controls 'W' and
+modifiers 'X'. Report the elasticities as a function of the different combinations of 'brand' and 'feat' (the CATE), and the average elasticity (the ATE). Describe and interpret your results. Can you guess the "position" of these brands
+on a scale from discount to premium based on the results?
 
-(b) Now, simulate the values of the 'logmove' (in a matrix called 'Y_sim') using your 'T_sim', your confounders 'W', and your modifier 'X'. Make the relationship
-between 'Y_sim', 'T_sim', and 'X' nonlinear using something like this: 'Y_sim = (-2.5 \* np.tanh(2.0\*X))\*T_sim + 
-W[:, support] @ coefs_Y + noise', where 'coefs_Y' is random (we are using the same 'support' in both simulations).
+(d) **Evaluating the Fit:** 'EconML' automatically calculates uncertainty intervals. For the 'CausalForestDML' this is based on resampling, and in 'LinearDML' using statistical formulas. Use 'effect_interval' to compute intervals for the CATE elasticities for the combinations of 'brand' and 'feat'. The intervals calculated this way are only valid if the rows of the data are independent. However, because each sale occurs in every store simultaneously during a single week, and because there are three brands per store each week, we might question the independence assumption. Another way to compute the standard errors is to use the
+bootstrap, but resampling entire weeks: draw the weeks with replacement, keeping every row of each drawn week. Refit on 100 such bootstrap samples and calculate confidence intervals on the CATE elasticities. By roughly what factor are they wider than those calculated assuming independence, which of the combinations widen most, and why?
 
+## Problem 2: Store Segmentation
 
-(c) Using the code from the vignette, fit a Causal Forest ('CausalForestDML') and a linear model ('LinearDML') to the simulated data. 
-For both models, plot the predicted elasticity as a function of the 'INCOME', showing the confidence intervals and the real relationship.
-Also plot the predicted elasticity and the true elasticity for each simulated observation. Report the true and estimated ATE with confidence intervals. Comment on the performance of both models on the simulated data. 
+(a) **PCA on Store Demographics:** The data contains 11 columns which contain demographic information about the region around the store. These variables have identical values for each row corresponding to that store. Create a 
+data frame containing only the store level demographic information (one row for each store, 11 columns for the demographic information). Standardize the columns and perform principal component analysis (PCA) to find a reduced
+dimensionality representation of the store demographics. Make a scree plot and report the variance explained by the first two principal components. Examine the loadings of the first two principal component vectors and describe what it means to be high or low in either of them.
 
+(b) **Store Clustering:** Perform k-means clustering on the stores using the first two principal components for $k=2$ through $k=8$. Plot the within cluster sum-of-squares for these clusters. Make a plot of
+the stores using their values of the first two principal components and color each point based on the clusters for $k=4$. Compute the mean of each demographic variable within each cluster and give a qualitative description
+of each cluster. 
 
-
-
-## Problem 2: Checking for Overlap
-
-(a) In order for Causal ML to be successful, there needs to be variation in the treatment variable for all combinations of the confounder 
-variables. For a continuous treatment, it is important that there is residual variation left-over after the Causal Forest predicts the treatment using confounders. Keeping with the structure of the original vignette (same definition of 'W', 'X', 'Y', and 'T'), use 'LassoCV' to predict $T$ using $W$. Calculate and report the $R^2$. Does this value of $R^2$ support the suitability of this dataset for Causal Inference?
-
-
-## Problem 3: Fitting and Interpreting the Model
-
-(a) Perform a train-test split on the data. Repeat the fit in the vignette to the training set (you can copy their code with suitable modifications to make it work) using a 'CausalForestDML' model to learn the effect of income on price elasticity. Plot the price elasticity versus income with confidence intervals. Calculate the average treatment effect and confidence intervals.
-
-(b) Compute the R-score on the testing/validation set to determine the strength of the heterogeneity. What is your interpretation of the R-score value? Fit a 'LinearDML' model in the same manner and compare the R-score to the 'CausalForestDML'. Is either model noticeably better?
-
-(c) Compute a sensitivity check using the 'sensitivity_interval' method of your fit model. This determines how strong an _unobserved confounder_ would have to be to change the results of your analysis in a meaningful way. The method recalculates confidence intervals for 
-the _ATE_ based on two parameters 'c_t' and 'c_y', which are the fraction of residual variance explained by the hypothetical confounder for
-the treatment and the target respectively. One method for determining the range of 'c_t' and 'c_y' to explore by checking the values of 'c_t'
-and 'c_y' for existing confounders. If you were to do this check, you would find that the most important confounder is the 'feat' variable 
-(whether the item was advertised that week), and the range should be up to 'c_t=0.1' and 'c_y=0.3'. Compute the sensitivity check for the
-most extreme scenario, with 'c_t=0.1' and 'c_y=0.3'. What are the resulting confidence intervals for the ATE? Do they contain 0?
-
-
-## Problem 4: CATE for Brands and Income
-
-(a) The three brands of orange juice have different price points and are targetted at different customer segments, with 'dominicks' as the 
-discount brand, 'minute.maid' as the mid-range brand, and 'tropicana' as the premium brand. Move the brand variables from confounder matrix W to the modifier matrix X and refit the model. Calculate the feature importances for all the modifiers and plot the
-elasticity as a function of income for each of the three brands. How do the elasticities differ by brand?
 
