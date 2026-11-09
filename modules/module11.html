@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 11 - Interpreting and Presenting Machine Learning Models – DATA 622 Fall 2026</title>
+<title>Module 11 - Unsupervised Learning – DATA 622 Fall 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Module 11 - Interpreting and Presenting Machine Learning Models – DATA 622 Fall 2026">
+<meta property="og:title" content="Module 11 - Unsupervised Learning – DATA 622 Fall 2026">
 <meta property="og:description" content="DATA 622 - Machine Learning and Big Data - CUNY School of Professional Studies">
 <meta property="og:site_name" content="DATA 622 Fall 2026">
 </head>
@@ -330,7 +330,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../modules/module1.html">Topics</a></li><li class="breadcrumb-item"><a href="../modules/module11.html">11 - Model Interpretation and Ethics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Module 11 - Interpreting and Presenting Machine Learning Models</h1>
+<h1 class="title">Module 11 - Unsupervised Learning</h1>
 </div>
 
 
@@ -349,24 +349,55 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level3">
 <h3 class="anchored" data-anchor-id="overview">Overview</h3>
-<p>Machine Learning models and the analyses that derive from them are often derided for being impenetrable black boxes. The standard metrics which arise from such fits usually only describe the accuracy of the model in a predictive context. While this may be all that is required in some situations, more insight about how a given fit model makes predictions can be generated, which can lead to greater insight from the model and the potential for easier communication and stakeholder confidence as well as improved model iteration and development. The field of interpretable ML was developed to find ways of explaining the decisions and predictions of models to different types of stakeholders. These methods range from selecting simple models (like linear or logistic regression), to using model based tools (neuron response in neural networks or tree based feature importances), to model agnostic methods. Model agnostic methods involve exploring the sensitivity of model outputs to the values of the features. We will go through the basics of model agnostic interpretable ML, with a focus on a specific model called SHAP (Shapley Additive Explanations) to understand what is happening under the hood of Machine Learning models.</p>
-<p>Lab 6 is Due at the end of the week</p>
+<p>Unsupervised learning problems involve datasets that only have predictors and not labels. Because unsupervised learning lacks a ground truth, the theory and methods behind it are much less mature compared with supervised learning, elevating the importance of domain knowledge and model discretion. Unsupervised learning divides into two primary domains: dimensionality reduction and clustering. Dimensionality reduction techniques aim to find linear or non-linear spaces of much lower dimension than the number of features and which approximate the dataset, while clustering aims to group datapoints into discrete clusters. This week we will learn about the simplest dimensionality reduction and clustering techniques, principal component analysis (PCA) and k-means clustering. In particular, we will learn about how to use PCA to explore the basic structure of a dataset, techniques for selecting the number of dimensions to use, how to use it to impute data and complete matrices, and how to apply it to to datasets which may have outliers.</p>
+<p>Lab 6 is Due at the end of the week, and you should MVP demo code should be ready by the end of the week for a presentation next week.</p>
 </section>
 <section id="learning-objectives" class="level3">
 <h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
 <ul>
-<li>Goals of Interpretable ML</li>
-<li>Types of Interpretations: By-Design, Post-Hoc, Model Agnostic, Model Specific</li>
-<li>Local and Global Sensitivity Analysis</li>
-<li>Marginal Effects/Ceteris Parabis Plots, Partial Dependence Plots</li>
-<li>Understanding and Applying Shapley Additive Explanations</li>
+<li>Definition and goals of unsupervised learning</li>
+<li>Dimensionality reduction and PCA</li>
+<li>Scree plots, column permutation/random matrix theory, and cross-validation to select components</li>
+<li>Robust PCA and Matrix Completion</li>
+<li>Clustering and k-means</li>
 </ul>
 </section>
 <section id="readings" class="level3">
 <h3 class="anchored" data-anchor-id="readings">Readings</h3>
 <ul>
-<li><a href="https://christophm.github.io/interpretable-ml-book/interpretability.html">Interpretable Machine Learning 2-4, 17-18</a></li>
-<li><a href="https://fairmlbook.org/index.html">Fairness and Machine Learning- 1</a></li>
+<li><strong>ISLP</strong> (Introduction to Statistical Learning with Python): <a href="https://www.statlearning.com">Chapter 12</a></li>
+</ul>
+</section>
+<section id="labs" class="level3">
+<h3 class="anchored" data-anchor-id="labs">Labs</h3>
+<ul>
+<li><strong>ISLP</strong> (Introduction to Statistical Learning): <a href="https://github.com/intro-stat-learning/ISLP_labs/blob/stable/Ch12-unsup-lab.Rmd">Chapter 12 Lab</a></li>
+<li><a href="https://github.com/intro-stat-learning/ISLP_labs/blob/stable/Ch12-unsup-lab.ipynb">Ipython Notebook Version</a></li>
+</ul>
+</section>
+<section id="islp-videos" class="level3">
+<h3 class="anchored" data-anchor-id="islp-videos">ISLP Videos</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=kpuQqOzQXfM&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=89">ISLP 12.1: Principal Components</a></li>
+<li><a href="https://www.youtube.com/watch?v=O30nHhyBiAs&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=90">ISLP 12.2: Higher Order Principal Components</a></li>
+<li><a href="https://www.youtube.com/watch?v=ded_NQqOe7I&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=91">ISLP 12.3: K-Means Clustering</a></li>
+<li><a href="https://www.youtube.com/watch?v=yktzn-Mr2Nw&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=92">ISLP 12.4: Hierarchical Clustering</a></li>
+<li><a href="https://www.youtube.com/watch?v=MYKb5KcI55s&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=93">ISLP 12.5: Matrix Completion</a></li>
+<li><a href="https://www.youtube.com/watch?v=InBhMLEx6sU&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=94">ISLP 12.6: Breast Cancer Example</a></li>
+</ul>
+</section>
+<section id="islp-coding-videos" class="level3">
+<h3 class="anchored" data-anchor-id="islp-coding-videos">ISLP Coding Videos</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=3zpISnhksqQ&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=95">ISLP 12.py: Principal Components</a></li>
+<li><a href="https://www.youtube.com/watch?v=xhLD4nEEVlE&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=96">ISLP 12.py: Clustering</a></li>
+<li><a href="https://www.youtube.com/watch?v=aygQSHAbMFQ&amp;list=PLoROMvodv4rPP6braWoRt5UCXYZ71GZIQ&amp;index=97">ISLP 12.py: Application: NCI60 Data</a></li>
+</ul>
+</section>
+<section id="videos" class="level3">
+<h3 class="anchored" data-anchor-id="videos">Videos</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=fkf4IBRSeEc">Steve Brunton: Principal Component Analysis (PCA)</a></li>
 </ul>
 
 
