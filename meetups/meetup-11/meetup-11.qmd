@@ -1,0 +1,1394 @@
+---
+title: "DATA 622 Meetup 11: Unsupervised Learning"
+format: revealjs
+logo: ../../images/CUNY_SPS_Logo_Wide.png
+footer: "DATA 622"
+author: "George I. Hagstrom"
+date: "11/09/2026"
+jupyter: data622
+---
+
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.pyplot import subplots
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from scipy.cluster.hierarchy import linkage, dendrogram, fcluster, set_link_color_palette
+from scipy.spatial.distance import pdist, squareform
+
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import KFold, StratifiedKFold, GridSearchCV, cross_val_score
+
+okabe_ito = {
+    "orange":    "#E69F00",
+    "sky_blue":  "#56B4E9",
+    "green":     "#009E73",
+    "yellow":    "#F0E442",
+    "blue":      "#0072B2",
+    "vermilion": "#D55E00",
+    "pink":      "#CC79A7",
+    "black":     "#000000",
+}
+
+oi_colors = list(okabe_ito.values())
+cluster_colors = [okabe_ito[c] for c in ["orange", "sky_blue", "green", "vermilion", "blue"]]
+set_link_color_palette(oi_colors[:7])
+plt.rcParams["axes.titlelocation"] = "left"
+
+
+def plot_by_cancer_status(scores, title):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for status, color in [("Cancer", okabe_ito["vermilion"]), ("Normal", okabe_ito["blue"])]:
+        has_status = (ovarian_status["status"] == status).values
+        ax.scatter(scores[has_status, 0], scores[has_status, 1], s=20, color=color, label=status)
+    ax.set_xlabel("PC 1", fontsize=14)
+    ax.set_ylabel("PC 2", fontsize=14)
+    ax.set_title(title, fontsize=16)
+    ax.tick_params(labelsize=12)
+    ax.legend(fontsize=12)
+    plt.show()
+
+
+def plot_biplot(scores, loadings, labels, xlim, ylim):
+    fig, ax = plt.subplots(figsize=(10, 8))
+    for label, (score_1, score_2) in zip(labels, scores[:, :2]):
+        ax.text(score_1, score_2, label, ha="center", va="center", fontsize=9, color=okabe_ito["blue"])
+    ax.set_xlim(xlim)
+    ax.set_ylim(ylim)
+    ax.axhline(0, color="gray", lw=0.5, ls=":")
+    ax.axvline(0, color="gray", lw=0.5, ls=":")
+    ax.set_xlabel("First Principal Component", fontsize=13)
+    ax.set_ylabel("Second Principal Component", fontsize=13)
+
+    # Loadings stretched so a unit-length arrow nearly reaches the edge of each axis
+    x_stretch = max(np.abs(xlim)) / 1.15
+    y_stretch = max(np.abs(ylim)) / 1.15
+    for feature, (loading_1, loading_2) in loadings[["PC1", "PC2"]].iterrows():
+        ax.annotate("", xy=(loading_1 * x_stretch, loading_2 * y_stretch), xytext=(0, 0),
+                    arrowprops=dict(arrowstyle="-|>", color=okabe_ito["vermilion"], lw=2))
+        ax.text(loading_1 * x_stretch * 1.1, loading_2 * y_stretch * 1.1, feature,
+                color=okabe_ito["vermilion"], fontsize=12, ha="center", va="center")
+    plt.show()
+
+```
+
+
+
+## nyhackr
+
+- Tuesday, November 10th, 6:30-8:30+
+- nyhackr.org for tickets
+
+![](November_2026_Meetup_Card.png)
+
+
+
+## Thursday November 19th!
+
+
+![](Nov2026Seminar.png)
+
+
+- [Registration Link](https://us02web.zoom.us/meeting/register/vNnES24tQkqUktS86HL1og)
+
+
+## Tuesday December 15th!
+
+- Joe Sabelja: What is AI?
+- Capstone Showcase!
+  - Presentations from Graduating Students!
+
+
+## Week Summary
+
+- Schedule MVP Demo with me next week
+  - Then we will discuss how to start moving your jobs to production
+- HW 6 Due this Sunday
+- Reading: Chapter 12 of ISLP
+
+
+
+## Unsupervised Learning
+
+- In some problems, the label $y$ is not known to us
+
+```{python}
+
+rng = np.random.default_rng(622)
+
+phyto_centers = np.array([[0.3, 0.2], [0.7, 0.9], [0.1, 0.6]])
+num_cells = 100
+
+phyto_class = rng.choice(3, size=num_cells)
+phyto_cells = np.zeros((num_cells, 2))
+
+for i in range(num_cells):
+    log_center = np.log(phyto_centers[phyto_class[i]])
+    covariance = [[0.075, 0], [0, 0.075]]
+    log_point = rng.multivariate_normal(log_center, covariance)
+    phyto_cells[i] = np.exp(log_point)
+
+
+fig, ax = subplots(figsize=(8, 6))
+
+ax.scatter(phyto_cells[:, 0], phyto_cells[:, 1], s=50, alpha=0.5)
+ax.set_ylabel("Chlorophyll")
+ax.set_xlabel("Radius")
+ax.set_title("Phytoplankton Flow Cytometry");
+
+
+```
+
+## Unsupervised Learning Tasks {.smaller}
+
+- Dimensionality Reduction
+- Biomarkers from patients with ovarian cancer and controls
+- 4000+ variables of unclear meaning
+
+```{python}
+#| output: asis
+
+ovarian_features = pd.read_csv("ovariancancer_obs.csv", header=None)
+ovarian_status = pd.read_csv("ovariancancer_grp.csv", header=None, names=["status"])
+
+print(ovarian_features.iloc[:6, :6].to_markdown(index=False, floatfmt=".4f"))
+
+```
+
+## Low-D Representation
+
+- Principal Component Analysis (PCA) separates groups neatly!
+```{python}
+
+ovarian_scaled = StandardScaler().fit_transform(ovarian_features)
+ovarian_pca = PCA().fit(ovarian_scaled)
+ovarian_scores = ovarian_pca.transform(ovarian_scaled)
+
+plot_by_cancer_status(ovarian_scores, "PCA Coordinates separate two classes well")
+
+```
+
+
+## Clustering
+
+- Have a bunch of datapoints that may correspond to categories, but don't know the labels:
+
+```{python}
+
+fig, ax = subplots(figsize=(8, 6))
+
+ax.scatter(phyto_cells[:, 0], phyto_cells[:, 1], s=50, alpha=0.5)
+ax.set_ylabel("Chlorophyll")
+ax.set_xlabel("Radius")
+ax.set_title("Phytoplankton Flow Cytometry");
+
+
+```
+
+
+## Clustering
+
+- k-means can find three good clusters!
+
+```{python}
+
+fig, ax = subplots(figsize=(8, 6))
+
+for k in range(3):
+    in_class = phyto_class == k
+    ax.scatter(phyto_cells[in_class, 0], phyto_cells[in_class, 1], s=50, alpha=0.6, color=oi_colors[k])
+ax.set_ylabel("Chlorophyll")
+ax.set_xlabel("Radius")
+ax.set_title("Phytoplankton Flow Cytometry: True Classes");
+
+```
+
+
+## Clustering
+
+- However there is ambiguity
+
+```{python}
+
+fig, axes = subplots(2, 2, figsize=(10, 8))
+
+for ax, n_clusters in zip(axes.ravel(), [2, 3, 4, 5]):
+    cluster_labels = KMeans(n_clusters=n_clusters, n_init=10, random_state=1).fit_predict(phyto_cells)
+    for k in range(n_clusters):
+        in_cluster = cluster_labels == k
+        ax.scatter(phyto_cells[in_cluster, 0], phyto_cells[in_cluster, 1], s=40, alpha=0.6, color=cluster_colors[k])
+    ax.set_title(f"K-Means, k = {n_clusters}")
+    ax.set_xlabel("Radius")
+    ax.set_ylabel("Chlorophyll")
+
+plt.tight_layout()
+
+```
+
+
+## Unsupervised Pitfalls
+
+- No ground truth
+  - How many dimensions are right?
+  - How many clusters?
+- No accuracy, training sets, testing sets, cross-validation, etc
+
+
+
+## Consequences
+
+- Choices are modeling decisions
+  - You have to choose based on usefulness and your knowledge
+  - Level of trust is lower
+- Promulgamation of algorithms
+
+
+
+
+
+## Principal Component Analysis (PCA)
+
+- Goal of PCA is to find a small set of features which explain most of the variability in the dataset
+- New directions called `Principal Components`
+
+
+
+
+## Principal Components
+
+- Each PC is a linear combination of original features:
+$$
+Z_1 = \phi_{11}X_1 + \phi_{21}X_2 + \cdots + \phi_{p1}X_p
+$$
+
+## Principal Components
+
+- Each PC is a linear combination of original features:
+
+$$
+\begin{aligned}
+Z_1 &= \phi_{11}X_1 + \phi_{21}X_2 + \cdots + \phi_{p1}X_p \\
+Z_2 &= \phi_{12}X_1 + \phi_{22}X_2 + \cdots + \phi_{p2}X_p \\
+&\;\;\vdots \\
+Z_p &= \phi_{1p}X_1 + \phi_{2p}X_2 + \cdots + \phi_{pp}X_p
+\end{aligned}
+$$
+
+
+## Loadings
+
+- $\phi$ terms are called _loadings_
+- $\phi$ are normalized:
+$$
+\phi_{1j}^2+\phi_{2j}^2+\cdots+\phi_{pj}^2 = \sum_{i=1}^p \phi_{ij}^2 = \|\boldsymbol{\phi}_j\|^2 = 1
+$$
+- Can write it as a _loading matrix_ $\Phi$
+- $\mathbf{Z} = \mathbf{X}\mathbf{\Phi}$
+
+
+## Linearly Independent PCs
+
+- Principal Components are _linearly independent_
+
+```{python}
+
+rng = np.random.default_rng(5)
+random_rotation = np.linalg.qr(rng.normal(size=(3, 3)))[0]
+point_cloud = rng.normal(size=(300, 3)) * [3, 1.5, 0.5] @ random_rotation.T
+
+cloud_pca = PCA().fit(point_cloud)
+arrow_lengths = 2.5 * np.sqrt(cloud_pca.explained_variance_)
+
+fig = plt.figure(figsize=(9, 7))
+ax = fig.add_subplot(projection="3d")
+ax.scatter(*point_cloud.T, s=8, alpha=0.25, color="gray")
+for direction, length, color, label in zip(cloud_pca.components_, arrow_lengths,
+                                           [okabe_ito["vermilion"], okabe_ito["blue"], okabe_ito["green"]],
+                                           ["PC 1", "PC 2", "PC 3"]):
+    ax.quiver(0, 0, 0, *(length * direction), color=color, linewidth=3, arrow_length_ratio=0.12, label=label)
+ax.set_xlabel("$X_1$", fontsize=12)
+ax.set_ylabel("$X_2$", fontsize=12)
+ax.set_zlabel("$X_3$", fontsize=12)
+ax.set_xlim(-4.5, 4.5); ax.set_ylim(-4.5, 4.5); ax.set_zlim(-4.5, 4.5)
+ax.set_box_aspect((1, 1, 1))
+ax.view_init(elev=25, azim=30)
+ax.legend(fontsize=12)
+ax.set_title("Principal Components are Perpendicular", fontsize=15)
+plt.tight_layout()
+
+```
+
+
+## Principal Component Algorithm
+
+::: {.incremental}
+- First PC explains as much variance of your dataset as possible
+- Second PC explains as much of remaining variance as possible
+- Third PC explains as much of remaining variance as possible
+- etc
+:::
+
+
+
+## PCA Algo
+
+- Make a "1D" dataset in two dimensions
+- Data lies along a straight line with some noise
+
+```{python}
+
+rng = np.random.default_rng(1)
+line_x = rng.uniform(-1, 1, 100)
+line_y = 0.6 * line_x + rng.normal(0, 0.1, 100)
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(line_x, line_y, color="black", s=20)
+ax.set_xlabel("x", fontsize=14)
+ax.set_ylabel("y", fontsize=14)
+ax.set_title("One Dimensional Dataset", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+## Simple PCA Example
+
+- PCA looks for vectors along which the "variance" is maximized
+
+```{python}
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(line_x, line_y, color="black", s=20)
+ax.axhline(0, color="red")
+ax.text(-0.5, 0.2, "Hypothetical PC", color="red", fontsize=12)
+ax.set_xlabel("x", fontsize=14)
+ax.set_ylabel("y", fontsize=14)
+ax.set_title("One Dimensional Dataset", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+## Simple PCA Example
+
+- Project data points onto component
+
+```{python}
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(line_x, line_y, color="black", s=20)
+ax.axhline(0, color="red")
+ax.scatter(line_x, np.zeros_like(line_x), color="red", s=20)
+ax.text(-0.5, 0.2, "Projected Data", color="red", fontsize=12)
+ax.set_xlabel("x", fontsize=14)
+ax.set_ylabel("y", fontsize=14)
+ax.set_title("One Dimensional Dataset", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## Find the Variance
+
+- Project data points onto component
+
+```{python}
+
+variance_along_x = np.var(line_x, ddof=1)
+variance_along_y = np.var(line_y, ddof=1)
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(line_x, line_y, color="black", s=20)
+ax.axhline(0, color="red")
+ax.scatter(line_x, np.zeros_like(line_x), color="red", s=20)
+ax.text(-0.5, 0.2, f"Projected Data, Variance = {variance_along_x:.2f}", color="red", fontsize=12)
+ax.set_xlabel("x", fontsize=14)
+ax.set_ylabel("y", fontsize=14)
+ax.set_title("One Dimensional Dataset", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## Looking at Multiple Projections
+
+- Any projection is possible
+
+```{python}
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(line_x, line_y, color="black", s=20)
+ax.axhline(0, color="red")
+ax.scatter(line_x, np.zeros_like(line_x), color="red", s=20)
+ax.axvline(0, color=okabe_ito["sky_blue"])
+ax.scatter(np.zeros_like(line_y), line_y, color=okabe_ito["sky_blue"], s=20)
+ax.text(0.1, 0.5, f"Var = {variance_along_y:.2f}", color=okabe_ito["sky_blue"], fontsize=12)
+ax.text(-0.5, 0.2, f"Var = {variance_along_x:.2f}", color="red", fontsize=12)
+ax.set_xlabel("x", fontsize=14)
+ax.set_ylabel("y", fontsize=14)
+ax.set_title("One Dimensional Dataset", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## First Principal Component
+
+- PC1 maximizes variance
+
+```{python}
+
+line_points = np.column_stack([line_x, line_y])
+first_component = PCA().fit(line_points).components_[0]
+position_along_pc1 = (line_points - line_points.mean(axis=0)) @ first_component
+points_on_pc1 = line_points.mean(axis=0) + np.outer(position_along_pc1, first_component)
+variance_along_pc1 = np.var(position_along_pc1, ddof=1)
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(line_x, line_y, color="black", s=20)
+ax.axhline(0, color="red")
+ax.scatter(line_x, np.zeros_like(line_x), color="red", s=20)
+ax.axvline(0, color=okabe_ito["sky_blue"])
+ax.scatter(np.zeros_like(line_y), line_y, color=okabe_ito["sky_blue"], s=20)
+ax.plot(points_on_pc1[:, 0], points_on_pc1[:, 1], color=okabe_ito["green"])
+ax.scatter(points_on_pc1[:, 0], points_on_pc1[:, 1], color=okabe_ito["green"], s=20)
+ax.text(0.1, 0.5, f"Var = {variance_along_y:.2f}", color=okabe_ito["sky_blue"], fontsize=12)
+ax.text(-0.5, 0.2, f"Var = {variance_along_x:.2f}", color="red", fontsize=12)
+ax.text(0.45, -0.35, f"Var = {variance_along_pc1:.2f}", color=okabe_ito["green"], fontsize=12)
+ax.set_xlabel("x", fontsize=14)
+ax.set_ylabel("y", fontsize=14)
+ax.set_title("One Dimensional Dataset", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## Continue Process to find PCs
+
+::: {.incremental}
+- PC1 is the direction with the most variance
+- PC2 is perpendicular to PC1, most variance
+- PC3 is perpendicular to PC1 and PC2, most variance
+- $P$ dimensional dataset has $P$ PCs
+:::
+
+
+## Linear Algebra (DATA 605) Explanation
+
+- PCs are _right singular vectors_ of Data Matrix
+- Variance explained proportional to squres of singular values
+$$
+\mathbf{X} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+$$
+
+
+## Alternative Explanation
+
+- Suppose we want to find best $d$ dimensional coordinates to describe our data set?
+- First $d$ principal components are the coordinates
+
+```{python}
+
+rng = np.random.default_rng(12)
+random_rotation = np.linalg.qr(rng.normal(size=(3, 3)))[0]
+points_3d = rng.normal(size=(90, 3)) * [2.0, 1.0, 0.7] @ random_rotation.T
+
+plane_pca = PCA().fit(points_3d)
+plane_scores = plane_pca.transform(points_3d)
+points_on_plane = plane_pca.mean_ + plane_scores[:, :2] @ plane_pca.components_[:2]
+
+fig = plt.figure(figsize=(9, 7.5))
+ax = fig.add_subplot(projection="3d")
+fig.subplots_adjust(left=0, right=0.95, bottom=0.02, top=0.94)
+grid = np.linspace(-4, 4, 2)
+grid_pc1, grid_pc2 = np.meshgrid(grid, grid)
+plane_surface = (plane_pca.mean_ + grid_pc1[..., None] * plane_pca.components_[0]
+                 + grid_pc2[..., None] * plane_pca.components_[1])
+ax.plot_surface(plane_surface[..., 0], plane_surface[..., 1], plane_surface[..., 2],
+                alpha=0.25, color=okabe_ito["green"])
+for point, projection in zip(points_3d, points_on_plane):
+    ax.plot(*zip(point, projection), color="gray", lw=0.7)
+ax.scatter(*points_3d.T, s=15, color=okabe_ito["blue"], label="observations")
+ax.scatter(*points_on_plane.T, s=15, color=okabe_ito["vermilion"], label="projections onto the plane")
+ax.set_xlabel("$X_1$"); ax.set_ylabel("$X_2$"); ax.set_zlabel("$X_3$")
+ax.set_xlim(-4, 4); ax.set_ylim(-4, 4); ax.set_zlim(-4, 4)
+ax.set_box_aspect((1, 1, 1), zoom=1.2)
+ax.view_init(elev=20, azim=-110)
+ax.legend(fontsize=11, loc="upper left")
+ax.set_title("Plane spanned by the first two PCs", fontsize=15)
+plt.show()
+
+```
+
+
+## Alternative Explanation
+
+
+- Suppose we want to find best $d$ dimensional coordinates to describe our data set?
+- First $d$ principal components are the coordinates
+
+
+```{python}
+
+fig, ax = plt.subplots(figsize=(7, 7))
+ax.scatter(plane_scores[:, 0], plane_scores[:, 1], s=20, color=okabe_ito["vermilion"])
+ax.axhline(0, color="gray", lw=0.5)
+ax.axvline(0, color="gray", lw=0.5)
+ax.set_xlim(-4, 4); ax.set_ylim(-4, 4)
+ax.set_aspect("equal")
+ax.set_xlabel("First principal component", fontsize=13)
+ax.set_ylabel("Second principal component", fontsize=13)
+ax.set_title("Coordinates of the projected points", fontsize=15)
+plt.tight_layout()
+
+```
+
+
+## US Arrests Dataset
+
+
+```{python}
+
+
+USArrests = pd.read_csv("USArrests.csv", index_col=0)
+
+USArrests.head(6)
+
+```
+
+## Interpreting PCs
+
+- Examine the Loadings for PC1
+
+```{python}
+
+rates_scaled = StandardScaler().fit_transform(USArrests)
+rates_pca = PCA().fit(rates_scaled)
+rate_scores = rates_pca.transform(rates_scaled)
+
+rate_loadings = pd.DataFrame(rates_pca.components_.T,
+                             index=USArrests.columns,
+                             columns=["PC1", "PC2", "PC3", "PC4"])
+rate_loadings["PC1"].round(3)
+
+```
+
+
+## Interpreting PCs
+
+- Examine the Loadings for PC2
+
+```{python}
+
+rate_loadings["PC2"].round(3)
+
+```
+
+
+## PC Representation
+
+- Most common use of PCA is to plot the data using the PCs
+
+```{python}
+
+plot_biplot(rate_scores, rate_loadings, USArrests.index, xlim=(-3.8, 3.8), ylim=(-3.2, 3.2))
+
+```
+
+
+## Normalization
+
+- What do you think will happen if we used raw values for urban population and arrest counts?
+
+
+
+
+## Normalization
+
+- All the variance is explained by PC 1
+- And it is just the raw population
+
+```{python}
+
+population = pd.read_csv("state_population_1975.csv", index_col="state")["population_1975"]
+
+arrest_counts = pd.DataFrame({
+    "Murder":   USArrests["Murder"]   * population / 100000,
+    "Assault":  USArrests["Assault"]  * population / 100000,
+    "UrbanPop": USArrests["UrbanPop"] * population / 100,
+    "Rape":     USArrests["Rape"]     * population / 100000,
+})
+
+raw_counts_pca = PCA().fit(arrest_counts)
+raw_count_scores = raw_counts_pca.transform(arrest_counts)
+raw_count_loadings = pd.DataFrame(raw_counts_pca.components_.T,
+                                  index=arrest_counts.columns,
+                                  columns=["PC1", "PC2", "PC3", "PC4"])
+
+print("Variance explained of PCs: ",raw_counts_pca.explained_variance_ratio_.round(3))
+raw_count_loadings["PC1"].round(3)
+
+```
+
+
+## Normalization
+
+```{python}
+
+plot_biplot(raw_count_scores, raw_count_loadings, arrest_counts.index,
+            xlim=(-4e6, 1.8e7), ylim=(-1.4e4, 1.4e4))
+
+```
+
+
+## Normalization
+
+- Standard Advice:
+  - Scale to mean 0 and unit variance for each feature
+
+```{python}
+
+counts_scaled = StandardScaler().fit_transform(arrest_counts)
+counts_pca = PCA().fit(counts_scaled)
+count_scores = counts_pca.transform(counts_scaled)
+count_loadings = pd.DataFrame(counts_pca.components_.T,
+                              index=arrest_counts.columns,
+                              columns=["PC1", "PC2", "PC3", "PC4"])
+
+plot_biplot(count_scores, count_loadings, arrest_counts.index, xlim=(-3, 9.5), ylim=(-2.8, 2.8))
+
+```
+
+
+
+## Normalization
+
+- PCs much more informative if we transform to per capita variables first
+
+```{python}
+
+plot_biplot(rate_scores, rate_loadings, USArrests.index, xlim=(-3.8, 3.8), ylim=(-3.2, 3.2))
+
+```
+
+## Other Normalization Considerations
+
+- If you think natural variance has information
+  - Quantities have same units
+  - There is a known measurement error
+  - Extensive versus intensive variables
+  - 'log' transform
+
+
+## Which PCs are meaningful?
+
+- Heuristic Method:
+  - Look at first few principal components
+  - If they show an interesting pattern, look at next few
+  - Repat until it stops
+
+
+
+## Which PCs are meaningful?
+
+- Elbow of scree plot
+- You can discard low variance PCs
+
+```{python}
+
+component_number = np.arange(1, len(ovarian_pca.explained_variance_ratio_) + 1)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.scatter(component_number, ovarian_pca.explained_variance_ratio_, color="black", s=15)
+ax.set_xlabel("Principal Component", fontsize=14)
+ax.set_ylabel("Variance Explained", fontsize=14)
+ax.set_title("Ovarian Cancer Variance Explained", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## Picking a Dimension
+
+- You can discard low variance PCs
+- Use "Elbow" of plot to pick cutoff
+
+```{python}
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.scatter(component_number, ovarian_pca.explained_variance_ratio_, color="black", s=15)
+ax.add_patch(plt.Rectangle((0, 0.025), 5, 0.225, color=okabe_ito["orange"], alpha=0.3))
+ax.set_xlabel("Principal Component", fontsize=14)
+ax.set_ylabel("Variance Explained", fontsize=14)
+ax.set_title("Ovarian Cancer Variance Explained", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## Random Matrix Theory
+
+- Permute columns randomly and compare explained variance
+- Marchenko-Pastur distribution: $\sqrt{p}-\sqrt{n}$ and $\sqrt{p}+\sqrt{n}$
+
+```{python}
+
+rng = np.random.default_rng(0)
+ovarian_singular_values = np.linalg.svd(ovarian_scaled, compute_uv=False)
+scrambled_singular_values = np.array([
+    np.linalg.svd(np.column_stack([rng.permutation(column) for column in ovarian_scaled.T]), compute_uv=False)
+    for _ in range(20)
+])
+
+scrambled_lower, scrambled_median, scrambled_upper = np.quantile(scrambled_singular_values, [0.025, 0.5, 0.975], axis=0)
+rank = np.arange(1, len(ovarian_singular_values) + 1)
+n_components_above_null = np.sum(ovarian_singular_values > scrambled_upper[0])
+n_samples, n_features = ovarian_scaled.shape
+marchenko_pastur_edges = [np.sqrt(n_features) - np.sqrt(n_samples), np.sqrt(n_features) + np.sqrt(n_samples)]
+
+# Leave off last singular value
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.plot(rank[:-1], ovarian_singular_values[:-1], "o", ms=4, color=oi_colors[0], label="Ovarian cancer data")
+ax.plot(rank[:-1], scrambled_median[:-1], "-", lw=2, color=oi_colors[4], label="Columns permuted independently")
+ax.fill_between(rank[:-1], scrambled_lower[:-1], scrambled_upper[:-1], color=oi_colors[4], alpha=0.25)
+for edge in marchenko_pastur_edges:
+    ax.axhline(edge, color=oi_colors[5], linestyle=":", lw=2,
+               label="Marchenko-Pastur edges" if edge == marchenko_pastur_edges[0] else None)
+ax.axvline(n_components_above_null + 0.5, color="gray", linestyle="--")
+ax.text(n_components_above_null + 3, 300,
+        f"{n_components_above_null} components exceed the\nlargest scrambled singular value", fontsize=12)
+ax.set_xlabel("Rank", fontsize=14)
+ax.set_ylabel("Singular value", fontsize=14)
+ax.set_title("Real versus Scrambled Spectrum", fontsize=16)
+ax.tick_params(labelsize=12)
+ax.legend(fontsize=12)
+plt.show()
+
+```
+
+
+## PCA in Supervised Learning
+
+- Can use PCA to generate features for supervised learning
+- Predict cancer from the 4000 biomarkers: logistic regression on the first $M$ PCs, choose $M$ by 10-fold CV
+
+```{python}
+#| echo: true
+#| eval: false
+
+pcr = Pipeline([("scaler", StandardScaler()),
+                ("pca", PCA()),
+                ("logreg", LogisticRegression(max_iter=5000))])
+
+components_tried = list(range(1, 21)) + [30, 50, 100]
+pcr_search = GridSearchCV(pcr,
+                          {"pca__n_components": components_tried},
+                          cv=StratifiedKFold(n_splits=10, shuffle=True, random_state=0),
+                          scoring="neg_log_loss")
+pcr_search.fit(ovarian_features, ovarian_status["status"] == "Cancer")
+
+```
+
+
+## CV Error by Number of Components
+
+![](pcr_ovarian_cv.png)
+
+
+## PCA in sklearn
+
+- `StandardScaler` centers and normalizes
+- `PCA` calculates components
+- `transform` calculates embeddings
+
+```{python}
+#| echo: true
+#| eval: false
+
+ovarian_scaled = StandardScaler().fit_transform(ovarian_features)
+ovarian_pca = PCA().fit(ovarian_scaled)
+ovarian_scores = ovarian_pca.transform(ovarian_scaled)
+
+```
+
+
+## Hard-Impute
+
+- Can use PCA to impute missing (at random) values
+
+::: {.incremental}
+- Step 1: Impute using mean
+- Step 2: Calculate 'M' dimensional embedding of imputed data using PCA
+- Step 3: Replace mean imputed values with their 'M' dimensional embedding value
+- Step 4: Evaluate error on observations wrt to embedding
+- Step 5: Repeat 2-4, stop when error flattens
+:::
+
+
+## Hard-Impute
+
+- Here we randomly delete 10\% of observations and impute
+
+```{python}
+
+def hard_impute(data, observed, rank, max_iter=100, tolerance=1e-7):
+    # observed is True where an entry is known; data is centered, so zero is the column mean
+    completed = np.where(observed, data, 0.0)
+    previous_error = np.inf
+    for _ in range(max_iter):
+        U, singular_values, Vt = np.linalg.svd(completed, full_matrices=False)
+        low_rank = (U[:, :rank] * singular_values[:rank]) @ Vt[:rank]
+        completed[~observed] = low_rank[~observed]
+        error = np.mean((data[observed] - low_rank[observed]) ** 2)
+        if previous_error - error < tolerance:
+            break
+        previous_error = error
+    return completed
+
+
+n_states, n_variables = rates_scaled.shape
+
+rng = np.random.default_rng(1)
+missing_states = rng.choice(n_states, 20, replace=False)
+missing_variables = rng.choice(n_variables, 20)
+arrests_observed = np.ones((n_states, n_variables), dtype=bool)
+arrests_observed[missing_states, missing_variables] = False
+
+arrests_imputed = hard_impute(rates_scaled, arrests_observed, rank=1)
+
+fig, ax = plt.subplots(figsize=(7, 7))
+variable_colors = [okabe_ito["vermilion"], okabe_ito["blue"], okabe_ito["green"], okabe_ito["orange"]]
+for j, (variable, color) in enumerate(zip(USArrests.columns, variable_colors)):
+    missing_in_column = (~arrests_observed) & (np.arange(n_variables)[None, :] == j)
+    ax.scatter(rates_scaled[missing_in_column], arrests_imputed[missing_in_column], s=50, color=color, label=variable)
+for state, variable in zip(*np.where(~arrests_observed)):
+    ax.text(rates_scaled[state, variable], arrests_imputed[state, variable] + 0.08,
+            USArrests.index[state], fontsize=8, ha="center")
+ax.plot([-2.5, 2.5], [-2.5, 2.5], color="gray", lw=0.8, ls="--")
+ax.set_xlim(-2.5, 2.5)
+ax.set_ylim(-2.5, 2.5)
+ax.set_xlabel("Original value", fontsize=13)
+ax.set_ylabel("Imputed value", fontsize=13)
+ax.set_title("USArrests: 20 entries imputed with M = 1", fontsize=14)
+ax.legend(fontsize=11)
+plt.show()
+
+```
+
+
+## Matrix Completion {.smaller}
+
+- Movielens dataset has 95\% empty reviews!
+
+```{python}
+#| output: asis
+
+ratings = pd.read_csv("ml-100k/u.data", sep="\t", names=["user", "item", "rating", "timestamp"])
+movie_titles = pd.read_csv("ml-100k/u.item", sep="|", encoding="latin-1", header=None,
+                           usecols=[0, 1], names=["item", "title"]).set_index("item")["title"]
+rating_matrix = ratings.pivot(index="user", columns="item", values="rating")
+
+most_rated_movies = ratings["item"].value_counts().index[:10]
+rng = np.random.default_rng(3)
+sampled_users = rng.choice(rating_matrix.index, 9, replace=False)
+
+excerpt = rating_matrix.loc[sampled_users, most_rated_movies].copy()
+excerpt.columns = [movie_titles[movie].split(" (")[0][:18] for movie in most_rated_movies]
+excerpt.index = [f"User {user}" for user in sampled_users]
+excerpt = excerpt.map(lambda rating: "•" if pd.isna(rating) else str(int(rating)))
+
+print(excerpt.to_markdown())
+print(f"\n{rating_matrix.shape[0]} users x {rating_matrix.shape[1]} movies, "
+      f"{rating_matrix.notna().mean().mean():.1%} of entries observed")
+
+```
+
+
+## Impute on Residuals
+
+- Fit a basic model:
+$$
+\hat{r}_{ui} = \mu + b_u + b_i
+$$
+- Calculate residual matrix:
+$$
+\delta_{ui} = r_{ui} - \hat{r}_{ui}
+$$
+- Do matrix completion to get residuals
+
+
+```{python}
+
+rating_values = rating_matrix.values
+is_rated = ~np.isnan(rating_values)
+rng = np.random.default_rng(0)
+is_test_rating = is_rated & (rng.random(rating_values.shape) < 0.2)
+is_train_rating = is_rated & ~is_test_rating
+
+# Baseline: global mean plus a user effect and an item effect
+global_mean = rating_values[is_train_rating].mean()
+residuals = np.where(is_train_rating, rating_values - global_mean, 0.0)
+user_effect = residuals.sum(axis=1) / np.maximum(is_train_rating.sum(axis=1), 1)
+residuals = np.where(is_train_rating, rating_values - global_mean - user_effect[:, None], 0.0)
+item_effect = residuals.sum(axis=0) / np.maximum(is_train_rating.sum(axis=0), 1)
+baseline_prediction = global_mean + user_effect[:, None] + item_effect[None, :]
+
+```
+
+
+```{python}
+
+def test_rmse(predictions):
+    return np.sqrt(np.mean((np.clip(predictions[is_test_rating], 1, 5) - rating_values[is_test_rating]) ** 2))
+
+movielens_rmse = {"Global mean": test_rmse(np.full(rating_values.shape, global_mean)),
+                  "User + item effects": test_rmse(baseline_prediction)}
+for rank in [5, 10, 20]:
+    completed_residuals = hard_impute(rating_values - baseline_prediction, is_train_rating, rank, max_iter=30)
+    movielens_rmse[f"Effects + rank {rank} completion"] = test_rmse(baseline_prediction + completed_residuals)
+
+```
+
+
+## Matrix Completion: MovieLens
+
+```{python}
+#| output: asis
+
+print(pd.Series(movielens_rmse, name="Test RMSE").round(3).to_frame().to_markdown())
+
+```
+
+- Netflix Prize: Cinematch 0.951, winning ensemble 0.857
+
+
+
+
+
+## Downsides of PCA
+
+- Sensitive to outliers
+  - If your measurement process is not robust....
+  - Using PCA could be very misleading!
+- There is an algorithm called robust PCA which is great
+these cases
+
+
+## Outliers Break PCA
+
+- Add three outliers to the Ovarian Cancer dataset
+
+```{python}
+
+
+rng = np.random.default_rng(3)
+corrupted_samples = rng.choice(ovarian_scaled.shape[0], 3, replace=False)
+is_corrupted = np.zeros(ovarian_scaled.shape, dtype=bool)
+is_corrupted[corrupted_samples] = rng.random((3, ovarian_scaled.shape[1])) < 0.1
+
+ovarian_corrupted = ovarian_scaled.copy()
+ovarian_corrupted[is_corrupted] = rng.choice([-1, 1], is_corrupted.sum()) * rng.uniform(15, 25, is_corrupted.sum())
+
+
+
+plot_by_cancer_status(PCA(2).fit_transform(ovarian_corrupted),
+                      "Three corrupted samples own the first two components")
+
+```
+
+
+## Robust PCA: Principal Component Pursuit
+
+- Split $X = L + S$ into a low rank part and a sparse part: minimize $\|L\|_* + \lambda \|S\|_1$ with $\lambda = 1/\sqrt{\max(n, p)}$
+- `skpcp` implements this, need to choose some hyperparameters including 'max_iter'
+```{python}
+#| echo: true
+
+from skpcp import PCP
+
+pcp_model = PCP(max_iter=300).fit(ovarian_corrupted)
+ovarian_low_rank = pcp_model.low_rank_
+
+```
+
+
+## Robust PCA: Principal Component Pursuit
+
+```{python}
+
+plot_by_cancer_status(PCA(2).fit_transform(ovarian_low_rank), "PCA of the low rank part")
+
+```
+
+
+
+
+
+
+## Nonlinear Methods Exist too!
+
+- PCA learns a linear representation
+  - Tons of other methods exist for nonlinear structures
+![Coifman et al](diffusion_maps.png)
+
+
+
+## Clustering
+
+- Clustering involves discovering labels that group nearby points into categories in an unlabelled dataset
+- Need a distance metric and a choice for number of clusters
+
+
+
+
+## Clustering Application: Weather Regimes
+
+- Cluster daily winter pressure maps over the North Atlantic: four recurring patterns explain European weather
+- Atlantic Ridge, Scandinavian Blocking, and the two phases of the North Atlantic Oscillation
+
+![](falkena2020_weather_regimes.png){height="420"}
+
+::: {style="font-size: 0.5em; color: gray;"}
+Falkena, de Wiljes, Weisheimer, and Shepherd (2020), *Q. J. R. Meteorol. Soc.* 146, 2801–2814, Figure 5. CC BY 4.0.
+:::
+
+
+## Clustering Application: Customer Segmentation
+
+- Group shoppers by income and spending to target each segment differently
+
+![](mall_customer_segments.png)
+
+
+## Clustering Application: Anomaly Detection
+
+- Learn what normal network traffic looks like, flag connections far from every cluster center
+- Real intrusion data: KDD Cup 1999
+
+![](kdd_kmeans_anomaly.png)
+
+
+## Clustering Application: Study Design
+
+- NEON, the national ecological observatory, clustered the US into ecoclimatic regions with k-means
+- One core field site represents each of the 20 domains
+
+![](neon_domains_sites.png){height="460"}
+
+
+
+## k-means method
+
+- Most common clustering method
+- Needs two things:
+  - Measure of distance between points
+  - Number of Clusters to find
+- Each cluster characterized by a center
+- Points clustered to closest center
+  
+
+## K-Means Clustering
+
+- Choose the number of clusters $K$ in advance
+- Find clusters $C_1, \dots, C_K$ with means $\mu_1, \dots, \mu_K$ that minimize the within-cluster sum of squares:
+$$
+W = \sum_{k=1}^K \sum_{i \in C_k} \|x_i - \mu_k\|^2
+$$
+- Finding the exact minimum is computationally intractable, so we search for a good local minimum
+
+
+## K-Means Algorithm
+
+::: {.incremental}
+1. Start with $K$ means, often $K$ randomly chosen data points
+2. Assign each point to its nearest mean
+3. Move each mean to the average of the points assigned to it
+4. Repeat 2 and 3 until nothing changes
+:::
+
+. . .
+
+- Steps 2 and 3 can only lower $W$, so the algorithm always converges
+- It converges to a _local_ minimum that depends on where it started
+
+
+
+```{python}
+
+
+def kmeans_steps(points, starting_means, max_iter=50):
+    means = starting_means.copy()
+    steps = [("Random starting means", means.copy(), None)]
+    for iteration in range(1, max_iter + 1):
+        squared_distances = ((points[:, None, :] - means[None, :, :]) ** 2).sum(axis=2)
+        assignment = squared_distances.argmin(axis=1)
+        steps.append((f"Iteration {iteration}: assign points to nearest mean", means.copy(), assignment))
+        new_means = np.array([points[assignment == k].mean(axis=0) for k in range(len(means))])
+        steps.append((f"Iteration {iteration}: move means to cluster averages", new_means.copy(), assignment))
+        if np.allclose(new_means, means):
+            break
+        means = new_means
+    return steps
+
+```
+
+
+```{=html}
+<style>
+.reveal .anim-controls { margin: 0; }
+.reveal .anim-controls .anim-state { display: none; }
+.reveal .anim-buttons { margin: 0; }
+.reveal .anim-slider { margin: 4px 0; }
+.reveal .animation img { margin: 0; }
+.reveal .anim-buttons { line-height: 1; }
+</style>
+```
+
+## K-Means in Action {.nostretch}
+
+- Ruspini 4 Cluster Example
+
+```{python}
+
+ruspini = pd.read_csv("ruspini.csv").values.astype(float)
+
+
+def within_cluster_ss(points, means, assignment):
+    return ((points - means[assignment]) ** 2).sum()
+
+
+def animate_kmeans(points, seed, n_clusters=4):
+    rng = np.random.default_rng(seed)
+    starting_means = points[rng.choice(len(points), n_clusters, replace=False)]
+    steps = kmeans_steps(points, starting_means)
+    final_title, final_means, final_assignment = steps[-1]
+
+    fig, ax = plt.subplots(figsize=(8, 4.2))
+
+    def draw_frame(frame):
+        ax.clear()
+        title, means, assignment = steps[frame]
+        point_colors = "gray" if assignment is None else [cluster_colors[a] for a in assignment]
+        ax.scatter(points[:, 0], points[:, 1], s=40, alpha=0.7, c=point_colors)
+        mean_paths = np.array([step[1] for step in steps[:frame + 1]])
+        for k in range(n_clusters):
+            ax.plot(mean_paths[:, k, 0], mean_paths[:, k, 1], "-", color="black", lw=1)
+            ax.scatter(*means[k], s=250, marker="X", color=cluster_colors[k],
+                       edgecolor="black", linewidth=1.5, zorder=3)
+        ax.set_title(title, fontsize=14)
+        ax.set_xlim(0, 125)
+        ax.set_ylim(0, 165)
+        if frame == len(steps) - 1:
+            ax.text(0.02, 0.97,
+                    f"W = {within_cluster_ss(points, final_means, final_assignment):,.0f}",
+                    transform=ax.transAxes, va="top", fontsize=13)
+
+    animation = FuncAnimation(fig, draw_frame, frames=len(steps), interval=1200)
+    plt.close(fig)
+    return HTML(animation.to_jshtml())
+
+
+animate_kmeans(ruspini, seed=0)
+
+```
+
+
+## Starting Points Matter {.nostretch}
+
+- Same data, different random starting points
+
+```{python}
+
+animate_kmeans(ruspini, seed=23)
+
+```
+
+
+## Starting Points Matter {.nostretch}
+
+- Same data, different random starting points
+
+```{python}
+
+animate_kmeans(ruspini, seed=17)
+
+```
+
+
+## Convergence
+
+- $W$ falls at every step, then stops at a local minimum
+
+```{python}
+
+fig, ax = plt.subplots(figsize=(10, 6))
+best_w = KMeans(n_clusters=4, n_init=50, random_state=0).fit(ruspini).inertia_
+
+for seed in range(30):
+    rng = np.random.default_rng(seed)
+    steps = kmeans_steps(ruspini, ruspini[rng.choice(len(ruspini), 4, replace=False)])
+    w_by_step = [within_cluster_ss(ruspini, means, assignment) for _, means, assignment in steps[1:]]
+    reached_best = np.isclose(w_by_step[-1], best_w)
+    ax.plot(np.arange(1, len(w_by_step) + 1) / 2, w_by_step, "o-", ms=3, alpha=0.7,
+            color=okabe_ito["blue"] if reached_best else okabe_ito["vermilion"])
+
+ax.plot([], [], color=okabe_ito["blue"], label="Reaches the best clustering")
+ax.plot([], [], color=okabe_ito["vermilion"], label="Stuck in a local minimum")
+ax.set_yscale("log")
+ax.set_xlabel("Iteration", fontsize=14)
+ax.set_ylabel("Within-cluster sum of squares", fontsize=14)
+ax.set_title("30 random starts on the Ruspini data", fontsize=16)
+ax.tick_params(labelsize=12)
+ax.legend(fontsize=12)
+plt.show()
+
+```
+
+
+## Multiple Starts
+
+- Run from many starting points, keep the one with the smallest $W$
+- `n_init` sets the number of starts; `inertia_` is $W$
+- Default `init="k-means++"` spreads the starting means apart, and since sklearn 1.4 it uses only one start
+
+```{python}
+#| output: asis
+
+def fraction_reaching_best(**kmeans_options):
+    reached = [np.isclose(KMeans(n_clusters=4, random_state=seed, **kmeans_options).fit(ruspini).inertia_, best_w)
+               for seed in range(300)]
+    return np.mean(reached)
+
+restart_comparison = pd.DataFrame({
+    "Initialization": ["Random, 1 start", "Random, 10 starts", "k-means++, 1 start (default)"],
+    "Finds the best clustering": [f"{fraction_reaching_best(init='random', n_init=1):.0%}",
+                                  f"{fraction_reaching_best(init='random', n_init=10):.0%}",
+                                  f"{fraction_reaching_best():.0%}"],
+})
+print(restart_comparison.to_markdown(index=False))
+
+```
+
+
+## K-Means in sklearn
+
+```{python}
+#| echo: true
+
+ruspini_kmeans = KMeans(n_clusters=4, n_init=10, random_state=1).fit(ruspini)
+
+ruspini_kmeans.labels_[:10], ruspini_kmeans.cluster_centers_.round(1), round(ruspini_kmeans.inertia_)
+
+```
+
+
+## How Many Clusters?
+
+- $W$ always decreases as $K$ grows, even on test data
+- Look for an "elbow" where the decrease slows down
+
+```{python}
+
+n_clusters_tried = np.arange(1, 11)
+w_by_n_clusters = [KMeans(n_clusters=n, n_init=10, random_state=1).fit(ruspini).inertia_ for n in n_clusters_tried]
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.plot(n_clusters_tried, w_by_n_clusters, "o-", color="black")
+ax.axvline(4, color=okabe_ito["vermilion"], linestyle="--")
+ax.set_xlabel("Number of clusters K", fontsize=14)
+ax.set_ylabel("Within-cluster sum of squares", fontsize=14)
+ax.set_title("Elbow plot for the Ruspini data", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## K-Means on Principal Components
+
+- Use the first 3 PCs of the ovarian cancer data, ask for 2 clusters
+
+```{python}
+#| echo: true
+
+ovarian_pc_scores = ovarian_scores[:, :3]
+ovarian_kmeans = KMeans(n_clusters=2, n_init=20, random_state=0).fit(ovarian_pc_scores)
+
+pd.crosstab(ovarian_kmeans.labels_, ovarian_status["status"],
+            rownames=["k-means cluster"], colnames=["Diagnosis"])
+
+```
+
+
+## K-Means on Principal Components
+
+```{python}
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 6), sharex=True, sharey=True)
+for status, color in [("Cancer", okabe_ito["vermilion"]), ("Normal", okabe_ito["blue"])]:
+    has_status = (ovarian_status["status"] == status).values
+    axes[0].scatter(ovarian_scores[has_status, 0], ovarian_scores[has_status, 1], s=20, color=color, label=status)
+for k in range(2):
+    in_cluster = ovarian_kmeans.labels_ == k
+    axes[1].scatter(ovarian_scores[in_cluster, 0], ovarian_scores[in_cluster, 1], s=20,
+                    color=cluster_colors[k], label=f"Cluster {k + 1}")
+axes[0].set_title("Diagnosis", fontsize=15)
+axes[1].set_title("K-means, K = 2, on the first 3 PCs", fontsize=15)
+for ax in axes:
+    ax.set_xlabel("PC 1", fontsize=14)
+    ax.legend(fontsize=12)
+axes[0].set_ylabel("PC 2", fontsize=14)
+plt.tight_layout()
+
+```
+
+
+## K-Means on Principal Components
+
+```{python}
+
+n_clusters_tried = np.arange(1, 11)
+ovarian_w = [KMeans(n_clusters=n, n_init=20, random_state=0).fit(ovarian_pc_scores).inertia_
+             for n in n_clusters_tried]
+
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.plot(n_clusters_tried, ovarian_w, "o-", color="black")
+ax.set_xlabel("Number of clusters K", fontsize=14)
+ax.set_ylabel("Within-cluster sum of squares", fontsize=14)
+ax.set_title("Elbow plot, ovarian cancer data, first 3 PCs", fontsize=16)
+ax.tick_params(labelsize=12)
+plt.show()
+
+```
+
+
+## K-Means Pitfalls
+
+- Local minima: use many starts or k-means++
+- Sensitive to scale: standardize first
+- Assumes round clusters of similar size
+- Sensitive to outliers
+- Always finds $K$ clusters, even in noise
+- Squared Euclidean distance only: use k-medoids for other distances
+
+
+
+
+
+## Thanks!
