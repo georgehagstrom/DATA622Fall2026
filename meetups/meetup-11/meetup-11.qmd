@@ -1078,8 +1078,8 @@ Falkena, de Wiljes, Weisheimer, and Shepherd (2020), *Q. J. R. Meteorol. Soc.* 1
 
 ## Clustering Application: Anomaly Detection
 
-- Learn what normal network traffic looks like, flag connections far from every cluster center
-- Real intrusion data: KDD Cup 1999
+- Learn what normal network traffic looks like
+- Look for points far from clusters: KDD Cup 1999
 
 ![](kdd_kmeans_anomaly.png)
 
@@ -1378,15 +1378,16 @@ plt.show()
 ```
 
 
-## K-Means Pitfalls
 
-- Local minima: use many starts or k-means++
-- Sensitive to scale: standardize first
-- Assumes round clusters of similar size
-- Sensitive to outliers
-- Always finds $K$ clusters, even in noise
-- Squared Euclidean distance only: use k-medoids for other distances
+## k-means tips and pitfalls
 
+- Algorithm not guaranteed to converge
+  - Can get wrong answes if `nstart` too low
+  - Can get stuck in local minima
+- Very sensitive to outliers and largest scale of data
+  - Always scale data first or used on scaled coordinates
+- Assumes Spherical, Balanced Clusters
+- Will find clusters when there are none
 
 
 
