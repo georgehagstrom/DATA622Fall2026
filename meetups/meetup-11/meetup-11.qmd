@@ -1261,31 +1261,6 @@ plt.show()
 ```
 
 
-## Multiple Starts
-
-- Run from many starting points, keep the one with the smallest $W$
-- `n_init` sets the number of starts; `inertia_` is $W$
-- Default `init="k-means++"` spreads the starting means apart, and since sklearn 1.4 it uses only one start
-
-```{python}
-#| output: asis
-
-def fraction_reaching_best(**kmeans_options):
-    reached = [np.isclose(KMeans(n_clusters=4, random_state=seed, **kmeans_options).fit(ruspini).inertia_, best_w)
-               for seed in range(300)]
-    return np.mean(reached)
-
-restart_comparison = pd.DataFrame({
-    "Initialization": ["Random, 1 start", "Random, 10 starts", "k-means++, 1 start (default)"],
-    "Finds the best clustering": [f"{fraction_reaching_best(init='random', n_init=1):.0%}",
-                                  f"{fraction_reaching_best(init='random', n_init=10):.0%}",
-                                  f"{fraction_reaching_best():.0%}"],
-})
-print(restart_comparison.to_markdown(index=False))
-
-```
-
-
 ## K-Means in sklearn
 
 ```{python}
