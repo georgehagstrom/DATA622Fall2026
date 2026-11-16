@@ -5613,7 +5613,7 @@
     "href": "meetups/meetup-12/meetup-12.html#tensors-3",
     "title": "DATA 622 Meetup 12: Neural Networks",
     "section": "tensors",
-    "text": "tensors\n\nloss.backward() updated the tensors w and b to include the gradient with respect to loss \\[\n\\frac{\\partial \\mathrm{loss}}{\\partial \\mathbf{w}},\\quad \\frac{\\partial \\mathrm{loss}}{\\partial \\mathbf{b}},\n\\]\n\n\nprint(w.grad)\nprint(b.grad)\n\ntensor([[ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034]])\ntensor([ 0.0581, -0.7615,  0.7034])"
+    "text": "tensors\n\nloss.backward() updated the tensors w and b to include the gradient with respect to loss \\[\n\\frac{\\partial \\mathrm{loss}}{\\partial \\mathbf{w}},\\quad \\frac{\\partial \\mathrm{loss}}{\\partial \\mathbf{b}},\n\\]\n\n\nprint(w.grad)\nprint(b.grad)\n\ntensor([[ 0.9049, -0.9604,  0.0555],\n        [ 0.9049, -0.9604,  0.0555],\n        [ 0.9049, -0.9604,  0.0555],\n        [ 0.9049, -0.9604,  0.0555],\n        [ 0.9049, -0.9604,  0.0555]])\ntensor([ 0.9049, -0.9604,  0.0555])"
   },
   {
     "objectID": "meetups/meetup-12/meetup-12.html#dataloaders",

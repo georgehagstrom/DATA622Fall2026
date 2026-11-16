@@ -803,7 +803,7 @@ y_{\mathrm{pred}} = F(\mathbf{x})
 <ul>
 <li>Primary data object in <code>pytorch</code> is called a <code>tensor</code></li>
 </ul>
-<div id="21bf239b" class="cell" data-execution_count="11">
+<div id="6b2aa0ce" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> torch</span>
 <span id="cb1-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a></a></span>
@@ -824,7 +824,7 @@ y_{\mathrm{pred}} = F(\mathbf{x})
 <li>They live on a particular device:</li>
 </ul></li>
 </ul>
-<div id="e255af0d" class="cell" data-execution_count="12">
+<div id="efcf03c4" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="bu">print</span>(<span class="ss">f"Device tensor is stored on: </span><span class="sc">{</span>x_data<span class="sc">.</span>device<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Device tensor is stored on: cpu</code></pre>
@@ -859,7 +859,7 @@ y_{\mathrm{pred}} = F(\mathbf{x})
 <li><code>*.backward()</code> computes gradient</li>
 </ul></li>
 </ul>
-<div id="04cac112" class="cell" data-execution_count="13">
+<div id="69a059e1" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>x <span class="op">=</span> torch.ones(<span class="dv">5</span>)  <span class="co"># input tensor</span></span>
 <span id="cb5-2"><a></a>y <span class="op">=</span> torch.tensor(<span class="dv">1</span>)  <span class="co"># true class (one of 0, 1, 2)</span></span>
 <span id="cb5-3"><a></a>w <span class="op">=</span> torch.randn(<span class="dv">5</span>, <span class="dv">3</span>, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
@@ -877,16 +877,16 @@ y_{\mathrm{pred}} = F(\mathbf{x})
 \frac{\partial \mathrm{loss}}{\partial \mathbf{w}},\quad \frac{\partial \mathrm{loss}}{\partial \mathbf{b}},
 \]</span></li>
 </ul>
-<div id="93107306" class="cell" data-execution_count="14">
+<div id="23b30513" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="bu">print</span>(w.grad)</span>
 <span id="cb6-2"><a></a><span class="bu">print</span>(b.grad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tensor([[ 0.0581, -0.7615,  0.7034],
-        [ 0.0581, -0.7615,  0.7034],
-        [ 0.0581, -0.7615,  0.7034],
-        [ 0.0581, -0.7615,  0.7034],
-        [ 0.0581, -0.7615,  0.7034]])
-tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
+<pre><code>tensor([[ 0.9049, -0.9604,  0.0555],
+        [ 0.9049, -0.9604,  0.0555],
+        [ 0.9049, -0.9604,  0.0555],
+        [ 0.9049, -0.9604,  0.0555],
+        [ 0.9049, -0.9604,  0.0555]])
+tensor([ 0.9049, -0.9604,  0.0555])</code></pre>
 </div>
 </div>
 </section>
@@ -903,7 +903,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <ul>
 <li>This code will download the fashion-mnist dataset and prep it for use:</li>
 </ul>
-<div id="ac6fc5c8" class="cell" data-execution_count="15">
+<div id="e47a3e55" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> torch</span>
 <span id="cb8-2"><a></a><span class="im">from</span> torch.utils.data <span class="im">import</span> Dataset</span>
 <span id="cb8-3"><a></a><span class="im">from</span> torchvision <span class="im">import</span> datasets</span>
@@ -931,7 +931,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <ul>
 <li>Neural Network architectures are constructed using the nn.Module class</li>
 </ul>
-<div id="a3167eca" class="cell" data-execution_count="16">
+<div id="6517bf95" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb9-2"><a></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
 <span id="cb9-3"><a></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
@@ -972,7 +972,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <ul>
 <li>Can call the constructor to make your network:</li>
 </ul>
-<div id="55513da7" class="cell" data-execution_count="17">
+<div id="e65f2022" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>Network([<span class="dv">784</span>,<span class="dv">100</span>,<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>Network(
@@ -989,7 +989,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <ul>
 <li>Define Training Function</li>
 </ul>
-<div id="098585e0" class="cell" data-execution_count="19">
+<div id="ec47eb34" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="kw">def</span> train(network, train_data, epochs, eta, test_data<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb12-2"><a></a> </span>
 <span id="cb12-3"><a></a>    optimizer <span class="op">=</span> optim.SGD(network.parameters(),momentum<span class="op">=</span><span class="fl">0.8</span>,nesterov<span class="op">=</span><span class="va">True</span>, lr<span class="op">=</span>eta,weight_decay<span class="op">=</span><span class="fl">1e-5</span>)</span>
@@ -1012,7 +1012,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <ul>
 <li>Loop over batches of training examples</li>
 </ul>
-<div id="fca98035" class="cell" data-execution_count="20">
+<div id="94930073" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>        <span class="co"># Now we loop through the batches to train</span></span>
 <span id="cb13-2"><a></a>        <span class="cf">for</span> data, target <span class="kw">in</span> train_data:</span>
 <span id="cb13-3"><a></a>            optimizer.zero_grad() <span class="co"># This clears the internally stored gradients</span></span>
@@ -1031,7 +1031,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 </section>
 <section id="loading-data" class="slide level2">
 <h2>Loading Data</h2>
-<div id="8e10254b" class="cell" data-execution_count="21">
+<div id="3273bd49" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> torchvision <span class="im">import</span> datasets, transforms</span>
 <span id="cb14-2"><a></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader</span>
 <span id="cb14-3"><a></a></span>
@@ -1049,7 +1049,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <img data-src="meetup-12_files/figure-revealjs/cell-22-output-1.png" class="r-stretch"></section>
 <section id="train" class="slide level2">
 <h2>Train</h2>
-<div id="3d6e92e3" class="cell" data-execution_count="22">
+<div id="903f7b01" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>train_loader <span class="op">=</span> DataLoader(train_dataset, batch_size<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-2"><a></a>test_loader <span class="op">=</span> DataLoader(test_dataset, batch_size<span class="op">=</span><span class="dv">10</span>, shuffle<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb15-3"><a></a></span>
@@ -1069,7 +1069,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <li>Imagine more dimensions</li>
 </ul>
 </div><div class="column" style="width:65%;">
-<div id="645404d7" class="cell" data-execution_count="25">
+<div id="e8c1dc0d" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1084,7 +1084,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <h2>Gradient Descent</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="30c2a3bc" class="cell" data-execution_count="26">
+<div id="3dfb90fd" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1114,7 +1114,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 <h2>What Learning Rate to Pick?</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="d8526c31" class="cell" data-execution_count="27">
+<div id="4764a570" class="cell" data-execution_count="27">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1143,7 +1143,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 </ul>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div id="6d38ef28" class="cell" data-execution_count="29">
+<div id="b46327d3" class="cell" data-execution_count="29">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
@@ -1153,7 +1153,7 @@ tensor([ 0.0581, -0.7615,  0.7034])</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div id="9c7cc1af" class="cell" data-execution_count="30">
+<div id="db42594e" class="cell" data-execution_count="30">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
