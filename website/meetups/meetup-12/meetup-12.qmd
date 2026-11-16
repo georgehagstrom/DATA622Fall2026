@@ -8,11 +8,20 @@ date: "11/16/2026"
 jupyter: data622
 ---
 
+## Thursday November 19th!
+
+
+![](Nov2026Seminar.png)
+
+
+[Registration Link](https://us02web.zoom.us/meeting/register/vNnES24tQkqUktS86HL1og)
+
+
 ## Week Summary
 
 - Contact me ASAP if you haven't scheduled MVP demo
-- Lab 7 due Sunday November 29th
-- You will want a Google Colab Pro student account!!!
+- Lab 7 due Sunday December 13th
+- Databricks Free, Colab Pro, Kaggle Notebooks
 - Vignette on neural networks in Colab
 
 ## Neural Network Gameplan
@@ -65,7 +74,9 @@ jupyter: data622
 :::
 
 ::: {.column width=50%}
-![](neuron1.png){width=60%}
+```{=html}
+<video data-autoplay muted playsinline src="neuron1.mp4" style="width:60%"></video>
+```
 :::
 
 ::::
@@ -84,7 +95,9 @@ jupyter: data622
 :::
 
 ::: {.column width=50%}
-![](neuron2.png){width=60%}
+```{=html}
+<video data-autoplay muted playsinline src="neuron2.mp4" style="width:60%"></video>
+```
 :::
 
 ::::
@@ -104,7 +117,9 @@ jupyter: data622
 :::
 
 ::: {.column width=50%}
-![](neuron3.png){width=60%}
+```{=html}
+<video data-autoplay muted playsinline src="neuron3.mp4" style="width:60%"></video>
+```
 :::
 
 ::::
@@ -114,26 +129,6 @@ jupyter: data622
 
 :::: {.columns}
 
-
-
-::: {.column width=50%}
-
-- They are connected to other neurons
-- They respond to stimulus from senses and other neurons
-- Cross a threshold before firing
-
-:::
-
-::: {.column width=50%}
-![](neuron4.png){width=60%}
-:::
-
-::::
-
-
-## Connected Neurons
-
-:::: {.columns}
 
 
 ::: {.column width=50%}
@@ -142,13 +137,37 @@ jupyter: data622
 - They respond to stimulus from senses and other neurons
 - Cross a threshold before firing
 
+:::
+
+::: {.column width=50%}
+```{=html}
+<video data-autoplay muted playsinline src="neuron4.mp4" style="width:60%"></video>
+```
+:::
+
+::::
+
+
+## Connected Neurons
+
+:::: {.columns}
+
+
+::: {.column width=50%}
+
+- They are connected to other neurons
+- They respond to stimulus from senses and other neurons
+- Cross a threshold before firing
+
 
 :::
 
 
 
 ::: {.column width=50%}
-![](neuron5.png){width=60%}
+```{=html}
+<video data-autoplay muted playsinline src="neuron5.mp4" style="width:60%"></video>
+```
 :::
 
 ::::
@@ -169,7 +188,9 @@ jupyter: data622
 :::
 
 ::: {.column width=50%}
-![](neuron6.png){width=60%}
+```{=html}
+<video data-autoplay muted playsinline src="neuron6.mp4" style="width:60%"></video>
+```
 :::
 
 ::::
@@ -179,7 +200,7 @@ jupyter: data622
 
 - Single Neuron converts several inputs into an output:
 
-![Nielson](single_neuron.png)
+![Nielson](single_neuron.svg){width=70%}
 
 ## Single Neuron
 
@@ -206,6 +227,11 @@ $$
   - $\phi=0$ or $\phi=-1$ (doesn't matter) when integrated input negative
 - Leads to step/sigmoid functions:
 
+
+## Sigmoid Function
+
+- Leads to step/sigmoid functions
+
 ```{python}
 import matplotlib.pyplot as plt
 import numpy as np
@@ -225,6 +251,49 @@ plt.tight_layout()
 plt.show()
 
 
+```
+
+
+## Single Neuron in 2D
+
+- Suppose we have a single neuron with two inputs.
+  - What does the graph of the output function look like?
+
+![](single_neuron_2d.svg){width=60%}
+
+
+## Single Neuron in 2D
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+w1, w2, c = 0.5, 1.0, -0.5
+x1, x2 = np.meshgrid(np.linspace(-3, 3, 300), np.linspace(-3, 3, 300))
+z = w1 * x1 + w2 * x2 + c
+
+plt.figure(figsize=(6, 4.5))
+plt.pcolormesh(x1, x2, z, cmap='magma', vmin=-4, vmax=4, shading='auto')
+plt.colorbar(label='$w_1x_1 + w_2x_2 + c$')
+plt.contour(x1, x2, z, levels=[0], colors='k', linestyles='--')
+plt.xlabel('$x_1$', fontsize=14)
+plt.ylabel('$x_2$', fontsize=14)
+plt.title('Integrated input', fontsize=16)
+plt.tight_layout()
+plt.show()
+```
+
+## Single Neuron in 2D
+
+```{python}
+plt.figure(figsize=(6, 4.5))
+plt.pcolormesh(x1, x2, np.tanh(z), cmap='magma', vmin=-1, vmax=1, shading='auto')
+plt.colorbar(label='$\\phi(w_1x_1 + w_2x_2 + c)$')
+plt.contour(x1, x2, z, levels=[0], colors='k', linestyles='--')
+plt.xlabel('$x_1$', fontsize=14)
+plt.ylabel('$x_2$', fontsize=14)
+plt.title('Output, $\\phi = \\tanh$', fontsize=16)
+plt.tight_layout()
+plt.show()
 ```
 
 ## Activation Functions to Know
@@ -347,6 +416,67 @@ plt.show()
 
 ![](feed_forward.png)
 
+
+## Adding Hidden Layers
+
+- Suppose that we have two inputs and some number of hidden layers.
+  - What could the output look like?
+
+![](hidden_layers_2d.svg){width=75%}
+
+
+## Adding Hidden Layers
+
+- 2 inputs, 1 hidden layer of 32 tanh neurons, random weights
+
+```{python}
+def random_network(n_layers, seed, width=32, gain=2.5):
+    rng = np.random.default_rng(seed)
+    g1, g2 = np.meshgrid(np.linspace(-2, 2, 300), np.linspace(-2, 2, 300))
+    h = np.stack([g1.ravel(), g2.ravel()], axis=1)
+    layers = [(rng.normal(0, gain / np.sqrt(n), (n, width)), rng.normal(0, 1, width)) for n in [2, width, width]]
+    v = rng.normal(0, 1 / np.sqrt(width), width)
+    for W, b in layers[:n_layers]:
+        h = np.tanh(h @ W + b)
+    return g1, g2, (h @ v).reshape(g1.shape)
+
+def plot_random_networks(n_layers):
+    fig, axes = plt.subplots(1, 3, figsize=(10, 3.6))
+    for seed, ax in enumerate(axes):
+        g1, g2, out = random_network(n_layers, seed)
+        ax.pcolormesh(g1, g2, out, cmap='magma', shading='auto')
+        ax.set_xlabel('$x_1$', fontsize=14)
+        ax.set_ylabel('$x_2$', fontsize=14)
+    plt.tight_layout()
+    plt.show()
+
+plot_random_networks(1)
+```
+
+## Adding Hidden Layers
+
+- 2 inputs, 2 hidden layers of 32 tanh neurons, random weights
+
+```{python}
+plot_random_networks(2)
+```
+
+## Adding Hidden Layers
+
+- 2 inputs, 3 hidden layers of 32 tanh neurons, random weights
+
+```{python}
+plot_random_networks(3)
+```
+
+
+## Universal Function Approximation
+
+- You can represent any function with a neural network
+
+![Nielson](UniversalFunction.png)
+
+
 ## Feedforward Examples
 
 - Image Recognition
@@ -354,6 +484,11 @@ plt.show()
   - Output neurons correspond to each category
   - Inner Layers Represent Features
   - Can use a softmax layer at the end to determine category
+
+
+## Neural Network Considerations
+
+- Where do you think neural networks sit on the flexibility/interpretability hierarchy?
 
 
 ## Neural Network Considerations
@@ -372,7 +507,17 @@ plt.show()
   - Audio
   - Text
 - Large amounts of data
+
+
+## What aren't NNs used for?
+
 - Tabular data problems decision trees often just as good but with less trouble
+  - Allegedly there are some "tabular foundation models"
+- Making decisons that require explanation
+- Inference
+- Compute cost or speed constrained applications
+- Extrapolation
+- Problems where uncertainty is required
 
 
 
@@ -385,7 +530,11 @@ plt.show()
   - $m$ total layers
   - $w_{jk,i}$ is weight of neuron $j$ in layer $i-1$ on neuron $k$ in layer $i$
   - $b_{ki}$ is bias of neuron $k$ in layer $i$
-  
+
+## How would you train one?
+
+![](network_notation.svg)
+
 ## How would you train one?
 
 - Overall neural network generates a function:
@@ -467,11 +616,11 @@ print(f"Device tensor is stored on: {x_data.device}")
 #| echo: true
 
 x = torch.ones(5)  # input tensor
-y = torch.zeros(3)  # expected output
+y = torch.tensor(1)  # true class (one of 0, 1, 2)
 w = torch.randn(5, 3, requires_grad=True)
 b = torch.randn(3, requires_grad=True)
-z = torch.matmul(x, w)+b
-loss = torch.nn.functional.binary_cross_entropy_with_logits(z, y)
+z = torch.matmul(x, w)+b  # one logit per class
+loss = torch.nn.functional.cross_entropy(z, y)
 
 loss.backward()
 
@@ -563,7 +712,7 @@ class Network(nn.Module):
     
     def forward(self, x):
         for layer in self.layers[:-1]:
-            x = nn.sigmoid(layer(x))   # sigmoid layers
+            x = torch.sigmoid(layer(x))   # sigmoid layers
             #x = F.relu(layer(x)) # You will try the relu layer in the last problem
         x = self.layers[-1](x) 
         return x
@@ -823,7 +972,6 @@ plt.show()
 ::::
 
 
-
 ## Gradient Descent
 
 
@@ -958,6 +1106,13 @@ plt.show()
 ::::
 
 
+## What Learning Rate to Pick?
+
+
+<video data-autoplay muted playsinline src="opt_LearningRate.mp4" style="width:100%"></video>
+
+
+
 ## Momentum
 
 - Advanced algos use momentum, gives "memory" of past gradient
@@ -1026,6 +1181,13 @@ plt.show()
 
 :::
 ::::
+
+
+
+## Momentum
+
+<video data-autoplay muted playsinline src="opt_Momentum.mp4" style="width:100%"></video>
+
 
 
 ## Hyperparameter Problems
@@ -1219,6 +1381,10 @@ plt.show()
 
 ```
 
+## Stochastic Gradient Descent
+
+<video data-autoplay muted playsinline src="opt_Noise.mp4" style="width:100%"></video>
+
 ## Annealing
 
 - Noise can deflect you from the minimum when you are close
@@ -1226,6 +1392,11 @@ plt.show()
   - Simulated annealing (from metallurgy)
 - Even more common to start with high learning rate and gradually decrease it
   - Whereas in some ML applications increasing batch-size could cause overfitting
+
+
+## Annealing
+
+<video data-autoplay muted playsinline src="opt_Annealing.mp4" style="width:100%"></video>
 
 
 ## Adaptive Methods
@@ -1247,6 +1418,11 @@ plt.show()
 $$
 \mathbf{x}_{i+1} = \mathbf{x}_i -\kappa \frac{\hat{\mathbf{v}}_i}{\sqrt{\hat{G}_{s,i}+\epsilon}}
 $$
+
+
+## ADAM
+
+<video data-autoplay muted playsinline src="opt_MomentumAdam.mp4" style="width:100%"></video>
 
 
 
