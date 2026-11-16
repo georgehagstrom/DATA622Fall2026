@@ -1,5 +1,523 @@
 [
   {
+    "objectID": "meetups/meetup-11/meetup-11.html#nyhackr",
+    "href": "meetups/meetup-11/meetup-11.html#nyhackr",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "nyhackr",
+    "text": "nyhackr\n\nTuesday, November 10th, 6:30-8:30+\nnyhackr.org for tickets"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#thursday-november-19th",
+    "href": "meetups/meetup-11/meetup-11.html#thursday-november-19th",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Thursday November 19th!",
+    "text": "Thursday November 19th!\n\n\nRegistration Link"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#tuesday-december-15th",
+    "href": "meetups/meetup-11/meetup-11.html#tuesday-december-15th",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Tuesday December 15th!",
+    "text": "Tuesday December 15th!\n\nJoe Sabelja: What is AI?\nCapstone Showcase!\n\nPresentations from Graduating Students!"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#week-summary",
+    "href": "meetups/meetup-11/meetup-11.html#week-summary",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Week Summary",
+    "text": "Week Summary\n\nSchedule MVP Demo with me next week\n\nThen we will discuss how to start moving your jobs to production\n\nHW 6 Due this Sunday\nReading: Chapter 12 of ISLP"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#unsupervised-learning",
+    "href": "meetups/meetup-11/meetup-11.html#unsupervised-learning",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Unsupervised Learning",
+    "text": "Unsupervised Learning\n\nIn some problems, the label \\(y\\) is not known to us"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#unsupervised-learning-tasks",
+    "href": "meetups/meetup-11/meetup-11.html#unsupervised-learning-tasks",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Unsupervised Learning Tasks",
+    "text": "Unsupervised Learning Tasks\n\nDimensionality Reduction\nBiomarkers from patients with ovarian cancer and controls\n4000+ variables of unclear meaning\n\n\n\n\n0\n1\n2\n3\n4\n5\n\n\n\n\n0.0639\n0.0332\n0.0185\n0.0086\n0.0356\n0.0379\n\n\n0.0254\n0.0511\n0.0563\n0.0217\n0.0274\n0.0149\n\n\n0.0255\n0.0361\n0.0542\n0.0097\n0.0275\n0.0523\n\n\n0.0128\n0.0297\n0.0793\n0.0507\n0.0397\n0.0577\n\n\n0.0198\n-0.0106\n-0.0075\n0.0190\n0.0688\n0.0618\n\n\n0.0390\n0.0394\n0.0013\n0.0262\n0.0441\n0.0440"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#low-d-representation",
+    "href": "meetups/meetup-11/meetup-11.html#low-d-representation",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Low-D Representation",
+    "text": "Low-D Representation\n\nPrincipal Component Analysis (PCA) separates groups neatly!"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering",
+    "href": "meetups/meetup-11/meetup-11.html#clustering",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering",
+    "text": "Clustering\n\nHave a bunch of datapoints that may correspond to categories, but don’t know the labels:"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering-1",
+    "href": "meetups/meetup-11/meetup-11.html#clustering-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering",
+    "text": "Clustering\n\nk-means can find three good clusters!"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering-2",
+    "href": "meetups/meetup-11/meetup-11.html#clustering-2",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering",
+    "text": "Clustering\n\nHowever there is ambiguity"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#unsupervised-pitfalls",
+    "href": "meetups/meetup-11/meetup-11.html#unsupervised-pitfalls",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Unsupervised Pitfalls",
+    "text": "Unsupervised Pitfalls\n\nNo ground truth\n\nHow many dimensions are right?\nHow many clusters?\n\nNo accuracy, training sets, testing sets, cross-validation, etc"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#consequences",
+    "href": "meetups/meetup-11/meetup-11.html#consequences",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Consequences",
+    "text": "Consequences\n\nChoices are modeling decisions\n\nYou have to choose based on usefulness and your knowledge\nLevel of trust is lower\n\nPromulgamation of algorithms"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#principal-component-analysis-pca",
+    "href": "meetups/meetup-11/meetup-11.html#principal-component-analysis-pca",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Principal Component Analysis (PCA)",
+    "text": "Principal Component Analysis (PCA)\n\nGoal of PCA is to find a small set of features which explain most of the variability in the dataset\nNew directions called Principal Components"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#principal-components",
+    "href": "meetups/meetup-11/meetup-11.html#principal-components",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Principal Components",
+    "text": "Principal Components\n\nEach PC is a linear combination of original features: \\[\nZ_1 = \\phi_{11}X_1 + \\phi_{21}X_2 + \\cdots + \\phi_{p1}X_p\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#principal-components-1",
+    "href": "meetups/meetup-11/meetup-11.html#principal-components-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Principal Components",
+    "text": "Principal Components\n\nEach PC is a linear combination of original features:\n\n\\[\n\\begin{aligned}\nZ_1 &= \\phi_{11}X_1 + \\phi_{21}X_2 + \\cdots + \\phi_{p1}X_p \\\\\nZ_2 &= \\phi_{12}X_1 + \\phi_{22}X_2 + \\cdots + \\phi_{p2}X_p \\\\\n&\\;\\;\\vdots \\\\\nZ_p &= \\phi_{1p}X_1 + \\phi_{2p}X_2 + \\cdots + \\phi_{pp}X_p\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#loadings",
+    "href": "meetups/meetup-11/meetup-11.html#loadings",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Loadings",
+    "text": "Loadings\n\n\\(\\phi\\) terms are called loadings\n\\(\\phi\\) are normalized: \\[\n\\phi_{1j}^2+\\phi_{2j}^2+\\cdots+\\phi_{pj}^2 = \\sum_{i=1}^p \\phi_{ij}^2 = \\|\\boldsymbol{\\phi}_j\\|^2 = 1\n\\]\nCan write it as a loading matrix \\(\\Phi\\)\n\\(\\mathbf{Z} = \\mathbf{X}\\mathbf{\\Phi}\\)"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#linearly-independent-pcs",
+    "href": "meetups/meetup-11/meetup-11.html#linearly-independent-pcs",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Linearly Independent PCs",
+    "text": "Linearly Independent PCs\n\nPrincipal Components are linearly independent"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#principal-component-algorithm",
+    "href": "meetups/meetup-11/meetup-11.html#principal-component-algorithm",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Principal Component Algorithm",
+    "text": "Principal Component Algorithm\n\n\nFirst PC explains as much variance of your dataset as possible\nSecond PC explains as much of remaining variance as possible\nThird PC explains as much of remaining variance as possible\netc"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#pca-algo",
+    "href": "meetups/meetup-11/meetup-11.html#pca-algo",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "PCA Algo",
+    "text": "PCA Algo\n\nMake a “1D” dataset in two dimensions\nData lies along a straight line with some noise"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#simple-pca-example",
+    "href": "meetups/meetup-11/meetup-11.html#simple-pca-example",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Simple PCA Example",
+    "text": "Simple PCA Example\n\nPCA looks for vectors along which the “variance” is maximized"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#simple-pca-example-1",
+    "href": "meetups/meetup-11/meetup-11.html#simple-pca-example-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Simple PCA Example",
+    "text": "Simple PCA Example\n\nProject data points onto component"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#find-the-variance",
+    "href": "meetups/meetup-11/meetup-11.html#find-the-variance",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Find the Variance",
+    "text": "Find the Variance\n\nProject data points onto component"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#looking-at-multiple-projections",
+    "href": "meetups/meetup-11/meetup-11.html#looking-at-multiple-projections",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Looking at Multiple Projections",
+    "text": "Looking at Multiple Projections\n\nAny projection is possible"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#first-principal-component",
+    "href": "meetups/meetup-11/meetup-11.html#first-principal-component",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "First Principal Component",
+    "text": "First Principal Component\n\nPC1 maximizes variance"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#continue-process-to-find-pcs",
+    "href": "meetups/meetup-11/meetup-11.html#continue-process-to-find-pcs",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Continue Process to find PCs",
+    "text": "Continue Process to find PCs\n\n\nPC1 is the direction with the most variance\nPC2 is perpendicular to PC1, most variance\nPC3 is perpendicular to PC1 and PC2, most variance\n\\(P\\) dimensional dataset has \\(P\\) PCs"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#linear-algebra-data-605-explanation",
+    "href": "meetups/meetup-11/meetup-11.html#linear-algebra-data-605-explanation",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Linear Algebra (DATA 605) Explanation",
+    "text": "Linear Algebra (DATA 605) Explanation\n\nPCs are right singular vectors of Data Matrix\nVariance explained proportional to squres of singular values \\[\n\\mathbf{X} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#alternative-explanation",
+    "href": "meetups/meetup-11/meetup-11.html#alternative-explanation",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Alternative Explanation",
+    "text": "Alternative Explanation\n\nSuppose we want to find best \\(d\\) dimensional coordinates to describe our data set?\nFirst \\(d\\) principal components are the coordinates"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#alternative-explanation-1",
+    "href": "meetups/meetup-11/meetup-11.html#alternative-explanation-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Alternative Explanation",
+    "text": "Alternative Explanation\n\nSuppose we want to find best \\(d\\) dimensional coordinates to describe our data set?\nFirst \\(d\\) principal components are the coordinates"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#us-arrests-dataset",
+    "href": "meetups/meetup-11/meetup-11.html#us-arrests-dataset",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "US Arrests Dataset",
+    "text": "US Arrests Dataset\n\n\n\n\n\n\n\n\n\nMurder\nAssault\nUrbanPop\nRape\n\n\n\n\nAlabama\n13.2\n236\n58\n21.2\n\n\nAlaska\n10.0\n263\n48\n44.5\n\n\nArizona\n8.1\n294\n80\n31.0\n\n\nArkansas\n8.8\n190\n50\n19.5\n\n\nCalifornia\n9.0\n276\n91\n40.6\n\n\nColorado\n7.9\n204\n78\n38.7"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#interpreting-pcs",
+    "href": "meetups/meetup-11/meetup-11.html#interpreting-pcs",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Interpreting PCs",
+    "text": "Interpreting PCs\n\nExamine the Loadings for PC1\n\n\n\nMurder      0.536\nAssault     0.583\nUrbanPop    0.278\nRape        0.543\nName: PC1, dtype: float64"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#interpreting-pcs-1",
+    "href": "meetups/meetup-11/meetup-11.html#interpreting-pcs-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Interpreting PCs",
+    "text": "Interpreting PCs\n\nExamine the Loadings for PC2\n\n\n\nMurder     -0.418\nAssault    -0.188\nUrbanPop    0.873\nRape        0.167\nName: PC2, dtype: float64"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#pc-representation",
+    "href": "meetups/meetup-11/meetup-11.html#pc-representation",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "PC Representation",
+    "text": "PC Representation\n\nMost common use of PCA is to plot the data using the PCs"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#normalization",
+    "href": "meetups/meetup-11/meetup-11.html#normalization",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Normalization",
+    "text": "Normalization\n\nWhat do you think will happen if we used raw values for urban population and arrest counts?"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#normalization-1",
+    "href": "meetups/meetup-11/meetup-11.html#normalization-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Normalization",
+    "text": "Normalization\n\nAll the variance is explained by PC 1\nAnd it is just the raw population\n\n\n\nVariance explained of PCs:  [1. 0. 0. 0.]\n\n\nMurder      0.000\nAssault     0.003\nUrbanPop    1.000\nRape        0.000\nName: PC1, dtype: float64"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#normalization-2",
+    "href": "meetups/meetup-11/meetup-11.html#normalization-2",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Normalization",
+    "text": "Normalization"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#normalization-3",
+    "href": "meetups/meetup-11/meetup-11.html#normalization-3",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Normalization",
+    "text": "Normalization\n\nStandard Advice:\n\nScale to mean 0 and unit variance for each feature"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#normalization-4",
+    "href": "meetups/meetup-11/meetup-11.html#normalization-4",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Normalization",
+    "text": "Normalization\n\nPCs much more informative if we transform to per capita variables first"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#other-normalization-considerations",
+    "href": "meetups/meetup-11/meetup-11.html#other-normalization-considerations",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Other Normalization Considerations",
+    "text": "Other Normalization Considerations\n\nIf you think natural variance has information\n\nQuantities have same units\nThere is a known measurement error\nExtensive versus intensive variables\n‘log’ transform"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#which-pcs-are-meaningful",
+    "href": "meetups/meetup-11/meetup-11.html#which-pcs-are-meaningful",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Which PCs are meaningful?",
+    "text": "Which PCs are meaningful?\n\nHeuristic Method:\n\nLook at first few principal components\nIf they show an interesting pattern, look at next few\nRepat until it stops"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#which-pcs-are-meaningful-1",
+    "href": "meetups/meetup-11/meetup-11.html#which-pcs-are-meaningful-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Which PCs are meaningful?",
+    "text": "Which PCs are meaningful?\n\nElbow of scree plot\nYou can discard low variance PCs"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#picking-a-dimension",
+    "href": "meetups/meetup-11/meetup-11.html#picking-a-dimension",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Picking a Dimension",
+    "text": "Picking a Dimension\n\nYou can discard low variance PCs\nUse “Elbow” of plot to pick cutoff"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#random-matrix-theory",
+    "href": "meetups/meetup-11/meetup-11.html#random-matrix-theory",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Random Matrix Theory",
+    "text": "Random Matrix Theory\n\nPermute columns randomly and compare explained variance\nMarchenko-Pastur distribution: \\(\\sqrt{p}-\\sqrt{n}\\) and \\(\\sqrt{p}+\\sqrt{n}\\)"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#pca-in-supervised-learning",
+    "href": "meetups/meetup-11/meetup-11.html#pca-in-supervised-learning",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "PCA in Supervised Learning",
+    "text": "PCA in Supervised Learning\n\nCan use PCA to generate features for supervised learning\nPredict cancer from the 4000 biomarkers: logistic regression on the first \\(M\\) PCs, choose \\(M\\) by 10-fold CV\n\n\npcr = Pipeline([(\"scaler\", StandardScaler()),\n                (\"pca\", PCA()),\n                (\"logreg\", LogisticRegression(max_iter=5000))])\n\ncomponents_tried = list(range(1, 21)) + [30, 50, 100]\npcr_search = GridSearchCV(pcr,\n                          {\"pca__n_components\": components_tried},\n                          cv=StratifiedKFold(n_splits=10, shuffle=True, random_state=0),\n                          scoring=\"neg_log_loss\")\npcr_search.fit(ovarian_features, ovarian_status[\"status\"] == \"Cancer\")"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#cv-error-by-number-of-components",
+    "href": "meetups/meetup-11/meetup-11.html#cv-error-by-number-of-components",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "CV Error by Number of Components",
+    "text": "CV Error by Number of Components"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#pca-in-sklearn",
+    "href": "meetups/meetup-11/meetup-11.html#pca-in-sklearn",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "PCA in sklearn",
+    "text": "PCA in sklearn\n\nStandardScaler centers and normalizes\nPCA calculates components\ntransform calculates embeddings\n\n\novarian_scaled = StandardScaler().fit_transform(ovarian_features)\novarian_pca = PCA().fit(ovarian_scaled)\novarian_scores = ovarian_pca.transform(ovarian_scaled)"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#hard-impute",
+    "href": "meetups/meetup-11/meetup-11.html#hard-impute",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Hard-Impute",
+    "text": "Hard-Impute\n\nCan use PCA to impute missing (at random) values\n\n\n\nStep 1: Impute using mean\nStep 2: Calculate ‘M’ dimensional embedding of imputed data using PCA\nStep 3: Replace mean imputed values with their ‘M’ dimensional embedding value\nStep 4: Evaluate error on observations wrt to embedding\nStep 5: Repeat 2-4, stop when error flattens"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#hard-impute-1",
+    "href": "meetups/meetup-11/meetup-11.html#hard-impute-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Hard-Impute",
+    "text": "Hard-Impute\n\nHere we randomly delete 10% of observations and impute"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#matrix-completion",
+    "href": "meetups/meetup-11/meetup-11.html#matrix-completion",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Matrix Completion",
+    "text": "Matrix Completion\n\nMovielens dataset has 95% empty reviews!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStar Wars\nContact\nFargo\nReturn of the Jedi\nLiar Liar\nEnglish Patient, T\nScream\nToy Story\nAir Force One\nIndependence Day\n\n\n\n\nUser 171\n•\n4\n•\n•\n•\n3\n2\n•\n•\n•\n\n\nUser 754\n•\n•\n•\n•\n•\n3\n•\n•\n•\n•\n\n\nUser 38\n•\n•\n•\n•\n5\n•\n5\n5\n•\n•\n\n\nUser 81\n•\n•\n3\n•\n•\n•\n3\n4\n•\n4\n\n\nUser 549\n5\n5\n4\n4\n•\n•\n4\n5\n•\n4\n\n\nUser 818\n•\n4\n•\n•\n•\n4\n5\n•\n2\n•\n\n\nUser 223\n•\n1\n•\n•\n4\n1\n3\n4\n3\n3\n\n\nUser 169\n5\n5\n•\n5\n•\n•\n•\n•\n5\n•\n\n\nUser 759\n4\n4\n•\n5\n5\n•\n•\n5\n5\n5\n\n\n\n943 users x 1682 movies, 6.3% of entries observed"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#impute-on-residuals",
+    "href": "meetups/meetup-11/meetup-11.html#impute-on-residuals",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Impute on Residuals",
+    "text": "Impute on Residuals\n\nFit a basic model: \\[\n\\hat{r}_{ui} = \\mu + b_u + b_i\n\\]\nCalculate residual matrix: \\[\n\\delta_{ui} = r_{ui} - \\hat{r}_{ui}\n\\]\nDo matrix completion to get residuals"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#matrix-completion-movielens",
+    "href": "meetups/meetup-11/meetup-11.html#matrix-completion-movielens",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Matrix Completion: MovieLens",
+    "text": "Matrix Completion: MovieLens\n\n\n\n\nTest RMSE\n\n\n\n\nGlobal mean\n1.128\n\n\nUser + item effects\n0.964\n\n\nEffects + rank 5 completion\n0.943\n\n\nEffects + rank 10 completion\n0.972\n\n\nEffects + rank 20 completion\n1.03\n\n\n\n\nNetflix Prize: Cinematch 0.951, winning ensemble 0.857"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#downsides-of-pca",
+    "href": "meetups/meetup-11/meetup-11.html#downsides-of-pca",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Downsides of PCA",
+    "text": "Downsides of PCA\n\nSensitive to outliers\n\nIf your measurement process is not robust….\nUsing PCA could be very misleading!\n\nThere is an algorithm called robust PCA which is great these cases"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#outliers-break-pca",
+    "href": "meetups/meetup-11/meetup-11.html#outliers-break-pca",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Outliers Break PCA",
+    "text": "Outliers Break PCA\n\nAdd three outliers to the Ovarian Cancer dataset"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#robust-pca-principal-component-pursuit",
+    "href": "meetups/meetup-11/meetup-11.html#robust-pca-principal-component-pursuit",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Robust PCA: Principal Component Pursuit",
+    "text": "Robust PCA: Principal Component Pursuit\n\nSplit \\(X = L + S\\) into a low rank part and a sparse part: minimize \\(\\|L\\|_* + \\lambda \\|S\\|_1\\) with \\(\\lambda = 1/\\sqrt{\\max(n, p)}\\)\nskpcp implements this, need to choose some hyperparameters including ‘max_iter’\n\n\nfrom skpcp import PCP\n\npcp_model = PCP(max_iter=300).fit(ovarian_corrupted)\novarian_low_rank = pcp_model.low_rank_"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#robust-pca-principal-component-pursuit-1",
+    "href": "meetups/meetup-11/meetup-11.html#robust-pca-principal-component-pursuit-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Robust PCA: Principal Component Pursuit",
+    "text": "Robust PCA: Principal Component Pursuit"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#nonlinear-methods-exist-too",
+    "href": "meetups/meetup-11/meetup-11.html#nonlinear-methods-exist-too",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Nonlinear Methods Exist too!",
+    "text": "Nonlinear Methods Exist too!\n\nPCA learns a linear representation\n\nTons of other methods exist for nonlinear structures"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering-3",
+    "href": "meetups/meetup-11/meetup-11.html#clustering-3",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering",
+    "text": "Clustering\n\nClustering involves discovering labels that group nearby points into categories in an unlabelled dataset\nNeed a distance metric and a choice for number of clusters"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering-application-weather-regimes",
+    "href": "meetups/meetup-11/meetup-11.html#clustering-application-weather-regimes",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering Application: Weather Regimes",
+    "text": "Clustering Application: Weather Regimes\n\nCluster daily winter pressure maps over the North Atlantic: four recurring patterns explain European weather\nAtlantic Ridge, Scandinavian Blocking, and the two phases of the North Atlantic Oscillation\n\n\n\nFalkena, de Wiljes, Weisheimer, and Shepherd (2020), Q. J. R. Meteorol. Soc. 146, 2801–2814, Figure 5. CC BY 4.0."
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering-application-customer-segmentation",
+    "href": "meetups/meetup-11/meetup-11.html#clustering-application-customer-segmentation",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering Application: Customer Segmentation",
+    "text": "Clustering Application: Customer Segmentation\n\nGroup shoppers by income and spending to target each segment differently"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering-application-anomaly-detection",
+    "href": "meetups/meetup-11/meetup-11.html#clustering-application-anomaly-detection",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering Application: Anomaly Detection",
+    "text": "Clustering Application: Anomaly Detection\n\nLearn what normal network traffic looks like\nLook for points far from clusters: KDD Cup 1999"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#clustering-application-study-design",
+    "href": "meetups/meetup-11/meetup-11.html#clustering-application-study-design",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Clustering Application: Study Design",
+    "text": "Clustering Application: Study Design\n\nNEON, the national ecological observatory, clustered the US into ecoclimatic regions with k-means\nOne core field site represents each of the 20 domains"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-method",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-method",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "k-means method",
+    "text": "k-means method\n\nMost common clustering method\nNeeds two things:\n\nMeasure of distance between points\nNumber of Clusters to find\n\nEach cluster characterized by a center\nPoints clustered to closest center"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-clustering",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-clustering",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "K-Means Clustering",
+    "text": "K-Means Clustering\n\nChoose the number of clusters \\(K\\) in advance\nFind clusters \\(C_1, \\dots, C_K\\) with means \\(\\mu_1, \\dots, \\mu_K\\) that minimize the within-cluster sum of squares: \\[\nW = \\sum_{k=1}^K \\sum_{i \\in C_k} \\|x_i - \\mu_k\\|^2\n\\]\nFinding the exact minimum is computationally intractable, so we search for a good local minimum"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-algorithm",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-algorithm",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "K-Means Algorithm",
+    "text": "K-Means Algorithm\n\n\nStart with \\(K\\) means, often \\(K\\) randomly chosen data points\nAssign each point to its nearest mean\nMove each mean to the average of the points assigned to it\nRepeat 2 and 3 until nothing changes\n\n\n\n\nSteps 2 and 3 can only lower \\(W\\), so the algorithm always converges\nIt converges to a local minimum that depends on where it started"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-in-action",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-in-action",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "K-Means in Action",
+    "text": "K-Means in Action\n\nRuspini 4 Cluster Example\n\n\n\n\n\n\n\n\n\n\n  \n  \n    \n    \n      \n          \n      \n        \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n    \n    \n      \n      Once\n      \n      Loop\n      \n      Reflect"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#starting-points-matter",
+    "href": "meetups/meetup-11/meetup-11.html#starting-points-matter",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Starting Points Matter",
+    "text": "Starting Points Matter\n\nSame data, different random starting points\n\n\n\n\n\n\n\n\n\n\n  \n  \n    \n    \n      \n          \n      \n        \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n    \n    \n      \n      Once\n      \n      Loop\n      \n      Reflect"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#starting-points-matter-1",
+    "href": "meetups/meetup-11/meetup-11.html#starting-points-matter-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Starting Points Matter",
+    "text": "Starting Points Matter\n\nSame data, different random starting points\n\n\n\n\n\n\n\n\n\n\n  \n  \n    \n    \n      \n          \n      \n        \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n      \n          \n    \n    \n      \n      Once\n      \n      Loop\n      \n      Reflect"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#convergence",
+    "href": "meetups/meetup-11/meetup-11.html#convergence",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Convergence",
+    "text": "Convergence\n\n\\(W\\) falls at every step, then stops at a local minimum"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-in-sklearn",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-in-sklearn",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "K-Means in sklearn",
+    "text": "K-Means in sklearn\n\nruspini_kmeans = KMeans(n_clusters=4, n_init=10, random_state=1).fit(ruspini)\n\nruspini_kmeans.labels_[:10], ruspini_kmeans.cluster_centers_.round(1), round(ruspini_kmeans.inertia_)\n\n(array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], dtype=int32),\n array([[ 43.9, 146. ],\n        [ 20.2,  65. ],\n        [ 98.2, 114.9],\n        [ 68.9,  19.4]]),\n 12881)"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#how-many-clusters",
+    "href": "meetups/meetup-11/meetup-11.html#how-many-clusters",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "How Many Clusters?",
+    "text": "How Many Clusters?\n\n\\(W\\) always decreases as \\(K\\) grows, even on test data\nLook for an “elbow” where the decrease slows down"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-on-principal-components",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-on-principal-components",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "K-Means on Principal Components",
+    "text": "K-Means on Principal Components\n\nUse the first 3 PCs of the ovarian cancer data, ask for 2 clusters\n\n\novarian_pc_scores = ovarian_scores[:, :3]\novarian_kmeans = KMeans(n_clusters=2, n_init=20, random_state=0).fit(ovarian_pc_scores)\n\npd.crosstab(ovarian_kmeans.labels_, ovarian_status[\"status\"],\n            rownames=[\"k-means cluster\"], colnames=[\"Diagnosis\"])\n\n\n\n\n\n\n\nDiagnosis\nCancer\nNormal\n\n\nk-means cluster\n\n\n\n\n\n\n0\n65\n86\n\n\n1\n56\n9"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-on-principal-components-1",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-on-principal-components-1",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "K-Means on Principal Components",
+    "text": "K-Means on Principal Components"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-on-principal-components-2",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-on-principal-components-2",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "K-Means on Principal Components",
+    "text": "K-Means on Principal Components"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#k-means-tips-and-pitfalls",
+    "href": "meetups/meetup-11/meetup-11.html#k-means-tips-and-pitfalls",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "k-means tips and pitfalls",
+    "text": "k-means tips and pitfalls\n\nAlgorithm not guaranteed to converge\n\nCan get wrong answes if nstart too low\nCan get stuck in local minima\n\nVery sensitive to outliers and largest scale of data\n\nAlways scale data first or used on scaled coordinates\n\nAssumes Spherical, Balanced Clusters\nWill find clusters when there are none"
+  },
+  {
+    "objectID": "meetups/meetup-11/meetup-11.html#thanks",
+    "href": "meetups/meetup-11/meetup-11.html#thanks",
+    "title": "DATA 622 Meetup 11: Unsupervised Learning",
+    "section": "Thanks!",
+    "text": "Thanks!\n\n\n\n\nDATA 622"
+  },
+  {
     "objectID": "meetups/meetup-2/learning_curve_tutorial.html#learning-curves",
     "href": "meetups/meetup-2/learning_curve_tutorial.html#learning-curves",
     "title": "More About Learning Curves and kNN",
@@ -2846,7 +3364,7 @@
     "href": "course/schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\nMeetup 9 Slides\nMeetup 9 Video\nLab 5\n\n\nNov 2\nCausal Inference\nMeetup 10 Slides\nMeetup 10 Video\n\n\n\nNov 9\nUnsupervised Learning\nMeetup 11 Slides\nMeetup 11 Video\nLab 6\n\n\nNov 16\nNeural Networks\n\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 7, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\nMeetup 9 Slides\nMeetup 9 Video\nLab 5\n\n\nNov 2\nCausal Inference\nMeetup 10 Slides\nMeetup 10 Video\n\n\n\nNov 9\nUnsupervised Learning\nMeetup 11 Slides\nMeetup 11 Video\nLab 6\n\n\nNov 16\nNeural Networks\nMeetup 12 Slides\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 7, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -2857,7 +3375,7 @@
     "href": "course/schedule.html#meetup-link",
     "title": "Schedule",
     "section": "",
-    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\nMeetup 9 Slides\nMeetup 9 Video\nLab 5\n\n\nNov 2\nCausal Inference\nMeetup 10 Slides\nMeetup 10 Video\n\n\n\nNov 9\nUnsupervised Learning\nMeetup 11 Slides\nMeetup 11 Video\nLab 6\n\n\nNov 16\nNeural Networks\n\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 7, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
+    "text": "Click Here to Join the Meetups on Zoom\nMeetups are Mondays at 6:45PM Eastern. We meet every Monday of the semester except Thanksgiving week.\n\nCourse Schedule\n\n\nDate\nModule\nSlides\nVideo\nMain Deliverables\n\n\n\n\nAug 31\nIntroduction to Machine Learning\nMeetup 1 Slides\nMeetup 1 Video\n\n\n\nSep 7\nBias-Variance Trade-Off\nMeetup 2 Slides\nMeetup 2 Video\nLab 1\n\n\nSep 14\nThe Linear Model\nMeetup 3 Slides\nMeetup 3 Video\nLab 2\n\n\nSep 21\nClassification\nMeetup 4 Slides\nMeetup 4 Video\n\n\n\nSep 28\nGenerative Classification Models and Class Imbalance\nMeetup 5 Slides\nMeetup 5 Video\nLab 3\n\n\nOct 5\nResampling and Cross-Validation\nMeetup 6 Slides\nMeetup 6 Video\nProject Proposal\n\n\nOct 12\nRegularization and Model Selection\nMeetup 7 Slides\nMeetup 7 Video\nLab 4\n\n\nOct 19\nTree Models\nMeetup 8 Slides\nMeetup 8 Video\n\n\n\nOct 26\nEnsemble Models\nMeetup 9 Slides\nMeetup 9 Video\nLab 5\n\n\nNov 2\nCausal Inference\nMeetup 10 Slides\nMeetup 10 Video\n\n\n\nNov 9\nUnsupervised Learning\nMeetup 11 Slides\nMeetup 11 Video\nLab 6\n\n\nNov 16\nNeural Networks\nMeetup 12 Slides\n\nMinimum Viable Product Demo\n\n\nNov 23\nNo Meetup — Thanksgiving\n\n\n\n\n\nNov 30\nDeep Learning\n\n\nLab 7\n\n\nDec 7\nRNNs and NLP\n\n\n\n\n\nDec 14\nPretrained Models\n\n\nLab 7, Final Project Demo\n\n\n\nSlides and recordings are posted here after each meetup.",
     "crumbs": [
       "Course information",
       "Schedule"
@@ -4774,5 +5292,544 @@
     "title": "DATA 622 Meetup 2: The Bias-Variance Tradeoff",
     "section": "Thanks!",
     "text": "Thanks!\n\n\n\n\nDATA 622"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#thursday-november-19th",
+    "href": "meetups/meetup-12/meetup-12.html#thursday-november-19th",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Thursday November 19th!",
+    "text": "Thursday November 19th!\n\nRegistration Link"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#week-summary",
+    "href": "meetups/meetup-12/meetup-12.html#week-summary",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Week Summary",
+    "text": "Week Summary\n\nContact me ASAP if you haven’t scheduled MVP demo\nLab 7 due Sunday December 13th\nDatabricks Free, Colab Pro, Kaggle Notebooks\nVignette on neural networks in Colab"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#neural-network-gameplan",
+    "href": "meetups/meetup-12/meetup-12.html#neural-network-gameplan",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Neural Network Gameplan",
+    "text": "Neural Network Gameplan\n\nWeek 12: Basics, pytorch, activation functions, optimization algos\nWeek 13: CNNs, RNNs, Deep Learning Considerations, vision applications\nWeek 14: Pretrained Networks, Transfer Learning, text applications"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#introduction-to-neural-networks",
+    "href": "meetups/meetup-12/meetup-12.html#introduction-to-neural-networks",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Introduction to Neural Networks",
+    "text": "Introduction to Neural Networks\n\nInvented originally to understand how the brain works\n\n\nSource: wikipedia"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#introduction-to-neural-networks-1",
+    "href": "meetups/meetup-12/meetup-12.html#introduction-to-neural-networks-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Introduction to Neural Networks",
+    "text": "Introduction to Neural Networks\n\nWas found to have an enormous number of applications\n\nClassification\nPattern Recognition\nGenerative Models"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#introduction-to-neural-networks-2",
+    "href": "meetups/meetup-12/meetup-12.html#introduction-to-neural-networks-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Introduction to Neural Networks",
+    "text": "Introduction to Neural Networks\n\nInteresting objects in their own right\n\nPeople study them as they would any other complex systems"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#what-is-a-neuron",
+    "href": "meetups/meetup-12/meetup-12.html#what-is-a-neuron",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "What is a Neuron?",
+    "text": "What is a Neuron?\n\nNeurons send and receive electrical signals\n\n\nwikipedia"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#connected-neurons",
+    "href": "meetups/meetup-12/meetup-12.html#connected-neurons",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Connected Neurons",
+    "text": "Connected Neurons\n\n\n\nThey are connected to other neurons"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#connected-neurons-1",
+    "href": "meetups/meetup-12/meetup-12.html#connected-neurons-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Connected Neurons",
+    "text": "Connected Neurons\n\n\n\nThey are connected to other neurons\nThey respond to stimulus from senses and other neurons"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#connected-neurons-2",
+    "href": "meetups/meetup-12/meetup-12.html#connected-neurons-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Connected Neurons",
+    "text": "Connected Neurons\n\n\n\nThey are connected to other neurons\nThey respond to stimulus from senses and other neurons"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#connected-neurons-3",
+    "href": "meetups/meetup-12/meetup-12.html#connected-neurons-3",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Connected Neurons",
+    "text": "Connected Neurons\n\n\n\nThey are connected to other neurons\nThey respond to stimulus from senses and other neurons\nCross a threshold before firing"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#connected-neurons-4",
+    "href": "meetups/meetup-12/meetup-12.html#connected-neurons-4",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Connected Neurons",
+    "text": "Connected Neurons\n\n\n\nThey are connected to other neurons\nThey respond to stimulus from senses and other neurons\nCross a threshold before firing"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#connected-neurons-5",
+    "href": "meetups/meetup-12/meetup-12.html#connected-neurons-5",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Connected Neurons",
+    "text": "Connected Neurons\n\n\n\nThey are connected to other neurons\nThey respond to stimulus from senses and other neurons\nCross a threshold before firing\nNeuronal Cascade is part of cognition"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#single-neuron",
+    "href": "meetups/meetup-12/meetup-12.html#single-neuron",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Single Neuron",
+    "text": "Single Neuron\n\nSingle Neuron converts several inputs into an output:\n\n\nNielson"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#single-neuron-1",
+    "href": "meetups/meetup-12/meetup-12.html#single-neuron-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Single Neuron",
+    "text": "Single Neuron\n\nIntegrates over the input signals using weights: \\[\nx_{\\mathrm{out}} = \\phi\\left(\\sum_{i=1}^n w_ix_i + c\\right)\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#single-neuron-2",
+    "href": "meetups/meetup-12/meetup-12.html#single-neuron-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Single Neuron",
+    "text": "Single Neuron\n\nIntegrates over the input signals using weights: \\[\nx_{\\mathrm{out}} = \\phi\\left(\\sum_{i=1}^n w_ix_i + c\\right)\n\\]\n\\(\\phi\\) is called the activation function\n\\(w_i\\) are the weights\n\\(c\\) is the bias"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#activation-functions",
+    "href": "meetups/meetup-12/meetup-12.html#activation-functions",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Activation Functions",
+    "text": "Activation Functions\n\nBiology intuition:\n\n\\(\\phi=1\\) when integrated inputs positive\n\\(\\phi=0\\) or \\(\\phi=-1\\) (doesn’t matter) when integrated input negative\n\nLeads to step/sigmoid functions:"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#sigmoid-function",
+    "href": "meetups/meetup-12/meetup-12.html#sigmoid-function",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Sigmoid Function",
+    "text": "Sigmoid Function\n\nLeads to step/sigmoid functions"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#single-neuron-in-2d",
+    "href": "meetups/meetup-12/meetup-12.html#single-neuron-in-2d",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Single Neuron in 2D",
+    "text": "Single Neuron in 2D\n\nSuppose we have a single neuron with two inputs.\n\nWhat does the graph of the output function look like?"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#single-neuron-in-2d-1",
+    "href": "meetups/meetup-12/meetup-12.html#single-neuron-in-2d-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Single Neuron in 2D",
+    "text": "Single Neuron in 2D"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#single-neuron-in-2d-2",
+    "href": "meetups/meetup-12/meetup-12.html#single-neuron-in-2d-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Single Neuron in 2D",
+    "text": "Single Neuron in 2D"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#activation-functions-to-know",
+    "href": "meetups/meetup-12/meetup-12.html#activation-functions-to-know",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Activation Functions to Know",
+    "text": "Activation Functions to Know\n\nPerceptron \\[\n\\phi(x) = \\cases{1& \\text{if} \\quad x\\geq 0 \\\\\n              0& \\text{if} \\quad x&lt;0}\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#activation-functions-to-know-1",
+    "href": "meetups/meetup-12/meetup-12.html#activation-functions-to-know-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Activation Functions to Know",
+    "text": "Activation Functions to Know\n\nSigmoid Function\n\n\\[\n\\phi(x) = \\frac{1}{1+e^{-x}}\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#activation-functions-to-know-2",
+    "href": "meetups/meetup-12/meetup-12.html#activation-functions-to-know-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Activation Functions to Know",
+    "text": "Activation Functions to Know\n\nHyperbolic Tangent\n\n\\[\n\\phi(x) = \\frac{e^x - e^{-x}}{e^x +e^{-x}}\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#activation-functions-to-know-3",
+    "href": "meetups/meetup-12/meetup-12.html#activation-functions-to-know-3",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Activation Functions to Know",
+    "text": "Activation Functions to Know\n\nRectified Linear Unit (ReLU)\n\n\\[\n\\phi(x) = \\cases{0& \\text{if} \\quad x\\geq 0 \\\\\n                x& \\text{if} \\quad x&lt;0}\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#feedforward-neural-networks",
+    "href": "meetups/meetup-12/meetup-12.html#feedforward-neural-networks",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Feedforward Neural Networks",
+    "text": "Feedforward Neural Networks\n\nInput layer, one neuron per input variable\nOne neuron per target function\nNeurons organized in layers"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#adding-hidden-layers",
+    "href": "meetups/meetup-12/meetup-12.html#adding-hidden-layers",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Adding Hidden Layers",
+    "text": "Adding Hidden Layers\n\nSuppose that we have two inputs and some number of hidden layers.\n\nWhat could the output look like?"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#adding-hidden-layers-1",
+    "href": "meetups/meetup-12/meetup-12.html#adding-hidden-layers-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Adding Hidden Layers",
+    "text": "Adding Hidden Layers\n\n2 inputs, 1 hidden layer of 32 tanh neurons, random weights"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#adding-hidden-layers-2",
+    "href": "meetups/meetup-12/meetup-12.html#adding-hidden-layers-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Adding Hidden Layers",
+    "text": "Adding Hidden Layers\n\n2 inputs, 2 hidden layers of 32 tanh neurons, random weights"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#adding-hidden-layers-3",
+    "href": "meetups/meetup-12/meetup-12.html#adding-hidden-layers-3",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Adding Hidden Layers",
+    "text": "Adding Hidden Layers\n\n2 inputs, 3 hidden layers of 32 tanh neurons, random weights"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#universal-function-approximation",
+    "href": "meetups/meetup-12/meetup-12.html#universal-function-approximation",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Universal Function Approximation",
+    "text": "Universal Function Approximation\n\nYou can represent any function with a neural network\n\n\nNielson"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#feedforward-examples",
+    "href": "meetups/meetup-12/meetup-12.html#feedforward-examples",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Feedforward Examples",
+    "text": "Feedforward Examples\n\nImage Recognition\n\nInput Neurons are pixels\nOutput neurons correspond to each category\nInner Layers Represent Features\nCan use a softmax layer at the end to determine category"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#neural-network-considerations",
+    "href": "meetups/meetup-12/meetup-12.html#neural-network-considerations",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Neural Network Considerations",
+    "text": "Neural Network Considerations\n\nWhere do you think neural networks sit on the flexibility/interpretability hierarchy?"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#neural-network-considerations-1",
+    "href": "meetups/meetup-12/meetup-12.html#neural-network-considerations-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Neural Network Considerations",
+    "text": "Neural Network Considerations\n\nEven a small NN can be huge:\n\n\n\nNeed lots of data\nLots of different regularization"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#what-are-nns-used-for",
+    "href": "meetups/meetup-12/meetup-12.html#what-are-nns-used-for",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "What are NNs used for?",
+    "text": "What are NNs used for?\n\nAnything where the features are abstract\n\nImages\nAudio\nText\n\nLarge amounts of data"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#what-arent-nns-used-for",
+    "href": "meetups/meetup-12/meetup-12.html#what-arent-nns-used-for",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "What aren’t NNs used for?",
+    "text": "What aren’t NNs used for?\n\nTabular data problems decision trees often just as good but with less trouble\n\nAllegedly there are some “tabular foundation models”\n\nMaking decisons that require explanation\nInference\nCompute cost or speed constrained applications\nExtrapolation\nProblems where uncertainty is required"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#how-would-you-train-one",
+    "href": "meetups/meetup-12/meetup-12.html#how-would-you-train-one",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "How would you train one?",
+    "text": "How would you train one?\n\nHave set of training data \\(\\mathbf{x}_i\\) and target \\(y_i\\)\nHave settled on an architecture:\n\n\\(n_i\\) neurons in layer \\(i\\)\n\\(m\\) total layers\n\\(w_{jk,i}\\) is weight of neuron \\(j\\) in layer \\(i-1\\) on neuron \\(k\\) in layer \\(i\\)\n\\(b_{ki}\\) is bias of neuron \\(k\\) in layer \\(i\\)"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#how-would-you-train-one-1",
+    "href": "meetups/meetup-12/meetup-12.html#how-would-you-train-one-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "How would you train one?",
+    "text": "How would you train one?"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#how-would-you-train-one-2",
+    "href": "meetups/meetup-12/meetup-12.html#how-would-you-train-one-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "How would you train one?",
+    "text": "How would you train one?\n\nOverall neural network generates a function: \\[\ny_{\\mathrm{pred}} = F(\\mathbf{x})\n\\]\nEvaluate function by stepping through the layers in order\nCan define a loss minimization problem: \\[\n\\min_{\\mathbf{w},\\mathbf{b}} \\sum_{l=1}^N \\Phi(y_l,F(\\mathbf{x},\\mathbf{w},\\mathbf{b}))\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#backpropagation",
+    "href": "meetups/meetup-12/meetup-12.html#backpropagation",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Backpropagation",
+    "text": "Backpropagation\n\nIn order to optimize, compute the gradient\nRepeated application of the chain rule\nNN packages use the network structure to efficiently compute the gradients\nReferred to as backpropagation\nRelated technique of automatic differentiation"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#pytorch",
+    "href": "meetups/meetup-12/meetup-12.html#pytorch",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "pytorch",
+    "text": "pytorch\n\nOpen Source Machine Learning Library from Meta/FB\nPyTorch optimizes usability while maintaining good performance\n\nNo small task when dealing with GPUs\n\nPyTorch favors simple over easy\n\nA little bit harder at first when working with GPUs\nBut easier to debug when you build complex models\n\nPython First"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#tensors",
+    "href": "meetups/meetup-12/meetup-12.html#tensors",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "tensors",
+    "text": "tensors\n\nPrimary data object in pytorch is called a tensor\n\n\nimport torch\nimport numpy as np\n\ndata = [[1, 2],[3, 4]]\nx_data = torch.tensor(data)\nx_data\n\ntensor([[1, 2],\n        [3, 4]])"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#tensors-1",
+    "href": "meetups/meetup-12/meetup-12.html#tensors-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "tensors",
+    "text": "tensors\n\nTensors are like magic numpy arrays\n\nThey live on a particular device:\n\n\n\nprint(f\"Device tensor is stored on: {x_data.device}\")\n\nDevice tensor is stored on: cpu\n\n\n\nWhen programming with GPUs, you must manually control the movement of tensor data across the cluster"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#what-is-a-gpu",
+    "href": "meetups/meetup-12/meetup-12.html#what-is-a-gpu",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "What is a GPU",
+    "text": "What is a GPU\n\nNormal computers have several (~20) very powerful cores\n\nEach core can do complex operations sequentially\n\nGPU has huge number (~10,000) of very basic cores\n\nCores can just multiply and add\nCores work in parallel\nPerfect for Neural Networks"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#tensors-2",
+    "href": "meetups/meetup-12/meetup-12.html#tensors-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "tensors",
+    "text": "tensors\n\nTensors are like magic numpy arrays\n\nThey come with automatic gradient tracking\nWhen you perform a computation with a tensor, pytorch stores the computational graph\n*.backward() computes gradient\n\n\n\nx = torch.ones(5)  # input tensor\ny = torch.tensor(1)  # true class (one of 0, 1, 2)\nw = torch.randn(5, 3, requires_grad=True)\nb = torch.randn(3, requires_grad=True)\nz = torch.matmul(x, w)+b  # one logit per class\nloss = torch.nn.functional.cross_entropy(z, y)\n\nloss.backward()"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#tensors-3",
+    "href": "meetups/meetup-12/meetup-12.html#tensors-3",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "tensors",
+    "text": "tensors\n\nloss.backward() updated the tensors w and b to include the gradient with respect to loss \\[\n\\frac{\\partial \\mathrm{loss}}{\\partial \\mathbf{w}},\\quad \\frac{\\partial \\mathrm{loss}}{\\partial \\mathbf{b}},\n\\]\n\n\nprint(w.grad)\nprint(b.grad)\n\ntensor([[ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034],\n        [ 0.0581, -0.7615,  0.7034]])\ntensor([ 0.0581, -0.7615,  0.7034])"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#dataloaders",
+    "href": "meetups/meetup-12/meetup-12.html#dataloaders",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Dataloaders",
+    "text": "Dataloaders\n\npytorch is written to separate model building/training and dataset management\ntorch.utils.data.Dataset enables built in datasets\ntorch.utils.data.DataLoader is for managing and iterating over datasets"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#dataloaders-1",
+    "href": "meetups/meetup-12/meetup-12.html#dataloaders-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "DataLoaders",
+    "text": "DataLoaders\n\nThis code will download the fashion-mnist dataset and prep it for use:\n\n\nimport torch\nfrom torch.utils.data import Dataset\nfrom torchvision import datasets\nfrom torchvision.transforms import ToTensor\nimport matplotlib.pyplot as plt\n\n\ntraining_data = datasets.FashionMNIST(\n    root=\"data\",\n    train=True,\n    download=True,\n    transform=ToTensor()\n)\n\ntest_data = datasets.FashionMNIST(\n    root=\"data\",\n    train=False,\n    download=True,\n    transform=ToTensor()\n)"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#constructing-a-neural-network",
+    "href": "meetups/meetup-12/meetup-12.html#constructing-a-neural-network",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Constructing a Neural Network",
+    "text": "Constructing a Neural Network\n\nNeural Network architectures are constructed using the nn.Module class\n\n\nimport torch.nn as nn\nimport torch.nn.functional as F\nimport torch.optim as optim\n\n\n# The network class contains the intializer and some methods for our neural network\n# You create a network by calling Network([Nodes_Input,Nodes_2,Nodes_3,...,Nodes_Output]) \n\nclass Network(nn.Module):\n    def __init__(self, sizes):\n        super(Network, self).__init__()\n        self.sizes = sizes\n        self.num_layers = len(sizes)\n        \n        self.layers = nn.ModuleList()\n        for i in range(self.num_layers - 1):\n            layer = nn.Linear(sizes[i], sizes[i+1])\n            nn.init.xavier_normal_(layer.weight)   # Good initialization for shallow/sigmoid nets\n            #nn.init.kaiming_normal_(layer.weight, mode='fan_out', nonlinearity='relu') initialization for relus\n            #nn.init.kaiming_uniform_(layer.weight, mode='fan_out', nonlinearity='relu') initialization for relus and deep nets\n\n            nn.init.zeros_(layer.bias)               # initialize the bias to 0\n            self.layers.append(layer)\n    \n    # Forward is the method that calculates the value of the neural network. Basically we recursively apply the activations in each\n    # layer\n    \n    def forward(self, x):\n        for layer in self.layers[:-1]:\n            x = torch.sigmoid(layer(x))   # sigmoid layers\n            #x = F.relu(layer(x)) # You will try the relu layer in the last problem\n        x = self.layers[-1](x) \n        return x"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#initializing-a-network",
+    "href": "meetups/meetup-12/meetup-12.html#initializing-a-network",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Initializing a Network",
+    "text": "Initializing a Network\n\nCan call the constructor to make your network:\n\n\nNetwork([784,100,10])\n\nNetwork(\n  (layers): ModuleList(\n    (0): Linear(in_features=784, out_features=100, bias=True)\n    (1): Linear(in_features=100, out_features=10, bias=True)\n  )\n)"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#training-a-network",
+    "href": "meetups/meetup-12/meetup-12.html#training-a-network",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Training a network",
+    "text": "Training a network\n\nDefine Training Function\n\n\ndef train(network, train_data, epochs, eta, test_data=None):\n \n    optimizer = optim.SGD(network.parameters(),momentum=0.8,nesterov=True, lr=eta,weight_decay=1e-5)\n    loss_fn = nn.CrossEntropyLoss()\n    \n    loss_history = []      \n    accuracy_history = []  \n    train_accuracy_history = []\n\n    # We are going to loop over the epochs\n    for epoch in range(epochs):\n        # This puts the network into training mode\n        network.train()\n        running_loss = 0.0\n        batch_count = 0"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#training-a-network-1",
+    "href": "meetups/meetup-12/meetup-12.html#training-a-network-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Training a Network",
+    "text": "Training a Network\n\nLoop over batches of training examples\n\n\n        # Now we loop through the batches to train\n        for data, target in train_data:\n            optimizer.zero_grad() # This clears the internally stored gradients\n            output = network(data) # evaluate the neural network on the minibatch, we will compare this to the target\n            # Here we calculate the loss function and then use backpropagation\n            # to calculate the gradient\n            loss = loss_fn(output, target) \n            loss.backward()\n        \n            # Update the weights\n            optimizer.step()\n            \n            running_loss += loss.item()\n            batch_count += 1"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#loading-data",
+    "href": "meetups/meetup-12/meetup-12.html#loading-data",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Loading Data",
+    "text": "Loading Data\n\nfrom torchvision import datasets, transforms\nfrom torch.utils.data import DataLoader\n\ntransform = transforms.Compose([transforms.ToTensor(), transforms.Lambda(lambda x: x.view(-1))])\n\n\ntrain_dataset = datasets.FashionMNIST('data/', train=True, download=True, transform=transform)\ntest_dataset = datasets.FashionMNIST('data/', train=False, transform=transform)\n\nimg, label = training_data[100]\n\nplt.imshow(img.squeeze(),cmap=\"gray\")"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#train",
+    "href": "meetups/meetup-12/meetup-12.html#train",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Train",
+    "text": "Train\n\ntrain_loader = DataLoader(train_dataset, batch_size=10, shuffle=True)\ntest_loader = DataLoader(test_dataset, batch_size=10, shuffle=False)\n\n# Initialize network\nnet = Network([784, 30, 10])\n\n# Train\ntrain(net, train_loader, epochs=1, eta=0.01, test_data=test_loader)"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#optimization-basics",
+    "href": "meetups/meetup-12/meetup-12.html#optimization-basics",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Optimization Basics",
+    "text": "Optimization Basics\n\n\n\nSimplified loss landscape:\nImagine more dimensions"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#gradient-descent",
+    "href": "meetups/meetup-12/meetup-12.html#gradient-descent",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Gradient Descent",
+    "text": "Gradient Descent\n\n\n\n\n\n\n\n\n\n\n\n\n\nStart at \\(\\mathbf{x}_0\\)\nFind gradient \\(\\nabla \\mathrm{loss}(\\mathbf{x})\\)\n\\(\\mathbf{x}_n = \\mathbf{x}_{n-1} - \\kappa \\nabla\\mathrm{loss}(\\mathbf{x}_{n-1})\\)\n\\(\\kappa\\) is learning rate"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#what-learning-rate-to-pick",
+    "href": "meetups/meetup-12/meetup-12.html#what-learning-rate-to-pick",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "What Learning Rate to Pick?",
+    "text": "What Learning Rate to Pick?\n\nHigh learning rate trains faster\nToo high and don’t converge at all\nLimit is set by algorithm and ellipticity of well"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#what-learning-rate-to-pick-1",
+    "href": "meetups/meetup-12/meetup-12.html#what-learning-rate-to-pick-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "What Learning Rate to Pick?",
+    "text": "What Learning Rate to Pick?\n\n\n\n\n\n\n\n\n\n\n\n\n\nSteepness discrepancy limits learning rate\nMost of the step is in wrong direction"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#what-learning-rate-to-pick-2",
+    "href": "meetups/meetup-12/meetup-12.html#what-learning-rate-to-pick-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "What Learning Rate to Pick?",
+    "text": "What Learning Rate to Pick?"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#momentum",
+    "href": "meetups/meetup-12/meetup-12.html#momentum",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Momentum",
+    "text": "Momentum\n\nAdvanced algos use momentum, gives “memory” of past gradient\nReduces effect of valley oscillation"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#momentum-1",
+    "href": "meetups/meetup-12/meetup-12.html#momentum-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Momentum",
+    "text": "Momentum"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#hyperparameter-problems",
+    "href": "meetups/meetup-12/meetup-12.html#hyperparameter-problems",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Hyperparameter Problems",
+    "text": "Hyperparameter Problems\n\nWe don’t know the shape of the loss landscape to pick \\(\\kappa\\)\nWe handle this several ways:\n\nExperimentation\nHeuristics\nAdaptive Methods"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent",
+    "href": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Stochastic Gradient Descent",
+    "text": "Stochastic Gradient Descent\n\nCommon for optimization algorithms to “get stuck”"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-1",
+    "href": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Stochastic Gradient Descent",
+    "text": "Stochastic Gradient Descent\n\nIn low-D local minima are problematic"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-2",
+    "href": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-2",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Stochastic Gradient Descent",
+    "text": "Stochastic Gradient Descent\n\nTrajectories get Stuck"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-3",
+    "href": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-3",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Stochastic Gradient Descent",
+    "text": "Stochastic Gradient Descent\n\nThe barriers in high dimensions likely more complex\nStochastic Gradient Descent modifies gradient descent style methods\n\nCompute the gradient of loss using only part of the data\nCalled a “mini-batch”\nSmaller the mini-batch, the more the noise"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-4",
+    "href": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-4",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Stochastic Gradient Descent",
+    "text": "Stochastic Gradient Descent"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-5",
+    "href": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-5",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Stochastic Gradient Descent",
+    "text": "Stochastic Gradient Descent\n\nIn 2D, can just add noise"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-6",
+    "href": "meetups/meetup-12/meetup-12.html#stochastic-gradient-descent-6",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Stochastic Gradient Descent",
+    "text": "Stochastic Gradient Descent"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#annealing",
+    "href": "meetups/meetup-12/meetup-12.html#annealing",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Annealing",
+    "text": "Annealing\n\nNoise can deflect you from the minimum when you are close\nCommon practice is to start with noise high, reduce it later\n\nSimulated annealing (from metallurgy)\n\nEven more common to start with high learning rate and gradually decrease it\n\nWhereas in some ML applications increasing batch-size could cause overfitting"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#annealing-1",
+    "href": "meetups/meetup-12/meetup-12.html#annealing-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Annealing",
+    "text": "Annealing"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#adaptive-methods",
+    "href": "meetups/meetup-12/meetup-12.html#adaptive-methods",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Adaptive Methods",
+    "text": "Adaptive Methods\n\nWe saw that hyper-parameters are hard to pick at outset\nIdeal learning rate depends on condition number and also magnitude of gradients\nConcept: Change Learning Rate as we go\n\nKeep memory of gradient in each variable\nStep in the direction of the average gradient\nDecrease learning rate if variance is high\nIncrease learning rate if variance is low"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#adam",
+    "href": "meetups/meetup-12/meetup-12.html#adam",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "ADAM",
+    "text": "ADAM\n\nAdaptive Moment Estimation\nHave a local estimate of average gradient \\(\\hat{\\mathbf{v}}_i\\)\nHave a local estimate of squared gradient \\(\\hat{G}_{s,i}\\)\nAdjusted learning rate based on both: \\[\n\\mathbf{x}_{i+1} = \\mathbf{x}_i -\\kappa \\frac{\\hat{\\mathbf{v}}_i}{\\sqrt{\\hat{G}_{s,i}+\\epsilon}}\n\\]"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#adam-1",
+    "href": "meetups/meetup-12/meetup-12.html#adam-1",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "ADAM",
+    "text": "ADAM"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#when-and-why-is-adam-good",
+    "href": "meetups/meetup-12/meetup-12.html#when-and-why-is-adam-good",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "When and Why is ADAM good?",
+    "text": "When and Why is ADAM good?\n\nADAM is much more robust to learning rate choices\nADAM is excellent when the gradient is sparse\nADAM is often the best in initial training stages"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#when-is-adam-bad",
+    "href": "meetups/meetup-12/meetup-12.html#when-is-adam-bad",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "When is ADAM bad?",
+    "text": "When is ADAM bad?\n\nADAM is perhaps the most widely used optimizer, the default for deep learning\nHowever, it is not even guaranteed to converge on easy problems\nCan generalize worse (need more regularization)\nLess memory efficient\nIt is very heuristic in nature, can be improved"
+  },
+  {
+    "objectID": "meetups/meetup-12/meetup-12.html#thanks",
+    "href": "meetups/meetup-12/meetup-12.html#thanks",
+    "title": "DATA 622 Meetup 12: Neural Networks",
+    "section": "Thanks",
+    "text": "Thanks\n\n\n\n\nDATA 622"
   }
 ]

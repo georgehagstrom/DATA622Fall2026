@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-11/meetup-11.html</loc>
+    <lastmod>2026-11-16T21:36:30.391Z</lastmod>
+  </url>
+  <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/learning_curve_tutorial.html</loc>
     <lastmod>2026-10-04T14:42:25.583Z</lastmod>
   </url>
@@ -198,7 +202,7 @@
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/course/schedule.html</loc>
-    <lastmod>2026-11-16T15:26:27.421Z</lastmod>
+    <lastmod>2026-11-16T23:24:24.777Z</lastmod>
   </url>
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/course/syllabus.html</loc>
@@ -335,5 +339,9 @@
   <url>
     <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-2/meetup-2.html</loc>
     <lastmod>2026-09-09T15:53:52.289Z</lastmod>
+  </url>
+  <url>
+    <loc>https://georgehagstrom.github.io/DATA622Fall2026/meetups/meetup-12/meetup-12.html</loc>
+    <lastmod>2026-11-16T23:04:44.895Z</lastmod>
   </url>
 </urlset>
