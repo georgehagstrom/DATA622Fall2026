@@ -2,6 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2026-11-16-Data-Science-Seminar-Thursday.html",
+      "/posts/2026-11-16-Neural-Network-Vignettes.html",
       "/posts/2026-11-16-Week-12-Neural-Networks.html",
       "/posts/2026-11-08-Week-11-Unsupervised-Learning.html",
       "/posts/2026-11-02-CausalMLVignettes.html",
